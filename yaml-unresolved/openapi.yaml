@@ -16,7 +16,7 @@ tags:
 - name: Bank Document
   description: Bank Document endpoints
 - name: Customer
-  description: Customer operations
+  description: Customer endpoints
 - name: Account
   description: Account endpoints
 - name: External Account
