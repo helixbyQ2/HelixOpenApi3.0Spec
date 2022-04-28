@@ -1,0 +1,17 @@
+name: Sync OAS to ReadMe
+on:
+  push:
+    branches:
+      - prod
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout this repo
+        uses: actions/checkout@v3
+
+      - name: GitHub Action
+        # Docs: https://docs.github.com/actions/using-workflows/workflow-syntax-for-github-actions#example-using-versioned-actions
+        uses: readmeio/rdme@7.0.1
+        with:
+          rdme: openapi yaml-unresolved/openapi.yaml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.HELIX_API_README_DEFINITION_ID }}
