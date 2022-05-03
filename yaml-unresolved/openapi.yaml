@@ -8,8 +8,6 @@ servers:
   description: Sandbox server
 - url: https://api.helix.q2.com
   description: Production server
-security:
-- basicAuth: []
 tags:
 - name: Program
   description: Program endpoints
@@ -35,16 +33,8 @@ tags:
   description: Customer Beneficiary endpoints
 - name: External Account Document
   description: External Account Document endpoints
-x-samples-languages:
-- curl
-- node
-- python
-- csharp
-- ruby
-- go
-- java
-- kotlin
-- php
+security:
+- basicAuth: []
 paths:
   /program/get:
     get:
@@ -3244,3 +3234,13 @@ components:
     basicAuth:
       type: http
       scheme: basic
+x-samples-languages:
+- curl
+- node
+- python
+- csharp
+- ruby
+- go
+- java
+- kotlin
+- php
