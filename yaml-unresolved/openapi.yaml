@@ -43,7 +43,7 @@ paths:
       summary: Get program details
       description: Get your program settings and information. All values are read-only. Please contact your Q2 relationship manager if you wish to make any changes.
       externalDocs:
-        url: https://docs.helix.q2.com/reference#programget
+        url: https://docs.helix.q2.com/reference/programget
       operationId: programGet
       responses:
         '200':
@@ -68,7 +68,7 @@ paths:
       summary: Get customer due diligence questions
       description: Retrieve active customer onboarding questions
       externalDocs:
-        url: https://docs.helix.q2.com/reference#programquestionslist
+        url: https://docs.helix.q2.com/reference/programquestionslist
       operationId: programQuestionsList
       responses:
         '200':
@@ -95,7 +95,7 @@ paths:
       summary: List bank documents
       description: Retrieve a list of all bank documents for the given `culture`
       externalDocs:
-        url: https://docs.helix.q2.com/reference#bankdocumentlist
+        url: https://docs.helix.q2.com/reference/bankdocumentlist
       operationId: bankDocumentList
       parameters:
       - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/culture'
@@ -124,7 +124,7 @@ paths:
       summary: Download a bank document
       description: Retrieve <a href="https://docs.helix.q2.com/docs/file-content" target="_blank">`fileContent`</a> for the given `culture` and `documentId`
       externalDocs:
-        url: https://docs.helix.q2.com/reference#bankdocumentdownload
+        url: https://docs.helix.q2.com/reference/bankdocumentdownload
       operationId: bankDocumentDownload
       parameters:
       - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/culture'
@@ -157,7 +157,7 @@ paths:
       description: |
         List all customers for your program. The results are ordered by `lastName` then `firstName`. Each customer object will contain an additional property, `customerCount`, which can be used in combination with the `pageNumber` and `pageSize` query params to paginate results. All customers, regardless of any flags or status, will be returned.
       externalDocs:
-        url: https://docs.helix.q2.com/reference#customerlist
+        url: https://docs.helix.q2.com/reference/customerlist
       operationId: customerList
       parameters:
       - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/pageNumber'
@@ -187,7 +187,7 @@ paths:
       summary: Get a customer
       description: Retrieve customer information by the `customerId` assigned by Helix.
       externalDocs:
-        url: https://docs.helix.q2.com/reference#customerget
+        url: https://docs.helix.q2.com/reference/customerget
       operationId: customerGet
       parameters:
       - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/customerId'
@@ -214,7 +214,7 @@ paths:
       summary: Get a customer via emailAddress
       description: Retrieve customer information by the `emailAddress` specified during customer creation.
       externalDocs:
-        url: https://docs.helix.q2.com/reference#customergetbyemail
+        url: https://docs.helix.q2.com/reference/customergetbyemail
       operationId: customerGetByEmail
       parameters:
       - name: emailAddress
@@ -246,7 +246,7 @@ paths:
       summary: Get a customer via tag
       description: Retrieve customer information by the `tag` (unique identifier) specified during customer creation.
       externalDocs:
-        url: https://docs.helix.q2.com/reference#customergetbytag
+        url: https://docs.helix.q2.com/reference/customergetbytag
       operationId: customerGetByTag
       parameters:
       - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/tag'
@@ -280,7 +280,7 @@ paths:
         }
         [/block]
       externalDocs:
-        url: https://docs.helix.q2.com/reference#customersearch
+        url: https://docs.helix.q2.com/reference/customersearch
       operationId: customerSearch
       parameters:
       - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/pageNumber'
@@ -349,7 +349,7 @@ paths:
         }
         [/block]
       externalDocs:
-        url: https://docs.helix.q2.com/reference#customercreate
+        url: https://docs.helix.q2.com/reference/customercreate
       operationId: customerCreate
       requestBody:
         required: true
@@ -469,7 +469,7 @@ paths:
       - Customer
       summary: List a customer's due diligence responses
       externalDocs:
-        url: https://docs.helix.q2.com/reference#customeranswerlist
+        url: https://docs.helix.q2.com/reference/customeranswerlist
       operationId: customerAnswerList
       parameters:
       - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/customerId'
@@ -497,7 +497,7 @@ paths:
       - Customer
       summary: Submit a customer's due diligence answers
       externalDocs:
-        url: https://docs.helix.q2.com/reference#customeranswerpost
+        url: https://docs.helix.q2.com/reference/customeranswerpost
       operationId: customerAnswerPost
       requestBody:
         required: true
@@ -541,7 +541,7 @@ paths:
         }
         [/block]
       externalDocs:
-        url: https://docs.helix.q2.com/reference#customerupdate
+        url: https://docs.helix.q2.com/reference/customerupdate
       operationId: customerUpdate
       requestBody:
         required: true
@@ -640,7 +640,7 @@ paths:
       summary: Make a customer note
       description: Add notes to a customer record
       externalDocs:
-        url: https://docs.helix.q2.com/reference#customernote
+        url: https://docs.helix.q2.com/reference/customernote
       operationId: customerNote
       requestBody:
         required: true
@@ -685,7 +685,7 @@ paths:
       summary: List customer notes
       description: Retrieve customer notes that were added via the admin console or API
       externalDocs:
-        url: https://docs.helix.q2.com/reference#customernoteslist
+        url: https://docs.helix.q2.com/reference/customernoteslist
       operationId: customerNotesList
       parameters:
       - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/customerId'
@@ -717,7 +717,7 @@ paths:
       summary: Generate a customer token
       description: Retrieve customer token for the specified `customerId`. Only applicable if your program has customer-level authentication enabled. 
       externalDocs:
-        url: https://docs.helix.q2.com/reference#customergeneratetoken
+        url: https://docs.helix.q2.com/reference/customergeneratetoken
       operationId: customerGenerateToken
       parameters:
       - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/customerId'
@@ -755,7 +755,7 @@ paths:
         }
         [/block]
       externalDocs:
-        url: https://docs.helix.q2.com/reference#customerarchive
+        url: https://docs.helix.q2.com/reference/customerarchive
       operationId: customerArchive
       requestBody:
         required: true
@@ -833,7 +833,7 @@ paths:
       summary: List accounts
       description: Retrieve all accounts for the given `customerId`. Accounts with `status=Closed` may disappear from this list after a period of time no shorter than 32 days.
       externalDocs:
-        url: https://docs.helix.q2.com/reference#accountlist
+        url: https://docs.helix.q2.com/reference/accountlist
       operationId: accountList
       parameters:
       - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/customerId'
@@ -862,7 +862,7 @@ paths:
       summary: Get an account
       description: Retrieve a single account for the given `customerId` and `accountId`
       externalDocs:
-        url: https://docs.helix.q2.com/reference#accountget
+        url: https://docs.helix.q2.com/reference/accountget
       operationId: accountGet
       parameters:
       - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/customerId'
@@ -890,7 +890,7 @@ paths:
       summary: Get an account via tag
       description: Retrieve a single account for the given `customerId` and `tag`
       externalDocs:
-        url: https://docs.helix.q2.com/reference#accountgetbytag
+        url: https://docs.helix.q2.com/reference/accountgetbytag
       operationId: accountGetByTag
       parameters:
       - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/customerId'
@@ -918,7 +918,7 @@ paths:
       summary: Create an account
       description: Create a new account for a customer. See <a href="https://docs.helix.q2.com/docs/account" target="_blank">account object definition</a> for parameter details.
       externalDocs:
-        url: https://docs.helix.q2.com/reference#accountcreate
+        url: https://docs.helix.q2.com/reference/accountcreate
       operationId: accountCreate
       requestBody:
         required: true
@@ -1001,11 +1001,11 @@ paths:
       - Account
       summary: Lock an account
       description: |
-        Lock an account. Most locks can be reversed by calling [/account/unlock](https://docs.helix.q2.com/reference#accountunlock). Please check the [/account/unlock](https://docs.helix.q2.com/reference#accountunlock) documentation to see which lock scenarios can be subsequently unlocked.
+        Lock an account. Most locks can be reversed by calling [/account/unlock](https://docs.helix.q2.com/reference/accountunlock). Please check the [/account/unlock](https://docs.helix.q2.com/reference/accountunlock) documentation to see which lock scenarios can be subsequently unlocked.
         
          Will apply a lockTypeCode of `CST` or `SYS` on success and the account will be locked, meaning no funds transfers can take place.
       externalDocs:
-        url: https://docs.helix.q2.com/reference#accountlock
+        url: https://docs.helix.q2.com/reference/accountlock
       operationId: accountLock
       requestBody:
         required: true
@@ -1070,7 +1070,7 @@ paths:
         
         The account will have a `lockTypeCode` of `UNL` upon successful completion of this call. The account is unlocked and ready for transfers to take place.
       externalDocs:
-        url: https://docs.helix.q2.com/reference#accountunlock
+        url: https://docs.helix.q2.com/reference/accountunlock
       operationId: accountUnlock
       requestBody:
         required: true
@@ -1109,7 +1109,7 @@ paths:
       summary: Update an account
       description: See <a href="https://docs.helix.q2.com/docs/account" target="_blank">account object definition</a> for parameter details.
       externalDocs:
-        url: https://docs.helix.q2.com/reference#accountupdate
+        url: https://docs.helix.q2.com/reference/accountupdate
       operationId: accountUpdate
       requestBody:
         required: true
@@ -1198,7 +1198,7 @@ paths:
       summary: Close an account
       description: Close an account. If the account balance is greater than $0 or any interest is owed on the account those amounts are calculated and a <a href="https://docs.helix.q2.com/docs/transaction" target="_blank">transaction</a> is implicitly created with the sum of those amounts being credited into the given `closeToAccountId`. That transaction's `tag` property is also assigned the value in the `transactionTag` property (if specified).
       externalDocs:
-        url: https://docs.helix.q2.com/reference#accountclose
+        url: https://docs.helix.q2.com/reference/accountclose
       operationId: accountClose
       requestBody:
         required: true
@@ -1272,7 +1272,7 @@ paths:
       summary: List external accounts
       description: List all external accounts for a given `customerId`
       externalDocs:
-        url: https://docs.helix.q2.com/reference#externalaccountlist
+        url: https://docs.helix.q2.com/reference/externalaccountlist
       operationId: externalAccountList
       parameters:
       - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/customerId'
@@ -1301,7 +1301,7 @@ paths:
       summary: Get an external account
       description: Retrieve externalAccount information by the given `customerId` and `externalAccountId`
       externalDocs:
-        url: https://docs.helix.q2.com/reference#externalaccountget
+        url: https://docs.helix.q2.com/reference/externalaccountget
       operationId: externalAccountGet
       parameters:
       - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/customerId'
@@ -1333,7 +1333,7 @@ paths:
       summary: Get an external account via tag
       description: Retrieve externalAccount information by the given `customerId` and `tag` 
       externalDocs:
-        url: https://docs.helix.q2.com/reference#externalaccountgetbytag
+        url: https://docs.helix.q2.com/reference/externalaccountgetbytag
       operationId: externalAccountGetByTag
       parameters:
       - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/customerId'
@@ -1368,7 +1368,7 @@ paths:
         }
         [/block]
       externalDocs:
-        url: https://docs.helix.q2.com/reference#externalaccountcreate
+        url: https://docs.helix.q2.com/reference/externalaccountcreate
       operationId: externalAccountCreate
       requestBody:
         required: true
@@ -1402,11 +1402,11 @@ paths:
         [block:callout]
         {
           "type": "info",
-          "body": "In the sandbox environment, if you have NACHA enabled, a \"magic value\" of `123456789` for the `routingNumber` property may be used for testing purposes. This will set the `name` to `COREPRO SANDBOX BANK`. Additionally, all trial deposit amounts in the Sandbox environment will be 0.18 and 0.28, and [/externalAccount/verify](https://docs.helix.q2.com/reference#externalaccountverify) can be called immediately. However, in production, a request to `/externalAccount/verify` must be sent at a later date to allow time for the ACH process to happen at the external bank."
+          "body": "In the sandbox environment, if you have NACHA enabled, a \"magic value\" of `123456789` for the `routingNumber` property may be used for testing purposes. This will set the `name` to `COREPRO SANDBOX BANK`. Additionally, all trial deposit amounts in the Sandbox environment will be 0.18 and 0.28, and [/externalAccount/verify](https://docs.helix.q2.com/reference/externalaccountverify) can be called immediately. However, in production, a request to `/externalAccount/verify` must be sent at a later date to allow time for the ACH process to happen at the external bank."
         }
         [/block]
       externalDocs:
-        url: https://docs.helix.q2.com/reference#externalaccountinitiate
+        url: https://docs.helix.q2.com/reference/externalaccountinitiate
       operationId: externalAccountInitiate
       requestBody:
         required: true
@@ -1437,11 +1437,11 @@ paths:
       - External Account
       summary: Verify an external account
       description: |
-        Verify trial deposit amounts that were sent via [/externalAccount/initiate](https://docs.helix.q2.com/reference#externalaccountinitiate). 
+        Verify trial deposit amounts that were sent via [/externalAccount/initiate](https://docs.helix.q2.com/reference/externalaccountinitiate). 
         
         **Note:** In the sandbox environment these values are harcoded to `0.18` and `0.28` to allow for easy testing since no ACH files are actually generated. 
       externalDocs:
-        url: https://docs.helix.q2.com/reference#externalaccountverify
+        url: https://docs.helix.q2.com/reference/externalaccountverify
       operationId: externalAccountVerify
       requestBody:
         required: true
@@ -1495,7 +1495,7 @@ paths:
         }
         [/block]
       externalDocs:
-        url: https://docs.helix.q2.com/reference#externalaccountlock
+        url: https://docs.helix.q2.com/reference/externalaccountlock
       operationId: externalAccountLock
       requestBody:
         required: true
@@ -1541,7 +1541,7 @@ paths:
         }
         [/block]
       externalDocs:
-        url: https://docs.helix.q2.com/reference#externalaccountunlock
+        url: https://docs.helix.q2.com/reference/externalaccountunlock
       operationId: externalAccountUnlock
       requestBody:
         required: true
@@ -1580,7 +1580,7 @@ paths:
       summary: Update an external account
       description: See <a href="https://docs.helix.q2.com/docs/external-account" target="_blank">externalAccount object definition</a> for parameter details.
       externalDocs:
-        url: https://docs.helix.q2.com/reference#externalaccountupdate
+        url: https://docs.helix.q2.com/reference/externalaccountupdate
       operationId: externalAccountUpdate
       requestBody:
         required: true
@@ -1646,7 +1646,7 @@ paths:
         }
         [/block]
       externalDocs:
-        url: https://docs.helix.q2.com/reference#externalaccountarchive
+        url: https://docs.helix.q2.com/reference/externalaccountarchive
       operationId: externalAccountArchive
       requestBody:
         required: true
@@ -1692,9 +1692,9 @@ paths:
       tags:
       - Transfer
       summary: Create a transfer
-      description: Transfer funds from one account to another. Results in a new transaction which can be retrieved via the various [/transaction/*](https://docs.helix.q2.com/reference#transaction-reference) routes. See <a href="https://docs.helix.q2.com/docs/transfer" target="_blank">transfer object definition</a> for parameter details.
+      description: Transfer funds from one account to another. Results in a new transaction which can be retrieved via the various [/transaction/*](https://docs.helix.q2.com/reference/transaction-reference) routes. See <a href="https://docs.helix.q2.com/docs/transfer" target="_blank">transfer object definition</a> for parameter details.
       externalDocs:
-        url: https://docs.helix.q2.com/reference#transfercreate
+        url: https://docs.helix.q2.com/reference/transfercreate
       operationId: transferCreate
       requestBody:
         required: true
@@ -1726,11 +1726,11 @@ paths:
       - Transfer
       summary: Void a transfer
       description: |
-        Void a transfer previously created via [/transfer/create](https://docs.helix.q2.com/reference#transfercreate).
+        Void a transfer previously created via [/transfer/create](https://docs.helix.q2.com/reference/transfercreate).
         
         **Note:** Only transactions with `status=Initiated` may be voided.
       externalDocs:
-        url: https://docs.helix.q2.com/reference#transfervoid
+        url: https://docs.helix.q2.com/reference/transfervoid
       operationId: transferVoid
       requestBody:
         required: true
@@ -1773,7 +1773,7 @@ paths:
       summary: List cards
       description: Retrieve all card information for the given `customerId`
       externalDocs:
-        url: https://docs.helix.q2.com/reference#cardlist
+        url: https://docs.helix.q2.com/reference/cardlist
       operationId: cardList
       parameters:
       - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/customerId'
@@ -1823,7 +1823,7 @@ paths:
       summary: Get a card
       description: Retrieve card information by the given `customerId` and `cardId`
       externalDocs:
-        url: https://docs.helix.q2.com/reference#cardget
+        url: https://docs.helix.q2.com/reference/cardget
       operationId: cardGet
       parameters:
       - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/customerId'
@@ -1855,7 +1855,7 @@ paths:
       summary: Get a card via tag
       description: Retrieve card information by the given `customerId` and `tag`
       externalDocs:
-        url: https://docs.helix.q2.com/reference#cardgetbytag
+        url: https://docs.helix.q2.com/reference/cardgetbytag
       operationId: cardGetByTag
       parameters:
       - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/customerId'
@@ -1886,18 +1886,63 @@ paths:
         [block:callout]
         {
           "type": "info",
-          "body": "In the Sandbox environment cards will always be created with a `cardNumberMasked` value of `1111` and can be verified via [/card/verify](https://docs.helix.q2.com/reference#cardverify) immediately."
+          "body": "In the Sandbox environment cards will always be created with a `cardNumberMasked` value of `1111` and can be verified via [/card/verify](https://docs.helix.q2.com/reference/cardverify) immediately."
         }
         [/block]
       externalDocs:
-        url: https://docs.helix.q2.com/reference#cardinitiate
+        url: https://docs.helix.q2.com/reference/cardinitiate
       operationId: cardInitiate
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardInitiateRequestBody'
+              type: object
+              required:
+              - customerId
+              - cardHolderCustomerId
+              - vendorTypeCode
+              - primaryAccountId
+              - firstName
+              - lastName
+              - nickName
+              properties:
+                customerId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                cardHolderCustomerId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                vendorTypeCode:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardVendorTypeCode'
+                typeCode:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardTypeCode'
+                primaryAccountId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                firstName:
+                  type: string
+                  maxLength: 64
+                middleName:
+                  type: string
+                  maxLength: 64
+                lastName:
+                  type: string
+                  maxLength: 128
+                nickName:
+                  type: string
+                  maxLength: 50
+                tag:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Tag'
+                qualifierCode:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/QualifierCode'
+                binId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                newPin:
+                  type: string
+                  format: byte
+                isCreateDualIssuanceSinglePAN:
+                  type: boolean
+                  default: false
+                  description: |
+                    `true` if this card will be an instant-issued debit card ready for eCommerce activity that can also be provisioned to a digital wallet. If `true` the card will be created with a `status` of `DitalActivePhysicalInitiated` which will shortly change to `DigitalActivePhysicalPending`. When card is in `DigitalActivePhysicalInitiated` or `DigitalActivePhysicalPending` it can be provisioned into a digital wallet via [/card/provision/applePay](https://docs.helix.q2.com/reference/cardprovisionapplepay) or [/card/provision/googlePay](https://docs.helix.q2.com/reference/cardprovisiongooglepay). When card is in `DigitalActivePhysicalPending` it will need to be verified via [/card/verify](https://docs.helix.q2.com/reference/cardverify) before a customer can use the physical card.
       responses:
         '200':
           description: A <a href="https://docs.helix.q2.com/docs/card" target="_blank">`card`</a> object
@@ -1921,7 +1966,7 @@ paths:
       summary: Verify a card
       description: Verify a customer has received a physical card and activate it for use.
       externalDocs:
-        url: https://docs.helix.q2.com/reference#cardverify
+        url: https://docs.helix.q2.com/reference/cardverify
       operationId: cardVerify
       requestBody:
         required: true
@@ -1965,6 +2010,74 @@ paths:
           $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
         '401':
           $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /card/createDigital:
+    post:
+      tags:
+      - Card
+      summary: Create a digital card
+      description: Create a new card in `Verified` status that is instantly available for use in mobile wallets. Cards created through this endpoint will have `isDigitalOnly` property set to `true` whenever retrieved via the `/card/get` or `/card/list` endpoints. This type of card will not have a physical card shipped to the customer. See <a href="https://docs.helix.q2.com/docs/card" target="_blank">card object definition</a> for parameter details.
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/cardcreatedigital
+      operationId: cardCreateDigital
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - customerId
+              - cardHolderCustomerId
+              - vendorTypeCode
+              - primaryAccountId
+              - firstName
+              - lastName
+              - nickName
+              properties:
+                customerId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                cardHolderCustomerId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                vendorTypeCode:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardVendorTypeCode'
+                typeCode:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardTypeCode'
+                primaryAccountId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                firstName:
+                  type: string
+                  maxLength: 64
+                middleName:
+                  type: string
+                  maxLength: 64
+                lastName:
+                  type: string
+                  maxLength: 128
+                nickName:
+                  type: string
+                  maxLength: 50
+                tag:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Tag'
+                qualifierCode:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/QualifierCode'
+                binId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+      responses:
+        '200':
+          description: A <a href="https://docs.helix.q2.com/docs/card" target="_blank">`card`</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Card'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
   /card/provision/applePay:
     post:
       tags:
@@ -1972,7 +2085,7 @@ paths:
       summary: Provision to Apple Pay
       description: Get Apple Pay enrypted data for provisioning into Apple Pay Wallet.
       externalDocs:
-        url: https://docs.helix.q2.com/reference#cardprovisionapplepay
+        url: https://docs.helix.q2.com/reference/cardprovisionapplepay
       operationId: cardProvisionApplePay
       requestBody:
         required: true
@@ -2040,7 +2153,7 @@ paths:
       summary: Provision to Google Pay
       description: Get Google Pay enrypted data for provisioning into Google Pay Wallet.
       externalDocs:
-        url: https://docs.helix.q2.com/reference#cardprovisiongooglepay
+        url: https://docs.helix.q2.com/reference/cardprovisiongooglepay
       operationId: cardProvisionGooglePay
       requestBody:
         required: true
@@ -2097,11 +2210,11 @@ paths:
       - Card
       summary: Add an account to a card
       description: |
-        Add an account to a card. Can be reversed by calling [/card/removeAccount](https://docs.helix.q2.com/reference#cardremoveaccount)
+        Add an account to a card. Can be reversed by calling [/card/removeAccount](https://docs.helix.q2.com/reference/cardremoveaccount)
         
         The `customerId` attempting to add the account must have an `accessTypeCode` of `FULL` to that account and the customer itself must have a `accessTypeCode` of `FULL` or `ACCT`.
       externalDocs:
-        url: https://docs.helix.q2.com/reference#cardaddaccount
+        url: https://docs.helix.q2.com/reference/cardaddaccount
       operationId: cardAddAccount
       requestBody:
         required: true
@@ -2151,7 +2264,7 @@ paths:
 
         The `customerId` attempting to reprioritize the account must have an `accessTypeCode` of `FULL` or `ACCT`.
       externalDocs:
-        url: https://docs.helix.q2.com/reference#cardreprioritizeaccount
+        url: https://docs.helix.q2.com/reference/cardreprioritizeaccount
       operationId: cardReprioritizeAccount
       requestBody:
         required: true
@@ -2200,11 +2313,11 @@ paths:
       - Card
       summary: Remove an account from a card
       description: |
-        Removes an account from a card. Can be reversed by calling [/card/addAccount](https://docs.helix.q2.com/reference#cardaddaccount).
+        Removes an account from a card. Can be reversed by calling [/card/addAccount](https://docs.helix.q2.com/reference/cardaddaccount).
         
         The `customerId` attempting to remove the account must have an `accessTypeCode` of `FULL` to that account and the customer itself must have a `accessTypeCode` of `FULL` or `ACCT`.
       externalDocs:
-        url: https://docs.helix.q2.com/reference#cardremoveaccount
+        url: https://docs.helix.q2.com/reference/cardremoveaccount
       operationId: cardRemoveAccount
       requestBody:
         required: true
@@ -2245,11 +2358,11 @@ paths:
       - Card
       summary: Lock a card
       description: |
-        Lock a card. Most locks can be reversed by calling [/card/unlock](https://docs.helix.q2.com/reference#cardunlock). Please check the [/card/unlock](https://docs.helix.q2.com/reference#cardunlock) documentation to see which lock scenarios can be subsequently unlocked. 
+        Lock a card. Most locks can be reversed by calling [/card/unlock](https://docs.helix.q2.com/reference/cardunlock). Please check the [/card/unlock](https://docs.helix.q2.com/reference/cardunlock) documentation to see which lock scenarios can be subsequently unlocked. 
         
         Will apply a `lockTypeCode` of `CST` on success and all card-based transactions will fail.
       externalDocs:
-        url: https://docs.helix.q2.com/reference#cardlock
+        url: https://docs.helix.q2.com/reference/cardlock
       operationId: cardLock
       requestBody:
         required: true
@@ -2300,7 +2413,7 @@ paths:
       - Card
       summary: Unlock a card
       description: |
-        Unlock a card. Can be reversed by calling [/card/lock](https://docs.helix.q2.com/reference#cardlock). The following matrix details when this call will succeed or fail.
+        Unlock a card. Can be reversed by calling [/card/lock](https://docs.helix.q2.com/reference/cardlock). The following matrix details when this call will succeed or fail.
         
         | Current lockTypeCode | Current lockReasonTypeCode | Result |
         | -------------------- | -------------------------- | ------ |
@@ -2319,7 +2432,7 @@ paths:
         
         The card will have a `lockTypeCode` of `UNL` upon successful completion of this call. The card will be unlocked and ready for transactions to take place.
       externalDocs:
-        url: https://docs.helix.q2.com/reference#cardunlock
+        url: https://docs.helix.q2.com/reference/cardunlock
       operationId: cardUnlock
       requestBody:
         required: true
@@ -2365,7 +2478,7 @@ paths:
         }
         [/block]
       externalDocs:
-        url: https://docs.helix.q2.com/reference#cardresetpin
+        url: https://docs.helix.q2.com/reference/cardresetpin
       operationId: cardResetPin
       requestBody:
         required: true
@@ -2409,7 +2522,7 @@ paths:
       summary: Update a card
       description: See <a href="https://docs.helix.q2.com/docs/card" target="_blank">card object definition</a> for parameter details.
       externalDocs:
-        url: https://docs.helix.q2.com/reference#cardupdate
+        url: https://docs.helix.q2.com/reference/cardupdate
       operationId: cardUpdate
       requestBody:
         required: true
@@ -2458,7 +2571,7 @@ paths:
         
         Returns a card object with a `status` of `Verified`, `PendingVerification`, or `ReissuedPendingVerification`
       externalDocs:
-        url: https://docs.helix.q2.com/reference#cardreissue
+        url: https://docs.helix.q2.com/reference/cardreissue
       operationId: cardReissue
       requestBody:
         required: true
@@ -2523,7 +2636,7 @@ paths:
         }
         [/block]
       externalDocs:
-        url: https://docs.helix.q2.com/reference#cardhotlist
+        url: https://docs.helix.q2.com/reference/cardhotlist
       operationId: cardHotlist
       requestBody:
         required: true
@@ -2580,7 +2693,7 @@ paths:
         }
         [/block]
       externalDocs:
-        url: https://docs.helix.q2.com/reference#cardarchive
+        url: https://docs.helix.q2.com/reference/cardarchive
       operationId: cardArchive
       requestBody:
         required: true
@@ -2620,7 +2733,7 @@ paths:
       description: |
         Retrieve a list of transactions restricted by the given parameters. The list is ordered by `settledDate`, descending.
       externalDocs:
-        url: https://docs.helix.q2.com/reference#transactionlist
+        url: https://docs.helix.q2.com/reference/transactionlist
       operationId: transactionList
       parameters:
       - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/customerId'
@@ -2669,11 +2782,11 @@ paths:
         [block:callout]
         {
           "type": "info",
-          "body": "The output is a list because multiple <a href=\"https://docs.helix.q2.com/docs/transaction\" target=\"_blank\">transaction</a> objects may be tied to a given `transactionId`. This is because a single call to [transfer/create](https://docs.helix.q2.com/reference#transfercreate) can result in multiple transactions, e.g., a fee is applied (such as an NSF during NACHA file processing). A fee is considered a separate, but instrinsically related, transaction."
+          "body": "The output is a list because multiple <a href=\"https://docs.helix.q2.com/docs/transaction\" target=\"_blank\">transaction</a> objects may be tied to a given `transactionId`. This is because a single call to [transfer/create](https://docs.helix.q2.com/reference/transfercreate) can result in multiple transactions, e.g., a fee is applied (such as an NSF during NACHA file processing). A fee is considered a separate, but instrinsically related, transaction."
         }
         [/block]
       externalDocs:
-        url: https://docs.helix.q2.com/reference#transactionget
+        url: https://docs.helix.q2.com/reference/transactionget
       operationId: transactionGet
       parameters:
       - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/customerId'
@@ -2710,11 +2823,11 @@ paths:
         [block:callout]
         {
           "type": "info",
-          "body": "The output is a list because multiple <a href=\"https://docs.helix.q2.com/docs/transaction\" target=\"_blank\">transaction</a> objects may be tied to a given `transactionId`. This is because a single call to [transfer/create](https://docs.helix.q2.com/reference#transfercreate) can result in multiple transactions, e.g., a fee is applied (such as an NSF during NACHA file processing). A fee is considered a separate, but instrinsically related, transaction."
+          "body": "The output is a list because multiple <a href=\"https://docs.helix.q2.com/docs/transaction\" target=\"_blank\">transaction</a> objects may be tied to a given `transactionId`. This is because a single call to [transfer/create](https://docs.helix.q2.com/reference/transfercreate) can result in multiple transactions, e.g., a fee is applied (such as an NSF during NACHA file processing). A fee is considered a separate, but instrinsically related, transaction."
         }
         [/block]
       externalDocs:
-        url: https://docs.helix.q2.com/reference#transactiongetbytag
+        url: https://docs.helix.q2.com/reference/transactiongetbytag
       operationId: transactionGetByTag
       parameters:
       - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/customerId'
@@ -2751,7 +2864,7 @@ paths:
         }
         [/block]
       externalDocs:
-        url: https://docs.helix.q2.com/reference#transactionsetavailabledate
+        url: https://docs.helix.q2.com/reference/transactionsetavailabledate
       operationId: transactionSetAvailableDate
       requestBody:
         required: true
@@ -2795,7 +2908,7 @@ paths:
       summary: List statements
       description: Get a list of all statements for a customer
       externalDocs:
-        url: https://docs.helix.q2.com/reference#statementlist
+        url: https://docs.helix.q2.com/reference/statementlist
       operationId: statementList
       parameters:
       - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/customerId'
@@ -2824,7 +2937,7 @@ paths:
       summary: Get a statement
       description: Get a statement for a customer
       externalDocs:
-        url: https://docs.helix.q2.com/reference#statementget
+        url: https://docs.helix.q2.com/reference/statementget
       operationId: statementGet
       parameters:
       - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/customerId'
@@ -2852,7 +2965,7 @@ paths:
       summary: Search for statements
       description: Search for monthly or tax statements within the given parameters for a customer. See <a href="https://docs.helix.q2.com/docs/statement" target="_blank">statement object definition</a> for parameter details.
       externalDocs:
-        url: https://docs.helix.q2.com/reference#statementsearch
+        url: https://docs.helix.q2.com/reference/statementsearch
       operationId: statementSearch
       parameters:
       - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/customerId'
@@ -2896,7 +3009,7 @@ paths:
       summary: Download a statement
       description: Download the PDF content of a monthly or tax statement for a customer
       externalDocs:
-        url: https://docs.helix.q2.com/reference#statementdownload
+        url: https://docs.helix.q2.com/reference/statementdownload
       operationId: statementDownload
       parameters:
       - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/customerId'
@@ -2924,7 +3037,7 @@ paths:
       summary: Upload a customer document
       description: Upload a document on behalf of a customer. See <a href="https://docs.helix.q2.com/docs/customer-document" target="_blank">customerDocument object definition</a> for parameter details.
       externalDocs:
-        url: https://docs.helix.q2.com/reference#customerdocumentupload
+        url: https://docs.helix.q2.com/reference/customerdocumentupload
       operationId: customerDocumentUpload
       requestBody:
         required: true
@@ -2955,7 +3068,7 @@ paths:
       summary: List customer beneficiaries
       description: List all beneficiaries for a given customer
       externalDocs:
-        url: https://docs.helix.q2.com/reference#customerbeneficiarylist
+        url: https://docs.helix.q2.com/reference/customerbeneficiarylist
       operationId: customerBeneficiaryList
       parameters:
       - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/customerId'
@@ -2984,7 +3097,7 @@ paths:
       summary: Get a customer beneficiary
       description: Retrieve customer beneficiary information by the given `customerId` and `customerBeneficiaryId`
       externalDocs:
-        url: https://docs.helix.q2.com/reference#customerbeneficiaryget
+        url: https://docs.helix.q2.com/reference/customerbeneficiaryget
       operationId: customerBeneficiaryGet
       parameters:
       - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/customerId'
@@ -3016,7 +3129,7 @@ paths:
       summary: Create a customer beneficiary
       description: See <a href="https://docs.helix.q2.com/docs/customer-beneficiary" target="_blank">customerBeneficiary object definition</a> for parameter details.
       externalDocs:
-        url: https://docs.helix.q2.com/reference#customerbeneficiarycreate
+        url: https://docs.helix.q2.com/reference/customerbeneficiarycreate
       operationId: customerBeneficiaryCreate
       requestBody:
         required: true
@@ -3090,7 +3203,7 @@ paths:
       summary: Update a customer beneficiary
       description: See <a href="https://docs.helix.q2.com/docs/customer-beneficiary" target="_blank">customerBeneficiary object definition</a> for parameter details.
       externalDocs:
-        url: https://docs.helix.q2.com/reference#customerbeneficiaryupdate
+        url: https://docs.helix.q2.com/reference/customerbeneficiaryupdate
       operationId: customerBeneficiaryUpdate
       requestBody:
         required: true
@@ -3166,7 +3279,7 @@ paths:
       - Customer Beneficiary
       summary: Deactivate a customer beneficiary
       externalDocs:
-        url: https://docs.helix.q2.com/reference#customerbeneficiarydeactivate
+        url: https://docs.helix.q2.com/reference/customerbeneficiarydeactivate
       operationId: customerBeneficiaryDeactivate
       requestBody:
         required: true
@@ -3210,7 +3323,7 @@ paths:
       summary: Upload an external account document
       description: Upload a document associated with a specific external account. See <a href="https://docs.helix.q2.com/docs/external-account-document" target="_blank">externalAccountDocument object definition</a> for parameter details.
       externalDocs:
-        url: https://docs.helix.q2.com/reference#externalaccountdocumentupload
+        url: https://docs.helix.q2.com/reference/externalaccountdocumentupload
       operationId: externalAccountDocumentUpload
       requestBody:
         required: true
