@@ -2905,7 +2905,7 @@ paths:
     post:
       tags:
       - Transaction
-      summary: Update transaction status
+      summary: Set transaction status
       description: |
         Modify the `status` for an outbound ACH transaction made via [/transfer/create](https://docs.helix.q2.com/reference/transfercreate)
         [block:callout]
