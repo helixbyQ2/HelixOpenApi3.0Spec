@@ -276,7 +276,7 @@ paths:
         [block:callout]
         {
           "type": "info",
-          "body": "This route requires a POST request despite the fact that it does not modify or create any data. This is to prevent sensitive data (such as taxId) from possibly being stored in any HTTP logs. "
+          "body": "This endpoint requires a POST request despite the fact that it does not modify or create any data. This is to prevent sensitive data (such as taxId) from possibly being stored in any HTTP logs. "
         }
         [/block]
       externalDocs:
@@ -345,7 +345,7 @@ paths:
         [block:callout]
         {
           "type": "warning",
-          "body": "This route does not run KYC, fraud, OFAC, etc checks. Helix has an additional endpoint, `/customer/onboard`, for performing customer KYC/IDV. The behavior of `/customer/onboard` varies depending on your program settings and thus is not documented publicly. Please [contact us](https://www.q2.com/contact-us) for more information."
+          "body": "This endpoint does not run KYC, fraud, OFAC, etc checks. Helix has an additional endpoint, `/customer/onboard`, for performing customer KYC/IDV. The behavior of `/customer/onboard` varies depending on your program settings and thus is not documented publicly. Please [contact us](https://www.q2.com/contact-us) for more information."
         }
         [/block]
       externalDocs:
@@ -1692,7 +1692,7 @@ paths:
       tags:
       - Transfer
       summary: Create a transfer
-      description: Transfer funds from one account to another. Results in a new transaction which can be retrieved via the various [/transaction/*](https://docs.helix.q2.com/reference/transaction-reference) routes. See <a href="https://docs.helix.q2.com/docs/transfer" target="_blank">transfer object definition</a> for parameter details.
+      description: Transfer funds from one account to another. Results in a new transaction which can be retrieved via the various [/transaction/*](https://docs.helix.q2.com/reference/transaction-reference) endpoints. See <a href="https://docs.helix.q2.com/docs/transfer" target="_blank">transfer object definition</a> for parameter details.
       externalDocs:
         url: https://docs.helix.q2.com/reference/transfercreate
       operationId: transferCreate
@@ -2860,7 +2860,7 @@ paths:
        [block:callout]
         {
           "type": "warning",
-          "body": "Use of this route requires approval from Q2 and your bank partner."
+          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
         }
         [/block]
       externalDocs:
@@ -2885,66 +2885,6 @@ paths:
                   type: string
                   format: date
                   description: Format is YYYY-MM-DD
-      responses:
-        '200':
-          description: A <a href="https://docs.helix.q2.com/docs/transaction" target="_blank">`transaction`</a> object
-          content:
-            application/json:
-              schema:
-                allOf:
-                - type: object
-                  properties:
-                    data:
-                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Transaction'
-                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
-        '400':
-          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
-        '401':
-          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
-  /transaction/setStatus:
-    post:
-      tags:
-      - Transaction
-      summary: Set transaction status
-      description: |
-        Modify the `status` for an outbound ACH transaction made via [/transfer/create](https://docs.helix.q2.com/reference/transfercreate)
-        [block:callout]
-        {
-          "type": "warning",
-          "body": "Use of this route requires approval from Q2 and your bank partner."
-        }
-        [/block]
-        The following matrix details which statuses can be updated
-        
-        | Starting status | Possible status updates | Notes |
-        | --------------- | ----------------------- | ----- |
-        | `Initiated`     | `Delayed`, `Voided`     |       |
-        | `Delayed`       | `Initiated`, `Voided`   |       |
-        | `Pending`       | N/A | Transactions in a `Pending` status can't be updated. |
-        | `Settled`       | N/A | Transactions in a `Settled` status can't updated. |
-        | `Voided`        | N/A | Transactions in a `Voided` status can't be updated. |
-      operationId: transactionSetStatus
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              required:
-              - customerId
-              - transactionId
-              - status
-              properties:
-                customerId: 
-                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
-                transactionId:
-                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId64'
-                status:
-                  type: string
-                  enum:
-                  - delayed
-                  - initiated
-                  - voided
       responses:
         '200':
           description: A <a href="https://docs.helix.q2.com/docs/transaction" target="_blank">`transaction`</a> object
