@@ -2370,7 +2370,7 @@ paths:
       - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/cardId'
       responses:
         '200':
-          description: A <a href="https://docs.helix.q2.com/docs/card-limit" target="_blank">`cardLimit`</a> object
+          description: A <a href="https://docs.helix.q2.com/docs/card-limit-response" target="_blank">`cardLimitResponse`</a> object
           content:
             application/json:
               schema:
@@ -2422,7 +2422,7 @@ paths:
                   format: decimal
       responses:
         '200':
-          description: A <a href="https://docs.helix.q2.com/docs/card-limit" target="_blank">`cardLimit`</a> object
+          description: A <a href="https://docs.helix.q2.com/docs/card-limit-response" target="_blank">`cardLimitResponse`</a> object
           content:
             application/json:
               schema:
@@ -2478,7 +2478,7 @@ paths:
                   type: string
       responses:
         '200':
-          description: A <a href="https://docs.helix.q2.com/docs/card-limit" target="_blank">`cardLimit`</a> object
+          description: A <a href="https://docs.helix.q2.com/docs/card-limit-response" target="_blank">`cardLimitResponse`</a> object
           content:
             application/json:
               schema:
@@ -2523,7 +2523,7 @@ paths:
                   $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
       responses:
         '200':
-          description: A <a href="https://docs.helix.q2.com/docs/card-limit" target="_blank">`cardLimit`</a> object
+          description: A <a href="https://docs.helix.q2.com/docs/card-limit-response" target="_blank">`cardLimitResponse`</a> object
           content:
             application/json:
               schema:
