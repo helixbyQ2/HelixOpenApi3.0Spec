@@ -2440,8 +2440,8 @@ paths:
     post:
       summary: Create a temporary card limit
       description: |
-        'Allow temporary dollar limit increase requests (e.g., one-time large purchases, large ATM withdrawal) that are higher than standard program limits, 
-        but below program-defined limit group settings.'
+        Allow temporary dollar limit increase requests (e.g., one-time large purchases, large ATM withdrawal) that are higher than standard program limits, 
+        but below program-defined limit group settings.
         [block:callout]
         {
           "type": "warning",
@@ -2496,8 +2496,8 @@ paths:
     post:
       summary: Reset card limits
       description: |
-        'Allow a semi-permanent card limit override (i.e., high risk, low risk customer) to be reset to default program limit values. This endpoint does not 
-        remove a temporary override.'
+        Allow a semi-permanent card limit override (i.e., high risk, low risk customer) to be reset to default program limit values. This endpoint does not 
+        remove a temporary override.
         [block:callout]
         {
           "type": "warning",
