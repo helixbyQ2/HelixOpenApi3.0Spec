@@ -2413,13 +2413,18 @@ paths:
                 cardId:
                   $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
                 classification:
-                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardLimitOverrideClassification'
+                  allOf:
+                  - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardLimitOverrideClassification'
+                  - description: If passing `highrisk` the `purchaseLimit` and/or `withdrawalLimit` must be lower than the program default limits. If passing `lowrisk`, the `purhcaseLimit` and/or `withdrawalLimit` must be lower than the bank ceiling limits but higher than the program default limits. Program default and bank ceiling limits can be obtained via the 
+                  
                 purchaseLimit:
                   type: number
                   format: decimal
+                  description: Required if `withdrawalLimit` not present
                 withdrawalLimit:
                   type: number
                   format: decimal
+                  description: Required if `purchaseLimit` not present
       responses:
         '200':
           description: A <a href="https://docs.helix.q2.com/docs/card-limit-response" target="_blank">`cardLimitResponse`</a> object
@@ -2469,11 +2474,11 @@ paths:
                 purchaseLimit:
                   type: number
                   format: decimal
-                  description: Required if `withdrawalMaximumAmount` not present
+                  description: Required if `withdrawalLimit` not present
                 withdrawalLimit:
                   type: number
                   format: decimal
-                  description: Required if `purchaseMaximumAmount` not present
+                  description: Required if `purchaseLimit` not present
                 comment: 
                   type: string
       responses:
