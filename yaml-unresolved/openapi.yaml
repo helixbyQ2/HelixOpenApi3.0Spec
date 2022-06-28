@@ -2415,8 +2415,7 @@ paths:
                 classification:
                   allOf:
                   - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardLimitOverrideClassification'
-                  - description: If passing `highrisk` the `purchaseLimit` and/or `withdrawalLimit` must be lower than the program default limits. If passing `lowrisk`, the `purhcaseLimit` and/or `withdrawalLimit` must be lower than the bank ceiling limits but higher than the program default limits. Program default and bank ceiling limits can be obtained via the 
-                  
+                  - description: For `highrisk` the `purchaseLimit` and/or `withdrawalLimit` must be lower than the program default limits. For `lowrisk` the `purhcaseLimit` and/or `withdrawalLimit` must be lower than the bank ceiling limits but higher than the program default limits. Program bank limits can be obtained via [/card/limit/get](https://docs.helix.q2.com/reference/cardverify)
                 purchaseLimit:
                   type: number
                   format: decimal
