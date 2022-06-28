@@ -2352,6 +2352,191 @@ paths:
           $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
         '401':
           $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /card/limit/get/{customerId}/{cardId}:
+    get:
+      summary: Get card limits
+      description: |
+        [block:callout]
+        {
+          "type": "warning",
+          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
+        }
+        [/block]
+      tags:
+      - Card
+      operationId: cardLimitGet
+      parameters:
+      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/customerId'
+      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/cardId'
+      responses:
+        '200':
+          description: A <a href="https://docs.helix.q2.com/docs/card-limit" target="_blank">`cardLimit`</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardLimitResponse'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /card/limit/override:
+    post:
+      summary: Override default card limits
+      description: |
+        [block:callout]
+        {
+          "type": "warning",
+          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
+        }
+        [/block]
+      tags:
+      - Card
+      operationId: cardLimitOverride
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - customerId
+              - cardId
+              - classification
+              properties:
+                customerId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                cardId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                classification:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardLimitOverrideClassification'
+                purchaseLimit:
+                  type: number
+                  format: decimal
+                withdrawalLimit:
+                  type: number
+                  format: decimal
+      responses:
+        '200':
+          description: A <a href="https://docs.helix.q2.com/docs/card-limit" target="_blank">`cardLimit`</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardLimitResponse'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /card/limit/temporaryOverride:
+    post:
+      summary: Create a temporary card limit
+      description: |
+        'Allow temporary dollar limit increase requests (e.g., one-time large purchases, large ATM withdrawal) that are higher than standard program limits, 
+        but below program-defined limit group settings.'
+        [block:callout]
+        {
+          "type": "warning",
+          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
+        }
+        [/block]
+      tags:
+      - Card
+      operationId: cardLimitTemporaryOverride
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+              type: object
+              required:
+              - customerId
+              - cardId
+              - comment
+              properties:
+                customerId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                cardId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                purchaseLimit:
+                  type: number
+                  format: decimal
+                  description: Required if `withdrawalMaximumAmount` not present
+                withdrawalLimit:
+                  type: number
+                  format: decimal
+                  description: Required if `purchaseMaximumAmount` not present
+                comment: 
+                  type: string
+      responses:
+        '200':
+          description: A <a href="https://docs.helix.q2.com/docs/card-limit" target="_blank">`cardLimit`</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardLimitResponse'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /card/limit/reset:
+    post:
+      summary: Reset card limits
+      description: |
+        'Allow a semi-permanent card limit override (i.e., high risk, low risk customer) to be reset to default program limit values. This endpoint does not 
+        remove a temporary override.'
+        [block:callout]
+        {
+          "type": "warning",
+          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
+        }
+        [/block]
+      tags:
+      - Card
+      operationId: cardLimitReset
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+              type: object
+              required:
+              - customerId
+              - cardId
+              properties:
+                customerId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                cardId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+      responses:
+        '200':
+          description: A <a href="https://docs.helix.q2.com/docs/card-limit" target="_blank">`cardLimit`</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardLimitResponse'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
   /card/lock:
     post:
       tags:
