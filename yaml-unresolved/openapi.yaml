@@ -2446,8 +2446,7 @@ paths:
     post:
       summary: Create a temporary card limit
       description: |
-        Allow temporary dollar limit increase requests (e.g., one-time large purchases, large ATM withdrawal) that are higher than standard program limits, 
-        but below program-defined limit group settings.
+        Allow temporary dollar limit increase requests (e.g., one-time large purchases, large ATM withdrawal) that are higher than standard program limits, but below program-defined limit group settings.
         [block:callout]
         {
           "type": "warning",
