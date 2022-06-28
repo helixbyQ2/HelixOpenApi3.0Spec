@@ -2419,11 +2419,13 @@ paths:
                 purchaseLimit:
                   type: number
                   format: decimal
+                  minimum: 0
                   description: Required if `withdrawalLimit` not present
                 withdrawalLimit:
                   type: number
                   format: decimal
                   description: Required if `purchaseLimit` not present
+                  minimum: 0
       responses:
         '200':
           description: A <a href="https://docs.helix.q2.com/docs/card-limit-response" target="_blank">`cardLimitResponse`</a> object
@@ -2474,10 +2476,12 @@ paths:
                   type: number
                   format: decimal
                   description: Required if `withdrawalLimit` not present
+                  minimum: 0
                 withdrawalLimit:
                   type: number
                   format: decimal
                   description: Required if `purchaseLimit` not present
+                  minimum: 0
                 comment: 
                   type: string
       responses:
