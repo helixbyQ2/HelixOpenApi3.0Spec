@@ -2484,6 +2484,7 @@ paths:
                   minimum: 0
                 comment: 
                   type: string
+                  description: Free-form comment for why the temporary limit is being placed
       responses:
         '200':
           description: A <a href="https://docs.helix.q2.com/docs/card-limit-response" target="_blank">`cardLimitResponse`</a> object
