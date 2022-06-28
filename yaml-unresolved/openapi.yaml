@@ -2800,7 +2800,9 @@ paths:
                 qualifierCode:
                   $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/QualifierCode'
                 tag:
-                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Tag'
+                  allOf:
+                  - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Tag'
+                  - description: Tag to associate with the new card
       responses:
         '200':
           description: A <a href="https://docs.helix.q2.com/docs/card" target="_blank">`card`</a> object
