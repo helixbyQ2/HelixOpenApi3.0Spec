@@ -2192,6 +2192,13 @@ paths:
                           allOf:
                           - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Address'
                           - description: Customer `Residence` address
+                        expirationDate:
+                          type: object
+                          properties:
+                            month:
+                              type: string
+                            year:
+                              type: string
                         last4:
                           type: string
                           description: Last 4 digits of the card PAN
