@@ -3118,7 +3118,7 @@ paths:
           "body": "Use of this endpoint requires approval from Q2 and your bank partner."
         }
         [/block]
-        The following matrix details which statuses can be updated
+        The following matrix details which statuses can be updated.
         
         | Starting status | Possible status updates | Notes |
         | --------------- | ----------------------- | ----- |
