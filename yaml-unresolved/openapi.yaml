@@ -3105,6 +3105,66 @@ paths:
           $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
         '401':
           $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /transaction/setStatus:
+    post:
+      tags:
+      - Transaction
+      summary: Set transaction status
+      description: |
+        Modify the `status` for an outbound ACH transaction made via [/transfer/create](https://docs.helix.q2.com/reference/transfercreate)
+        [block:callout]
+        {
+          "type": "warning",
+          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
+        }
+        [/block]
+        The following matrix details which statuses can be updated
+        
+        | Starting status | Possible status updates | Notes |
+        | --------------- | ----------------------- | ----- |
+        | `Initiated`     | `Delayed`, `Voided`     |       |
+        | `Delayed`       | `Initiated`, `Voided`   |       |
+        | `Pending`       | N/A | Transactions in a `Pending` status can't be updated. |
+        | `Settled`       | N/A | Transactions in a `Settled` status can't updated. |
+        | `Voided`        | N/A | Transactions in a `Voided` status can't be updated. |
+      operationId: transactionSetStatus
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - customerId
+              - transactionId
+              - status
+              properties:
+                customerId: 
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                transactionId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId64'
+                status:
+                  type: string
+                  enum:
+                  - delayed
+                  - initiated
+                  - voided
+      responses:
+        '200':
+          description: A <a href="https://docs.helix.q2.com/docs/transaction" target="_blank">`transaction`</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Transaction'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
   /statement/list/{customerId}:
     get:
       tags:
