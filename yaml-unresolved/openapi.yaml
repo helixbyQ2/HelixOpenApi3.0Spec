@@ -2963,7 +2963,7 @@ paths:
       tags:
         - Card Control
       summary: Get a card control by tag
-      description: Retrieve card control information by the `tag` (unique identifieer) specified when the card control was created.
+      description: Retrieve card control information by the `tag` (unique identifier) specified when the card control was created.
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardcontrolgetbytag
       operationId: cardControlGetByTag
