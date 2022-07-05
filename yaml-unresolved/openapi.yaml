@@ -23,6 +23,8 @@ tags:
   description: Transfer endpoints
 - name: Card
   description: Card endpoints
+- name: Card Control
+  description: Card control endpoints
 - name: Transaction
   description: Transaction endpoints
 - name: Statement
@@ -1853,7 +1855,7 @@ paths:
       tags:
       - Card
       summary: Get a card via tag
-      description: Retrieve card information by the given `customerId` and `tag`
+      description: Retrieve card information by `customerId` and `tag`
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardgetbytag
       operationId: cardGetByTag
@@ -2377,7 +2379,7 @@ paths:
       - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/cardId'
       responses:
         '200':
-          description: A <a href="https://docs.helix.q2.com/docs/card-limit-response" target="_blank">`cardLimitResponse`</a> object
+          description: A <a href="https://docs.helix.q2.com/docs/card-limit-response" target="_blank">`cardLimit`</a> object
           content:
             application/json:
               schema:
@@ -2385,7 +2387,7 @@ paths:
                 - type: object
                   properties:
                     data:
-                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardLimitResponse'
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardLimits'
                 - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
         '400':
           $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
@@ -2435,7 +2437,7 @@ paths:
                   minimum: 0
       responses:
         '200':
-          description: A <a href="https://docs.helix.q2.com/docs/card-limit-response" target="_blank">`cardLimitResponse`</a> object
+          description: A <a href="https://docs.helix.q2.com/docs/card-limits" target="_blank">`CardLimits`</a> object
           content:
             application/json:
               schema:
@@ -2443,7 +2445,7 @@ paths:
                 - type: object
                   properties:
                     data:
-                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardLimitResponse'
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardLimits'
                 - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
         '400':
           $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
@@ -2493,7 +2495,7 @@ paths:
                   description: Free-form comment for why the temporary limit is being placed
       responses:
         '200':
-          description: A <a href="https://docs.helix.q2.com/docs/card-limit-response" target="_blank">`cardLimitResponse`</a> object
+          description: A <a href="https://docs.helix.q2.com/docs/card-limits" target="_blank">`CardLimits`</a> object
           content:
             application/json:
               schema:
@@ -2501,7 +2503,7 @@ paths:
                 - type: object
                   properties:
                     data:
-                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardLimitResponse'
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardLimits'
                 - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
         '400':
           $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
@@ -2538,7 +2540,7 @@ paths:
                   $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
       responses:
         '200':
-          description: A <a href="https://docs.helix.q2.com/docs/card-limit-response" target="_blank">`cardLimitResponse`</a> object
+          description: A <a href="https://docs.helix.q2.com/docs/card-limits" target="_blank">`CardLimits`</a> object
           content:
             application/json:
               schema:
@@ -2546,7 +2548,7 @@ paths:
                 - type: object
                   properties:
                     data:
-                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardLimitResponse'
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardLimits'
                 - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
         '400':
           $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
@@ -2925,6 +2927,141 @@ paths:
                     data:
                       $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Card'
                 - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /cardControl/get/{cardControlId}:
+    get:
+      tags:
+        - Card Control
+      summary: Get a card control
+      description: Retrieve card control information by the Helix-assigned `cardControlId`
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/cardcontrolget
+      operationId: cardControlGet
+      parameters:
+      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/cardControlId'
+      responses:
+        '200':
+          description: A <a href="https://docs.helix.q2.com/docs/card-controls#cardcontrol-object" target="_blank">`cardControl`</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardControl'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /cardControl/getByTag/{tag}:
+    get:
+      tags:
+        - Card Control
+      summary: Get a card control by tag
+      description: Retrieve card control information by the `tag` (unique identifieer) specified when the card control was created.
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/cardcontrolgetbytag
+      operationId: cardControlGetByTag
+      parameters:
+      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/tag'
+      responses:
+        '200':
+          description: A <a href="https://docs.helix.q2.com/docs/card-controls#cardcontrol-object" target="_blank">`cardControl`</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardControl'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /cardControl/create:
+    post:
+      tags:
+      - Card Control
+      summary: Create a card control
+      description: Create a card control and apply it to a customer's card. See <a href="https://docs.helix.q2.com/docs/card-controls#cardcontrol-object" target="_blank">card control object definition</a> for parameter details.
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/cardcontrolcreate
+      operationId: cardControlCreate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardControl'
+      responses:
+        '200':
+          description: A <a href="https://docs.helix.q2.com/docs/card-controls#cardcontrol-object" target="_blank">`card`</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Card'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /cardControl/archive/{cardControlId}:
+    post:
+      tags:
+      - Card Control
+      summary: Archive a card control
+      description: Archive a card control by the Helix-assigned `cardControlId`.
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/cardcontrolarchive
+      operationId: cardControlArchive
+      parameters:
+      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/cardControlId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardControl'
+      responses:
+        '200':
+          description: A 200 status with no `data` property present
+          content:
+            application/json:
+              schema:
+                $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /cardControl/archiveByTag/{tag}:
+    post:
+      tags:
+      - Card Control
+      summary: Archive a card control by tag
+      description: Archive a card control by the `tag` (unique identifieer) specified when the card control was created.
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/cardcontrolarchivebytag
+      operationId: cardControlArchiveByTag
+      parameters:
+      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/tag'
+      responses:
+        '200':
+          description: A 200 status with no `data` property present
+          content:
+            application/json:
+              schema:
+                $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
         '400':
           $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
         '401':
