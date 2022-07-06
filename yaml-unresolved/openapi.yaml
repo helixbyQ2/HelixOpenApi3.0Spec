@@ -3027,12 +3027,6 @@ paths:
       operationId: cardControlArchive
       parameters:
       - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/cardControlId'
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardControl'
       responses:
         '200':
           description: A 200 status with no `data` property present
@@ -3049,7 +3043,7 @@ paths:
       tags:
       - Card Control
       summary: Archive a card control by tag
-      description: Archive a card control by the `tag` (unique identifieer) specified when the card control was created.
+      description: Archive a card control by the `tag` (unique identifier) specified when the card control was created.
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardcontrolarchivebytag
       operationId: cardControlArchiveByTag
