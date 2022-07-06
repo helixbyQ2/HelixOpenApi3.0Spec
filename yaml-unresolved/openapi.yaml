@@ -23,8 +23,8 @@ tags:
   description: Transfer endpoints
 - name: Card
   description: Card endpoints
-- name: Card Control
-  description: Card control endpoints
+- name: Card Limits and Controls
+  description: Card limits and controls endpoints
 - name: Transaction
   description: Transaction endpoints
 - name: Statement
@@ -2361,199 +2361,6 @@ paths:
           $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
         '401':
           $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
-  /card/limit/get/{customerId}/{cardId}:
-    get:
-      summary: Get card limits
-      description: |
-        [block:callout]
-        {
-          "type": "warning",
-          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
-        }
-        [/block]
-      tags:
-      - Card
-      operationId: cardLimitGet
-      parameters:
-      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/customerId'
-      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/cardId'
-      responses:
-        '200':
-          description: A <a href="https://docs.helix.q2.com/docs/card-limit-response" target="_blank">`cardLimit`</a> object
-          content:
-            application/json:
-              schema:
-                allOf:
-                - type: object
-                  properties:
-                    data:
-                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardLimits'
-                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
-        '400':
-          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
-        '401':
-          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
-  /card/limit/override:
-    post:
-      summary: Override default card limits
-      description: |
-        [block:callout]
-        {
-          "type": "warning",
-          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
-        }
-        [/block]
-      tags:
-      - Card
-      operationId: cardLimitOverride
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              required:
-              - customerId
-              - cardId
-              - classification
-              properties:
-                customerId:
-                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
-                cardId:
-                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
-                classification:
-                  allOf:
-                  - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardLimitOverrideClassification'
-                  - description: For `highrisk` the `purchaseLimit` and/or `withdrawalLimit` must be lower than the program default limits. For `lowrisk` the `purhcaseLimit` and/or `withdrawalLimit` must be lower than the bank ceiling limits but higher than the program default limits. Program and bank limits can be obtained via [/card/limit/get](https://docs.helix.q2.com/reference/cardlimitget)
-                purchaseLimit:
-                  type: number
-                  format: decimal
-                  minimum: 0
-                  description: Required if `withdrawalLimit` not present
-                withdrawalLimit:
-                  type: number
-                  format: decimal
-                  description: Required if `purchaseLimit` not present
-                  minimum: 0
-      responses:
-        '200':
-          description: A <a href="https://docs.helix.q2.com/docs/card-limits" target="_blank">`CardLimits`</a> object
-          content:
-            application/json:
-              schema:
-                allOf:
-                - type: object
-                  properties:
-                    data:
-                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardLimits'
-                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
-        '400':
-          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
-        '401':
-          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
-  /card/limit/temporaryOverride:
-    post:
-      summary: Create a temporary card limit
-      description: |
-        Allow temporary dollar limit increase requests (e.g., one-time large purchases, large ATM withdrawal) that are higher than standard program limits, but below program-defined limit group settings.
-        [block:callout]
-        {
-          "type": "warning",
-          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
-        }
-        [/block]
-      tags:
-      - Card
-      operationId: cardLimitTemporaryOverride
-      requestBody:
-        required: true
-        content: 
-          application/json:
-            schema:
-              type: object
-              required:
-              - customerId
-              - cardId
-              - comment
-              properties:
-                customerId:
-                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
-                cardId:
-                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
-                purchaseLimit:
-                  type: number
-                  format: decimal
-                  description: Required if `withdrawalLimit` not present
-                  minimum: 0
-                withdrawalLimit:
-                  type: number
-                  format: decimal
-                  description: Required if `purchaseLimit` not present
-                  minimum: 0
-                comment: 
-                  type: string
-                  description: Free-form comment for why the temporary limit is being placed
-      responses:
-        '200':
-          description: A <a href="https://docs.helix.q2.com/docs/card-limits" target="_blank">`CardLimits`</a> object
-          content:
-            application/json:
-              schema:
-                allOf:
-                - type: object
-                  properties:
-                    data:
-                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardLimits'
-                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
-        '400':
-          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
-        '401':
-          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
-  /card/limit/reset:
-    post:
-      summary: Reset card limits
-      description: |
-        Allow a semi-permanent card limit override (i.e., high risk, low risk customer) to be reset to default program limit values. This endpoint does not 
-        remove a temporary override.
-        [block:callout]
-        {
-          "type": "warning",
-          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
-        }
-        [/block]
-      tags:
-      - Card
-      operationId: cardLimitReset
-      requestBody:
-        required: true
-        content: 
-          application/json:
-            schema:
-              type: object
-              required:
-              - customerId
-              - cardId
-              properties:
-                customerId:
-                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
-                cardId:
-                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
-      responses:
-        '200':
-          description: A <a href="https://docs.helix.q2.com/docs/card-limits" target="_blank">`CardLimits`</a> object
-          content:
-            application/json:
-              schema:
-                allOf:
-                - type: object
-                  properties:
-                    data:
-                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardLimits'
-                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
-        '400':
-          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
-        '401':
-          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
   /card/lock:
     post:
       tags:
@@ -2931,182 +2738,375 @@ paths:
           $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
         '401':
           $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
-  # /cardControl/get/{cardControlId}:
-  #   get:
-  #     tags:
-  #       - Card Control
-  #     summary: Get a card control
-  #     description: Retrieve card control information by the Helix-assigned `cardControlId`
-  #     externalDocs:
-  #       url: https://docs.helix.q2.com/reference/cardcontrolget
-  #     operationId: cardControlGet
-  #     parameters:
-  #     - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/cardControlId'
-  #     responses:
-  #       '200':
-  #         description: A <a href="https://docs.helix.q2.com/docs/card-controls#cardcontrol-object" target="_blank">`cardControl`</a> object
-  #         content:
-  #           application/json:
-  #             schema:
-  #               allOf:
-  #               - type: object
-  #                 properties:
-  #                   data:
-  #                     $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardControl'
-  #               - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
-  #       '400':
-  #         $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
-  #       '401':
-  #         $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
-  # /cardControl/getByTag/{tag}:
-  #   get:
-  #     tags:
-  #       - Card Control
-  #     summary: Get a card control by tag
-  #     description: Retrieve card control information by the `tag` (unique identifier) specified when the card control was created.
-  #     externalDocs:
-  #       url: https://docs.helix.q2.com/reference/cardcontrolgetbytag
-  #     operationId: cardControlGetByTag
-  #     parameters:
-  #     - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/tag'
-  #     responses:
-  #       '200':
-  #         description: A <a href="https://docs.helix.q2.com/docs/card-controls#cardcontrol-object" target="_blank">`cardControl`</a> object
-  #         content:
-  #           application/json:
-  #             schema:
-  #               allOf:
-  #               - type: object
-  #                 properties:
-  #                   data:
-  #                     $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardControl'
-  #               - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
-  #       '400':
-  #         $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
-  #       '401':
-  #         $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
-  # /cardControl/create:
-  #   post:
-  #     tags:
-  #     - Card Control
-  #     summary: Create a card control
-  #     description: Create a card control and apply it to a customer's card. See <a href="https://docs.helix.q2.com/docs/card-controls#cardcontrol-object" target="_blank">card control object definition</a> for parameter details.
-  #     externalDocs:
-  #       url: https://docs.helix.q2.com/reference/cardcontrolcreate
-  #     operationId: cardControlCreate
-  #     requestBody:
-  #       required: true
-  #       content:
-  #         application/json:
-  #           schema:
-  #             $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardControl'
-  #     responses:
-  #       '200':
-  #         description: A <a href="https://docs.helix.q2.com/docs/card-controls#cardcontrol-object" target="_blank">`card`</a> object
-  #         content:
-  #           application/json:
-  #             schema:
-  #               allOf:
-  #               - type: object
-  #                 properties:
-  #                   data:
-  #                     $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Card'
-  #               - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
-  #       '400':
-  #         $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
-  #       '401':
-  #         $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
-  # /cardControl/archive/{cardControlId}:
-  #   post:
-  #     tags:
-  #     - Card Control
-  #     summary: Archive a card control
-  #     description: Archive a card control by the Helix-assigned `cardControlId`.
-  #     externalDocs:
-  #       url: https://docs.helix.q2.com/reference/cardcontrolarchive
-  #     operationId: cardControlArchive
-  #     parameters:
-  #     - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/cardControlId'
-  #     responses:
-  #       '200':
-  #         description: A 200 status with no `data` property present
-  #         content:
-  #           application/json:
-  #             schema:
-  #               $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
-  #       '400':
-  #         $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
-  #       '401':
-  #         $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
-  # /cardControl/archiveByTag/{tag}:
-  #   post:
-  #     tags:
-  #     - Card Control
-  #     summary: Archive a card control by tag
-  #     description: Archive a card control by the `tag` (unique identifier) specified when the card control was created.
-  #     externalDocs:
-  #       url: https://docs.helix.q2.com/reference/cardcontrolarchivebytag
-  #     operationId: cardControlArchiveByTag
-  #     parameters:
-  #     - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/tag'
-  #     responses:
-  #       '200':
-  #         description: A 200 status with no `data` property present
-  #         content:
-  #           application/json:
-  #             schema:
-  #               $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
-  #       '400':
-  #         $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
-  #       '401':
-  #         $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
-  # /transaction/list/{customerId}/{accountId}/{beginDate}/{endDate}:
-  #   get:
-  #     tags:
-  #     - Transaction
-  #     summary: List transactions
-  #     description: |
-  #       Retrieve a list of transactions restricted by the given parameters. The list is ordered by `settledDate`, descending.
-  #     externalDocs:
-  #       url: https://docs.helix.q2.com/reference/transactionlist
-  #     operationId: transactionList
-  #     parameters:
-  #     - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/customerId'
-  #     - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/accountId'
-  #     - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/pageNumber'
-  #     - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/pageSize'
-  #     - name: beginDate
-  #       in: path
-  #       required: true
-  #       schema:
-  #         type: string
-  #         format: date
-  #       description: Format is YYYY-MM-DD. 
-  #     - name: endDate
-  #       in: path
-  #       required: true
-  #       schema:
-  #         type: string
-  #         format: date
-  #       description: Format is YYYY-MM-DD
-  #     responses:
-  #       '200':
-  #         description: An array of <a href="https://docs.helix.q2.com/docs/transaction" target="_blank">`transaction`</a> objects
-  #         content:
-  #           application/json:
-  #             schema:
-  #               allOf:
-  #               - type: object
-  #                 properties:
-  #                   data:
-  #                     type: array
-  #                     items:
-  #                       $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Transaction'
-  #               - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
-  #       '400':
-  #         $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
-  #       '401':
-  #         $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /card/limit/get/{customerId}/{cardId}:
+    get:
+      tags:
+      - Card Limits and Controls
+      summary: Get card limits
+      description: |
+        [block:callout]
+        {
+          "type": "warning",
+          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
+        }
+        [/block]
+      operationId: cardLimitGet
+      parameters:
+      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/customerId'
+      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/cardId'
+      responses:
+        '200':
+          description: A <a href="https://docs.helix.q2.com/docs/card-limit-response" target="_blank">`cardLimit`</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardLimits'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /card/limit/override:
+    post:
+      tags:
+      - Card Limits and Controls
+      summary: Override default card limits
+      description: |
+        [block:callout]
+        {
+          "type": "warning",
+          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
+        }
+        [/block]
+      operationId: cardLimitOverride
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - customerId
+              - cardId
+              - classification
+              properties:
+                customerId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                cardId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                classification:
+                  allOf:
+                  - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardLimitOverrideClassification'
+                  - description: For `highrisk` the `purchaseLimit` and/or `withdrawalLimit` must be lower than the program default limits. For `lowrisk` the `purhcaseLimit` and/or `withdrawalLimit` must be lower than the bank ceiling limits but higher than the program default limits. Program and bank limits can be obtained via [/card/limit/get](https://docs.helix.q2.com/reference/cardlimitget)
+                purchaseLimit:
+                  type: number
+                  format: decimal
+                  minimum: 0
+                  description: Required if `withdrawalLimit` not present
+                withdrawalLimit:
+                  type: number
+                  format: decimal
+                  description: Required if `purchaseLimit` not present
+                  minimum: 0
+      responses:
+        '200':
+          description: A <a href="https://docs.helix.q2.com/docs/card-limits" target="_blank">`CardLimits`</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardLimits'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /card/limit/temporaryOverride:
+    post:
+      tags:
+      - Card Limits and Controls
+      summary: Create a temporary card limit
+      description: |
+        Allow temporary dollar limit increase requests (e.g., one-time large purchases, large ATM withdrawal) that are higher than standard program limits, but below program-defined limit group settings.
+        [block:callout]
+        {
+          "type": "warning",
+          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
+        }
+        [/block]
+      operationId: cardLimitTemporaryOverride
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+              type: object
+              required:
+              - customerId
+              - cardId
+              - comment
+              properties:
+                customerId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                cardId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                purchaseLimit:
+                  type: number
+                  format: decimal
+                  description: Required if `withdrawalLimit` not present
+                  minimum: 0
+                withdrawalLimit:
+                  type: number
+                  format: decimal
+                  description: Required if `purchaseLimit` not present
+                  minimum: 0
+                comment: 
+                  type: string
+                  description: Free-form comment for why the temporary limit is being placed
+      responses:
+        '200':
+          description: A <a href="https://docs.helix.q2.com/docs/card-limits" target="_blank">`CardLimits`</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardLimits'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /card/limit/reset:
+    post:
+      tags:
+      - Card Limits and Controls
+      summary: Reset card limits
+      description: |
+        Allow a semi-permanent card limit override (i.e., high risk, low risk customer) to be reset to default program limit values. This endpoint does not 
+        remove a temporary override.
+        [block:callout]
+        {
+          "type": "warning",
+          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
+        }
+        [/block]
+      operationId: cardLimitReset
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+              type: object
+              required:
+              - customerId
+              - cardId
+              properties:
+                customerId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                cardId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+      responses:
+        '200':
+          description: A <a href="https://docs.helix.q2.com/docs/card-limits" target="_blank">`CardLimits`</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardLimits'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /cardControl/get/{cardControlId}:
+    get:
+      tags:
+      - Card Limits and Controls
+      summary: Get a card control
+      description: Retrieve card control information by the Helix-assigned `cardControlId`
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/cardcontrolget
+      operationId: cardControlGet
+      parameters:
+      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/cardControlId'
+      responses:
+        '200':
+          description: A <a href="https://docs.helix.q2.com/docs/card-controls#cardcontrol-object" target="_blank">`cardControl`</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardControl'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /cardControl/getByTag/{tag}:
+    get:
+      tags:
+      - Card Limits and Controls
+      summary: Get a card control by tag
+      description: Retrieve card control information by the `tag` (unique identifier) specified when the card control was created.
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/cardcontrolgetbytag
+      operationId: cardControlGetByTag
+      parameters:
+      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/tag'
+      responses:
+        '200':
+          description: A <a href="https://docs.helix.q2.com/docs/card-controls#cardcontrol-object" target="_blank">`cardControl`</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardControl'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /cardControl/create:
+    post:
+      tags:
+      - Card Limits and Controls
+      summary: Create a card control
+      description: Create a card control and apply it to a customer's card. See <a href="https://docs.helix.q2.com/docs/card-controls#cardcontrol-object" target="_blank">card control object definition</a> for parameter details.
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/cardcontrolcreate
+      operationId: cardControlCreate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardControl'
+      responses:
+        '200':
+          description: A <a href="https://docs.helix.q2.com/docs/card-controls#cardcontrol-object" target="_blank">`card`</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Card'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /cardControl/archive/{cardControlId}:
+    post:
+      tags:
+      - Card Limits and Controls
+      summary: Archive a card control
+      description: Archive a card control by the Helix-assigned `cardControlId`.
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/cardcontrolarchive
+      operationId: cardControlArchive
+      parameters:
+      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/cardControlId'
+      responses:
+        '200':
+          description: A 200 status with no `data` property present
+          content:
+            application/json:
+              schema:
+                $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /cardControl/archiveByTag/{tag}:
+    post:
+      tags:
+      - Card Limits and Controls
+      summary: Archive a card control by tag
+      description: Archive a card control by the `tag` (unique identifier) specified when the card control was created.
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/cardcontrolarchivebytag
+      operationId: cardControlArchiveByTag
+      parameters:
+      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/tag'
+      responses:
+        '200':
+          description: A 200 status with no `data` property present
+          content:
+            application/json:
+              schema:
+                $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /transaction/list/{customerId}/{accountId}/{beginDate}/{endDate}:
+    get:
+      tags:
+      - Transaction
+      summary: List transactions
+      description: |
+        Retrieve a list of transactions restricted by the given parameters. The list is ordered by `settledDate`, descending.
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/transactionlist
+      operationId: transactionList
+      parameters:
+      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/customerId'
+      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/accountId'
+      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/pageNumber'
+      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/pageSize'
+      - name: beginDate
+        in: path
+        required: true
+        schema:
+          type: string
+          format: date
+        description: Format is YYYY-MM-DD. 
+      - name: endDate
+        in: path
+        required: true
+        schema:
+          type: string
+          format: date
+        description: Format is YYYY-MM-DD
+      responses:
+        '200':
+          description: An array of <a href="https://docs.helix.q2.com/docs/transaction" target="_blank">`transaction`</a> objects
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      type: array
+                      items:
+                        $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Transaction'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
   /transaction/get/{customerId}/{transactionId}:
     get:
       tags:
