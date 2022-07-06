@@ -2892,8 +2892,7 @@ paths:
       - Card Limits and Controls
       summary: Reset card limits
       description: |
-        Allow a semi-permanent card limit override (i.e., high risk, low risk customer) to be reset to default program limit values. This endpoint does not 
-        remove a temporary override.
+        Allow a semi-permanent card limit override (i.e., high risk, low risk customer) to be reset to default program limit values. This endpoint does not remove a temporary override.
         [block:callout]
         {
           "type": "warning",
@@ -2936,7 +2935,14 @@ paths:
       tags:
       - Card Limits and Controls
       summary: Get a card control
-      description: Retrieve card control information by the Helix-assigned `cardControlId`
+      description: |
+        Retrieve card control information by the Helix-assigned `cardControlId`
+        [block:callout]
+        {
+          "type": "warning",
+          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
+        }
+        [/block]
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardcontrolget
       operationId: cardControlGet
@@ -2963,7 +2969,14 @@ paths:
       tags:
       - Card Limits and Controls
       summary: Get a card control by tag
-      description: Retrieve card control information by the `tag` (unique identifier) specified when the card control was created.
+      description: |
+        Retrieve card control information by the `tag` (unique identifier) specified when the card control was created.
+        [block:callout]
+        {
+          "type": "warning",
+          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
+        }
+        [/block]
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardcontrolgetbytag
       operationId: cardControlGetByTag
@@ -2990,7 +3003,14 @@ paths:
       tags:
       - Card Limits and Controls
       summary: Create a card control
-      description: Create a card control and apply it to a customer's card. See <a href="https://docs.helix.q2.com/docs/card-controls#cardcontrol-object" target="_blank">card control object definition</a> for parameter details.
+      description: |
+        Create a card control and apply it to a customer's card. See <a href="https://docs.helix.q2.com/docs/card-controls#cardcontrol-object" target="_blank">card control object definition</a> for parameter details.
+        [block:callout]
+        {
+          "type": "warning",
+          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
+        }
+        [/block]
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardcontrolcreate
       operationId: cardControlCreate
@@ -3021,7 +3041,14 @@ paths:
       tags:
       - Card Limits and Controls
       summary: Archive a card control
-      description: Archive a card control by the Helix-assigned `cardControlId`.
+      description: |
+        Archive a card control by the Helix-assigned `cardControlId`
+        [block:callout]
+        {
+          "type": "warning",
+          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
+        }
+        [/block]
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardcontrolarchive
       operationId: cardControlArchive
@@ -3043,7 +3070,14 @@ paths:
       tags:
       - Card Limits and Controls
       summary: Archive a card control by tag
-      description: Archive a card control by the `tag` (unique identifier) specified when the card control was created.
+      description: |
+        Archive a card control by the `tag` (unique identifier) specified when the card control was created.
+        [block:callout]
+        {
+          "type": "warning",
+          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
+        }
+        [/block]
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardcontrolarchivebytag
       operationId: cardControlArchiveByTag
