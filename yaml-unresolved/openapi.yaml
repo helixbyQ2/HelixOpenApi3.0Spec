@@ -3019,7 +3019,19 @@ paths:
         content:
           application/json:
             schema:
-              $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardControl'
+              type: object
+              required:
+              - cardId
+              - rules
+              properties:
+                cardId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                rules:
+                  type: array
+                  items:
+                    $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardControlRule'
+                tag:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Tag'
       responses:
         '200':
           description: A <a href="https://docs.helix.q2.com/docs/card-controls#cardcontrol-object" target="_blank">`card`</a> object
@@ -3030,7 +3042,7 @@ paths:
                 - type: object
                   properties:
                     data:
-                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Card'
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardControl'
                 - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
         '400':
           $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
