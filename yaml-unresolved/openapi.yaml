@@ -3051,7 +3051,7 @@ paths:
                   $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Tag'
       responses:
         '200':
-          description: A <a href="https://docs.helix.q2.com/docs/card-controls#cardcontrol-object" target="_blank">`card`</a> object
+          description: A <a href="https://docs.helix.q2.com/docs/card-controls#cardcontrol-object" target="_blank">`cardControl`</a> object
           content:
             application/json:
               schema:
