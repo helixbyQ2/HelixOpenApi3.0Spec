@@ -2209,6 +2209,15 @@ paths:
                               type: string
                             year:
                               type: string
+                        googlePayPhoneNumber:
+                          type: object
+                          properties:
+                            countryCode:
+                              type: string
+                            extension:
+                              type: string
+                            phoneNumber:
+                              type: string
                         last4:
                           type: string
                           description: Last 4 digits of the card PAN
