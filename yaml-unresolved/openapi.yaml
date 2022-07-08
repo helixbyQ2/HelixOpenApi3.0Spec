@@ -246,7 +246,15 @@ paths:
       tags:
       - Customer
       summary: Get a customer via tag
-      description: Retrieve customer information by the `tag` (unique identifier) specified during customer creation.
+      description: |
+        Retrieve customer information by the `tag` (unique identifier) specified during customer creation.
+        [block:callout]
+        {
+          "type": "info",
+          "body": "This route will only retrieve customers whose `customer.status` is any of the following: `Active`, `Initiated`, `Manual Review`, `Verified`. Please use the [/customer/get](https://docs.helix.q2.com/reference/customerget) route to retrieve customers with any other `customer.status`."
+        }
+        [/block]
+        
       externalDocs:
         url: https://docs.helix.q2.com/reference/customergetbytag
       operationId: customerGetByTag
