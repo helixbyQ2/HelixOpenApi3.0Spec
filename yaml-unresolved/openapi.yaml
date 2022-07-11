@@ -1228,7 +1228,8 @@ paths:
                   allOf:
                   - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
                   - description: |
-                      The `accountId` of an <a href="https://docs.helix.q2.com/docs/account" target="_blank">account</a> or the `externalAccountId` of an <a href="https://docs.helix.q2.com/docs/external-account" target="_blank">externalAccount</a> where any funds in the account being closed are to be transferred. Required if the account being closed has a balance or is an interest-bearing account.
+                      The Helix-assigned unique ID for an account where any remaining funds should be transferred. This can be an `accountId` of an <a href="https://docs.helix.q2.com/docs/account" target="_blank">account</a>, `externalAccountId` of an <a href="https://docs.helix.q2.com/docs/external-account" target="_blank">externalAccount</a> or an `accountId` of a Petty Cash <a href="https://docs.helix.q2.com/docs/program-account" target="_blank">programAccount</a>.
+                      **Note:** If there is a balance on this account OR this is an interest-bearing account and interest is owed, `closeToAccountId` is a required parameter.
                 transactionTag:
                   allOf:
                   - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Tag'
