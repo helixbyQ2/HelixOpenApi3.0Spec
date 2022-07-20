@@ -2548,6 +2548,7 @@ paths:
       - Card
       summary: Opt out of fraud texts
       description: |
+        Initiate an cardholder opt out from fraud text alerts on a given card.
         [block:callout]
         {
           "type": "warning",
