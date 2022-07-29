@@ -3196,7 +3196,7 @@ paths:
         description: Format is YYYY-MM-DD
       responses:
         '200':
-          description: An array of <a href="https://docs.helix.q2.com/docs/transaction" target="_blank">`transaction`</a> objects
+          description: An array of <a href="https://docs.helix.q2.com/docs/transaction" target="_blank">transaction</a> objects
           content:
             application/json:
               schema:
