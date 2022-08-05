@@ -1,0 +1,3918 @@
+openapi: 3.0.0
+info:
+  title: Helix API
+  version: 3.x
+  description: "Helix Public API (no customer KYC/IDV). **This spec covers all of Helix 3.x and is subject to change at any time.**"
+servers:
+- url: https://sandbox-api.helix.q2.com
+  description: Sandbox server
+- url: https://api.helix.q2.com
+  description: Production server
+tags:
+- name: Program
+  description: Program endpoints
+- name: Bank Document
+  description: Bank Document endpoints
+- name: Customer
+  description: Customer endpoints
+- name: Account
+  description: Account endpoints
+- name: External Account
+  description: External Account endpoints
+- name: Transfer
+  description: Transfer endpoints
+- name: Card
+  description: Card endpoints
+- name: Card Limits and Controls
+  description: Card limits and controls endpoints
+- name: Transaction
+  description: Transaction endpoints
+- name: Statement
+  description: Statement endpoints
+- name: Customer Document
+  description: Customer Document endpoints
+- name: Customer Beneficiary
+  description: Customer Beneficiary endpoints
+- name: External Account Document
+  description: External Account Document endpoints
+security:
+- basicAuth: []
+paths:
+  /program/get:
+    get:
+      tags:
+      - Program
+      summary: Get program details
+      description: Get your program settings and information. All values are read-only. Please contact your Q2 relationship manager if you wish to make any changes.
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/programget
+      operationId: programGet
+      responses:
+        '200':
+          description: A <a href="https://docs.helix.q2.com/docs/program" target="_blank">program</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Program'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /program/questionsList:
+    get:
+      tags:
+      - Program
+      summary: Get customer due diligence questions
+      description: Retrieve active customer onboarding questions
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/programquestionslist
+      operationId: programQuestionsList
+      responses:
+        '200':
+          description: An array of <a href="https://docs.helix.q2.com/docs/due-diligence-category" target="_blank">dueDiligenceCategory</a> objects 
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      type: array
+                      items:
+                        $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/DueDiligenceCategory'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /bankDocument/list/{culture}:
+    get:
+      tags:
+      - Bank Document
+      summary: List bank documents
+      description: Retrieve a list of all bank documents for the given `culture`.
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/bankdocumentlist
+      operationId: bankDocumentList
+      parameters:
+      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/culture'
+      responses:
+        '200':
+          description: An array of <a href="https://docs.helix.q2.com/docs/bank-document" target="_blank">bankDocument</a> objects
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      type: array
+                      items:
+                        $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/BankDocument'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /bankDocument/download/{culture}/{documentId}:
+    get:
+      tags:
+      - Bank Document
+      summary: Download a bank document
+      description: Retrieve <a href="https://docs.helix.q2.com/docs/file-content" target="_blank">fileContent</a> for the given `culture` and `documentId`
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/bankdocumentdownload
+      operationId: bankDocumentDownload
+      parameters:
+      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/culture'
+      - in: path
+        required: true
+        name: documentId
+        schema:
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+      responses:
+        '200':
+          description: A <a href="https://docs.helix.q2.com/docs/file-content" target="_blank">fileContent</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/FileContent'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /customer/list:
+    get:
+      tags:
+      - Customer
+      summary: List customers
+      description: |
+        List all customers for your program. The results are ordered by `lastName` then `firstName`. Each customer object will contain an additional property, `customerCount`, which can be used in combination with the `pageNumber` and `pageSize` query params to paginate results. All customers, regardless of any flags or status, will be returned.
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/customerlist
+      operationId: customerList
+      parameters:
+      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/pageNumber'
+      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/pageSize'
+      responses:
+        '200':
+          description: 'An array of <a href="https://docs.helix.q2.com/docs/customer" target="_blank">customer</a> objects with null arrays for the following properties: accounts, addresses, cards, externalAccounts, phones'
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      type: array
+                      items:
+                        $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Customer'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /customer/get/{customerId}:
+    get:
+      tags:
+      - Customer
+      summary: Get a customer
+      description: Retrieve customer information by the `customerId` assigned by Helix.
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/customerget
+      operationId: customerGet
+      parameters:
+      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/customerId'
+      responses:
+        '200':
+          description: A <a href="https://docs.helix.q2.com/docs/customer" target="_blank">customer</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Customer'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /customer/getByEmail/{emailAddress}:
+    get:
+      tags:
+      - Customer
+      summary: Get a customer via emailAddress
+      description: Retrieve customer information by the `emailAddress` specified during customer creation.
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/customergetbyemail
+      operationId: customerGetByEmail
+      parameters:
+      - name: emailAddress
+        in: path
+        required: true
+        schema:
+          type: string
+          maxLength: 100
+      responses:
+        '200':
+          description: A <a href="https://docs.helix.q2.com/docs/customer" target="_blank">customer</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Customer'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /customer/getByTag/{tag}:
+    get:
+      tags:
+      - Customer
+      summary: Get a customer via tag
+      description: |
+        Retrieve customer information by the `tag` (unique identifier) specified during customer creation.
+        [block:callout]
+        {
+          "type": "info",
+          "body": "This route will only retrieve customers whose `customer.status` is any of the following: `Active`, `Initiated`, `Manual Review`, `Verified`. Please use the [/customer/get](https://docs.helix.q2.com/reference/customerget) route to retrieve customers with any other `customer.status`."
+        }
+        [/block]
+        
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/customergetbytag
+      operationId: customerGetByTag
+      parameters:
+      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/tag'
+      responses:
+        '200':
+          description: A <a href="https://docs.helix.q2.com/docs/customer" target="_blank">customer</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Customer'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /customer/search:
+    post:
+      tags:
+      - Customer
+      summary: Search for customers
+      description: |
+        Retrieve customer information by the given parameter(s). See <a href="https://docs.helix.q2.com/docs/customer" target="_blank">customer object definition</a> for parameter details. The results are ordered by `lastName` then `firstName`. Each customer object will contain an additional property, `customerCount`, which can be used in combination with the `pageNumber` and `pageSize` query params to paginate results. 
+        [block:callout]
+        {
+          "type": "info",
+          "body": "This endpoint requires a POST request despite the fact that it does not modify or create any data. This is to prevent sensitive data (such as taxId) from possibly being stored in any HTTP logs. "
+        }
+        [/block]
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/customersearch
+      operationId: customerSearch
+      parameters:
+      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/pageNumber'
+      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/pageSize'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                firstName:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerFirstName'
+                lastName:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerLastName'
+                tag:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Tag'
+                taxId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/TaxId'
+                driversLicenseNumber:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerDriversLicenseNumber'
+                passportNumber:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerPassportNumber'
+                emailAddress:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerEmailAddress'
+                birthDate:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/DateTimeMidnight'
+                accounts:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      accountNumber:
+                        type: string
+                        maxLength: 15
+      responses:
+        '200':
+          description: |
+            An array of <a href="https://docs.helix.q2.com/docs/customer" target="_blank">customer</a> objects with null arrays for the following properties: `accounts`, `addresses`, `cards`, `externalAccounts`, `phones`
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      type: array
+                      items:
+                        $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Customer'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /customer/create:
+    post:
+      tags:
+      - Customer
+      summary: Create a customer
+      description: |
+        Create a customer record. See <a href="https://docs.helix.q2.com/docs/customer" target="_blank">customer object definition</a> for parameter details. The parameters you are required to pass to Helix can vary depending on your program settings. 
+        [block:callout]
+        {
+          "type": "warning",
+          "body": "This endpoint does not run KYC, fraud, OFAC, etc checks. Helix has an additional endpoint, `/customer/onboard`, for performing customer KYC/IDV. The behavior of `/customer/onboard` varies depending on your program settings and thus is not documented publicly. Please [contact us](https://www.q2.com/contact-us) for more information."
+        }
+        [/block]
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/customercreate
+      operationId: customerCreate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - firstName
+              - lastName
+              - isSubjectToBackupWithholding
+              - isOptedInToBankCommunication
+              - isDocumentsAccepted
+              properties:
+                firstName:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerFirstName'
+                middleName:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerFirstName'
+                lastName:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerLastName'
+                suffix:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerSuffix'
+                birthDate:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/DateTimeMidnight'
+                gender:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Gender'
+                culture:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Culture'
+                tag:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Tag'
+                taxId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/TaxId'
+                driversLicenseNumber:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerDriversLicenseNumber'
+                driversLicenseState:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/State'
+                driversLicenseIssueDate:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/DateTimeMidnight'
+                driversLicenseExpireDate:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/DateTimeMidnight'
+                passportNumber:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerPassportNumber'
+                passportCountry:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerPassportCountry'
+                passportIssueDate:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/DateTimeMidnight'
+                passportExpireDate:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/DateTimeMidnight'
+                emailAddress:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerEmailAddress'
+                isSubjectToBackupWithholding:
+                  type: boolean
+                isOptedInToBankCommunication:
+                  type: boolean
+                isDocumentsAccepted:
+                  type: boolean
+                customField1:
+                  type: string
+                  maxLength: 100
+                customField2:
+                  type: string
+                  maxLength: 100
+                customField3:
+                  type: string
+                  maxLength: 100
+                customField4:
+                  type: string
+                  maxLength: 100
+                customField5:
+                  type: string
+                  maxLength: 100
+                accessTypeCode:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerAccessTypeCode'
+                addresses:
+                  type: array
+                  items:
+                    $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Address'
+                phones:
+                  type: array
+                  items:
+                    $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Phone'
+      responses:
+        '200':
+          description: A `customerId` and `customerToken` (if enabled for program)
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      type: object
+                      properties:
+                        customerId:
+                          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                        customerToken:
+                          type: string
+                        messages:
+                          deprecated: true
+                          type: array
+                          items: {}
+                        questions:
+                          deprecated: true
+                          type: array
+                          items: {}
+                        verificationStatus:
+                          deprecated: true
+                          type: string
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /customer/answerList/{customerId}:
+    get:
+      tags:
+      - Customer
+      summary: List a customer's due diligence responses
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/customeranswerlist
+      operationId: customerAnswerList
+      parameters:
+      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/customerId'
+      responses:
+        '200':
+          description: An array of <a href="https://docs.helix.q2.com/docs/due-diligence-category" target="_blank">dueDiligenceCategory</a> objects
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      type: array
+                      items:
+                        $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/DueDiligenceCategory'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /customer/answerPost:
+    post:
+      tags:
+      - Customer
+      summary: Submit a customer's due diligence answers
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/customeranswerpost
+      operationId: customerAnswerPost
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - customerId
+              - answers
+              properties:
+                customerId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                answers:
+                  type: array
+                  items:
+                    $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/DueDiligenceAnswer'
+                  description: An array of <a href="https://docs.helix.q2.com/docs/due-diligence-answer" target="_blank">dueDiligenceAnswer</a> objects
+      responses:
+        '200':
+          description: A 200 status with no `data` property present
+          content:
+            application/json:
+              schema:
+                $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /customer/update:
+    post:
+      tags:
+      - Customer
+      summary: Update a customer 
+      description: |
+        See <a href="https://docs.helix.q2.com/docs/customer" target="_blank">customer object definition</a> for parameter details.
+        [block:callout]
+        {
+          "type": "warning",
+          "body": "As a fraud prevention mechanism very few properties can be updated via API if your program uses Helix KYC/IDV. The following properties can only be updated if your program does NOT use Helix KYC/IDV: `firstName`, `middleName`, `lastName`, `suffix`, `birthDate`, `emailAddress`, `taxId`, `driversLicenseNumber`, `driversLicenseState`, `driversLicenseIssueDate`, `driversLicenseExpireDate`, `passportNumber`, `passportCountry`, `passportIssueDate`, `passportExpireDate`, `addresses`."
+        }
+        [/block]
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/customerupdate
+      operationId: customerUpdate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - customerId
+              properties:
+                customerId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                firstName:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerFirstName'
+                middleName:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerFirstName'
+                lastName:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerLastName'
+                suffix:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerSuffix'
+                birthDate:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/DateTimeMidnight'
+                taxId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/TaxId'
+                driversLicenseNumber:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerDriversLicenseNumber'
+                driversLicenseState:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/State'
+                driversLicenseIssueDate:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/DateTimeMidnight'
+                driversLicenseExpireDate:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/DateTimeMidnight'
+                passportNumber:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerPassportNumber'
+                passportCountry:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerPassportNumber'
+                passportIssueDate:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/DateTimeMidnight'
+                passportExpireDate:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/DateTimeMidnight'
+                emailAddress:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerEmailAddress'
+                gender:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Gender'
+                culture:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Culture'
+                isSubjectToBackupWithholding:
+                  type: boolean
+                isOptedInToBankCommunication:
+                  type: boolean
+                tag:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Tag'
+                customField1:
+                  type: string
+                  maxLength: 100
+                customField2:
+                  type: string
+                  maxLength: 100
+                customField3:
+                  type: string
+                  maxLength: 100
+                customField4:
+                  type: string
+                  maxLength: 100
+                customField5:
+                  type: string
+                  maxLength: 100
+                addresses:
+                  type: array
+                  items:
+                    $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Address'
+                phones:
+                  type: array
+                  items:
+                    $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Phone'
+      responses:
+        '200':
+          description: A <a href="https://docs.helix.q2.com/docs/customer" target="_blank">customer</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Customer'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /customer/note:
+    post:
+      tags:
+      - Customer
+      summary: Make a customer note
+      description: Add notes to a customer record
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/customernote
+      operationId: customerNote
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - customerId
+              - note
+              properties:
+                customerId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                note:
+                  type: string
+                  maxLength: 500
+      responses:
+        '200':
+          description: The `customerId` and `note`
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      type: object
+                      properties:
+                        customerId:
+                          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                        note:
+                          type: string
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /customer/notesList/{customerId}:
+    get:
+      tags:
+      - Customer
+      summary: List customer notes
+      description: Retrieve customer notes that were added via the admin console or API
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/customernoteslist
+      operationId: customerNotesList
+      parameters:
+      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/customerId'
+      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/pageNumber'
+      
+      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/pageSize'
+      responses:
+        '200':
+          description: 'An array of <a href="https://docs.helix.q2.com/docs/customer-note" target="_blank">customerNote</a> objects' 
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      type: array
+                      items:
+                        $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerNote'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /customer/generateToken/{customerId}:
+    get:
+      tags:
+      - Customer
+      summary: Generate a customer token
+      description: Retrieve customer token for the specified `customerId`. Only applicable if your program has customer-level authentication enabled. 
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/customergeneratetoken
+      operationId: customerGenerateToken
+      parameters:
+      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/customerId'
+      responses:
+        '200':
+          description: A `customerId` and `token`
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      type: object
+                      properties:
+                        customerId:
+                          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                        token:
+                          type: string
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /customer/archive:
+    post:
+      tags:
+      - Customer
+      summary: Archive a customer
+      description: |
+        [block:callout]
+        {
+          "type": "warning",
+          "body": "This is a one-way function; once a customer is archived, it cannot be \"unarchived.\""
+        }
+        [/block]
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/customerarchive
+      operationId: customerArchive
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - customerId
+              properties:
+                customerId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                archiveReason:
+                  type: string
+                  enum:
+                  - FirstPartyFraud
+                  - ThirdPartyFraud
+                  - SyntheticIdFraud
+                  - AccountTakeoverFraud
+                  - NonActivity
+                  - CustomerRequest
+                  - BankDiscretion
+                  - Other
+                  default: Other
+                  description: |
+                    - `FirstPartyFraud`: When someone uses his/her own identity to obtain products and services with no intent to fulfill their payment obligation.
+                    - `ThirdPartyFraud`: When someone uses a stolen identity to commit fraud. Refers to fraud that is committed without the knowledge of the person whose identity is used to commit the fraud. 
+                    - `SyntheticIdFraud`: When someone uses a possible combination of real and phony attributes, including possible real attributes that don’t correlate to each other, in order to assemble a phony identity. This information is then used to open fraudulent accounts and/or obtain goods and services.
+                    - `AccountTakeoverFraud`: When someone uses another person's account information to make purchases or withdraw money and often involves changing credentials and/or personal profile information. 
+                    - `NonActivity`: Non-Activity.
+                    - `BankDiscretion`: Bank chose to archive for a non-fraud reason
+                    - `Other`: Default value. Providing a detailed reason is strongly encouraged as it informs and improves fraud detection mechanisms. 
+      responses:
+        '200':
+          description: A pared down customer object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      type: object
+                      properties:
+                        accounts:
+                          type: array
+                          items: {}
+                        addresses:
+                          type: array
+                          items: {}
+                        cards:
+                          type: array
+                          items: {}
+                        customerId:
+                          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                        externalAccounts:
+                          type: array
+                          items: {}
+                        phones:
+                          type: array
+                          items: {}
+                        status:
+                          type: string
+                          enum:
+                          - Archived
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /account/list/{customerId}:
+    get:
+      tags:
+      - Account
+      summary: List accounts
+      description: Retrieve all accounts for the given `customerId`. Accounts with `status=Closed` may disappear from this list after a period of time no shorter than 32 days.
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/accountlist
+      operationId: accountList
+      parameters:
+      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/customerId'
+      responses:
+        '200':
+          description: An array of <a href="https://docs.helix.q2.com/docs/account" target="_blank">account</a> objects
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      type: array
+                      items:
+                        $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Account'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /account/get/{customerId}/{accountId}:
+    get:
+      tags:
+      - Account
+      summary: Get an account
+      description: Retrieve a single account for the given `customerId` and `accountId`
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/accountget
+      operationId: accountGet
+      parameters:
+      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/customerId'
+      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/accountId'
+      responses:
+        '200':
+          description: An <a href="https://docs.helix.q2.com/docs/account" target="_blank">account</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Account'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /account/getByTag/{customerId}/{tag}:
+    get:
+      tags:
+      - Account
+      summary: Get an account via tag
+      description: Retrieve a single account for the given `customerId` and `tag`
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/accountgetbytag
+      operationId: accountGetByTag
+      parameters:
+      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/customerId'
+      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/tag'
+      responses:
+        '200':
+          description: An <a href="https://docs.helix.q2.com/docs/account" target="_blank">account</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Account'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /account/create:
+    post:
+      tags:
+      - Account
+      summary: Create an account
+      description: Create a new account for a customer. See <a href="https://docs.helix.q2.com/docs/account" target="_blank">account object definition</a> for parameter details.
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/accountcreate
+      operationId: accountCreate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - customerId
+              - name
+              - productId
+              properties:
+                customerId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                name:
+                  type: string
+                  maxLength: 50
+                productId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                targetDate:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/DateTimeMidnight'
+                isclosable:
+                  type: boolean
+                category:
+                  type: string
+                  maxLength: 50
+                subcategory:
+                  type: string
+                  maxLength: 50
+                tag:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Tag'
+                recurringContributionType:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/RecurringContributionType'
+                recurringContributionAmount:
+                  type: number
+                  format: decimal
+                recurringContributionFromExternalAccountId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                recurringContributionStartDate:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/DateTimeMidnight'
+                recurringContributionEndDate:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/DateTimeMidnight'
+                customField1:
+                  type: string
+                  maxLength: 50
+                customField2:
+                  type: string
+                  maxLength: 50
+                customField3:
+                  type: string
+                  maxLength: 50
+                customField4:
+                  type: string
+                  maxLength: 50
+                customField5:
+                  type: string
+                  maxLength: 50
+                accountMinimumBalance:
+                  type: number
+                  format: decimal
+      responses:
+        '200':
+          description: An <a href="https://docs.helix.q2.com/docs/account" target="_blank">account</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Account'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /account/lock:
+    post:
+      tags:
+      - Account
+      summary: Lock an account
+      description: |
+        Lock an account. Most locks can be reversed by calling [/account/unlock](https://docs.helix.q2.com/reference/accountunlock). Please check the [/account/unlock](https://docs.helix.q2.com/reference/accountunlock) documentation to see which lock scenarios can be subsequently unlocked.
+        
+         Will apply a lockTypeCode of `CST` or `SYS` on success and the account will be locked, meaning no funds transfers can take place.
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/accountlock
+      operationId: accountLock
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - customerId
+              - accountId
+              - lockTypeCode
+              - lockReasonTypeCode
+              properties:
+                customerId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                accountId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                lockTypeCode:
+                  type: string
+                  enum:
+                  - CST
+                  - SYS
+                  description: |
+                    - `CST`: Customer Locked
+                    - `SYS`: System Locked
+                lockReasonTypeCode:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/AccountLockReasonTypeCode'
+      responses:
+        '200':
+          description: An <a href="https://docs.helix.q2.com/docs/account" target="_blank">account</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Account'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /account/unlock:
+    post:
+      tags:
+      - Account
+      summary: Unlock an account
+      description: |
+        The following matrix details when this call will succeed or fail
+        
+        | Current lockTypeCode | Current lockReasonTypeCode | Result |
+        | -------------------- | -------------------------- | ------ |
+        | `CST`                | `UNK` - Unknown            | Success |
+        | `CST`                | `TMP` - Temporary          | Success |
+        | `CST`                | `FRZ` - Freeze             | Success |
+        | `CST`                | `ADM` - Administrative     | Success |
+        | `CST`                | `SUS` - Suspected fraud    | Success |
+        | `CST`                | `CO` - Credits only        | Success |
+        | `CST`                | `FRD` - Fraud investigation | Fail - Fraud investigation lock can not be unlocked by CST |
+        | `SYS`                | `TMP`, `FRD`, `FRZ`, `ADM`, `SUS`, `CO` | Fail - SYS lock type cannot be unlocked by CST |
+        
+        The account will have a `lockTypeCode` of `UNL` upon successful completion of this call. The account is unlocked and ready for transfers to take place.
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/accountunlock
+      operationId: accountUnlock
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - customerId
+              - accountId
+              properties:
+                customerId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                accountId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+      responses:
+        '200':
+          description: An <a href="https://docs.helix.q2.com/docs/account" target="_blank">account</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Account'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /account/update:
+    post:
+      tags:
+      - Account
+      summary: Update an account
+      description: See <a href="https://docs.helix.q2.com/docs/account" target="_blank">account object definition</a> for parameter details.
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/accountupdate
+      operationId: accountUpdate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - customerId
+              - accountId
+              - name
+              properties:
+                customerId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                accountId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                name:
+                  type: string
+                  maxLength: 50
+                productId:
+                  allOf:
+                    - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                    - description: '**Note:**`productId` updates are not real-time in the production environment. Changes may be delayed by up to 24 hours.'
+                targetAmount:
+                  type: number
+                  format: decimal
+                targetDate:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/DateTimeMidnight'
+                category:
+                  type: string
+                  maxLength: 50
+                subcategory:
+                  type: string
+                  maxLength: 50
+                tag:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Tag'
+                recurringContributionType:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/RecurringContributionType'
+                recurringContributionAmount:
+                  type: number
+                  format: decimal
+                recurringContributionFromExternalAccountId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                recurringContributionStartDate:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/DateTimeMidnight'
+                recurringContributionEndDate:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/DateTimeMidnight'
+                customField1:
+                  type: string
+                  maxLength: 50
+                customField2:
+                  type: string
+                  maxLength: 50
+                customField3:
+                  type: string
+                  maxLength: 50
+                customField4:
+                  type: string
+                  maxLength: 50
+                customField5:
+                  type: string
+                  maxLength: 50
+                accountMinimumBalance:
+                  type: number
+                  format: decimal
+      responses:
+        '200':
+          description: An <a href="https://docs.helix.q2.com/docs/account" target="_blank">account</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Account'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /account/close:
+    post:
+      tags:
+      - Account
+      summary: Close an account
+      description: Close an account. If the account balance is greater than $0 or any interest is owed on the account those amounts are calculated and a <a href="https://docs.helix.q2.com/docs/transaction" target="_blank">transaction</a> is implicitly created with the sum of those amounts being credited into the given `closeToAccountId`. That transaction's `tag` property is also assigned the value in the `transactionTag` property (if specified).
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/accountclose
+      operationId: accountClose
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - customerId
+              - accountId
+              properties:
+                customerId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                accountId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                closeToAccountId:
+                  allOf:
+                  - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                  - description: |
+                      The Helix-assigned unique ID for an account where any remaining funds should be transferred. This can be an `accountId` of an <a href="https://docs.helix.q2.com/docs/account" target="_blank">account</a>, `externalAccountId` of an <a href="https://docs.helix.q2.com/docs/external-account" target="_blank">externalAccount</a> or an `accountId` of a Petty Cash <a href="https://docs.helix.q2.com/docs/program-account" target="_blank">programAccount</a>.
+                      **Note:** If there is a balance on this account OR this is an interest-bearing account and interest is owed, `closeToAccountId` is a required parameter.
+                transactionTag:
+                  allOf:
+                  - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Tag'
+                  - description: A program-wide unique identifier that is to be associated with the transaction created to move any funds out of the account being closed.
+                closeReason:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/AccountCloseReason'
+                closeReasonNotes:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/AccountCloseReasonNotes'
+      responses:
+        '200':
+          description: The account closure and transaction (if applicable) details
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      type: object
+                      properties:
+                        customerId:
+                          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                        accountId:
+                          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                        closeToAccountId:
+                          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                        transactionId:
+                          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId64'
+                        transactionTag:
+                          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Tag'
+                        closingBalanceAmount:
+                          type: number
+                          format: decimal
+                        interestPaidAmount:
+                          type: number
+                          format: decimal
+                        totalClosingAmount:
+                          type: number
+                          format: decimal
+                        isClosedToExternalAccount:
+                          type: boolean
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /externalAccount/list/{customerId}:
+    get:
+      tags:
+      - External Account
+      summary: List external accounts
+      description: List all external accounts for a given `customerId`
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/externalaccountlist
+      operationId: externalAccountList
+      parameters:
+      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/customerId'
+      responses:
+        '200':
+          description: An array of <a href="https://docs.helix.q2.com/docs/external-account" target="_blank">externalAccount</a> objects
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      type: array
+                      items:
+                        $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ExternalAccount'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /externalAccount/get/{customerId}/{externalAccountId}:
+    get:
+      tags:
+      - External Account
+      summary: Get an external account
+      description: Retrieve externalAccount information by the given `customerId` and `externalAccountId`
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/externalaccountget
+      operationId: externalAccountGet
+      parameters:
+      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/customerId'
+      - name: externalAccountId
+        in: path
+        required: true
+        schema:
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+      responses:
+        '200':
+          description: An <a href="https://docs.helix.q2.com/docs/external-account" target="_blank">externalAccount</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ExternalAccount'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /externalAccount/getByTag/{customerId}/{tag}:
+    get:
+      tags:
+      - External Account
+      summary: Get an external account via tag
+      description: Retrieve externalAccount information by the given `customerId` and `tag` 
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/externalaccountgetbytag
+      operationId: externalAccountGetByTag
+      parameters:
+      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/customerId'
+      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/tag'
+      responses:
+        '200':
+          description: An <a href="https://docs.helix.q2.com/docs/external-account" target="_blank">externalAccount</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ExternalAccount'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /externalAccount/create:
+    post:
+      tags:
+      - External Account
+      summary: Create an external account
+      description: |
+        Create a new external account with `status=Verified`. See <a href="https://docs.helix.q2.com/docs/external-account" target="_blank">externalAccount object definition</a> for parameter details.
+        [block:callout]
+        {
+          "type": "warning",
+          "body": "This endpoint is intended to be used in combination with an external IAV service such as Plaid and must be enabled for your program before use."
+        }
+        [/block]
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/externalaccountcreate
+      operationId: externalAccountCreate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ExternalAccountCreateOrInitiate'
+      responses:
+        '200':
+          description: An <a href="https://docs.helix.q2.com/docs/external-account" target="_blank">externalAccount</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ExternalAccount'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /externalAccount/initiate:
+    post:
+      tags:
+      - External Account
+      summary: Initiate an external account
+      description: |
+        Initiates a new external account with `status=Unverified` and starts the micro-deposit process. See <a href="https://docs.helix.q2.com/docs/external-account" target="_blank">externalAccount object definition</a> for parameter details.
+        [block:callout]
+        {
+          "type": "info",
+          "body": "In the sandbox environment, if you have NACHA enabled, a \"magic value\" of `123456789` for the `routingNumber` property may be used for testing purposes. This will set the `name` to `COREPRO SANDBOX BANK`. Additionally, all trial deposit amounts in the Sandbox environment will be 0.18 and 0.28, and [/externalAccount/verify](https://docs.helix.q2.com/reference/externalaccountverify) can be called immediately. However, in production, a request to `/externalAccount/verify` must be sent at a later date to allow time for the ACH process to happen at the external bank."
+        }
+        [/block]
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/externalaccountinitiate
+      operationId: externalAccountInitiate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ExternalAccountCreateOrInitiate'
+      responses:
+        '200':
+          description: |
+            An <a href="https://docs.helix.q2.com/docs/external-account" target="_blank">externalAccount</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ExternalAccount'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /externalAccount/verify:
+    post:
+      tags:
+      - External Account
+      summary: Verify an external account
+      description: |
+        Verify trial deposit amounts that were sent via [/externalAccount/initiate](https://docs.helix.q2.com/reference/externalaccountinitiate). 
+        
+        **Note:** In the sandbox environment these values are harcoded to `0.18` and `0.28` to allow for easy testing since no ACH files are actually generated. 
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/externalaccountverify
+      operationId: externalAccountVerify
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - customerId
+              - externalAccountId
+              - amount1
+              - amount2
+              properties:
+                customerId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                externalAccountId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                amount1:
+                  type: string
+                  description: Value of one of the trial deposit amounts
+                amount2:
+                  type: string
+                  description: Value of one of the trial deposit amounts
+      responses:
+        '200':
+          description: An <a href="https://docs.helix.q2.com/docs/external-account" target="_blank">externalAccount</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ExternalAccount'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /externalAccount/lock:
+    post:
+      tags:
+      - External Account
+      summary: Lock an external account
+      description: |
+        [block:callout]
+        {
+          "type": "warning",
+          "title": "",
+          "body": "Use of this endpoint requires approval from Q2 and your bank partner"
+        }
+        [/block]
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/externalaccountlock
+      operationId: externalAccountLock
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - customerId
+              - externalAccountId
+              properties:
+                customerId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                externalAccountId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+      responses:
+        '200':
+          description: An <a href="https://docs.helix.q2.com/docs/external-account" target="_blank">externalAccount</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ExternalAccount'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /externalAccount/unlock:
+    post:
+      tags:
+      - External Account
+      summary: Unlock an external account
+      description: |
+        [block:callout]
+        {
+          "type": "warning",
+          "title": "",
+          "body": "Use of this endpoint requires approval from Q2 and your bank partner"
+        }
+        [/block]
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/externalaccountunlock
+      operationId: externalAccountUnlock
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - customerId
+              - externalAccountId
+              properties:
+                customerId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                externalAccountId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+      responses:
+        '200':
+          description: An <a href="https://docs.helix.q2.com/docs/external-account" target="_blank">externalAccount</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ExternalAccount'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /externalAccount/update:
+    post:
+      tags:
+      - External Account
+      summary: Update an external account
+      description: See <a href="https://docs.helix.q2.com/docs/external-account" target="_blank">externalAccount object definition</a> for parameter details.
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/externalaccountupdate
+      operationId: externalAccountUpdate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - customerId
+              - externalAccountId
+              properties:
+                customerId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                externalAccountId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                nickname:
+                  type: string
+                  maxLength: 50
+                tag:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Tag'
+                customField1:
+                  type: string
+                  maxLength: 50
+                customField2:
+                  type: string
+                  maxLength: 50
+                customField3:
+                  type: string
+                  maxLength: 50
+                customField4:
+                  type: string
+                  maxLength: 50
+                customField5:
+                  type: string
+                  maxLength: 50
+      responses:
+        '200':
+          description: An <a href="https://docs.helix.q2.com/docs/external-account" target="_blank">externalAccount</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ExternalAccount'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /externalAccount/archive:
+    post:
+      tags:
+      - External Account
+      summary: Archive an external account
+      description: |
+        Archives an external account, meaning it can not be used in future transfers. An external account cannot be archived while it has pending transactions.
+        [block:callout]
+        {
+          "type": "warning",
+          "body": "This is a one-way function; once an external account is archived, it cannot be \"unarchived.\" Additionally, there is a limit of 3 external accounts that can be archived per customer, per day. This limit resets to 0 daily between midnight and 5:00 AM in the corresponding Time Zone of your Bank of Record."
+        }
+        [/block]
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/externalaccountarchive
+      operationId: externalAccountArchive
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - customerId
+              - externalAccountId
+              properties:
+                customerId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                externalAccountId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+      responses:
+        '200':
+          description: A `customerId`, `externalAccountId` and `status`
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      type: object
+                      properties:
+                        customerId:
+                          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                        externalAccountId:
+                          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                        status:
+                          type: string
+                          enum:
+                          - Archived
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /transfer/create:
+    post:
+      tags:
+      - Transfer
+      summary: Create a transfer
+      description: Transfer funds from one account to another. Results in a new transaction which can be retrieved via the various [/transaction/*](https://docs.helix.q2.com/reference/transaction-reference) endpoints. See <a href="https://docs.helix.q2.com/docs/transfer" target="_blank">transfer object definition</a> for parameter details.
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/transfercreate
+      operationId: transferCreate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Transfer'
+      responses:
+        '200':
+          description: An array of <a href="https://docs.helix.q2.com/docs/transfer-response" target="_blank">transferResponse</a> objects.
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      type: array
+                      items:
+                        $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/TransferResponse'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /transfer/void:
+    post:
+      tags:
+      - Transfer
+      summary: Void a transfer
+      description: |
+        Void a transfer previously created via [/transfer/create](https://docs.helix.q2.com/reference/transfercreate).
+        
+        **Note:** Only transactions with `status=Initiated` may be voided.
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/transfervoid
+      operationId: transferVoid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - customerId
+              properties:
+                customerId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                tag:
+                  allOf:
+                  - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Tag'
+                  - description: Required if `transactionId` not present
+                transactionId:
+                  allOf:
+                  - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId64'
+                  - description: Required if `tag` not present
+      responses:
+        '200':
+          description: A <a href="https://docs.helix.q2.com/docs/transfer-response" target="_blank">transferResponse</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/TransferResponse'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /card/list/{customerId}:
+    get:
+      tags:
+      - Card
+      summary: List cards
+      description: Retrieve all card information for the given `customerId`
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/cardlist
+      operationId: cardList
+      parameters:
+      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/customerId'
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - Default
+          - All
+          - Archived
+          - Denied
+          - Expired
+          - Hotlisted
+          - Initiated
+          - Pending
+          - PendingVerification
+          - Reissued
+          - ReissuedPendingVerification
+          - AutoReissuedPendingVerification
+          - Verified
+          default: Default
+          description: Specify a single card status to be returned. Only one value can be passed. `Default` includes `Archived`, `Denied`, `Expired`, `Hotlisted`, `Initiated`, `Pending`, `PendingVerification`, `Reissued`, `ReissuedPendingVerification`, `AutoReissuedPendingVerification` and `Verified` 
+      responses:
+        '200':
+          description: An array of <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a> objects
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      type: array
+                      items:
+                        $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Card'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /card/get/{customerId}/{cardId}:
+    get:
+      tags:
+      - Card
+      summary: Get a card
+      description: Retrieve card information by the given `customerId` and `cardId`
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/cardget
+      operationId: cardGet
+      parameters:
+      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/customerId'
+      - in: path
+        name: cardId
+        required: true
+        schema:
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+      responses:
+        '200':
+          description: A <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Card'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /card/getByTag/{customerId}/{tag}:
+    get:
+      tags:
+      - Card
+      summary: Get a card via tag
+      description: Retrieve card information by `customerId` and `tag`
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/cardgetbytag
+      operationId: cardGetByTag
+      parameters:
+      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/customerId'
+      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/tag'
+      responses:
+        '200':
+          description: A <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Card'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /card/initiate:
+    post:
+      tags:
+      - Card
+      summary: Initiate a card
+      description: |
+        Initiate a request to create a new card and mail it to a customer. See <a href="https://docs.helix.q2.com/docs/card" target="_blank">card object definition</a> for parameter details.
+        [block:callout]
+        {
+          "type": "info",
+          "body": "In the Sandbox environment cards will always be created with a `cardNumberMasked` value of `1111` and can be verified via [/card/verify](https://docs.helix.q2.com/reference/cardverify) immediately."
+        }
+        [/block]
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/cardinitiate
+      operationId: cardInitiate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - customerId
+              - cardHolderCustomerId
+              - vendorTypeCode
+              - primaryAccountId
+              - firstName
+              - lastName
+              - nickName
+              properties:
+                customerId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                cardHolderCustomerId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                vendorTypeCode:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardVendorTypeCode'
+                typeCode:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardTypeCode'
+                primaryAccountId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                firstName:
+                  type: string
+                  maxLength: 64
+                middleName:
+                  type: string
+                  maxLength: 64
+                lastName:
+                  type: string
+                  maxLength: 128
+                nickName:
+                  type: string
+                  maxLength: 50
+                tag:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Tag'
+                qualifierCode:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/QualifierCode'
+                binId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                newPin:
+                  type: string
+                  format: byte
+                isCreateDualIssuanceSinglePAN:
+                  type: boolean
+                  default: false
+                  description: |
+                    `true` if this card will be an instant-issued debit card ready for eCommerce activity that can also be provisioned to a digital wallet. If `true` the card will be created with a `status` of `DitalActivePhysicalInitiated` which will shortly change to `DigitalActivePhysicalPending`. When card is in `DigitalActivePhysicalInitiated` or `DigitalActivePhysicalPending` it can be provisioned into a digital wallet via [/card/provision/applePay](https://docs.helix.q2.com/reference/cardprovisionapplepay) or [/card/provision/googlePay](https://docs.helix.q2.com/reference/cardprovisiongooglepay). When card is in `DigitalActivePhysicalPending` it will need to be verified via [/card/verify](https://docs.helix.q2.com/reference/cardverify) before a customer can use the physical card.
+      responses:
+        '200':
+          description: A <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Card'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /card/verify:
+    post:
+      tags:
+      - Card
+      summary: Verify a card
+      description: Verify a customer has received a physical card and activate it for use.
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/cardverify
+      operationId: cardVerify
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - customerId
+              - cardId
+              - birthDate
+              - cardNumberMasked
+              properties:
+                customerId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                cardId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                birthDate:
+                  type: string
+                  format: date
+                  description: The birthday of the `customerId` who created the card. Format is YYYY-MM-DD.
+                cardNumberMasked:
+                  type: integer
+                  description: The last four digits of the card number. In sandbox
+                    this value is always 1111
+                  minimum: 1000
+                  maximum: 9999
+      responses:
+        '200':
+          description: A <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a> object with `status=Verified`
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Card'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /card/createDigital:
+    post:
+      tags:
+      - Card
+      summary: Create a digital card
+      description: Create a new card in `Verified` status that is instantly available for use in mobile wallets. Cards created through this endpoint will have `isDigitalOnly` property set to `true` whenever retrieved via the `/card/get` or `/card/list` endpoints. This type of card will not have a physical card shipped to the customer. See <a href="https://docs.helix.q2.com/docs/card" target="_blank">card object definition</a> for parameter details.
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/cardcreatedigital
+      operationId: cardCreateDigital
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - customerId
+              - cardHolderCustomerId
+              - vendorTypeCode
+              - primaryAccountId
+              - firstName
+              - lastName
+              - nickName
+              properties:
+                customerId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                cardHolderCustomerId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                vendorTypeCode:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardVendorTypeCode'
+                typeCode:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardTypeCode'
+                primaryAccountId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                firstName:
+                  type: string
+                  maxLength: 64
+                middleName:
+                  type: string
+                  maxLength: 64
+                lastName:
+                  type: string
+                  maxLength: 128
+                nickName:
+                  type: string
+                  maxLength: 50
+                tag:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Tag'
+                qualifierCode:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/QualifierCode'
+                binId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+      responses:
+        '200':
+          description: A <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Card'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /card/provision/applePay:
+    post:
+      tags:
+      - Card
+      summary: Provision to Apple Pay
+      description: Get Apple Pay enrypted data for provisioning into Apple Pay Wallet.
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/cardprovisionapplepay
+      operationId: cardProvisionApplePay
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - customerId
+              - cardId
+              - certificates
+              - nonceBase64
+              - nonceSignatureBase64
+              properties:
+                customerId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                cardId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                certificates:
+                  type: array
+                  description: 'json string array of base 64 encoded Apple X.509 certificates (returned by Apple)'
+                  items:
+                    type: string
+                    format: byte
+                nonceBase64:
+                  type: string
+                  format: byte
+                  description: 'Base64 random number generated to avoid replay attacks (returned by Apple)'
+                nonceSignatureBase64:
+                  type: string
+                  format: byte
+                  description: 'Base64 nonce signature (* returned by Apple)'
+      responses:
+        '200':
+          description: Data to pass to Apple for tokenization
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      properties:
+                        encryptedPassData:
+                          type: string
+                          format: byte
+                          description: 'Base64 encoded encrypted authentication data consisting of encrypted PAN, expiry date, name etc. This value should be passed through to Apple as is.'
+                        activationData:
+                          type: string
+                          format: byte
+                          description: 'Base64 encoded activation data consisting of encrypted nonce, noncesignature, and authCode. This value should be passed through to Apple as is.'
+                        ephemeralPublicKey:
+                          type: string
+                          format: byte
+                          description: 'Base64 encoded encrypted JSON containing the sensitive information needed to add a card to Apple Pay. This value should be passed through to Apple as is.'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /card/provision/googlePay:
+    post:
+      tags:
+      - Card
+      summary: Provision to Google Pay
+      description: Get Google Pay enrypted data for provisioning into Google Pay Wallet.
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/cardprovisiongooglepay
+      operationId: cardProvisionGooglePay
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - customerId
+              - cardId
+              - deviceId
+              - clientCustomerId
+              properties:
+                customerId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                cardId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                deviceId:
+                  type: string
+                  description: 'Customer’s Android Device ID'
+                clientCustomerId:
+                  type: string
+                  description: 'Customer’s Wallet account ID from Google Pay SDK.'
+      responses:
+        '200':
+          description: Data to pass to Google for tokenization
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      properties:
+                        address:
+                          allOf:
+                          - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Address'
+                          - description: Customer `Residence` address
+                        expirationDate:
+                          type: object
+                          properties:
+                            month:
+                              type: string
+                            year:
+                              type: string
+                        googlePayPhoneNumber:
+                          type: object
+                          properties:
+                            countryCode:
+                              type: string
+                            extension:
+                              type: string
+                            phoneNumber:
+                              type: string
+                        last4:
+                          type: string
+                          description: Last 4 digits of the card PAN
+                        opaquePaymentCard:
+                          type: string
+                          format: byte
+                          description: 'Base64 encoded opaque card data that is needed for tokenization. This value should be passed through to Google as is.'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /card/addAccount:
+    post:
+      tags:
+      - Card
+      summary: Add an account to a card
+      description: |
+        Add an account to a card. Can be reversed by calling [/card/removeAccount](https://docs.helix.q2.com/reference/cardremoveaccount)
+        
+        The `customerId` attempting to add the account must have an `accessTypeCode` of `FULL` to that account and the customer itself must have a `accessTypeCode` of `FULL` or `ACCT`.
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/cardaddaccount
+      operationId: cardAddAccount
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - customerId
+              - cardId
+              - accountId
+              - cardPriority
+              properties:
+                customerId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                cardId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                accountId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                cardPriority:
+                  allOf:
+                  - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardPriority'
+                  - description: Priority the `accountId` will have. Must be between `1` and `4` inclusive. If this matches the priority of an existing account, that account's priority will be slid down one slot (as will all other lower priority accounts as needed)
+      responses:
+        '200':
+          description: A <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Card'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /card/reprioritizeAccount:
+    post:
+      tags:
+      - Card
+      summary: Reprioritize an account on a card
+      description: |
+        Make changes to the order in which accounts are displayed when a <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a> is used at an ATM. For more details see <a href="https://docs.helix.q2.com/docs/cardreprioritizeaccount-scenarios" target="_blank">example scenarios guide</a>.
+
+        The `customerId` attempting to reprioritize the account must have an `accessTypeCode` of `FULL` or `ACCT`.
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/cardreprioritizeaccount
+      operationId: cardReprioritizeAccount
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - customerId
+              - cardId
+              - accountId
+              - cardPriority
+              properties:
+                customerId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                cardId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                accountId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                cardPriority:
+                  allOf:
+                  - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardPriority'
+                  - description: |
+                      The new priority to give the `accountId`. Must be between `1` and `4` inclusive. Other accounts tied to the card in the same `productCategoryType` as the `accountId` will be reprioritized accordingly. 
+                    
+                      **Note**: If the account in the priority 1 slot is changing AND that account is the `primaryAccountId` for that card, the account that is moved into the priority 1 slot will be assigned as the new `primaryAccountId`.
+      responses:
+        '200':
+          description: A <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Card'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /card/removeAccount:
+    post:
+      tags:
+      - Card
+      summary: Remove an account from a card
+      description: |
+        Removes an account from a card. Can be reversed by calling [/card/addAccount](https://docs.helix.q2.com/reference/cardaddaccount).
+        
+        The `customerId` attempting to remove the account must have an `accessTypeCode` of `FULL` to that account and the customer itself must have a `accessTypeCode` of `FULL` or `ACCT`.
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/cardremoveaccount
+      operationId: cardRemoveAccount
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - customerId
+              - cardId
+              - accountId
+              properties:
+                customerId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                cardId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                accountId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+      responses:
+        '200':
+          description: A <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Card'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /card/lock:
+    post:
+      tags:
+      - Card
+      summary: Lock a card
+      description: |
+        Lock a card. Most locks can be reversed by calling [/card/unlock](https://docs.helix.q2.com/reference/cardunlock). Please check the [/card/unlock](https://docs.helix.q2.com/reference/cardunlock) documentation to see which lock scenarios can be subsequently unlocked. 
+        
+        Will apply a `lockTypeCode` of `CST` on success and all card-based transactions will fail.
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/cardlock
+      operationId: cardLock
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - customerId
+              - cardId
+              - lockReasonTypeCode
+              properties:
+                customerId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                cardId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                lockReasonTypeCode:
+                  type: string
+                  enum:
+                  - UNK
+                  - FRD
+                  - DMG
+                  - TMP
+                  description: |
+                    - `UNK`: Unknown
+                    - `FRD`: Fraud
+                    - `DMG`: Physical Damage
+                    - `TMP`: Temporary
+      responses:
+        '200':
+          description: A <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Card'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /card/unlock:
+    post:
+      tags:
+      - Card
+      summary: Unlock a card
+      description: |
+        Unlock a card. Can be reversed by calling [/card/lock](https://docs.helix.q2.com/reference/cardlock). The following matrix details when this call will succeed or fail.
+        
+        | Current lockTypeCode | Current lockReasonTypeCode | Result |
+        | -------------------- | -------------------------- | ------ |
+        | `CST` | `UNK` - Uknown | Success |
+        | `CST` | `DMG` - Physical Damage | Success |
+        | `CST` | `TMP` - Temporary | Success |
+        | `CST` | `ADM` - Administrative | Success |
+        | `CST` | `LST` - Lost | Fail - Lost cards can never be used again |
+        | `CST` | `STL` - Stolen | Fail - Stolen cards can never be used again |
+        | `CST` | `FRD` - Suspected Fraud | Fail - Suspected Fraud cards can never be used again |
+        | `SYS` | `LST` - Lost | Fail - Lost cards can never be used again |
+        | `SYS` | `STL` - Stolen | Fail - Stolen cards can never be used again |
+        | `SYS` | `FRD` - Suspected Fraud | Fail - Suspected Fraud cards can never be used again |
+        | `SYS` | `ADM` - Administrative | Fail - Only Admin Console or an automated process can unlock |
+        | `SYS` | `PIN` - PIN Retry Limit Exceeded | Fail - Only Admin Console or an automated process can unlock |
+        
+        The card will have a `lockTypeCode` of `UNL` upon successful completion of this call. The card will be unlocked and ready for transactions to take place.
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/cardunlock
+      operationId: cardUnlock
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - customerId
+              - cardId
+              properties:
+                customerId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                cardId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+      responses:
+        '200':
+          description: A <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Card'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /card/resetPin:
+    post:
+      tags:
+      - Card
+      summary: Reset a card pin
+      description: |
+        Create a request to reset the PIN for a card. 
+        [block:callout]
+        {
+          "type": "warning",
+          "body": "This is not a real-time PIN reset. It may take up to 24 hours to reset the PIN."
+        }
+        [/block]
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/cardresetpin
+      operationId: cardResetPin
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - customerId
+              - cardId
+              - newPin
+              properties:
+                customerId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                cardId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                newPin:
+                  type: string
+                  format: byte
+                  description: See the `newPin` attribute on the <a href="https://docs.helix.q2.com/docs/card" target="_blank">card object definition</a> for details.
+      responses:
+        '200':
+          description: A <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Card'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /card/fraudtextalert/optout:
+    post:
+      tags:
+      - Card
+      summary: Opt out of fraud texts
+      description: |
+        Initiate an cardholder opt out from fraud text alerts on a given card.
+        [block:callout]
+        {
+          "type": "warning",
+          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
+        }
+        [/block]
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/cardfraudtextalertoptout
+      operationId: cardFraudTextAlertOptOut
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - customerId
+              - cardId
+              properties:
+                customerId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                cardId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+      responses:
+        '200':
+          description: A 200 status with no `data` property present
+          content:
+            application/json:
+              schema:
+                $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /card/riskFactor/set:
+    post:
+      tags:
+      - Card
+      summary: Set card risk factors
+      description: |
+        Initiate a cardholder base or override risk factor on a card for Stand Alone Fraud Management clients.  The base and override risk factors must be defined in Risk Services Manager (RSM). An override risk factor requires the base risk factor, a start and end date.
+        [block:callout]
+        {
+          "type": "warning",
+          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
+        }
+        [/block]
+        
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/cardriskfactorset
+      operationId: cardRiskFactorSet
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - customerId
+              - cardId
+              - baseRiskFactor
+              properties:
+                customerId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                cardId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                baseRiskFactor:
+                  type: string
+                  maxLength: 3
+                  description: Risk Services Manager (RSM) defined value
+                overrideRiskFactor:
+                  type: string
+                  maxLength: 3
+                  description: Risk Services Manager (RSM) defined value
+                startDate:
+                  type: string
+                  format: date
+                  description: 'Required if passing `overrideRiskFactor`. Format: YYYY-MM-DD'
+                endDate:
+                  type: string
+                  format: date
+                  description: 'Required if passing `overrideRiskFactor`. Format: YYYY-MM-DD'
+      responses:
+        '200':
+          description: A 200 status with no `data` property present
+          content:
+            application/json:
+              schema:
+                $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /card/update:
+    post:
+      tags:
+      - Card
+      summary: Update a card
+      description: See <a href="https://docs.helix.q2.com/docs/card" target="_blank">card object definition</a> for parameter details.
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/cardupdate
+      operationId: cardUpdate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - customerId
+              - cardId
+              properties:
+                customerId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                cardId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                nickname:
+                  type: string
+                  maxLength: 50
+                tag: 
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Tag'
+                primaryAccountId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+      responses:
+        '200':
+          description: A <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Card'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /card/reissue:
+    post:
+      tags:
+      - Card
+      summary: Reissue a card
+      description: |
+        Reissue a card and send it to a customer. May or may not generate a new card number depending on the `reissueReasonTypeCode`. 
+        
+        Returns a card object with a `status` of `Verified`, `PendingVerification`, or `ReissuedPendingVerification`
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/cardreissue
+      operationId: cardReissue
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - customerId
+              - cardId
+              - reissueReasonTypeCode
+              properties:
+                customerId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                cardId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                reissueReasonTypeCode:
+                  type: string
+                  enum:
+                  - DMG
+                  - FRD
+                  - LST
+                  - STL
+                  description: |
+                    - `DMG`: Physical Damage
+                    - `FRD`: Fraud
+                    - `LST`: Lost
+                    - `STL`: Stolen
+                newPin:
+                  type: string
+                  format: byte
+                  description: See the `newPin` attribute on the <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a> object definition for details.
+                qualifierCode:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/QualifierCode'
+                tag:
+                  allOf:
+                  - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Tag'
+                  - description: Tag to associate with the new card
+      responses:
+        '200':
+          description: A <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Card'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /card/hotlist:
+    post:
+      tags:
+      - Card
+      summary: Hotlist (permanently lock) a card
+      description: |
+        Permanently locks a card and sets `lockTypeCode=CST`.
+        [block:callout]
+        {
+          "type": "warning",
+          "body": "This is a one-way function and cannot be undone."
+        }
+        [/block]
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/cardhotlist
+      operationId: cardHotlist
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - customerId
+              - cardId
+              - lockReasonTypeCode
+              properties:
+                customerId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                cardId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                lockReasonTypeCode:
+                  type: string
+                  enum:
+                  - STL
+                  - LST
+                  - FRD
+                  description: |
+                    - `STL`: Stolen
+                    - `LST`: Lost
+                    - `FRD`: Fraud
+      responses:
+        '200':
+          description: A <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Card'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /card/archive:
+    post:
+      tags:
+      - Card
+      summary: Archive a card
+      description: |
+        Archives a card. 
+        [block:callout]
+        {
+          "type": "warning",
+          "body": "This is a one-way function; once a card is archived, it cannot be \"unarchived.\""
+        }
+        [/block]
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/cardarchive
+      operationId: cardArchive
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - customerId
+              - cardId
+              properties:
+                customerId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                cardId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+      responses:
+        '200':
+          description: A <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Card'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /card/limit/get/{customerId}/{cardId}:
+    get:
+      tags:
+      - Card Limits and Controls
+      summary: Get card limits
+      description: |
+        [block:callout]
+        {
+          "type": "warning",
+          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
+        }
+        [/block]
+      operationId: cardLimitGet
+      parameters:
+      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/customerId'
+      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/cardId'
+      responses:
+        '200':
+          description: A <a href="https://docs.helix.q2.com/docs/card-limit-response" target="_blank">cardLimit</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardLimits'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /card/limit/override:
+    post:
+      tags:
+      - Card Limits and Controls
+      summary: Override default card limits
+      description: |
+        [block:callout]
+        {
+          "type": "warning",
+          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
+        }
+        [/block]
+      operationId: cardLimitOverride
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - customerId
+              - cardId
+              - classification
+              properties:
+                customerId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                cardId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                classification:
+                  allOf:
+                  - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardLimitOverrideClassification'
+                  - description: For `highrisk` the `purchaseLimit` and/or `withdrawalLimit` must be lower than the program default limits. For `lowrisk` the `purhcaseLimit` and/or `withdrawalLimit` must be lower than the bank ceiling limits but higher than the program default limits. Program and bank limits can be obtained via [/card/limit/get](https://docs.helix.q2.com/reference/cardlimitget)
+                purchaseLimit:
+                  type: number
+                  format: decimal
+                  minimum: 0
+                  description: Required if `withdrawalLimit` not present
+                withdrawalLimit:
+                  type: number
+                  format: decimal
+                  description: Required if `purchaseLimit` not present
+                  minimum: 0
+      responses:
+        '200':
+          description: A <a href="https://docs.helix.q2.com/docs/card-limits" target="_blank">cardLimits</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardLimits'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /card/limit/temporaryOverride:
+    post:
+      tags:
+      - Card Limits and Controls
+      summary: Create a temporary card limit
+      description: |
+        Allow temporary dollar limit increase requests (e.g., one-time large purchases, large ATM withdrawal) that are higher than standard program limits, but below program-defined limit group settings.
+        [block:callout]
+        {
+          "type": "warning",
+          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
+        }
+        [/block]
+      operationId: cardLimitTemporaryOverride
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+              type: object
+              required:
+              - customerId
+              - cardId
+              - comment
+              properties:
+                customerId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                cardId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                purchaseLimit:
+                  type: number
+                  format: decimal
+                  description: Required if `withdrawalLimit` not present
+                  minimum: 0
+                withdrawalLimit:
+                  type: number
+                  format: decimal
+                  description: Required if `purchaseLimit` not present
+                  minimum: 0
+                comment: 
+                  type: string
+                  description: Free-form comment for why the temporary limit is being placed
+      responses:
+        '200':
+          description: A <a href="https://docs.helix.q2.com/docs/card-limits" target="_blank">cardLimits</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardLimits'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /card/limit/reset:
+    post:
+      tags:
+      - Card Limits and Controls
+      summary: Reset card limits
+      description: |
+        Allow a semi-permanent card limit override (i.e., high risk, low risk customer) to be reset to default program limit values. This endpoint does not remove a temporary override.
+        [block:callout]
+        {
+          "type": "warning",
+          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
+        }
+        [/block]
+      operationId: cardLimitReset
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+              type: object
+              required:
+              - customerId
+              - cardId
+              properties:
+                customerId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                cardId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+      responses:
+        '200':
+          description: A <a href="https://docs.helix.q2.com/docs/card-limits" target="_blank">cardLimits</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardLimits'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /cardControl/get/{cardControlId}:
+    get:
+      tags:
+      - Card Limits and Controls
+      summary: Get a card control
+      description: |
+        Retrieve card control information by the Helix-assigned `cardControlId`
+        [block:callout]
+        {
+          "type": "warning",
+          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
+        }
+        [/block]
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/cardcontrolget
+      operationId: cardControlGet
+      parameters:
+      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/cardControlId'
+      responses:
+        '200':
+          description: A <a href="https://docs.helix.q2.com/docs/card-controls#cardcontrol-object" target="_blank">cardControl</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardControl'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /cardControl/getByTag/{tag}:
+    get:
+      tags:
+      - Card Limits and Controls
+      summary: Get a card control by tag
+      description: |
+        Retrieve card control information by the `tag` (unique identifier) specified when the card control was created.
+        [block:callout]
+        {
+          "type": "warning",
+          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
+        }
+        [/block]
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/cardcontrolgetbytag
+      operationId: cardControlGetByTag
+      parameters:
+      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/tag'
+      responses:
+        '200':
+          description: A <a href="https://docs.helix.q2.com/docs/card-controls#cardcontrol-object" target="_blank">cardControl</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardControl'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /cardControl/create:
+    post:
+      tags:
+      - Card Limits and Controls
+      summary: Create a card control
+      description: |
+        Create a card control and apply it to a customer's card. See <a href="https://docs.helix.q2.com/docs/card-controls#cardcontrol-object" target="_blank">card control object definition</a> for parameter details.
+        [block:callout]
+        {
+          "type": "warning",
+          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
+        }
+        [/block]
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/cardcontrolcreate
+      operationId: cardControlCreate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - cardId
+              - rules
+              properties:
+                cardId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                rules:
+                  type: array
+                  items:
+                    $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardControlRule'
+                tag:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Tag'
+      responses:
+        '200':
+          description: A <a href="https://docs.helix.q2.com/docs/card-controls#cardcontrol-object" target="_blank">cardControl</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardControl'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /cardControl/archive/{cardControlId}:
+    post:
+      tags:
+      - Card Limits and Controls
+      summary: Archive a card control
+      description: |
+        Archive a card control by the Helix-assigned `cardControlId`
+        [block:callout]
+        {
+          "type": "warning",
+          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
+        }
+        [/block]
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/cardcontrolarchive
+      operationId: cardControlArchive
+      parameters:
+      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/cardControlId'
+      responses:
+        '200':
+          description: A 200 status with no `data` property present
+          content:
+            application/json:
+              schema:
+                $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /cardControl/archiveByTag/{tag}:
+    post:
+      tags:
+      - Card Limits and Controls
+      summary: Archive a card control by tag
+      description: |
+        Archive a card control by the `tag` (unique identifier) specified when the card control was created.
+        [block:callout]
+        {
+          "type": "warning",
+          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
+        }
+        [/block]
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/cardcontrolarchivebytag
+      operationId: cardControlArchiveByTag
+      parameters:
+      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/tag'
+      responses:
+        '200':
+          description: A 200 status with no `data` property present
+          content:
+            application/json:
+              schema:
+                $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /transaction/list/{customerId}/{accountId}/{beginDate}/{endDate}:
+    get:
+      tags:
+      - Transaction
+      summary: List transactions
+      description: |
+        Retrieve a list of transactions restricted by the given parameters. The list is ordered by `settledDate`, descending.
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/transactionlist
+      operationId: transactionList
+      parameters:
+      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/customerId'
+      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/accountId'
+      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/pageNumber'
+      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/pageSize'
+      - name: beginDate
+        in: path
+        required: true
+        schema:
+          type: string
+          format: date
+        description: Format is YYYY-MM-DD. 
+      - name: endDate
+        in: path
+        required: true
+        schema:
+          type: string
+          format: date
+        description: Format is YYYY-MM-DD
+      responses:
+        '200':
+          description: An array of <a href="https://docs.helix.q2.com/docs/transaction" target="_blank">transaction</a> objects
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      type: array
+                      items:
+                        $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Transaction'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /transaction/get/{customerId}/{transactionId}:
+    get:
+      tags:
+      - Transaction
+      summary: Get a transaction(s)
+      description: |
+        Retrieve a list of transactions related to the given `customerId` and `transactionId`. The list is ordered by `settledDate`, descending.
+        [block:callout]
+        {
+          "type": "info",
+          "body": "The output is a list because multiple <a href=\"https://docs.helix.q2.com/docs/transaction\" target=\"_blank\">transaction</a> objects may be tied to a given `transactionId`. This is because a single call to [transfer/create](https://docs.helix.q2.com/reference/transfercreate) can result in multiple transactions, e.g., a fee is applied (such as an NSF during NACHA file processing). A fee is considered a separate, but instrinsically related, transaction."
+        }
+        [/block]
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/transactionget
+      operationId: transactionGet
+      parameters:
+      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/customerId'
+      - name: transactionId
+        in: path
+        required: true
+        schema:
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId64'
+      responses:
+        '200':
+          description: An array of <a href="https://docs.helix.q2.com/docs/transaction" target="_blank">transaction</a> objects
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      type: array
+                      items:
+                        $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Transaction'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /transaction/getByTag/{customerId}/{tag}:
+    get:
+      tags:
+      - Transaction
+      summary: Get a transaction(s) via tag
+      description: |
+        Retrieve a list of transactions related to the given `customerId` and `tag`. The list is ordered by `settledDate`, descending.
+        [block:callout]
+        {
+          "type": "info",
+          "body": "The output is a list because multiple <a href=\"https://docs.helix.q2.com/docs/transaction\" target=\"_blank\">transaction</a> objects may be tied to a given `transactionId`. This is because a single call to [transfer/create](https://docs.helix.q2.com/reference/transfercreate) can result in multiple transactions, e.g., a fee is applied (such as an NSF during NACHA file processing). A fee is considered a separate, but instrinsically related, transaction."
+        }
+        [/block]
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/transactiongetbytag
+      operationId: transactionGetByTag
+      parameters:
+      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/customerId'
+      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/tag'
+      responses:
+        '200':
+          description: An array of <a href="https://docs.helix.q2.com/docs/transaction" target="_blank">transaction</a> objects
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      type: array
+                      items:
+                        $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Transaction'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /transaction/setAvailableDate:
+    post:
+      tags:
+      - Transaction
+      summary: Set transaction available date 
+      description: |
+       Modify the `availableDate` for an ACH transaction forward or backward within the configurable maximum allowed hold days from transaction creation. New `availableDate` will be set to midnight on the date provided in the bank's timezone. Maximum allowed hold days represents business days. 
+       [block:callout]
+        {
+          "type": "warning",
+          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
+        }
+        [/block]
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/transactionsetavailabledate
+      operationId: transactionSetAvailableDate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - customerId
+              - transactionId
+              - availableDate
+              properties:
+                customerId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                transactionId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId64'
+                availableDate:
+                  type: string
+                  format: date
+                  description: Format is YYYY-MM-DD
+      responses:
+        '200':
+          description: A <a href="https://docs.helix.q2.com/docs/transaction" target="_blank">transaction</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Transaction'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /transaction/setStatus:
+    post:
+      tags:
+      - Transaction
+      summary: Set transaction status
+      description: |
+        Modify the `status` for an outbound ACH transaction made via [/transfer/create](https://docs.helix.q2.com/reference/transfercreate)
+        [block:callout]
+        {
+          "type": "warning",
+          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
+        }
+        [/block]
+        The following matrix details which statuses can be updated.
+        
+        | Starting status | Possible status updates | Notes |
+        | --------------- | ----------------------- | ----- |
+        | `Initiated`     | `Delayed`, `Voided`     |       |
+        | `Delayed`       | `Initiated`, `Voided`   |       |
+        | `Pending`       | N/A | Transactions in a `Pending` status can't be updated. |
+        | `Settled`       | N/A | Transactions in a `Settled` status can't updated. |
+        | `Voided`        | N/A | Transactions in a `Voided` status can't be updated. |
+      operationId: transactionSetStatus
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - customerId
+              - transactionId
+              - status
+              properties:
+                customerId: 
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                transactionId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId64'
+                status:
+                  type: string
+                  enum:
+                  - delayed
+                  - initiated
+                  - voided
+      responses:
+        '200':
+          description: A <a href="https://docs.helix.q2.com/docs/transaction" target="_blank">transaction</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Transaction'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /statement/list/{customerId}:
+    get:
+      tags:
+      - Statement
+      summary: List statements
+      description: Get a list of all statements for a customer
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/statementlist
+      operationId: statementList
+      parameters:
+      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/customerId'
+      responses:
+        '200':
+          description: An array of <a href="https://docs.helix.q2.com/docs/statement" target="_blank">statement</a> objects
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      type: array
+                      items:
+                        $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Statement'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /statement/get/{customerId}/{statementId}:
+    get:
+      tags:
+      - Statement
+      summary: Get a statement
+      description: Get a statement for a customer
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/statementget
+      operationId: statementGet
+      parameters:
+      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/customerId'
+      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/statementId'
+      responses:
+        '200':
+          description: A <a href="https://docs.helix.q2.com/docs/statement" target="_blank">statement</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Statement'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /statement/search/{customerId}/{type}/{year}/{month}:
+    get:
+      tags:
+      - Statement
+      summary: Search for statements
+      description: Search for monthly or tax statements within the given parameters for a customer. See <a href="https://docs.helix.q2.com/docs/statement" target="_blank">statement object definition</a> for parameter details.
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/statementsearch
+      operationId: statementSearch
+      parameters:
+      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/customerId'
+      - name: type
+        in: path
+        required: true
+        schema: 
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/StatementType'
+      - name: year
+        in: path
+        required: true
+        schema: 
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/YearFourDigits'
+      - name: month
+        in: path
+        required: true
+        schema:
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Month'
+      responses:
+        '200':
+          description: An array of <a href="https://docs.helix.q2.com/docs/statement" target="_blank">statement</a> objects
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      type: array
+                      items:
+                        $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Statement'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /statement/download/{customerId}/{statementId}:
+    get:
+      tags:
+      - Statement
+      summary: Download a statement
+      description: Download the PDF content of a monthly or tax statement for a customer
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/statementdownload
+      operationId: statementDownload
+      parameters:
+      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/customerId'
+      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/statementId'
+      responses:
+        '200':
+          description: A <a href="https://docs.helix.q2.com/docs/file-content" target="_blank">fileContent</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/FileContent'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /customerDocument/upload:
+    post:
+      tags:
+      - Customer Document
+      summary: Upload a customer document
+      description: Upload a document on behalf of a customer. See <a href="https://docs.helix.q2.com/docs/customer-document" target="_blank">customerDocument object definition</a> for parameter details.
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/customerdocumentupload
+      operationId: customerDocumentUpload
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerDocumentWritable'
+      responses:
+        '200':
+          description: A <a href="https://docs.helix.q2.com/docs/customer-document" target="_blank">customerDocument</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerDocument'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /customerBeneficiary/list/{customerId}:
+    get:
+      tags:
+      - Customer Beneficiary
+      summary: List customer beneficiaries
+      description: List all beneficiaries for a given customer
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/customerbeneficiarylist
+      operationId: customerBeneficiaryList
+      parameters:
+      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/customerId'
+      responses:
+        '200':
+          description: An array of <a href="https://docs.helix.q2.com/docs/customer-beneficiary" target="_blank">customerBeneficiary</a> objects
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      type: array
+                      items:
+                        $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerBeneficiary'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /customerBeneficiary/get/{customerId}/{customerBeneficiaryId}:
+    get:
+      tags:
+      - Customer Beneficiary
+      summary: Get a customer beneficiary
+      description: Retrieve customer beneficiary information by the given `customerId` and `customerBeneficiaryId`
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/customerbeneficiaryget
+      operationId: customerBeneficiaryGet
+      parameters:
+      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/customerId'
+      - name: customerBeneficiaryId
+        in: path
+        required: true
+        schema:
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+      responses:
+        '200':
+          description: A <a href="https://docs.helix.q2.com/docs/customer-beneficiary" target="_blank">customerBeneficiary</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerBeneficiary'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /customerBeneficiary/create:
+    post:
+      tags:
+      - Customer Beneficiary
+      summary: Create a customer beneficiary
+      description: See <a href="https://docs.helix.q2.com/docs/customer-beneficiary" target="_blank">customerBeneficiary object definition</a> for parameter details.
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/customerbeneficiarycreate
+      operationId: customerBeneficiaryCreate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - customerId
+              properties:
+                customerId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                firstName:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerBeneficiaryName'
+                middleName:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerBeneficiaryName'
+                lastName:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerBeneficiaryName'
+                birthDate: 
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/DateTimeMidnight'
+                taxId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/TaxId'
+                addressLine1:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/AddressLine'
+                addressLine2:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/AddressLine'
+                addressLine3:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/AddressLine'
+                addressLine4:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/AddressLine'
+                city:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/City'
+                state:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/State'
+                postalCode:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/PostalCode'
+                country:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Country'
+                legalName1:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/LegalName'
+                legalName2:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/LegalName'
+                distributionDescription:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/DistributionDescription'
+                emailAddress:
+                  type: string
+                  maxLength: 256
+                phoneNumber:
+                  type: string
+                  maxLength: 15
+      responses:
+        '200':
+          description: A <a href="https://docs.helix.q2.com/docs/customer-beneficiary" target="_blank">customerBeneficiary</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerBeneficiary'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /customerBeneficiary/update:
+    post:
+      tags:
+      - Customer Beneficiary
+      summary: Update a customer beneficiary
+      description: See <a href="https://docs.helix.q2.com/docs/customer-beneficiary" target="_blank">customerBeneficiary object definition</a> for parameter details.
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/customerbeneficiaryupdate
+      operationId: customerBeneficiaryUpdate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - customerId
+              - customerBeneficiaryId
+              properties:
+                customerId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                customerBeneficiaryId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                firstName:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerBeneficiaryName'
+                middleName:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerBeneficiaryName'
+                lastName:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerBeneficiaryName'
+                birthDate:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/DateTimeMidnight'
+                taxId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/TaxId'
+                addressLine1:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/AddressLine'
+                addressLine2:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/AddressLine'
+                addressLine3:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/AddressLine'
+                addressLine4:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/AddressLine'
+                city:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/City'
+                state:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/State'
+                postalCode:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/PostalCode'
+                country:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Country'
+                legalName1:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/LegalName'
+                legalName2:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/LegalName'
+                distributionDescription:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/DistributionDescription'
+                emailAddress:
+                  type: string
+                  maxLength: 256
+                phoneNumber:
+                  type: string
+                  maxLength: 15
+      responses:
+        '200':
+          description: A <a href="https://docs.helix.q2.com/docs/customer-beneficiary" target="_blank">customerBeneficiary</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerBeneficiary'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /customerBeneficiary/deactivate:
+    post:
+      tags:
+      - Customer Beneficiary
+      summary: Deactivate a customer beneficiary
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/customerbeneficiarydeactivate
+      operationId: customerBeneficiaryDeactivate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - customerId
+              - customerBeneficiaryId
+              properties:
+                customerId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                customerBeneficiaryId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+      responses:
+        '200':
+          description: A `customerId` and `customerBeneficiaryId`
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      type: object
+                      properties:
+                        customerId:
+                          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                        customerBeneficiaryId:
+                          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /externalAccountDocument/upload:
+    post:
+      tags:
+      - External Account Document
+      summary: Upload an external account document
+      description: Upload a document associated with a specific external account. See <a href="https://docs.helix.q2.com/docs/external-account-document" target="_blank">externalAccountDocument object definition</a> for parameter details.
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/externalaccountdocumentupload
+      operationId: externalAccountDocumentUpload
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ExternalAccountDocument'
+      responses:
+        '200':
+          description: A 200 status with no `data` property present
+          content:
+            application/json:
+              schema:
+                $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+x-samples-languages:
+- curl
+- node
+- python
+- csharp
+- ruby
+- go
+- java
+- kotlin
+- php
