@@ -95,7 +95,7 @@ paths:
       tags:
       - Bank Document
       summary: List bank documents
-      description: Retrieve a list of all bank documents for the given `culture`.
+      description: Retrieve a list of all bank documents for the given `culture`
       externalDocs:
         url: https://docs.helix.q2.com/reference/bankdocumentlist
       operationId: bankDocumentList
