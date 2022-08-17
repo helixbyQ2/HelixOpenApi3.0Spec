@@ -90,6 +90,37 @@ paths:
           $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
         '401':
           $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /program/listIndustryClassiciationCodes:
+    get:
+      tags:
+      - Program
+      summary: List industry classification codes
+      description: |
+        List all industry classification codes for your program. These codes are only used when creating or updating business customers.
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/programlistindustryclassificationcodes
+      operationId: programListIndustryClassificationCodes
+      parameters:
+      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/pageNumber'
+      - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/pageSize'
+      responses:
+        '200':
+          description: 'An array of <a href="https://docs.helix.q2.com/docs/industry-classification-code" target="_blank">industryClassificationCode</a> objects'
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      type: array
+                      items:
+                        $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/IndustryClassificationCode'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
   /bankDocument/list/{culture}:
     get:
       tags:
