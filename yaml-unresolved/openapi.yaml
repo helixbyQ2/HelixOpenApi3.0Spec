@@ -195,6 +195,15 @@ paths:
       parameters:
       - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/pageNumber'
       - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/pageSize'
+      - name: customerClass
+        in: query
+        required: false
+        description: Limit which type of customers are returned. If no value is passed, all customers are returned. 
+        schema:
+          type: string
+          enum:
+          - individual
+          - business
       responses:
         '200':
           description: 'An array of <a href="https://docs.helix.q2.com/docs/customer" target="_blank">customer</a> objects with null arrays for the following properties: accounts, addresses, cards, externalAccounts, phones'
