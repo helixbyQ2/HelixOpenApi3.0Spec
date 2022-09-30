@@ -432,6 +432,12 @@ paths:
                   $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Tag'
                 taxId:
                   $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/TaxId'
+                taxIdType:
+                  type: string
+                  enum:
+                  - SSN
+                  - EIN
+                  - ITIN
                 driversLicenseNumber:
                   $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerDriversLicenseNumber'
                 driversLicenseState:
@@ -473,6 +479,12 @@ paths:
                   maxLength: 100
                 accessTypeCode:
                   $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerAccessTypeCode'
+                residencyStatusType:
+                  type: string
+                  enum:
+                  - UsCitizen
+                  - ResidentAlien
+                  - NonResidentAlien
                 addresses:
                   type: array
                   items:
