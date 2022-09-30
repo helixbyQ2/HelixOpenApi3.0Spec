@@ -195,15 +195,6 @@ paths:
       parameters:
       - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/pageNumber'
       - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/pageSize'
-      - name: customerClass
-        in: query
-        required: false
-        description: Limit which type of customers are returned. If no value is passed, all customers are returned. 
-        schema:
-          type: string
-          enum:
-          - individual
-          - business
       responses:
         '200':
           description: 'An array of <a href="https://docs.helix.q2.com/docs/customer" target="_blank">customer</a> objects with null arrays for the following properties: accounts, addresses, cards, externalAccounts, phones'
@@ -216,7 +207,7 @@ paths:
                     data:
                       type: array
                       items:
-                        $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerWithBusinessFields'
+                        $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Customer'
                 - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
         '400':
           $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
@@ -243,7 +234,7 @@ paths:
                 - type: object
                   properties:
                     data:
-                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerWithBusinessFields'
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Customer'
                 - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
         '400':
           $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
@@ -1752,7 +1743,27 @@ paths:
         content:
           application/json:
             schema:
-              $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Transfer'
+              type: object
+              required:
+              - customerId
+              - fromId
+              - toId
+              - amount
+              properties:
+                amount:
+                  type: number
+                  format: decimal
+                  minimum: 0.01
+                customerId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                description:
+                  type: string
+                fromId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                isSameDaySettle:
+                  type: boolean
+                tag:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Tag'
       responses:
         '200':
           description: An array of <a href="https://docs.helix.q2.com/docs/transfer-response" target="_blank">transferResponse</a> objects.
