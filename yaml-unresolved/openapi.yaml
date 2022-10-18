@@ -1,3 +1,5 @@
+# Don't panic. This is a continuity strategy. Pull prod from github first then set new branch
+
 openapi: 3.0.0
 info:
   title: Helix API
@@ -520,6 +522,109 @@ paths:
                         verificationStatus:
                           deprecated: true
                           type: string
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /customer/createBusiness:
+    post:
+      tags:
+      - Customer
+      summary: Create a business customer
+      description: |
+        Create a business customer record. See <a href="https://docs.helix.q2.com/docs/customer" target="_blank">customer object definition</a> for parameter details. The parameters you are required to pass to Helix can vary depending on your program settings. 
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/customercreatebusiness
+      operationId: customercreatebusiness
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - businessLegalName
+              - legalEntityType
+              - taxId
+              - taxIdType
+              properties:
+                businessLegalName:
+                  type: string
+                legalEntityType:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerLegalEntityType'
+                taxId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/TaxId'
+                taxIdType:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/TaxIdType'
+                businessDescription:
+                  type: string
+                formationDate:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/DateTimeMidnight'
+                formationState:
+                  type: string
+                industryClassificationCodeId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                isTaxExempt: 
+                  type: boolean
+                isSubjectToBackupWithholding:
+                  type: boolean
+                culture:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Culture'
+                isOptedInToBankCommunication:
+                  type: boolean
+                isDocumentsAccepted:
+                  type: boolean
+                accessTypeCode:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerAccessTypeCode'
+                businessWebsite:
+                  type: string
+                isExemptFromBeneficialOwnership:
+                  type: boolean
+                exemptFromBeneficialOwnershipReasonType:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ExemptFromBeneficialOwnershipReasonType'
+                attesterName:
+                  type: string
+                attesterTitle:
+                  type: string
+                attestationDate:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/DateTimeMidnight'
+                tag:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Tag'
+                customField1:
+                  type: string
+                  maxLength: 100
+                customField2:
+                  type: string
+                  maxLength: 100
+                customField3:
+                  type: string
+                  maxLength: 100
+                customField4:
+                  type: string
+                  maxLength: 100
+                customField5:
+                  type: string
+                  maxLength: 100
+                addresses:
+                  type: array
+                  items:
+                    $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Address'
+                phones:
+                  type: array
+                  items:
+                    $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Phone'
+      responses:
+        '200':
+          description: A <a href="https://docs.helix.q2.com/docs/customer" target="_blank">customer</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerWithBusinessFields'
                 - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
         '400':
           $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
