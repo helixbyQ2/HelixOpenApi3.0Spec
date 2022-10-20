@@ -1,3 +1,5 @@
+# Don't panic. This is a continuity strategy. Pull prod from github first then set new branch
+
 openapi: 3.0.0
 info:
   title: Helix API
@@ -433,11 +435,7 @@ paths:
                 taxId:
                   $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/TaxId'
                 taxIdType:
-                  type: string
-                  enum:
-                  - SSN
-                  - EIN
-                  - ITIN
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/TaxIdType'
                 driversLicenseNumber:
                   $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerDriversLicenseNumber'
                 driversLicenseState:
@@ -480,11 +478,7 @@ paths:
                 accessTypeCode:
                   $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerAccessTypeCode'
                 residencyStatusType:
-                  type: string
-                  enum:
-                  - UsCitizen
-                  - ResidentAlien
-                  - NonResidentAlien
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ResidencyStatusType'
                 addresses:
                   type: array
                   items:
