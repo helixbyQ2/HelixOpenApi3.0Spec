@@ -519,6 +519,109 @@ paths:
           $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
         '401':
           $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /customer/createBusiness:
+    post:
+      tags:
+      - Customer
+      summary: Create a business customer
+      description: |
+        Create a business customer record. See <a href="https://docs.helix.q2.com/docs/customer" target="_blank">customer object definition</a> for parameter details. The parameters you are required to pass to Helix can vary depending on your program settings. 
+        [block:callout]
+        {
+          "type": "warning",
+          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
+        }
+        [/block]
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/customercreatebusiness
+      operationId: customercreatebusiness
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - businessLegalName
+              - legalEntityType
+              - taxId
+              - taxIdType
+              properties:
+                businessLegalName:
+                  type: string
+                legalEntityType:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerLegalEntityType'
+                taxId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/TaxId'
+                taxIdType:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/TaxIdType'
+                businessDescription:
+                  type: string
+                formationDate:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/DateTimeMidnight'
+                formationState:
+                  type: string
+                industryClassificationCodeId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                isTaxExempt: 
+                  type: boolean
+                isSubjectToBackupWithholding:
+                  type: boolean
+                culture:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Culture'
+                isOptedInToBankCommunication:
+                  type: boolean
+                isDocumentsAccepted:
+                  type: boolean
+                accessTypeCode:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerAccessTypeCode'
+                businessWebsite:
+                  type: string
+                isExemptFromBeneficialOwnership:
+                  type: boolean
+                exemptFromBeneficialOwnershipReasonType:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ExemptFromBeneficialOwnershipReasonType'
+                tag:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Tag'
+                customField1:
+                  type: string
+                  maxLength: 100
+                customField2:
+                  type: string
+                  maxLength: 100
+                customField3:
+                  type: string
+                  maxLength: 100
+                customField4:
+                  type: string
+                  maxLength: 100
+                customField5:
+                  type: string
+                  maxLength: 100
+                addresses:
+                  type: array
+                  items:
+                    $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Address'
+                phones:
+                  type: array
+                  items:
+                    $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Phone'
+      responses:
+        '200':
+          description: A <a href="https://docs.helix.q2.com/docs/customer" target="_blank">customer</a> object
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    data:
+                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerWithBusinessFields'
+                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
   /customer/answerList/{customerId}:
     get:
       tags:
@@ -2362,7 +2465,6 @@ paths:
       summary: Reprioritize an account on a card
       description: |
         Make changes to the order in which accounts are displayed when a <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a> is used at an ATM. For more details see <a href="https://docs.helix.q2.com/docs/cardreprioritizeaccount-scenarios" target="_blank">example scenarios guide</a>.
-
         The `customerId` attempting to reprioritize the account must have an `accessTypeCode` of `FULL` or `ACCT`.
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardreprioritizeaccount
