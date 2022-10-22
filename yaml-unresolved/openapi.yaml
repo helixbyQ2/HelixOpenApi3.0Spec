@@ -1,5 +1,3 @@
-# Don't panic. This is a continuity strategy. Pull prod from github first then set new branch
-
 openapi: 3.0.0
 info:
   title: Helix API
@@ -534,6 +532,12 @@ paths:
       summary: Create a business customer
       description: |
         Create a business customer record. See <a href="https://docs.helix.q2.com/docs/customer" target="_blank">customer object definition</a> for parameter details. The parameters you are required to pass to Helix can vary depending on your program settings. 
+        [block:callout]
+        {
+          "type": "warning",
+          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
+        }
+        [/block]
       externalDocs:
         url: https://docs.helix.q2.com/reference/customercreatebusiness
       operationId: customercreatebusiness
@@ -583,12 +587,6 @@ paths:
                   type: boolean
                 exemptFromBeneficialOwnershipReasonType:
                   $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ExemptFromBeneficialOwnershipReasonType'
-                attesterName:
-                  type: string
-                attesterTitle:
-                  type: string
-                attestationDate:
-                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/DateTimeMidnight'
                 tag:
                   $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Tag'
                 customField1:
@@ -2473,7 +2471,6 @@ paths:
       summary: Reprioritize an account on a card
       description: |
         Make changes to the order in which accounts are displayed when a <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a> is used at an ATM. For more details see <a href="https://docs.helix.q2.com/docs/cardreprioritizeaccount-scenarios" target="_blank">example scenarios guide</a>.
-
         The `customerId` attempting to reprioritize the account must have an `accessTypeCode` of `FULL` or `ACCT`.
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardreprioritizeaccount
