@@ -550,7 +550,7 @@ paths:
                 businessLegalName:
                   type: string
                 legalEntityType:
-                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerLegalEntityType'
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerLegalEntityTypeBusinessOnly'
                 taxId:
                   $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/TaxId'
                 taxIdType:
