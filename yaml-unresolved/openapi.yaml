@@ -3767,7 +3767,7 @@ paths:
           $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
         '401':
           $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
-  /customerRelationship/list:
+  /customerRelationship/list{customerId}:
     get:
       tags:
       - Customer Relationship
@@ -3889,29 +3889,11 @@ paths:
               required:
               - primaryCustomerId
               - relatedCustomerId
-              - relationshipType
-              - canOpenAccounts
-              - isPrimaryContact
               properties:
                 primaryCustomerId:
                   $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
                 relatedCustomerId:
                   $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
-                relationshipType:
-                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerRelationshipType'
-                canOpenAccounts:
-                  type: boolean
-                isPrimaryContact:
-                  type: boolean
-                isControlPerson:
-                  type: boolean
-                isBeneficialOwner:
-                  type: boolean
-                beneficialOwnerPercentage:
-                  type: number
-                  format: decimal
-                title:
-                  type: string
       responses:
         '200':
           description: A <a href="https://docs.helix.q2.com/docs/customer-relationship" target="_blank">customerRelationship</a> object
