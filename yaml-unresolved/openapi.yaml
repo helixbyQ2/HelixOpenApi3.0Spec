@@ -3786,7 +3786,7 @@ paths:
       - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/customerId'
       responses:
         '200':
-          description: An array of <a href="https://docs.helix.q2.com/docs/customer-relationship" target="_blank">customerRelationship</a> objects
+          description: An array of `customerRelationship` objects
           content:
             application/json:
               schema:
@@ -3851,7 +3851,7 @@ paths:
                   type: string
       responses:
         '200':
-          description: A <a href="https://docs.helix.q2.com/docs/customer-relationship" target="_blank">customerRelationship</a> object
+          description: A `customerRelationship` object
           content:
             application/json:
               schema:
@@ -3896,7 +3896,7 @@ paths:
                   $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
       responses:
         '200':
-          description: A <a href="https://docs.helix.q2.com/docs/customer-relationship" target="_blank">customerRelationship</a> object
+          description: A `customerRelationship` object
           content:
             application/json:
               schema:
