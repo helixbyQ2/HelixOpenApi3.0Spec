@@ -579,10 +579,6 @@ paths:
                   $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerAccessTypeCode'
                 businessWebsite:
                   type: string
-                isExemptFromBeneficialOwnership:
-                  type: boolean
-                exemptFromBeneficialOwnershipReasonType:
-                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ExemptFromBeneficialOwnershipReasonType'
                 tag:
                   $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Tag'
                 customField1:
