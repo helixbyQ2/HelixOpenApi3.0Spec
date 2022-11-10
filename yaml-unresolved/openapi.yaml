@@ -3786,7 +3786,7 @@ paths:
       - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/customerId'
       responses:
         '200':
-          description: An array of <a href="https://docs.helix.q2.com/docs/customer-relationship" target="_blank">customerRelationship</a> object
+          description: An array of <a href="https://docs.helix.q2.com/docs/customer-relationship" target="_blank">customerRelationship</a> objects
           content:
             application/json:
               schema:
@@ -3808,6 +3808,7 @@ paths:
       - Customer Relationship
       summary: Create customer relationship
       description: |
+        See <a href="https://docs.helix.q2.com/docs/customer-relationship" target="_blank">customerRelationship object definition</a> for parameter details.
         [block:callout]
         {
           "type": "warning",
