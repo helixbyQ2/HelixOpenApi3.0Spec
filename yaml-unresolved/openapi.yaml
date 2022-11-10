@@ -3850,6 +3850,7 @@ paths:
                   format: decimal
                 title:
                   type: string
+                  maxLength: 100
       responses:
         '200':
           description: A <a href="https://docs.helix.q2.com/docs/customer-relationship" target="_blank">customerRelationship</a> object
@@ -3897,16 +3898,11 @@ paths:
                   $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
       responses:
         '200':
-          description: A <a href="https://docs.helix.q2.com/docs/customer-relationship" target="_blank">customerRelationship</a> object
+          description: A 200 status with no `data` property present
           content:
             application/json:
               schema:
-                allOf:
-                - type: object
-                  properties:
-                    data:
-                      $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerRelationship'
-                - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+                $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
         '400':
           $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
         '401':
