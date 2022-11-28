@@ -618,6 +618,92 @@ paths:
           $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
         '401':
           $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /customer/createBusinessApplication:
+    post:
+      tags:
+      - Customer
+      summary: Submit business application
+      description: |
+        [block:callout]
+        {
+          "type": "warning",
+          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
+        }
+        [/block]
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/customercreatebusinessapplication
+      operationId: customerCreateBusinessApplication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - businessCustomerId
+              - controlPersonCustomerId
+              - controlPersonRelationshipType
+              - controlPersonIsBeneficialOwner
+              - isExemptFromBeneficialOwnership 
+              properties:
+                businessCustomerId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                controlPersonCustomerId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                controlPersonRelationshipType:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerRelationshipType'
+                controlPersonIsBeneficialOwner:
+                  type: boolean
+                isExemptFromBeneficialOwnership:
+                  type: boolean
+                exemptFromBeneficialOwnershipReasonType:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ExemptFromBeneficialOwnershipReasonType'
+                controlPersonBeneficialOwnerPercentage:
+                  type: number
+                  format: decimal
+                controlPersonTitle:
+                  type: string
+                attestationDate:
+                  type: string
+                  format: datetime
+                attesterTitle:
+                  type: string
+                attesterName:
+                  type: string
+                additionalRelatedCustomers:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                    - customerId
+                    - relationshipType
+                    - isBeneficialOwner
+                    - canOpenAccounts
+                    properties:
+                      customerId:
+                        $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                      relationshipType:
+                        $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerRelationshipType'
+                      isBeneficialOwner:
+                        type: boolean
+                      beneficialOwnerPercentage:
+                        type: number
+                        format: decimal
+                      canOpenAccounts:
+                        type: boolean
+                      title:
+                        type: string
+      responses:
+        '200':
+          description: A 200 status with no `data` property present
+          content:
+            application/json:
+              schema:
+                $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
   /customer/answerList/{customerId}:
     get:
       tags:
