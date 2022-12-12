@@ -482,7 +482,7 @@ paths:
                 addresses:
                   type: array
                   items:
-                    $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Address'
+                    $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/AddressIndividualOnly'
                 phones:
                   type: array
                   items:
@@ -597,7 +597,7 @@ paths:
                 addresses:
                   type: array
                   items:
-                    $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Address'
+                    $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/AddressBusinessOnly'
                 phones:
                   type: array
                   items:
