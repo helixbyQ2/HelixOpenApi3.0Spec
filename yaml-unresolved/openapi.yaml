@@ -1375,8 +1375,8 @@ paths:
                   maxLength: 50
                 productId:
                   allOf:
-                    - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
-                    - description: '**Note:**`productId` updates are not real-time in the production environment. Changes may be delayed by up to 24 hours.'
+                  - description: '**Note:**`productId` updates are not real-time in the production environment. Changes may be delayed by up to 24 hours.'
+                  - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
                 targetAmount:
                   type: number
                   format: decimal
@@ -1460,14 +1460,15 @@ paths:
                   $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
                 closeToAccountId:
                   allOf:
-                  - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
                   - description: |
                       The Helix-assigned unique ID for an account where any remaining funds should be transferred. This can be an `accountId` of an <a href="https://docs.helix.q2.com/docs/account" target="_blank">account</a>, `externalAccountId` of an <a href="https://docs.helix.q2.com/docs/external-account" target="_blank">externalAccount</a> or an `accountId` of a Petty Cash <a href="https://docs.helix.q2.com/docs/program-account" target="_blank">programAccount</a>.
                       **Note:** If there is a balance on this account OR this is an interest-bearing account and interest is owed, `closeToAccountId` is a required parameter.
+                  - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
                 transactionTag:
                   allOf:
-                  - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Tag'
                   - description: A program-wide unique identifier that is to be associated with the transaction created to move any funds out of the account being closed.
+                  - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Tag'
+
                 closeReason:
                   $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/AccountCloseReason'
                 closeReasonNotes:
@@ -2017,12 +2018,12 @@ paths:
                   $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
                 tag:
                   allOf:
-                  - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Tag'
                   - description: Required if `transactionId` not present
+                  - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Tag'
                 transactionId:
                   allOf:
-                  - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId64'
                   - description: Required if `tag` not present
+                  - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId64'
       responses:
         '200':
           description: A <a href="https://docs.helix.q2.com/docs/transfer-response" target="_blank">transferResponse</a> object
@@ -2464,8 +2465,8 @@ paths:
                       properties:
                         address:
                           allOf:
-                          - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Address'
                           - description: Customer `Residence` address
+                          - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Address'
                         expirationDate:
                           type: object
                           properties:
@@ -2525,8 +2526,8 @@ paths:
                   $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
                 cardPriority:
                   allOf:
-                  - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardPriority'
                   - description: Priority the `accountId` will have. Must be between `1` and `4` inclusive. If this matches the priority of an existing account, that account's priority will be slid down one slot (as will all other lower priority accounts as needed)
+                  - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardPriority'
       responses:
         '200':
           description: A <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a> object
@@ -2574,11 +2575,11 @@ paths:
                   $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
                 cardPriority:
                   allOf:
-                  - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardPriority'
                   - description: |
                       The new priority to give the `accountId`. Must be between `1` and `4` inclusive. Other accounts tied to the card in the same `productCategoryType` as the `accountId` will be reprioritized accordingly. 
                     
                       **Note**: If the account in the priority 1 slot is changing AND that account is the `primaryAccountId` for that card, the account that is moved into the priority 1 slot will be assigned as the new `primaryAccountId`.
+                  - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardPriority'
       responses:
         '200':
           description: A <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a> object
@@ -2996,8 +2997,8 @@ paths:
                   $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/QualifierCode'
                 tag:
                   allOf:
-                  - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Tag'
                   - description: Tag to associate with the new card
+                  - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Tag'
       responses:
         '200':
           description: A <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a> object
@@ -3179,8 +3180,8 @@ paths:
                   $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
                 classification:
                   allOf:
-                  - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardLimitOverrideClassification'
                   - description: For `highrisk` the `purchaseLimit` and/or `withdrawalLimit` must be lower than the program default limits. For `lowrisk` the `purhcaseLimit` and/or `withdrawalLimit` must be lower than the bank ceiling limits but higher than the program default limits. Program and bank limits can be obtained via [/card/limit/get](https://docs.helix.q2.com/reference/cardlimitget)
+                  - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardLimitOverrideClassification'
                 purchaseLimit:
                   type: number
                   format: decimal
