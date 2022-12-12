@@ -3851,7 +3851,7 @@ paths:
           $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
         '401':
           $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
-  /customerRelationship/list{customerId}:
+  /customerRelationship/list/{customerId}:
     get:
       tags:
       - Customer Relationship
