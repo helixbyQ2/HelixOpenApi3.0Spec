@@ -759,6 +759,34 @@ paths:
                 customField5:
                   type: string
                   maxLength: 100
+                businessLegalName:
+                  type: string
+                businessDescription:
+                  type: string
+                doingBusinessAs:
+                  type: string
+                  maxLength: 200
+                formationDate:
+                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/DateTimeMidnight
+                formationState:
+                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/State
+                industryClassificationCodeId:
+                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
+                isTaxExempt:
+                  type: boolean
+                businessWebsite:
+                  type: string
+                isExemptFromBeneficialOwnership:
+                  type: boolean
+                exemptFromBeneficialOwnershipReasonType:
+                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ExemptFromBeneficialOwnershipReasonType
+                attestationDate:
+                  type: string
+                  format: datetime
+                attesterTitle:
+                  type: string
+                attesterName:
+                  type: string
                 addresses:
                   type: array
                   items:
