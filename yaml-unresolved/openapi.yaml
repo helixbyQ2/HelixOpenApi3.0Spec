@@ -25,6 +25,8 @@ tags:
     description: Card endpoints
   - name: Card Limits and Controls
     description: Card limits and controls endpoints
+  - name: Card Mock
+    description: Card mock endpoints
   - name: Transaction
     description: Transaction endpoints
   - name: Statement
@@ -3026,6 +3028,56 @@ paths:
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
         '401':
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401
+  /card/mock/withdrawal/purchase/authorize:
+    post:
+      summary: Withdrawal authorization
+      description: |
+        Generate a mock debit card authorization in sandbox. This endpoint will generate a <a href="https://docs.helix.q2.com/docs/transaction" target="_blank">transaction</a> with `typeCode=ATHPCH` and a <a href="https://docs.helix.q2.com/docs/event-types#debit-card-withdrawal-authorization-events" target="_blank">Debit Card Withdrawal Authorization real-time event</a> with `userEventTypeId=3060240`. 
+        [block:callout]
+        {
+          "type": "warning",
+          "body": "This endpoint only works for Visa DPS programs"
+        }
+        [/block]
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/cardmockwithdrawalpurchaseauthorize
+      tags:
+        - Card Mock
+      operationId: cardMockWithdrawalPurchaseAuthorize
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - customerId
+                - cardId
+                - transactionAmount
+              properties:
+                customerId:
+                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
+                cardId:
+                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
+                transactionAmount:
+                  type: number
+                  format: decimal
+                  minimum: 0.01
+                  maximum: 999.99
+                merchantDescription:
+                  type: string
+                  maxLength: 25
+                settlementDate:
+                  allOf:
+                    - description: Must occur in the future
+                    - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/DateTime
+      responses:
+        '200':
+          description: A 200 status with no `data` property present. Use the  <a href="https://docs.helix.q2.com/reference/transactionlist" target="_blank">/transaction/list</a> endpoint to fetch transaction details.
+          content:
+            application/json:
+              schema:
+                $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
   /transaction/list/{customerId}/{accountId}/{beginDate}/{endDate}:
     get:
       tags:
