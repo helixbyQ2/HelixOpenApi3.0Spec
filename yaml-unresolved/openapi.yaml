@@ -2711,7 +2711,7 @@ paths:
         - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/cardId
       responses:
         '200':
-          description: A <a href="https://docs.helix.q2.com/docs/card-limit-response" target="_blank">cardLimit</a> object
+          description: A <a href="https://docs.helix.q2.com/docs/card-limits" target="_blank">cardLimit</a> object
           content:
             application/json:
               schema:
