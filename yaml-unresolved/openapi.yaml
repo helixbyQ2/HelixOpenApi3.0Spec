@@ -3032,7 +3032,7 @@ paths:
     post:
       summary: Withdrawal authorization
       description: |
-        Generate a mock debit card authorization in sandbox. This endpoint will generate a <a href="https://docs.helix.q2.com/docs/transaction" target="_blank">transaction</a> with `typeCode=ATHPCH` and a <a href="https://docs.helix.q2.com/docs/event-types#debit-card-withdrawal-authorization-events" target="_blank">Debit Card Withdrawal Authorization real-time event</a> with `userEventTypeId=3060240`. 
+        Generate a mock debit card withdrawal authorization transaction in sandbox. This endpoint will generate a <a href="https://docs.helix.q2.com/docs/transaction" target="_blank">transaction</a> with `typeCode=ATHPCH` and a <a href="https://docs.helix.q2.com/docs/event-types#debit-card-withdrawal-authorization-events" target="_blank">Debit Card Withdrawal Authorization real-time event</a> with `userEventTypeId=3060240`. 
         [block:callout]
         {
           "type": "warning",
@@ -3073,7 +3073,56 @@ paths:
                     - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/DateTime
       responses:
         '200':
-          description: A 200 status with no `data` property present. Use the  <a href="https://docs.helix.q2.com/reference/transactionlist" target="_blank">/transaction/list</a> endpoint to fetch transaction details.
+          description: A 200 status with no `data` property present. Use the <a href="https://docs.helix.q2.com/reference/transactionlist" target="_blank">/transaction/list</a> endpoint to fetch transaction details.
+          content:
+            application/json:
+              schema:
+                $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
+  /card/mock/withdrawal/purchase/complete:
+    post:
+      summary: Withdrawal settlement
+      description: |
+        Generate a mock debit card withdrawal settlement transaction in sandbox. This endpoint will generate a <a href="https://docs.helix.q2.com/docs/transaction" target="_blank">transaction</a> with `typeCode=CRDPCH` and a <a href="https://docs.helix.q2.com/docs/event-types#debit-card-withdrawal-events" target="_blank">Debit Card Withdrawal real-time event</a> with `userEventTypeId=3060341`.
+        [block:callout]
+        {
+          "type": "warning",
+          "body": "This endpoint only works for Visa DPS programs"
+        }
+        [/block]
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/cardmockwithdrawalpurchasecomplete
+      tags:
+        - Card Mock
+      operationId: cardMockWithdrawalPurchaseComplete
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - customerId
+                - cardId
+                - transactionId
+                - transactionAmount
+              properties:
+                customerId:
+                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
+                cardId:
+                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
+                transactionId:
+                  allOf:
+                    - description: The `transactionId` from a pending withdrawal authorization transaction generated via <a href="https://docs.helix.q2.com/reference/cardmockwithdrawalpurchaseauthorize" target="_blank">/card/mock/withdrawal/purchase/authorize</a>
+                    - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId64
+                transactionAmount:
+                  type: number
+                  format: decimal
+                  minimum: 0.01
+                  maximum: 999.99
+                  description: The total amount to settle on the transaction (can be different from the original authorization amount)
+      responses:
+        '200':
+          description: A 200 status with no `data` property present. Use the <a href="https://docs.helix.q2.com/reference/transactionlist" target="_blank">/transaction/list</a> endpoint to fetch transaction details.
           content:
             application/json:
               schema:
