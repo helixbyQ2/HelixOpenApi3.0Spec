@@ -3035,8 +3035,8 @@ paths:
         Generate a mock debit card withdrawal authorization transaction in sandbox. This endpoint will generate a <a href="https://docs.helix.q2.com/docs/transaction" target="_blank">transaction</a> with `typeCode=ATHPCH` and a <a href="https://docs.helix.q2.com/docs/event-types#debit-card-withdrawal-authorization-events" target="_blank">Debit Card Withdrawal Authorization real-time event</a> with `userEventTypeId=3060240`. 
         [block:callout]
         {
-          "type": "warning",
-          "body": "This endpoint only works for Visa DPS programs"
+          "type": "danger",
+          "body": "This endpoint can only be used by Visa DPS programs and only within the sandbox environment."
         }
         [/block]
       externalDocs:
@@ -3085,8 +3085,8 @@ paths:
         Generate a mock debit card withdrawal settlement transaction in sandbox. This endpoint will generate a <a href="https://docs.helix.q2.com/docs/transaction" target="_blank">transaction</a> with `typeCode=CRDPCH` and a <a href="https://docs.helix.q2.com/docs/event-types#debit-card-withdrawal-events" target="_blank">Debit Card Withdrawal real-time event</a> with `userEventTypeId=3060341`.
         [block:callout]
         {
-          "type": "warning",
-          "body": "This endpoint only works for Visa DPS programs"
+          "type": "danger",
+          "body": "This endpoint can only be used by Visa DPS programs and only within the sandbox environment."
         }
         [/block]
       externalDocs:
@@ -3123,6 +3123,56 @@ paths:
       responses:
         '200':
           description: A 200 status with no `data` property present. Use the <a href="https://docs.helix.q2.com/reference/transactionlist" target="_blank">/transaction/list</a> endpoint to fetch transaction details.
+          content:
+            application/json:
+              schema:
+                $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
+  /card/mock/admin/falconFraud:
+    post:
+      summary: Falcon message
+      description: |
+        Generate a mock Falcon messsage in sandbox. This endpoint will generate a <a href="https://docs.helix.q2.com/docs/event-types#falcon-message-events" target="_blank">Falcon Message real-time event</a> with a `userEventTypeId` between `10024` and `10026` (inclusive).
+        [block:callout]
+        {
+          "type": "danger",
+          "body": "This endpoint can only be used by Visa DPS programs and only within the sandbox environment."
+        }
+        [/block]
+        
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/cardmockadminfalconfraud
+      tags:
+        - Card Mock
+      operationId: cardMockAdminFalconFraud
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - customerId
+                - cardId
+                - caseStatus
+              properties:
+                customerId:
+                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
+                cardId:
+                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
+                caseStatus:
+                  type: integer
+                  minimum: 0
+                  maximum: 3
+                  description: |
+                    Possible values:
+                    - `0`: Generates a real-time event with `userEventTypeId=10026` and `falconCaseStatus=ACTIVEACTIVE_CASE_SUBSTATUS_DLR_ACTIVENO_BLOCK_SERVICE|`
+                    - `1`: Generates a real-time event with `userEventTypeId=10025` and `falconCaseStatus=CLOSEDNOT_FRAUDNO_BLOCK_SERVICE|`
+                    - `2`: Generates a real-time event with `userEventTypeId=10025` and `falconCaseStatus=CLOSEDNOT_FRAUDREMOVE_BLOCK_SERVICE|`
+                    - `3`: Generates a real-time event with `userEventTypeId=10024` and `falconCaseStatus=CLOSEDUNABLE_CONFIRMED_FRAUDFRAUD_BLOCK_SERVICE|CASE_FRAUD_TYPE_OTHER|`
+                  
+      responses:
+        '200':
+          description: A 200 status with no `data` property present
           content:
             application/json:
               schema:
