@@ -2362,13 +2362,7 @@ paths:
         - Card
       summary: Reset a card pin
       description: |
-        Create a request to reset the PIN for a card. 
-        [block:callout]
-        {
-          "type": "warning",
-          "body": "This is not a real-time PIN reset. It may take up to 24 hours to reset the PIN."
-        }
-        [/block]
+        Create a request to reset the PIN for a card. **Note:** For Visa DPS programs, PIN resets are initiated in real-time and are confirmed by DPS which raises a <a href="https://docs.helix.q2.com/docs/event-types#common-events" target="_blank">real-time event</a> with `userEventTypeId=10020`. The PIN reset is in a pending state until this event is raised. For Shazam programs, PIN resets are file based processing and can take up to 24 hours to complete.
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardresetpin
       operationId: cardResetPin
