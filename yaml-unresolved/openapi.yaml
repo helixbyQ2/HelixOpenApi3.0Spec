@@ -3272,7 +3272,7 @@ paths:
                   $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
                 transactionId:
                   allOf:
-                    - description: The `transactionId` of a Merchandise return transaction generated via <a href="https://docs.helix.q2.com/reference/cardmockdepositpurchasereturn" target="_blank">/card/mock/deposit/purchase/return</a> 
+                    - description: The `transactionId` of a merchandise return transaction generated via <a href="https://docs.helix.q2.com/reference/cardmockdepositpurchasereturn" target="_blank">/card/mock/deposit/purchase/return</a> 
                     - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId64
       responses:
         '200':
