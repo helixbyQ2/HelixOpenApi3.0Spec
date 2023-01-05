@@ -3147,7 +3147,7 @@ paths:
                 $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
   /card/mock/withdrawal/cardCash:
     post:
-      summary: Atm withdrawal
+      summary: ATM withdrawal
       description: |
         Generate a mock debit card ATM withdrawal transaction in sandbox. This endpoint will generate a <a href="https://docs.helix.q2.com/docs/transaction" target="_blank">transaction</a> with `typeCode=CRDCSH` and a <a href="https://docs.helix.q2.com/docs/event-types#debit-card-withdrawal-events" target="_blank">Debit Card Withdrawal real-time event</a> with `userEventTypeId=3060343`.
         [block:callout]
@@ -3188,6 +3188,53 @@ paths:
       responses:
         '200':
           description: A 200 status with no `data` property present. Use the <a href="https://docs.helix.q2.com/reference/transactionlist" target="_blank">/transaction/list</a> endpoint to fetch transaction details.
+          content:
+            application/json:
+              schema:
+                $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
+  /card/mock/deposit/purchase/return:
+    post:
+      summary: Merchandise return
+      description: |
+        Generate a mock debit card purchase return transaction in sandbox. This endpoint will generate a <a href="https://docs.helix.q2.com/docs/transaction" target="_blank">transaction</a> with `typeCode=CRDRTN` and a <a href="https://docs.helix.q2.com/docs/event-types#debit-card-deposit-events" target="_blank">Debit Card Deposit real-time event</a> with `userEventTypeId=3060351`.
+        [block:callout]
+        {
+          "type": "danger",
+          "body": "This endpoint can only be used by Visa DPS programs and only within the sandbox environment."
+        }
+        [/block]
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/cardmockdepositpurchasereturn
+      tags:
+        - Card Mock
+      operationId: cardMockDepositPurchaseReturn
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - customerId
+                - cardId
+                - transactionAmount
+                - merchantDescription
+              properties:
+                customerId:
+                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
+                cardId:
+                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
+                transactionAmount:
+                  type: number
+                  format: decimal
+                  minimum: 0.01
+                  maximum: 999.99
+                merchantDescription:
+                  type: string
+                  maxLength: 25
+      responses:
+        '200':
+          description: A 200 status with no `data` property present
           content:
             application/json:
               schema:
