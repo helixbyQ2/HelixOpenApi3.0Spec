@@ -3281,6 +3281,48 @@ paths:
             application/json:
               schema:
                 $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
+  /card/mock/decline/purchase/authorize:
+    post:
+      summary: Delined purchase authorization
+      description: |
+        Generate a mock declined purchase authorization in sandbox. This endpoint will generate a <a href="https://docs.helix.q2.com/docs/event-types#debit-card-declined-events" target="_blank">Debit Card Declined real-time event</a> with `userEventTypeId=3060640`.
+        [block:callout]
+        {
+          "type": "danger",
+          "body": "This endpoint can only be used by Visa DPS programs and only within the sandbox environment."
+        }
+        [/block]
+        
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/cardmockdeclinepurchaseauthorize
+      tags:
+        - Card Mock
+      operationId: cardMockDeclinePurchaseAuthorize
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - customerId
+                - cardId
+                - merchantDescription
+              properties:
+                customerId:
+                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
+                cardId:
+                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
+                merchantDescription:
+                  type: string
+                  maxLength: 25
+      responses:
+        '200':
+          description: A 200 status with no `data` property present
+          content:
+            application/json:
+              schema:
+                $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
   /card/mock/admin/falconFraud:
     post:
       summary: Falcon message
@@ -3292,7 +3334,6 @@ paths:
           "body": "This endpoint can only be used by Visa DPS programs and only within the sandbox environment."
         }
         [/block]
-        
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardmockadminfalconfraud
       tags:
@@ -3323,7 +3364,6 @@ paths:
                     - `1`: Generates a real-time event with `userEventTypeId=10025` and `falconCaseStatus=CLOSEDNOT_FRAUDNO_BLOCK_SERVICE|`
                     - `2`: Generates a real-time event with `userEventTypeId=10025` and `falconCaseStatus=CLOSEDNOT_FRAUDREMOVE_BLOCK_SERVICE|`
                     - `3`: Generates a real-time event with `userEventTypeId=10024` and `falconCaseStatus=CLOSEDUNABLE_CONFIRMED_FRAUDFRAUD_BLOCK_SERVICE|CASE_FRAUD_TYPE_OTHER|`
-                  
       responses:
         '200':
           description: A 200 status with no `data` property present
