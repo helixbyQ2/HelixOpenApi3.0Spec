@@ -569,7 +569,19 @@ paths:
                 controlPersonCustomerId:
                   $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
                 controlPersonRelationshipType:
-                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerRelationshipType
+                  type: string
+                  enum:
+                    - Signer
+                    - Owner
+                    - Non-transactional
+                    - Beneficial Owner
+                    - Trustee
+                    - Successor Trustee
+                    - Guardian
+                    - Conservator
+                    - Executor
+                    - Agent
+                    - Power of Attorney
                 controlPersonIsBeneficialOwner:
                   type: boolean
                 isExemptFromBeneficialOwnership:
@@ -601,7 +613,19 @@ paths:
                       customerId:
                         $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
                       relationshipType:
-                        $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerRelationshipType
+                        type: string
+                        enum:
+                          - Signer
+                          - Owner
+                          - Non-transactional
+                          - Beneficial Owner
+                          - Trustee
+                          - Successor Trustee
+                          - Guardian
+                          - Conservator
+                          - Executor
+                          - Agent
+                          - Power of Attorney
                       isBeneficialOwner:
                         type: boolean
                       beneficialOwnerPercentage:
