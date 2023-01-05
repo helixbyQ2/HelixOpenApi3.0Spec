@@ -3239,6 +3239,48 @@ paths:
             application/json:
               schema:
                 $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
+  /card/mock/deposit/purchase/return/reversal:
+    post:
+      summary: Merchandise return reversal
+      description: |
+        Generate a mock debit card merchandise return reversal transaction in sandbox. This endpoint will generate a <a href="https://docs.helix.q2.com/docs/transaction" target="_blank">transaction</a> with `typeCode=REVRTN` and a <a href="https://docs.helix.q2.com/docs/event-types#debit-card-deposit-reversal-events" target="_blank">Debit Card Deposit Reversal real-time event</a> with `userEventTypeId=3060481`.
+        [block:callout]
+        {
+          "type": "danger",
+          "body": "This endpoint can only be used by Visa DPS programs and only within the sandbox environment."
+        }
+        [/block]
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/cardmockdepositpurchasereturnreversal
+      tags:
+        - Card Mock
+      operationId: cardMockDepositPurchaseReturnReversal
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - customerId
+                - cardId
+                - transactionId
+              properties:
+                customerId:
+                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
+                cardId:
+                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
+                transactionId:
+                  allOf:
+                    - description: The `transactionId` of a Merchandise return transaction generated via <a href="https://docs.helix.q2.com/reference/cardmockdepositpurchasereturn" target="_blank">/card/mock/deposit/purchase/return</a> 
+                    - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId64
+      responses:
+        '200':
+          description: A 200 status with no `data` property present
+          content:
+            application/json:
+              schema:
+                $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
   /card/mock/admin/falconFraud:
     post:
       summary: Falcon message
