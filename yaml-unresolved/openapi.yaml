@@ -3283,7 +3283,7 @@ paths:
                 $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
   /card/mock/decline/purchase/authorize:
     post:
-      summary: Delined purchase authorization
+      summary: Declined purchase authorization
       description: |
         Generate a mock declined purchase authorization in sandbox. This endpoint will generate a <a href="https://docs.helix.q2.com/docs/event-types#debit-card-declined-events" target="_blank">Debit Card Declined real-time event</a> with `userEventTypeId=3060640`.
         [block:callout]
