@@ -1957,7 +1957,7 @@ paths:
                 newPin:
                   type: string
                   format: byte
-                  description: For Shazam programs only. Visa DPS programs must call the 
+                  description: For Shazam programs only. Visa DPS programs must call the [/card/resetPin](https://docs.helix.q2.com/reference/cardresetpin) endpoint separately. For physical-only cards, /card/resetPin can be called once the card moves from `status=Initiated` to `status=Verified`. For dual-issuance cards (physical and digital), /card/resetPin can be called once the card moves from `status=Initiated` to `status=DigitalActivePhysicalPending`.
                 isCreateDualIssuanceSinglePAN:
                   type: boolean
                   default: false
