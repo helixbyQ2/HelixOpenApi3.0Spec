@@ -2004,7 +2004,7 @@ paths:
                   description: The birthday of the `customerId` who created the card. Format is YYYY-MM-DD.
                 cardNumberMasked:
                   type: string
-                  description: The last four digits of the card number. In sandbox this value is always 1111
+                  description: The last four digits of the card number. In sandbox this value is always `1111`
       responses:
         '200':
           description: A <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a> object with `status=Verified`
