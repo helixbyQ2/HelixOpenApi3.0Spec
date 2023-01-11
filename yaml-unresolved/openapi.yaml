@@ -1957,6 +1957,7 @@ paths:
                 newPin:
                   type: string
                   format: byte
+                  description: For Shazam programs only. Visa DPS programs must call the 
                 isCreateDualIssuanceSinglePAN:
                   type: boolean
                   default: false
@@ -3156,7 +3157,7 @@ paths:
                   $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
                 transactionId:
                   allOf:
-                    - description: The `transactionId` from a pending withdrawal authorization transaction generated via <a href="https://docs.helix.q2.com/reference/cardmockwithdrawalpurchaseauthorize" target="_blank">/card/mock/withdrawal/purchase/authorize</a>
+                    - description: The `transactionId` from a pending withdrawal authorization transaction generated via [/card/mock/withdrawal/purchase/authorize](https://docs.helix.q2.com/reference/cardmockwithdrawalpurchaseauthorize)
                     - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId64
                 transactionAmount:
                   type: number
@@ -3298,7 +3299,7 @@ paths:
                   $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
                 transactionId:
                   allOf:
-                    - description: The `transactionId` of a merchandise return transaction generated via <a href="https://docs.helix.q2.com/reference/cardmockdepositpurchasereturn" target="_blank">/card/mock/deposit/purchase/return</a> 
+                    - description: The `transactionId` of a merchandise return transaction generated via [/card/mock/deposit/purchase/return](https://docs.helix.q2.com/reference/cardmockdepositpurchasereturn)
                     - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId64
       responses:
         '200':
