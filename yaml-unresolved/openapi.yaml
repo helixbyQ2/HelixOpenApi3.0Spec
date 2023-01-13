@@ -4847,7 +4847,7 @@ components:
             data:
               type: array
               items:
-                $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Transaction
+                $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/TransactionGetObject
     TransactionGetByTag200Response:
       allOf:
         - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
@@ -4856,7 +4856,7 @@ components:
             data:
               type: array
               items:
-                $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Transaction
+                $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/TransactionGetObject
     TransactionList200Response:
       allOf:
         - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
@@ -4865,7 +4865,7 @@ components:
             data:
               type: array
               items:
-                $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Transaction
+                $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/TransactionListObject
     TransactionSetAvailableDate200Response:
       allOf:
         - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
