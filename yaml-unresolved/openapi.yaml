@@ -1856,11 +1856,7 @@ paths:
       operationId: cardGet
       parameters:
         - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/customerId
-        - in: path
-          name: cardId
-          required: true
-          schema:
-            $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
+        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/cardId
       responses:
         '200':
           description: A <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a> object
@@ -2447,13 +2443,42 @@ paths:
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
         '401':
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401
+  /card/fraudTextAlert/get/{customerId}/{cardId}:
+    get:
+      tags:
+        - Card
+      summary: Get fraud text enrollment status
+      description: |
+        [block:callout]
+        {
+          "type": "warning",
+          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
+        }
+        [/block]
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/cardfraudtextalertget
+      operationId: cardFraudTextAlertGet
+      parameters:
+        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/customerId
+        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/cardId
+      responses:
+        '200':
+          description: The card's enrollment status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardFraudTextAlertGet200Response'
+        '400':
+          $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
+        '401':
+          $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401
   /card/fraudTextAlert/optOut:
     post:
       tags:
         - Card
       summary: Opt out of fraud texts
       description: |
-        Initiate an cardholder opt out from fraud text alerts on a given card.
+        Initiate a cardholder opt out from fraud text alerts on a given card.
         [block:callout]
         {
           "type": "warning",
@@ -4307,6 +4332,16 @@ components:
           properties:
             data:
               $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Card
+    CardFraudTextAlertGet200Response:
+      allOf:
+        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
+        - type: object
+          properties:
+            data:
+              type: object
+              properties:
+                enrollmentStatus:
+                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardFraudTextAlertEnrollmentStatus
     CardGet200Response:
       allOf:
         - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
