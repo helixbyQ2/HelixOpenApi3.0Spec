@@ -2076,6 +2076,47 @@ paths:
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
         '401':
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401
+  /card/orderPhysical:
+    post:
+      tags:
+        - Card
+      summary: Order a physical card
+      description: |
+        Order a  physical card for an existing digital card with single PAN dual issuance
+        [block:callout]
+        {
+          "type": "warning",
+          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
+        }
+        [/block]
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/cardorderphysical
+      operationId: cardOrderPhysical
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - customerId
+                - cardId
+              properties:
+                customerId:
+                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
+                cardId:
+                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
+      responses:
+        '200':
+          description: A <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a> object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardObject200Response'
+        '400':
+          $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
+        '401':
+          $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401
   /card/provision/applePay:
     post:
       tags:
@@ -4408,6 +4449,13 @@ components:
               items:
                 $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Card
     CardLock200Response:
+      allOf:
+        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
+        - type: object
+          properties:
+            data:
+              $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Card
+    CardObject200Response:
       allOf:
         - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
         - type: object
