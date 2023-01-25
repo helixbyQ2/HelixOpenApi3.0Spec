@@ -2659,9 +2659,7 @@ paths:
         - Card
       summary: Reissue a card
       description: |
-        Reissue a card and send it to a customer. May or may not generate a new card number depending on the `reissueReasonTypeCode`. 
-
-        Returns a card object with a `status` of `Verified`, `PendingVerification`, or `ReissuedPendingVerification`
+        Reissue a card and send a new physical card to a customer (when applicable). When `reissueReasonTypeCode=DMG`, a new card number is NOT generated and a new physical card is sent to the customer. The `status` returned in the card object will remain the same. All other `reissueReasonTypeCode` values will generate a new card number. Depending on the previous card, this endpoint will return a card object with `status=Verified` for digital only, `status=DigitalActivePhysicalPending` for digital and physical, and `status=PendingVerification` for physical only.
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardreissue
       operationId: cardReissue
