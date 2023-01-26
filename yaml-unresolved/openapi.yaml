@@ -3497,7 +3497,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TransactionList200Response'
+                $ref: '#/components/schemas/TransactionArray200Response'
         '400':
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
         '401':
@@ -3531,7 +3531,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TransactionGet200Response'
+                $ref: '#/components/schemas/TransactionArray200Response'
         '400':
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
         '401':
@@ -3561,7 +3561,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TransactionGetByTag200Response'
+                $ref: '#/components/schemas/TransactionArray200Response'
         '400':
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
         '401':
@@ -3607,7 +3607,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TransactionSetAvailableDate200Response'
+                $ref: '#/components/schemas/TransactionObject200Response'
         '400':
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
         '401':
@@ -3662,7 +3662,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TransactionSetStatus200Response'
+                $ref: '#/components/schemas/TransactionObject200Response'
         '400':
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
         '401':
@@ -4920,7 +4920,7 @@ components:
               type: array
               items:
                 $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Statement
-    TransactionGet200Response:
+    TransactionArray200Response:
       allOf:
         - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
         - type: object
@@ -4928,39 +4928,14 @@ components:
             data:
               type: array
               items:
-                $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/TransactionGetObject
-    TransactionGetByTag200Response:
+                $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Transaction
+    TransactionObject200Response:
       allOf:
         - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
         - type: object
           properties:
             data:
-              type: array
-              items:
-                $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/TransactionGetObject
-    TransactionList200Response:
-      allOf:
-        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
-        - type: object
-          properties:
-            data:
-              type: array
-              items:
-                $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/TransactionListObject
-    TransactionSetAvailableDate200Response:
-      allOf:
-        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
-        - type: object
-          properties:
-            data:
-              $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/TransactionGetObject
-    TransactionSetStatus200Response:
-      allOf:
-        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
-        - type: object
-          properties:
-            data:
-              $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/TransactionGetObject
+              $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Transaction
     TransferCreate200Response:
       allOf:
         - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
