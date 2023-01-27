@@ -1959,6 +1959,11 @@ paths:
                   default: false
                   description: |
                     `true` if this card will be an instant-issued debit card ready for eCommerce activity that can also be provisioned to a digital wallet. If `true` the card will be created with a `status` of `DitalActivePhysicalInitiated` which will shortly change to `DigitalActivePhysicalPending`. When card is in `DigitalActivePhysicalInitiated` or `DigitalActivePhysicalPending` it can be provisioned into a digital wallet via [/card/provision/applePay](https://docs.helix.q2.com/reference/cardprovisionapplepay) or [/card/provision/googlePay](https://docs.helix.q2.com/reference/cardprovisiongooglepay). When card is in `DigitalActivePhysicalPending` it will need to be verified via [/card/verify](https://docs.helix.q2.com/reference/cardverify) before a customer can use the physical card.
+                isPhysicalCardOrdered:
+                  type: boolean
+                  default: true
+                  description: |
+                    `true` to order a physical card, `false` to waive. 
       responses:
         '200':
           description: A <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a> object
