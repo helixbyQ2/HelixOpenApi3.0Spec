@@ -1059,7 +1059,9 @@ paths:
                 - productId
               properties:
                 customerId:
-                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
+                  allOf:
+                    - description: The Helix-assigned ID for the customer who owns the account. For business accounts, this is the `customerId` of the business entity.
+                    - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
                 name:
                   type: string
                   maxLength: 50
@@ -1106,6 +1108,9 @@ paths:
                 accountMinimumBalance:
                   type: number
                   format: decimal
+                requestingCustomerId:
+                  allOf:
+                    - description: The Helix-assigned unique ID for the customer requesting to open the account. Only used when opening a business account.
       responses:
         '200':
           description: An <a href="https://docs.helix.q2.com/docs/account" target="_blank">account</a> object
