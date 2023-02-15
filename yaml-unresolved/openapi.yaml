@@ -573,15 +573,13 @@ paths:
                   enum:
                     - Signer
                     - Owner
-                    - Non-transactional
-                    - Beneficial Owner
                     - Trustee
-                    - Successor Trustee
+                    - SuccessorTrustee
                     - Guardian
                     - Conservator
                     - Executor
                     - Agent
-                    - Power of Attorney
+                    - PowerOfAttorney
                 controlPersonIsBeneficialOwner:
                   type: boolean
                 isExemptFromBeneficialOwnership:
@@ -617,15 +615,15 @@ paths:
                         enum:
                           - Signer
                           - Owner
-                          - Non-transactional
-                          - Beneficial Owner
+                          - NonTransactional
+                          - BeneficialOwner
                           - Trustee
-                          - Successor Trustee
+                          - SuccessorTrustee
                           - Guardian
                           - Conservator
                           - Executor
                           - Agent
-                          - Power of Attorney
+                          - PowerOfAttorney
                       isBeneficialOwner:
                         type: boolean
                       beneficialOwnerPercentage:
