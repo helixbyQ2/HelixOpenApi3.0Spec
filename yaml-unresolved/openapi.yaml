@@ -540,7 +540,7 @@ paths:
     post:
       tags:
         - Customer
-      summary: Submit business application
+      summary: Create business application
       description: |
         [block:callout]
         {
