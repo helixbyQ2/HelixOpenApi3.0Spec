@@ -1388,6 +1388,54 @@ paths:
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
         '401':
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401
+  /account/removeEntitlement:
+    post:
+      tags:
+        - Account
+      summary: Remove an entitlement
+      description: | 
+        Remove a customer's access to a business account
+        [block:callout]
+        {
+          "type": "warning",
+          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
+        }
+        [/block]
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/accountremoveentitlement
+      operationId: accountRemoveEntitlement
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - accountId
+                - requestingCustomerId
+                - targetCustomerId
+              properties:
+                accountId:
+                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
+                requestingCustomerId:
+                  allOf:
+                    - description: The helix-assigned unique ID for the customer requesting to remove an entitlement
+                    - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
+                targetCustomerId:
+                  allOf:
+                    - description: The helix-assigned unique ID for the customer whose entitlement is being removed
+                    - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
+      responses:
+        '200':
+          description: A 200 status with no `data` property present
+          content:
+            application/json:
+              schema:
+                $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
+        '400':
+          $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
+        '401':
+          $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401
   /account/close:
     post:
       tags:
