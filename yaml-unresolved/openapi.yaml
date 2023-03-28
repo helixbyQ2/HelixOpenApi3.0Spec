@@ -1442,7 +1442,7 @@ paths:
         - Account
       summary: Place a hold
       description: |
-        Place an indefinite hold on funds in a customer's account. 
+        Place an indefinite hold on funds in a customer's account. Can be reversed by calling [/account/releaseHold](ref:accountreleasehold).
         [block:callout]
         {
           "type": "warning",
