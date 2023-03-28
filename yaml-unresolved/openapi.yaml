@@ -1436,6 +1436,61 @@ paths:
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
         '401':
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401
+  /account/placeHold:
+    post:
+      tags:
+        - Account
+      summary: Place a hold
+      description: |
+        Place an indefinite hold on funds in a customer's account. 
+        [block:callout]
+        {
+          "type": "warning",
+          "body": "Use of this route requires approval from Q2 and your bank partner."
+        }
+        [/block]
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/accountplacehold
+      operationId: accountPlaceHold
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - customerId
+              - accountId
+              - holdAmount
+              - holdDescription
+              properties:
+                customerId:
+                  allOf:
+                    - description: The Helix-assigned unique ID for the customer who owns the account
+                    - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                accountId:
+                  allOf:
+                    - description: The Helix-assigned unique ID for the account
+                    - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                holdAmount:
+                  type: number
+                  format: decimal
+                  description: The dollar amount of funds to place on hold
+                holdDescription:
+                  type: string
+                  maxLength: 255
+                  description: Free-form description for why the hold is being placed
+      responses:
+        '200':
+          description: An <a href="https://docs.helix.q2.com/docs/account" target="_blank">account</a> object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountObject200Response'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
   /account/close:
     post:
       tags:
