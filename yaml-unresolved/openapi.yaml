@@ -4038,7 +4038,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CustomerRelationshipList200Response'
+                $ref: '#/components/schemas/CustomerRelationshipArray200Response'
         '400':
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
         '401':
@@ -4098,7 +4098,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CustomerRelationshipCreate200Response'
+                $ref: '#/components/schemas/CustomerRelationshipObject200Response'
         '400':
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
         '401':
@@ -4154,7 +4154,56 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CustomerRelationshipUpdate200Response'
+                $ref: '#/components/schemas/CustomerRelationshipObject200Response'
+        '400':
+          $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
+        '401':
+          $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401
+  /customerRelationship/updatePrimaryContact:
+    post:
+      tags:
+        - Customer Relationship
+      summary: Update primary contact
+      description: |
+        [block:callout]
+        {
+          "type": "warning",
+          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
+        }
+        [/block]
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/customerrelationshipupdateprimarycontact
+      operationId: customerRelationshipUpdatePrimaryContact
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - requestingCustomerId
+                - primaryCustomerId
+                - primaryCustomerContactId
+              properties:
+                requestingCustomerId:
+                  allOf:
+                    - description: The helix-assigned unique ID for the customer making the request
+                    - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
+                primaryCustomerId:
+                  allOf:
+                    - description: The helix-assigned unique ID for the customer whose primary contact is being updated
+                    - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
+                primaryCustomerContactId:
+                  allOf:
+                    - description: The helix-assigned unique ID for the customer who is to be the new primary contact for `primaryCustomerId`
+                    - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
+      responses:
+        '200':
+          description: A <a href="https://docs.helix.q2.com/docs/customer-relationship" target="_blank">customerRelationship</a> object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerRelationshipObject200Response'
         '400':
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
         '401':
@@ -4965,14 +5014,14 @@ components:
           properties:
             data:
               $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Customer
-    CustomerRelationshipCreate200Response:
+    CustomerRelationshipObject200Response:
       allOf:
         - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
         - type: object
           properties:
             data:
               $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerRelationship
-    CustomerRelationshipList200Response:
+    CustomerRelationshipArray200Response:
       allOf:
         - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
         - type: object
@@ -4981,14 +5030,6 @@ components:
               type: array
               items:
                 $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerRelationship
-    CustomerRelationshipUpdate200Response:
-      type: object
-      allOf:
-        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
-        - type: object
-          properties:
-            data:
-              $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerRelationship
     ExternalAccountArchive200Response:
       allOf:
         - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
