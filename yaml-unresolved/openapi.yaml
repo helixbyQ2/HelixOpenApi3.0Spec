@@ -2453,6 +2453,41 @@ paths:
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
         '401':
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401
+  /card/provision/cardDetail/{customerId}/{cardId}/{nonce}:
+    get:
+      tags:
+        - Card
+      summary: Get VDE provisioning details
+      description: |
+        Get encrypted card/account details for for use with Digital Enablement provisioning SDK
+        [block:callout]
+        {
+          "type": "warning",
+          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
+        }
+        [/block]
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/cardprovisioncarddetail
+      operationId: cardProvisionCardDetail
+      parameters:
+        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/customerId
+        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/cardId
+        - name: nonce
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: An encrypted string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardProvisionCardDetail200Response'
+        '400':
+          $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
+        '401':
+          $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401
   /card/addAccount:
     post:
       tags:
@@ -4763,6 +4798,13 @@ components:
                   type: string
                   format: byte
                   description: Base64 encoded encrypted JSON containing the sensitive information needed to add a card to Apple Pay. This value should be passed through to Apple as is.
+    CardProvisionCardDetail200Response:
+      allOf:
+        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
+        - type: object
+          properties:
+            data:
+              type: string
     CardProvisionGooglePay200Response:
       allOf:
         - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
