@@ -1601,7 +1601,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ExternalAccountList200Response'
+                $ref: '#/components/schemas/ExternalAccountArray200Response'
         '400':
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
         '401':
@@ -1628,7 +1628,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ExternalAccountGet200Response'
+                $ref: '#/components/schemas/ExternalAccountObject200Response'
         '400':
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
         '401':
@@ -1651,7 +1651,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ExternalAccountGetByTag200Response'
+                $ref: '#/components/schemas/ExternalAccountObject200Response'
         '400':
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
         '401':
@@ -1684,7 +1684,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ExternalAccountCreate200Response'
+                $ref: '#/components/schemas/ExternalAccountObject200Response'
         '400':
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
         '401':
@@ -1718,7 +1718,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ExternalAccountInitiate200Response'
+                $ref: '#/components/schemas/ExternalAccountObject200Response'
         '400':
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
         '401':
@@ -1763,7 +1763,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ExternalAccountVerify200Response'
+                $ref: '#/components/schemas/ExternalAccountObject200Response'
         '400':
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
         '401':
@@ -1804,7 +1804,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ExternalAccountLock200Response'
+                $ref: '#/components/schemas/ExternalAccountObject200Response'
         '400':
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
         '401':
@@ -1845,7 +1845,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ExternalAccountUnlock200Response'
+                $ref: '#/components/schemas/ExternalAccountObject200Response'
         '400':
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
         '401':
@@ -1899,7 +1899,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ExternalAccountUpdate200Response'
+                $ref: '#/components/schemas/ExternalAccountObject200Response'
         '400':
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
         '401':
@@ -5088,35 +5088,7 @@ components:
                   type: string
                   enum:
                     - Archived
-    ExternalAccountCreate200Response:
-      allOf:
-        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
-        - type: object
-          properties:
-            data:
-              $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ExternalAccount
-    ExternalAccountGet200Response:
-      allOf:
-        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
-        - type: object
-          properties:
-            data:
-              $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ExternalAccount
-    ExternalAccountGetByTag200Response:
-      allOf:
-        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
-        - type: object
-          properties:
-            data:
-              $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ExternalAccount
-    ExternalAccountInitiate200Response:
-      allOf:
-        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
-        - type: object
-          properties:
-            data:
-              $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ExternalAccount
-    ExternalAccountList200Response:
+    ExternalAccountArray200Response:
       allOf:
         - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
         - type: object
@@ -5125,28 +5097,7 @@ components:
               type: array
               items:
                 $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ExternalAccount
-    ExternalAccountLock200Response:
-      allOf:
-        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
-        - type: object
-          properties:
-            data:
-              $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ExternalAccount
-    ExternalAccountUnlock200Response:
-      allOf:
-        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
-        - type: object
-          properties:
-            data:
-              $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ExternalAccount
-    ExternalAccountUpdate200Response:
-      allOf:
-        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
-        - type: object
-          properties:
-            data:
-              $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ExternalAccount
-    ExternalAccountVerify200Response:
+    ExternalAccountObject200Response:
       allOf:
         - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
         - type: object
