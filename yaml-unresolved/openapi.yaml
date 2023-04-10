@@ -2078,7 +2078,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CardList200Response'
+                $ref: '#/components/schemas/CardArray200Response'
         '400':
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
         '401':
@@ -2101,7 +2101,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CardGet200Response'
+                $ref: '#/components/schemas/CardObject200Response'
         '400':
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
         '401':
@@ -2124,7 +2124,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CardGetByTag200Response'
+                $ref: '#/components/schemas/CardObject200Response'
         '400':
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
         '401':
@@ -2208,7 +2208,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CardInitiate200Response'
+                $ref: '#/components/schemas/CardObject200Response'
         '400':
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
         '401':
@@ -2251,7 +2251,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CardVerify200Response'
+                $ref: '#/components/schemas/CardObject200Response'
         '400':
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
         '401':
@@ -2528,7 +2528,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CardAddAccount200Response'
+                $ref: '#/components/schemas/CardObject200Response'
         '400':
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
         '401':
@@ -2575,7 +2575,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CardReprioritizeAccount200Response'
+                $ref: '#/components/schemas/CardObject200Response'
         '400':
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
         '401':
@@ -2615,7 +2615,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CardRemoveAccount200Response'
+                $ref: '#/components/schemas/CardObject200Response'
         '400':
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
         '401':
@@ -2665,7 +2665,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CardLock200Response'
+                $ref: '#/components/schemas/CardObject200Response'
         '400':
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
         '401':
@@ -2717,7 +2717,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CardUnlock200Response'
+                $ref: '#/components/schemas/CardObject200Response'
         '400':
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
         '401':
@@ -2757,7 +2757,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CardResetPin200Response'
+                $ref: '#/components/schemas/CardObject200Response'
         '400':
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
         '401':
@@ -2926,7 +2926,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CardUpdate200Response'
+                $ref: '#/components/schemas/CardObject200Response'
         '400':
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
         '401':
@@ -2984,7 +2984,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CardReissue200Response'
+                $ref: '#/components/schemas/CardObject200Response'
         '400':
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
         '401':
@@ -3036,7 +3036,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CardHotlist200Response'
+                $ref: '#/components/schemas/CardObject200Response'
         '400':
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
         '401':
@@ -4662,6 +4662,15 @@ components:
           properties:
             data:
               $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Card
+    CardArray200Response:
+      allOf:
+        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
+        - type: object
+          properties:
+            data:
+              type: array
+              items:
+                $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Card
     CardControlCreate200Response:
       allOf:
         - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
@@ -4700,34 +4709,6 @@ components:
               properties:
                 enrollmentStatus:
                   $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardFraudTextAlertEnrollmentStatus
-    CardGet200Response:
-      allOf:
-        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
-        - type: object
-          properties:
-            data:
-              $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Card
-    CardGetByTag200Response:
-      allOf:
-        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
-        - type: object
-          properties:
-            data:
-              $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Card
-    CardHotlist200Response:
-      allOf:
-        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
-        - type: object
-          properties:
-            data:
-              $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Card
-    CardInitiate200Response:
-      allOf:
-        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
-        - type: object
-          properties:
-            data:
-              $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Card
     CardLimitGet200Response:
       allOf:
         - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
@@ -4756,22 +4737,6 @@ components:
           properties:
             data:
               $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardLimits
-    CardList200Response:
-      allOf:
-        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
-        - type: object
-          properties:
-            data:
-              type: array
-              items:
-                $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Card
-    CardLock200Response:
-      allOf:
-        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
-        - type: object
-          properties:
-            data:
-              $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Card
     CardObject200Response:
       allOf:
         - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
@@ -4839,55 +4804,6 @@ components:
                   type: string
                   format: byte
                   description: Base64 encoded opaque card data that is needed for tokenization. This value should be passed through to Google as is.
-    CardReissue200Response:
-      allOf:
-        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
-        - type: object
-          properties:
-            data:
-              $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Card
-    CardRemoveAccount200Response:
-      allOf:
-        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
-        - type: object
-          properties:
-            data:
-              $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Card
-    CardReprioritizeAccount200Response:
-      allOf:
-        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
-        - type: object
-          properties:
-            data:
-              $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Card
-    CardResetPin200Response:
-      allOf:
-        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
-        - type: object
-          properties:
-            data:
-              $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Card
-    CardUnlock200Response:
-      allOf:
-        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
-        - type: object
-          properties:
-            data:
-              $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Card
-    CardUpdate200Response:
-      allOf:
-        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
-        - type: object
-          properties:
-            data:
-              $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Card
-    CardVerify200Response:
-      allOf:
-        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
-        - type: object
-          properties:
-            data:
-              $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Card
     CustomerAnswerList200Response:
       allOf:
         - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
