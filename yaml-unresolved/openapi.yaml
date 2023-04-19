@@ -4107,6 +4107,7 @@ paths:
                 - canOpenAccounts
                 - isPrimaryContact
                 - isBeneficialOwner
+                - isControlPerson
               properties:
                 primaryCustomerId:
                   $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
