@@ -1383,7 +1383,58 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AccountAddEntitlement200Response'
+                $ref: '#/components/schemas/AccountAddEditEntitlement200Response'
+        '400':
+          $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
+        '401':
+          $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401
+  /account/editEntitlement:
+    post:
+      tags:
+        - Account
+      summary: Edit an entitlement
+      description: | 
+        Edit existing business account access for a customer related to the business.
+        [block:callout]
+        {
+          "type": "warning",
+          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
+        }
+        [/block]
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/accounteditentitlement
+      operationId: accountEditEntitlement
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - accountId
+                - requestingCustomerId
+                - targetCustomerId
+                - entitlement
+              properties:
+                accountId:
+                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
+                requestingCustomerId:
+                  allOf:
+                    - description: The helix-assigned unique ID for the customer requesting to edit an entitlement
+                    - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
+                targetCustomerId:
+                  allOf:
+                    - description: The helix-assigned unique ID for the customer whose entitlement is being edited
+                    - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
+                entitlement:
+                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Entitlement
+      responses:
+        '200':
+          description: A confirmation the entitlement has been edited.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountAddEditEntitlement200Response'
         '400':
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
         '401':
@@ -4562,7 +4613,7 @@ paths:
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401
 components:
   schemas:
-    AccountAddEntitlement200Response:
+    AccountAddEditEntitlement200Response:
       allOf:
         - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
         - type: object
@@ -4650,13 +4701,6 @@ components:
               type: array
               items:
                 $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/BankDocument
-    CardAddAccount200Response:
-      allOf:
-        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
-        - type: object
-          properties:
-            data:
-              $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Card
     CardArchive200Response:
       allOf:
         - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
