@@ -607,6 +607,7 @@ paths:
                       - relationshipType
                       - isBeneficialOwner
                       - canOpenAccounts
+                      - externalAccountAccessType
                     properties:
                       customerId:
                         $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
@@ -633,6 +634,8 @@ paths:
                         type: boolean
                       title:
                         type: string
+                      externalAccountAccessType:
+                        $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ExternalAccountAccessType
       responses:
         '200':
           description: A 200 status with no `data` property present
