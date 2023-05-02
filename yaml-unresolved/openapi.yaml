@@ -2746,6 +2746,7 @@ paths:
         | `SYS` | `FRD` - Suspected Fraud | Fail - Suspected Fraud cards can never be used again |
         | `SYS` | `ADM` - Administrative | Fail - Only Admin Console or an automated process can unlock |
         | `SYS` | `PIN` - PIN Retry Limit Exceeded | Fail - Only Admin Console or an automated process can unlock |
+        | `SYS` | `TMP` - Temporary | Fail - Only Admin Console or an automated process can unlock
 
         The card will have a `lockTypeCode` of `UNL` upon successful completion of this call. The card will be unlocked and ready for transactions to take place.
       externalDocs:
