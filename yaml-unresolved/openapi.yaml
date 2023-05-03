@@ -3331,7 +3331,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CardControlGet200Response'
+                $ref: '#/components/schemas/CardControlObject200Response'
         '400':
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
         '401':
@@ -3360,7 +3360,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CardControlGetByTag200Response'
+                $ref: '#/components/schemas/CardControlObject200Response'
         '400':
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
         '401':
@@ -3405,7 +3405,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CardControlCreate200Response'
+                $ref: '#/components/schemas/CardControlObject200Response'
         '400':
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
         '401':
@@ -4777,21 +4777,7 @@ components:
               type: array
               items:
                 $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Card
-    CardControlCreate200Response:
-      allOf:
-        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
-        - type: object
-          properties:
-            data:
-              $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardControl
-    CardControlGet200Response:
-      allOf:
-        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
-        - type: object
-          properties:
-            data:
-              $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardControl
-    CardControlGetByTag200Response:
+    CardControlObject200Response:
       allOf:
         - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
         - type: object
