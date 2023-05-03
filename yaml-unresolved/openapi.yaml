@@ -39,6 +39,8 @@ tags:
     description: Customer Beneficiary endpoints
   - name: External Account Document
     description: External Account Document endpoints
+  - name: Stop Pays
+    description: Stop pay endpoints
 security:
   - basicAuth: []
 paths:
@@ -1519,13 +1521,9 @@ paths:
               - holdDescription
               properties:
                 customerId:
-                  allOf:
-                    - description: The Helix-assigned unique ID for the customer who owns the account
-                    - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
                 accountId:
-                  allOf:
-                    - description: The Helix-assigned unique ID for the account
-                    - $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
                 holdAmount:
                   type: number
                   format: decimal
@@ -1638,6 +1636,71 @@ paths:
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
         '401':
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401
+  /account/stopPay/createCheckStopPay:
+    post:
+      tags:
+        - Stop Pays
+      summary: Create check stop pay
+      description: |
+        See <a href="https://docs.helix.q2.com/docs/stop-pay" target="_blank">stopPay object definition</a> for parameter details.
+        [block:callout]
+        {
+          "type": "warning",
+          "body": "Use of this route requires approval from Q2 and your bank partner."
+        }
+        [/block]
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/accountstoppaycreatecheckstoppay
+      operationId: accountStopPayCreateCheckStopPay
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - customerId
+              - accountId
+              - checkNumberMinimum
+              - checkNumberMaximum
+              - amountMinimum
+              - amountMaximum
+              properties:
+                customerId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                accountId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                checkNumberMinimum:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                checkNumberMaximum:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                amountMinimum:
+                  type: number
+                  format: decimal
+                  minimum: 0.01
+                amountMaximum:
+                  type: number
+                  format: decimal
+                  minimum: 0.01
+                expireDate:
+                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/DateTimeMidnight
+                checkDateWritten:
+                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/DateTimeMidnight
+                payeeName:
+                  type: string
+                comment:
+                  type: string
+      responses:
+        '200':
+          description: An <a href="https://docs.helix.q2.com/docs/stop-pay" target="_blank">stopPay</a> object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StopPayObject200Response'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
   /externalAccount/list/{customerId}:
     get:
       tags:
@@ -5127,6 +5190,13 @@ components:
               type: array
               items:
                 $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Statement
+    StopPayObject200Response:
+      allOf:
+        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
+        - type: object
+          properties:
+            data:
+              $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/StopPay
     TransactionArray200Response:
       allOf:
         - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
