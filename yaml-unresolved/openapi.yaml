@@ -39,7 +39,7 @@ tags:
     description: Customer Beneficiary endpoints
   - name: External Account Document
     description: External Account Document endpoints
-  - name: Stop Pays
+  - name: Stop Pay
     description: Stop pay endpoints
 security:
   - basicAuth: []
@@ -4616,7 +4616,7 @@ paths:
   /account/createCheckStopPay:
     post:
       tags:
-        - Stop Pays
+        - Stop Pay
       summary: Create check stop pay
       description: |
         See <a href="https://docs.helix.q2.com/docs/stop-pay" target="_blank">stopPay object definition</a> for parameter details.
