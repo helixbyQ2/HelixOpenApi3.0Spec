@@ -4669,7 +4669,7 @@ paths:
                   type: string
       responses:
         '200':
-          description: An <a href="https://docs.helix.q2.com/docs/stop-pay" target="_blank">stopPay</a> object
+          description: A <a href="https://docs.helix.q2.com/docs/stop-pay" target="_blank">stopPay</a> object
           content:
             application/json:
               schema:
