@@ -3157,7 +3157,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CardLimitGet200Response'
+                $ref: '#/components/schemas/CardLimitsObject200Response'
         '400':
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
         '401':
@@ -3210,7 +3210,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CardLimitOverride200Response'
+                $ref: '#/components/schemas/CardLimitsObject200Response'
         '400':
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
         '401':
@@ -3263,7 +3263,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CardLimitTemporaryOverride200Response'
+                $ref: '#/components/schemas/CardLimitsObject200Response'
         '400':
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
         '401':
@@ -3302,7 +3302,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CardLimitReset200Response'
+                $ref: '#/components/schemas/CardLimitsObject200Response'
         '400':
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
         '401':
@@ -4815,28 +4815,7 @@ components:
               properties:
                 enrollmentStatus:
                   $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardFraudTextAlertEnrollmentStatus
-    CardLimitGet200Response:
-      allOf:
-        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
-        - type: object
-          properties:
-            data:
-              $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardLimits
-    CardLimitOverride200Response:
-      allOf:
-        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
-        - type: object
-          properties:
-            data:
-              $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardLimits
-    CardLimitReset200Response:
-      allOf:
-        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
-        - type: object
-          properties:
-            data:
-              $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardLimits
-    CardLimitTemporaryOverride200Response:
+    CardLimitsObject200Response:
       allOf:
         - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
         - type: object
