@@ -4381,7 +4381,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CustomerBeneficiaryList200Response'
+                $ref: '#/components/schemas/CustomerBeneficiaryArray200Response'
         '400':
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
         '401':
@@ -4408,7 +4408,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CustomerBeneficiaryGet200Response'
+                $ref: '#/components/schemas/CustomerBeneficiaryObject200Response'
         '400':
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
         '401':
@@ -4477,7 +4477,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CustomerBeneficiaryCreate200Response'
+                $ref: '#/components/schemas/CustomerBeneficiaryObject200Response'
         '400':
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
         '401':
@@ -4549,7 +4549,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CustomerBeneficiaryUpdate200Response'
+                $ref: '#/components/schemas/CustomerBeneficiaryObject200Response'
         '400':
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
         '401':
@@ -4957,13 +4957,15 @@ components:
               type: array
               items:
                 $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Customer
-    CustomerBeneficiaryCreate200Response:
+    CustomerBeneficiaryArray200Response:
       allOf:
         - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
         - type: object
           properties:
             data:
-              $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerBeneficiary
+              type: array
+              items:
+                $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerBeneficiary
     CustomerBeneficiaryDeactivate200Response:
       allOf:
         - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
@@ -4976,23 +4978,7 @@ components:
                   $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
                 customerBeneficiaryId:
                   $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
-    CustomerBeneficiaryGet200Response:
-      allOf:
-        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
-        - type: object
-          properties:
-            data:
-              $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerBeneficiary
-    CustomerBeneficiaryList200Response:
-      allOf:
-        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
-        - type: object
-          properties:
-            data:
-              type: array
-              items:
-                $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerBeneficiary
-    CustomerBeneficiaryUpdate200Response:
+    CustomerBeneficiaryObject200Response:
       allOf:
         - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
         - type: object
