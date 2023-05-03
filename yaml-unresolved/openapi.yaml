@@ -4359,7 +4359,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CustomerDocumentUpload200Response'
+                $ref: '#/components/schemas/CustomerDocumentObject200Response'
         '400':
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
         '401':
@@ -5008,7 +5008,7 @@ components:
                 verificationStatus:
                   deprecated: true
                   type: string
-    CustomerDocumentUpload200Response:
+    CustomerDocumentObject200Response:
       allOf:
         - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
         - type: object
