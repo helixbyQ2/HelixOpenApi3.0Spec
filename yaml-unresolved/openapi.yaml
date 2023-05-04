@@ -4226,6 +4226,8 @@ paths:
                   $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerRelationshipType
                 canOpenAccounts:
                   type: boolean
+                externalAccountAccessType:
+                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ExternalAccountAccessType
                 isPrimaryContact:
                   type: boolean
                 isControlPerson:
@@ -4238,6 +4240,8 @@ paths:
                 title:
                   type: string
                   maxLength: 100
+                requestingCustomerId:
+                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
       responses:
         '200':
           description: A <a href="https://docs.helix.q2.com/docs/customer-relationship" target="_blank">customerRelationship</a> object
