@@ -4678,6 +4678,44 @@ paths:
           $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
         '401':
           $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /account/stopPay/list/{customerId}/{accountId}:
+    get:
+      tags:
+        - Stop Pay
+      summary: List stop pays
+      description: |
+        Retrieve a list of stop pays for a given customer and account.
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/accountstoppaylist
+      operationId: accountStopPayList
+      parameters:
+        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/customerId
+        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/accountId
+        - name: beginDate
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+          description: Format is YYYY-MM-DD.
+        - name: endDate
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+          description: Format is YYYY-MM-DD
+      responses:
+        '200':
+          description: An array of <a href="https://docs.helix.q2.com/docs/stop-pay" target="_blank">stopPay</a> objects
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StopPayArray200Response'
+        '400':
+          $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
+        '401':
+          $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401
   /account/stopPay/expire:
     post:
       tags:
@@ -5169,6 +5207,15 @@ components:
           properties:
             data:
               $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Statement
+    StopPayArray200Response:
+      allOf:
+        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
+        - type: object
+          properties:
+            data:
+              type: array
+              items:
+                $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/StopPay
     StopPayObject200Response:
       allOf:
         - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
