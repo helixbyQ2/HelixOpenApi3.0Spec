@@ -4678,6 +4678,50 @@ paths:
           $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
         '401':
           $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /account/stopPay/expire:
+    post:
+      tags:
+        - Stop Pay
+      summary: Expire a stop pay
+      description: |
+        See <a href="https://docs.helix.q2.com/docs/stop-pay" target="_blank">stopPay object definition</a> for parameter details.
+        [block:callout]
+        {
+          "type": "warning",
+          "body": "Use of this route requires approval from Q2 and your bank partner."
+        }
+        [/block]
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/accountstoppayexpire
+      operationId: accountStopPayExpire
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - customerId
+              - accountId
+              - stopPayId
+              properties:
+                customerId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                accountId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                stopPayId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+      responses:
+        '200':
+          description: A <a href="https://docs.helix.q2.com/docs/stop-pay" target="_blank">stopPay</a> object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StopPayObject200Response'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
 components:
   schemas:
     AccountAddEditEntitlement200Response:
