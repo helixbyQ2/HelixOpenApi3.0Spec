@@ -4684,7 +4684,7 @@ paths:
         - Stop Pay
       summary: List stop pays
       description: |
-        Retrieve a list of stop pays for a given customer and account.
+        Retrieve a list of stop pays for a given customer and account. Maximum date range is 30 days.
       externalDocs:
         url: https://docs.helix.q2.com/reference/accountstoppaylist
       operationId: accountStopPayList
@@ -4697,7 +4697,7 @@ paths:
           schema:
             type: string
             format: date
-          description: Format is YYYY-MM-DD.
+          description: Format is YYYY-MM-DD
         - name: endDate
           in: query
           required: false
