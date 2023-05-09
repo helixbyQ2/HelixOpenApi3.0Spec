@@ -17,6 +17,8 @@ tags:
     description: Customer endpoints
   - name: Account
     description: Account endpoints
+  - name: Account Limits
+    description: Account limit endpoints
   - name: External Account
     description: External Account endpoints
   - name: Transfer
@@ -1636,6 +1638,47 @@ paths:
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
         '401':
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401
+  /account/limit/set:
+    post:
+      tags:
+        - Account Limits
+      summary: Set account limit(s)
+      description: |
+        Set or update one or more account limits
+        [block:callout]
+        {
+          "type": "warning",
+          "body": "Use of this route requires approval from Q2 and your bank partner."
+        }
+        [/block]
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/accountlimitset
+      operationId: accountLimitSet
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - limits
+              properties:
+                limits:
+                  type: array
+                  description: An array of up to 16 <a href="https://docs.helix.q2.com/docs/account-limit" target="_blank">accountLimit</a> objects to create or update
+                  items:
+                    $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/AccountLimit
+      responses:
+        '200':
+          description: A 200 status with no `data` property present
+          content:
+            application/json:
+              schema:
+                $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
   /externalAccount/list/{customerId}:
     get:
       tags:
