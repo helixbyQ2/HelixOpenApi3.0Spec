@@ -39,6 +39,8 @@ tags:
     description: Customer Document endpoints
   - name: Customer Beneficiary
     description: Customer Beneficiary endpoints
+  - name: Account Beneficiary
+    description: Account Beneficiary endpoints
   - name: External Account Document
     description: External Account Document endpoints
   - name: Stop Pay
@@ -4639,6 +4641,174 @@ paths:
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
         '401':
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401
+  /accountBeneficiary/list/{customerId}/{accountId}:
+    get:
+      tags:
+        - Account Beneficiary
+      summary: List account beneficiaries
+      description: List all beneficiaries for a given account
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/accountbeneficiarylist
+      operationId: accountBeneficiaryList
+      parameters:
+        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/customerId
+        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/accountId
+      responses:
+        '200':
+          description: An array of <a href="https://docs.helix.q2.com/docs/account-beneficiary" target="_blank">accountBeneficiary</a> objects
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountBeneficiaryArray200Response'
+        '400':
+          $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
+        '401':
+          $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401
+  /accountBeneficiary/get/{customerId}/{accountId}/{customerBeneficiaryId}:
+    get:
+      tags:
+        - Account Beneficiary
+      summary: Get an account beneficiary
+      description: Get a beneficiary for a given account
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/accountbeneficiaryget
+      operationId: accountBeneficiaryGet
+      parameters:
+        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/customerId
+        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/accountId
+        - name: customerBeneficiaryId
+          in: path
+          required: true
+          schema:
+            $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
+      responses:
+        '200':
+          description: An <a href="https://docs.helix.q2.com/docs/account-beneficiary" target="_blank">accountBeneficiary</a> object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountBeneficiaryObject200Response'
+        '400':
+          $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
+        '401':
+          $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401
+  /accountBeneficiary/add:
+    post:
+      tags:
+        - Account Beneficiary
+      summary: Add account beneficiary
+      description: Add a beneficiary to an account
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/accountbeneficiaryadd
+      operationId: accountBeneficiaryAdd
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - customerId
+                - accountId
+                - customerBeneficiaryId
+              properties:
+                customerId:
+                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
+                accountId:
+                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
+                customerBeneficiaryId:
+                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
+                distributionDescription:
+                  type: string
+      responses:
+        '200':
+          description: A confirmation the beneficiary has been added to the account
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountBeneficiaryAddEditRemove200Response'
+        '400':
+          $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
+        '401':
+          $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401
+  /accountBeneficiary/edit:
+    post:
+      tags:
+        - Account Beneficiary
+      summary: Edit account beneficiary
+      description: Edit a beneficiary designation for a given account
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/accountbeneficiaryedit
+      operationId: accountBeneficiaryEdit
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - customerId
+                - accountId
+                - customerBeneficiaryId
+              properties:
+                customerId:
+                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
+                accountId:
+                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
+                customerBeneficiaryId:
+                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
+                distributionDescription:
+                  type: string
+                isActive:
+                  type: boolean
+      responses:
+        '200':
+          description: A confirmation the beneficiary has been added to the account
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountBeneficiaryAddEditRemove200Response'
+        '400':
+          $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
+        '401':
+          $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401
+  /accountBeneficiary/remove:
+    post:
+      tags:
+        - Account Beneficiary
+      summary: Remove account beneficiary
+      description: Remove a beneficiary designation for a given account
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/accountbeneficiaryremove
+      operationId: accountBeneficiaryRemove
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - customerId
+                - accountId
+                - customerBeneficiaryId
+              properties:
+                customerId:
+                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
+                accountId:
+                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
+                customerBeneficiaryId:
+                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
+      responses:
+        '200':
+          description: A confirmation the beneficiary has been removed from the account
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountBeneficiaryAddEditRemove200Response'
+        '400':
+          $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
+        '401':
+          $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401
   /externalAccountDocument/upload:
     post:
       tags:
@@ -4841,6 +5011,40 @@ components:
               type: array
               items:
                 $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Account
+    AccountBeneficiaryAddEditRemove200Response:
+      allOf:
+        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
+        - type: object
+          properties:
+            data:
+              type: object
+              properties:
+                customerId:
+                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
+                accountId:
+                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
+                customerBeneficiaryId:
+                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
+                distributionDescription:
+                  type: string
+                isActive:
+                  type: boolean
+    AccountBeneficiaryArray200Response:
+      allOf:
+        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
+        - type: object
+          properties:
+            data:
+              type: array
+              items:
+                $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/accountBeneficiary
+    AccountBeneficiaryObject200Response:
+      allOf:
+        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
+        - type: object
+          properties:
+            data:
+              $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/AccountBeneficiary
     AccountEntitlementArray200Response:
       allOf:
         - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
