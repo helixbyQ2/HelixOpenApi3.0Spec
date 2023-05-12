@@ -4697,7 +4697,7 @@ paths:
       tags:
         - Account Beneficiary
       summary: Add account beneficiary
-      description: Add a beneficiary to an account
+      description: Add a beneficiary to an <a href="https://docs.helix.q2.com/docs/account" target="_blank">account</a>. See <a href="https://docs.helix.q2.com/docs/account-beneficiary" target="_blank">accountBeneficiary object definition</a> for parameter details.
       externalDocs:
         url: https://docs.helix.q2.com/reference/accountbeneficiaryadd
       operationId: accountBeneficiaryAdd
@@ -4736,7 +4736,7 @@ paths:
       tags:
         - Account Beneficiary
       summary: Edit account beneficiary
-      description: Edit a beneficiary designation for a given account
+      description: Edit a beneficiary designation for a given <a href="https://docs.helix.q2.com/docs/account" target="_blank">account</a>. See <a href="https://docs.helix.q2.com/docs/account-beneficiary" target="_blank">accountBeneficiary object definition</a> for parameter details.
       externalDocs:
         url: https://docs.helix.q2.com/reference/accountbeneficiaryedit
       operationId: accountBeneficiaryEdit
