@@ -1118,7 +1118,6 @@ paths:
                 requestingCustomerId:
                   allOf:
                     - description: The Helix-assigned unique ID for the customer requesting to open the account. Only used when opening a business account.
-                    - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
       responses:
         '200':
           description: An <a href="https://docs.helix.q2.com/docs/account" target="_blank">account</a> object
@@ -1637,6 +1636,36 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountClose200Response'
+        '400':
+          $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
+        '401':
+          $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401
+  /account/limit/list/{customerId}/{accountId}:
+    get:
+      tags:
+        - Account Limits
+      summary: List account limits
+      description: | 
+        Retrieve all account limits for the given `customerId` and `accountId`. 
+        [block:callout]
+        {
+          "type": "warning",
+          "body": "Use of this route requires approval from Q2 and your bank partner."
+        }
+        [/block]
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/accountlimitList
+      operationId: accountLimitList
+      parameters:
+        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/customerId
+        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/accountId
+      responses:
+        '200':
+          description: An array of <a href="https://docs.helix.q2.com/docs/account-limit" target="_blank">accountLimit</a> objects
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountLimitArray200Response'
         '400':
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
         '401':
@@ -5084,6 +5113,15 @@ components:
                   format: decimal
                 isClosedToExternalAccount:
                   type: boolean
+    AccountLimitArray200Response:
+      allOf:
+        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
+        - type: object
+          properties:
+            data:
+              type: array
+              items:
+                $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/AccountLimit
     AccountObject200Response:
       allOf:
         - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
