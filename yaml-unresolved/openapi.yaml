@@ -3898,6 +3898,12 @@ paths:
             type: string
             format: date
           description: Format is YYYY-MM-DD
+        - name: requestingCustomerIds
+          in: query
+          required: false
+          description: 'A comma separated list of one or more customerIds who initiated transactions. Only applicable to business accounts. Example: 1234567,3456789'
+          schema:
+            type: string
       responses:
         '200':
           description: An array of <a href="https://docs.helix.q2.com/docs/transaction" target="_blank">transaction</a> objects
