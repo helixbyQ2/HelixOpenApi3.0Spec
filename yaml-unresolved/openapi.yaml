@@ -1712,6 +1712,47 @@ paths:
           $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
         '401':
           $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
+  /account/limit/delete:
+    post:
+      tags:
+        - Account Limits
+      summary: Delete account limit(s)
+      description: |
+        Delete one or more account limits set via <a href="https://docs.helix.q2.com/reference/accountlimitset" target="_blank">/account/limit/set</a>
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/accountlimitdelete
+      operationId: accountLimitDelete
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - customerId
+                - accountId
+                - limitIds
+              properties:
+                customerId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                accountId:
+                  $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32'
+                limitIds:
+                  type: array
+                  description: An array of up to 16 <a href="https://docs.helix.q2.com/docs/account-limit" target="_blank">accountLimit.limitId</a>s to remove from the account
+                  items:
+                    $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
+      responses:
+        '200':
+          description: A 200 status with no `data` property present
+          content:
+            application/json:
+              schema:
+                $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401'
   /externalAccount/list/{customerId}:
     get:
       tags:
