@@ -1926,6 +1926,10 @@ paths:
                 amount2:
                   type: string
                   description: Value of one of the trial deposit amounts
+                requestingCustomerId:
+                  allOf:
+                    - description: The Helix-assigned unique ID for the individual customer requesting to verify the external account. Only used when an individual is verifying an external account on behalf of a business.
+                    - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
       responses:
         '200':
           description: An <a href="https://docs.helix.q2.com/docs/external-account" target="_blank">externalAccount</a> object
