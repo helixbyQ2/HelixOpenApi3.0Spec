@@ -720,7 +720,7 @@ paths:
         [block:callout]
         {
           "type": "warning",
-          "body": "As a fraud prevention mechanism very few properties can be updated via API if your program uses Helix KYC/IDV. The following properties can only be updated if your program does NOT use Helix KYC/IDV: `firstName`, `middleName`, `lastName`, `suffix`, `birthDate`, `emailAddress`, `taxId`, `driversLicenseNumber`, `driversLicenseState`, `driversLicenseIssueDate`, `driversLicenseExpireDate`, `passportNumber`, `passportCountry`, `passportIssueDate`, `passportExpireDate`, `addresses`."
+          "body": "As a fraud prevention mechanism very few properties can be updated via API if your program uses Helix KYC/IDV. The list of properties will vary based on your specific program settings. Please reach out to your relationship manager if you have any questions about enabling certain property updates."
         }
         [/block]
       externalDocs:
