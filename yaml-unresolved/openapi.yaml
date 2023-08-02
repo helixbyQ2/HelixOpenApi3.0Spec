@@ -4125,95 +4125,6 @@ paths:
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
         '401':
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401
-  /transaction/wire/create:
-    post:
-      tags:
-        - Transaction
-      summary: Create a wire
-      description: |
-        Create an outbound wire.
-        [block:callout]
-        {
-          "type": "warning",
-          "body": "Use of this route requires approval from Q2 and your bank partner."
-        }
-        [/block]
-      externalDocs:
-        url: https://docs.helix.q2.com/reference/transactionwirecreate
-      operationId: transactionWireCreate
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              required:
-                - customerId
-                - accountId
-                - amount
-                - receiverRoutingNumber
-                - receiverShortName
-                - beneficiaryName
-                - beneficiaryAccountNumber
-                - beneficiaryAddress
-                - beneficiaryCity
-                - beneficiaryState
-                - beneficiaryPostalCode
-                - senderReference
-              properties: 
-                customerId:
-                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
-                accountId:
-                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
-                amount:
-                  type: number
-                  format: decimal
-                  minimum: 0.01
-                receiverRoutingNumber:
-                  type: string
-                receiverShortName:
-                  type: string
-                beneficiaryName:
-                  type: string
-                beneficiaryAccountNumber:
-                  type: string
-                beneficiaryAddress:
-                  type: string
-                beneficiaryCity:
-                  type: string
-                beneficiaryState:
-                  type: string
-                beneficiaryPostalCode:
-                  type: string
-                senderReference:
-                  type: string
-                tag:
-                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Tag
-                beneficiaryRoutingNumber:
-                  type: string
-                beneficiaryFIName:
-                  type: string
-                beneficiaryFIAddress:
-                  type: string
-                beneficiaryFICity:
-                  type: string
-                beneficiaryFIState:
-                  type: string
-                beneficiaryFIPostalCode:
-                  type: string
-                requestedLevel:
-                  type: string
-      responses:
-        '200':
-          description: A wire ID
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/TransactionWireCreate200Response'
-        '400':
-          $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
-        '401':
-          $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401
   /statement/list/{customerId}:
     get:
       tags:
@@ -5675,14 +5586,6 @@ components:
           properties:
             data:
               $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Transaction
-    TransactionWireCreate200Response:
-        allOf:
-        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
-        - type: object
-          properties:
-            data:
-              type: integer
-              format: int64
     TransferCreate200Response:
       allOf:
         - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
