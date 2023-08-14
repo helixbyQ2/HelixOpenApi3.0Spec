@@ -2389,6 +2389,10 @@ paths:
                   $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
                 externalAccountId:
                   $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
+                requestingCustomerId:
+                  allOf:
+                    - description: The Helix-assigned unique ID for the individual customer requesting to archive the external account. Only used when an individual is archiving an external account on behalf of a business.
+                    - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
       responses:
         '200':
           description: A `customerId`, `externalAccountId` and `status`
