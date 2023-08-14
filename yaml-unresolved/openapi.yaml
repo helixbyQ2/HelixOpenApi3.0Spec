@@ -1723,6 +1723,8 @@ paths:
                   type: string
                   maxLength: 255
                   description: Free-form description for why the hold is being placed
+                expirationDate:
+                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/DateTimeMidnight
       responses:
         '200':
           description: An <a href="https://docs.helix.q2.com/docs/account" target="_blank">account</a> object
