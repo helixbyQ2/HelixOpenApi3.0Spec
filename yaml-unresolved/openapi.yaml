@@ -5014,6 +5014,7 @@ paths:
         - Customer Relationship
       summary: Archive customer relationship
       description: |
+        Archive a customer relationship. **Note:** if `primaryCustomerId` is a business customer then `relatedCustomerId` will lose all access/entitlements to `primaryCustomerId`'s accounts
         [block:callout]
         {
           "type": "warning",
@@ -5043,7 +5044,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
+                $ref: '#/components/schemas/CustomerRelationshipArchive200Response'
         '400':
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
         '401':
@@ -6135,6 +6136,22 @@ components:
           properties:
             data:
               $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerRelationship
+    CustomerRelationshipArchive200Response:
+      allOf:
+        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
+        - type: object
+          properties:
+            data:
+              type: object
+              properties:
+                externalAccountAccessType:
+                  type: string
+                  enum:
+                    - NONE
+                primaryCustomerId:
+                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
+                relatedCustomerId:
+                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
     CustomerRelationshipArray200Response:
       allOf:
         - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
