@@ -3625,10 +3625,7 @@ paths:
                 cardId:
                   $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
                 renewalOverride:
-                  type: string
-                  enum:
-                    - Renew
-                    - DoNotRenew
+                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CardRenewalOverride
                 renewalOverrideReason:
                   type: string
                   maxLength: 20
