@@ -3593,6 +3593,62 @@ paths:
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/405
         '429':
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/429
+  /card/renewalOverride:
+    post:
+      tags:
+        - Card
+      summary: Renewal override
+      description: |
+        Override the Helix card renewal eligibility criteria
+        [block:callout]
+        {
+          "type": "warning",
+          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
+        }
+        [/block]
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/cardrenewaloverride
+      operationId: cardRenewalOverride
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - customerId
+                - cardId
+                - renewalOverride
+              properties:
+                customerId:
+                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
+                cardId:
+                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
+                renewalOverride:
+                  type: string
+                  enum:
+                    - Renew
+                    - DoNotRenew
+                renewalOverrideReason:
+                  type: string
+                  maxLength: 20
+      responses:
+        '200':
+          description: A <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a> object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardObject200Response'
+        '400':
+          $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
+        '401':
+          $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401
+        '404':
+          $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/404
+        '405':
+          $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/405
+        '429':
+          $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/429
   /card/hotlist:
     post:
       tags:
@@ -5040,7 +5096,7 @@ paths:
                   $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
       responses:
         '200':
-          description: A 200 status with no `data` property present
+          description: A confirmation the relationship has been archived
           content:
             application/json:
               schema:
