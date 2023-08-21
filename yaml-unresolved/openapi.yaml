@@ -83,6 +83,18 @@ paths:
       externalDocs:
         url: https://docs.helix.q2.com/reference/programquestionslist
       operationId: programQuestionsList
+      parameters:
+        - name: categoryName
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - OpeningBusinessAccount
+              - OpeningConsumerAccount
+              - VeryPersonalQuestions
+              - OpeningSoleProprietorAccount
+              - All
       responses:
         '200':
           description: An array of <a href="https://docs.helix.q2.com/docs/due-diligence-category" target="_blank">dueDiligenceCategory</a> objects
