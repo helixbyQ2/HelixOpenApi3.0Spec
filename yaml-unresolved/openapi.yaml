@@ -568,12 +568,15 @@ paths:
                   type: boolean
                 isDocumentsAccepted:
                   type: boolean
-                accessTypeCode:
-                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerAccessTypeCode
+                businessNameOnCard:
+                  type: string
+                  maxLength: 30
                 businessWebsite:
                   type: string
                 tag:
                   $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Tag
+                emailAddress:
+                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerEmailAddress
                 customField1:
                   type: string
                   maxLength: 100
