@@ -3602,7 +3602,7 @@ paths:
         - Card
       summary: Renewal override
       description: |
-        Override the Helix card renewal eligibility criteria
+        Override the base Helix card renewal eligibility criteria during a card's renewal period. A card's renewal period begins on the first day of the prior month of the card's expiration and ends the day before the client's scheduled monthly renewal job. 
         [block:callout]
         {
           "type": "warning",
