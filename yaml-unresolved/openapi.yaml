@@ -3538,7 +3538,7 @@ paths:
         - Card
       summary: Reissue a card
       description: |
-        Reissue a card and send a new physical card to a customer (when applicable). When `reissueReasonTypeCode=DMG`, a new card number is NOT generated and a new physical card is sent to the customer. The `status` returned in the card object will remain the same. All other `reissueReasonTypeCode` values will generate a new card number. Depending on the previous card, this endpoint will return a card object with `status=Verified` for digital only, `status=DigitalActivePhysicalPending` for digital and physical, and `status=PendingVerification` for physical only.
+        Reissue a card and send a new physical card to a customer, when applicable. Depending on the previous card, this endpoint will return a card object with `status=Verified` for digital only, `status=DigitalActivePhysicalPending` for digital and physical, and `status=PendingVerification` for physical only.
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardreissue
       operationId: cardReissue
@@ -3565,10 +3565,11 @@ paths:
                     - LST
                     - STL
                   description: |
-                    - `DMG`: Physical Damage
-                    - `FRD`: Fraud
-                    - `LST`: Lost
-                    - `STL`: Stolen
+                    - `DMG`: Physical Damage. A new card number is NOT generated and, if applicable, a new physical card is sent to the customer. 
+                    - `REN`: Renewal. A new card number is NOT generated, the expiration date is updated and, if applicable, a new physical card is sent to the customer.
+                    - `FRD`: Fraud. A new card number is generated and, if applicable, a new physical card is sent o the customer. 
+                    - `LST`: Lost. A new card number is generated and, if applicable, a new physical card is sent o the customer.
+                    - `STL`: Stolen. A new card number is generated and, if applicable, a new physical card is sent o the customer.
                 newPin:
                   type: string
                   format: byte
