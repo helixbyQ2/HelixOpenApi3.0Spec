@@ -1302,6 +1302,11 @@ paths:
                   allOf:
                     - description: The Helix-assigned unique ID for the customer requesting to open the account. Only used when opening a business account.
                     - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
+                accountNumber:
+                  type: string
+                  maxLength: 50
+                  pattern: '^[0-9]{1,50}$'
+                  description: If none specified, Helix will automatically assign an account number. **Note:** Custom account numbers requires approval from Q2 and your bank partner. Custom account numbers must be numeric.
       responses:
         '200':
           description: An <a href="https://docs.helix.q2.com/docs/account" target="_blank">account</a> object
