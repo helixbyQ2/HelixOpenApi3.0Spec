@@ -3633,17 +3633,28 @@ paths:
         - Card
       summary: Reissue a card
       description: |
-        Reissue a card and send a new physical card to a customer (when applicable). If `reissueReasonTypeCode=DMG`, a new card number is NOT generated and if applicable a new physical card is sent to the customer. If `reissueReasonTypeCode=REN`, a new card number is NOT generated, the expiration date is updated and if applicable a new physical card is sent to the customer. 
+        Reissue a card and send a new physical card to a customer (when applicable). 
         
         Card must be in an eligible `status` listed below to perform a card renewal:
         - `Verified`
         - `Reissued`
         - `DigitalActivePhysicalIntiated`
         - `DigitalActivePhysicalPending`
-
-        All other `reissueReasonTypeCode` values will generate a new card number.
-
-        Depending on the previous card, this endpoint will return a card object with `status=Verified` for digitalonly, `status=DigitalActivePhysicalPending` for digital and physical, and `status=PendingVerification` for physical only.
+        
+        If `reissueReasonTypeCode=DMG`, a new card number is not generated and, if applicable, a new physical card is sent to the customer. If `reissueReasonTypeCode=REN`, a new card number is not generated, the expiration date is updated, and, if applicable, a new physical card is sent to the customer. All other `reissueReasonTypeCode` values will generate a new card number.
+        
+        
+        Depending on the previous card and reason for reissue, this endpoint will return a card object with the following:
+        | Type | Reason | Card Number (PAN) | Card Object Status |
+        | ---- | ------ | ----------------- | ------------------ |
+        | Digital | Fraud, Lost, Stolen | New | `status=Verified` |
+        | Digital | Renewal | Same, with new expiration date and CVV2 | `status=Verified` |
+        | Digital + physical | Physical damage | Same | `status=Verified` unless program requires verification for reissues then `status=DigitalActivePhysicalPending` |
+        | Digital + physical | Fraud, Lost, Stolen | New | `status=DigitalActivePhysicalPending` |
+        | Digital + physical | Renewal | Same, with new expiration | Initial `status=AutoReissueInitiated`, then is updated to `status=AutoReissuePendingVerification` |
+        | Physical | Physical Damage | Same | `status=Verified` unless program requires verification for reissues then `status=PendingVerification` |
+        | Physical | Fraud, Lost, Stolen | New | `status=PendingVerification` |
+        | Physical | Renewal | Same, with new expiration date and CVV2 | Initial `status=AutoReissueInitiated`, then is updated to `status=AutoReissuePendingVerification`
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardreissue
       operationId: cardReissue
