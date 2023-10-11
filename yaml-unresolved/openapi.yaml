@@ -3651,10 +3651,10 @@ paths:
         | Digital | Renewal | Same, with new expiration date and CVV2 | `status=Verified` |
         | Digital + physical | Physical damage | Same | `status=Verified` unless program requires verification for reissues then `status=DigitalActivePhysicalPending` |
         | Digital + physical | Fraud, Lost, Stolen | New | `status=DigitalActivePhysicalPending` |
-        | Digital + physical | Renewal | Same, with new expiration | Initial `status=AutoReissueInitiated`, then is updated to `status=AutoReissuePendingVerification` |
+        | Digital + physical | Renewal | Same, with new expiration | `status=ReissuePendingVerification` |
         | Physical | Physical Damage | Same | `status=Verified` unless program requires verification for reissues then `status=PendingVerification` |
         | Physical | Fraud, Lost, Stolen | New | `status=PendingVerification` |
-        | Physical | Renewal | Same, with new expiration date and CVV2 | Initial `status=AutoReissueInitiated`, then is updated to `status=AutoReissuePendingVerification`
+        | Physical | Renewal | Same, with new expiration date and CVV2 | `status=ReissuePendingVerification` |
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardreissue
       operationId: cardReissue
