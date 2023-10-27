@@ -3647,7 +3647,7 @@ paths:
         If `reissueReasonTypeCode=DMG`, a new card number is not generated and, if applicable, a new physical card is sent to the customer. If `reissueReasonTypeCode=REN`, a new card number is not generated, the expiration date is updated, and, if applicable, a new physical card is sent to the customer. All other `reissueReasonTypeCode` values will generate a new card number.
         
         
-        Depending on the previous card and reason for reissue, this endpoint will return a card object with the following:
+        Depending on the previous card and reason for reissue, this endpoint will return a card object with the following:  
         
         | Type | Reason | Card Number (PAN) | Card Object Status |
         | ---- | ------ | ----------------- | ------------------ |
