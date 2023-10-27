@@ -3648,6 +3648,7 @@ paths:
         
         
         Depending on the previous card and reason for reissue, this endpoint will return a card object with the following:
+        
         | Type | Reason | Card Number (PAN) | Card Object Status |
         | ---- | ------ | ----------------- | ------------------ |
         | Digital | Fraud, Lost, Stolen | New | `status=Verified` |
