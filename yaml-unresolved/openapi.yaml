@@ -3699,7 +3699,7 @@ paths:
                   $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/QualifierCode
                 tag:
                   allOf:
-                    - description: Tag to associate with the new card
+                    - description: Tag to associate with the new cardId
                     - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Tag
       responses:
         '200':
