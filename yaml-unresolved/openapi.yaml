@@ -2253,6 +2253,51 @@ paths:
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/405
         '429':
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/429
+  /externalAccount/resendVerification:
+    post:
+      tags:
+        - External Account
+      summary: Resend verification deposits
+      description: |
+        Resend verification deposits for an externalAccount in any of the following statuses: `Unverified`, `VerifyLocked`, `Expired`
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/externalaccountresendverification
+      operationId: externalAccountResendVerification
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - customerId
+                - externalAccountId
+              properties:
+                customerId:
+                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
+                externalAccountId:
+                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
+                requestingCustomerId:
+                  allOf:
+                    - description: The Helix-assigned unique ID for the individual customer requesting to resend verification for the external account. Only used when an individual is requesting this action on behalf of a business.
+                    - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
+      responses:
+        '200':
+          description: An <a href="https://docs.helix.q2.com/docs/external-account" target="_blank">externalAccount</a> object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExternalAccountObject200Response'
+        '400':
+          $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
+        '401':
+          $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401
+        '404':
+          $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/404
+        '405':
+          $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/405
+        '429':
+          $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/429
   /externalAccount/lock:
     post:
       tags:
