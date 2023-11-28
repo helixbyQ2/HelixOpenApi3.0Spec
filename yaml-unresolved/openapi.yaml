@@ -6088,6 +6088,7 @@ components:
           properties:
             data:
               type: array
+              description: An array of accountHold objects
               items:
                 $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/AccountHold
     AccountLimitArray200Response:
