@@ -170,7 +170,7 @@ paths:
             $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/AccountHoldStatusType
       responses:
         '200':
-          description: An array of `accountHold</a> objects
+          description: An array of accountHold objects
           content:
             application/json:
               schema:
