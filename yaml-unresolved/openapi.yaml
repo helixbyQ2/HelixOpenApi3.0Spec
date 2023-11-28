@@ -8,7 +8,7 @@ servers:
     description: Sandbox server
   - url: https://api.helix.q2.com
     description: Production server
-tags:
+tags:  # NEVER CHANGE THESE!!!!!! IT WILL BREAK DOCUMENTATION
   - name: Program
     description: Program endpoints
   - name: Bank Document
@@ -142,7 +142,7 @@ paths:
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/405
         '429':
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/429
-  /program/listAccountHolds/{customerId}/{accountId}:
+  /program/listAccountHolds:
     get:
       tags:
         - Program
@@ -151,10 +151,23 @@ paths:
         url: https://docs.helix.q2.com/reference/programlistaccountholds
       operationId: programListAccountHolds
       parameters:
-        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/customerId
-        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/accountId
         - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/pageNumber
         - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/pageSize
+        - name: customerId
+          in: query
+          required: false
+          schema:
+            $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
+        - name: accountid
+          in: query
+          required: false
+          schema:
+            $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
+        - name: status
+          in: query
+          required: false
+          schema:
+            $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/AccountHoldStatus
       responses:
         '200':
           description: An array of `accountHold</a> objects
