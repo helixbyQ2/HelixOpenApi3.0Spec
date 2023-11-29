@@ -224,11 +224,7 @@ paths:
       operationId: bankDocumentDownload
       parameters:
         - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/culture
-        - in: path
-          required: true
-          name: documentId
-          schema:
-            $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
+        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/documentId
       responses:
         '200':
           description: A <a href="https://docs.helix.q2.com/docs/file-content" target="_blank">fileContent</a> object
@@ -5342,6 +5338,41 @@ paths:
         '405':
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/405
         '429':
+          $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/429
+  /customerDocument/get/{customerId}/{documentId}:
+    get:
+      tags:
+        - Customer Document
+      summary: Get a customer document
+      description: |
+        [block:callout]
+        {
+          "type": "warning",
+          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
+        }
+        [/block]
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/customerdocumentget
+      operationId: customerDocumentGet
+      parameters:
+        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/customerId
+        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/documentId
+      responses:
+        '200':
+          description: A <a href="https://docs.helix.q2.com/docs/customer-document" target="_blank">customerDocument</a> object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerDocumentObject200Response'
+        '400':
+          $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
+        '401':
+          $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401
+        '404':
+          $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/404
+        '405':
+          $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/405
+        '429': 
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/429
   /customerDocument/upload:
     post:
