@@ -997,7 +997,7 @@ paths:
     post:
       tags:
         - Customer
-      summary: Record last contact
+      summary: Set last contact
       description: Set the last contact date and type for a customer
       externalDocs:
         url: https://docs.helix.q2.com/reference/customersetlastcontact
