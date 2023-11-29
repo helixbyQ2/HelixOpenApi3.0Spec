@@ -4915,6 +4915,42 @@ paths:
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/405
         '429':
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/429
+  /transaction/wire/get/{customerId}/{transactionId}:
+    get:
+      tags:
+        - Transaction
+      summary: Get wire transaction details
+      description: |
+        Create an outbound wire.
+        [block:callout]
+        {
+          "type": "danger",
+          "body": "This endpoint is still under development. The endpoint definition/specification may change before final release."
+        }
+        [/block]
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/transactionwireget
+      operationId: transactionWireGet
+      parameters:
+        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/customerId
+        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/transactionId
+      responses:
+        '200':
+          description: A wire object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WireObject200Response'
+        '400':
+          $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
+        '401':
+          $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401
+        '404':
+          $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/404
+        '405':
+          $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/405
+        '429':
+          $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/429
   /transaction/setAvailableDate:
     post:
       tags:
@@ -6740,6 +6776,15 @@ components:
             data:
               type: integer
               format: int64
+    WireObject200Response:
+      allOf:
+        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
+        - type: object
+          properties:
+            data:
+              type: string
+              enum:
+                - TBD
   securitySchemes:
     basicAuth:
       type: http
