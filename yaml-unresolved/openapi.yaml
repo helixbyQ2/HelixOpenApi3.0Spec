@@ -993,6 +993,49 @@ paths:
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/405
         '429':
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/429
+  /customer/setLastContact:
+    post:
+      tags:
+        - Customer
+      summary: Record last contact
+      description: Set the last contact date and type for a customer
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/customersetlastcontact
+      operationId: customerSetLastContact
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - customerId
+                - lastContactDate
+                - lastContctType
+              properties:
+                customerId:
+                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
+                lastContactDate:
+                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/DateTime
+                lastContctType:
+                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerLastContactType
+      responses:
+        '200':
+          description: The `customerId`, `lastContactDate`, and `lastContactType`
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerSetLastContact200Response'
+        '400':
+          $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
+        '401':
+          $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401
+        '404':
+          $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/404
+        '405':
+          $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/405
+        '429':
+          $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/429
   /customer/note:
     post:
       tags:
@@ -6423,6 +6466,20 @@ components:
               type: array
               items:
                 $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerRelationship
+    CustomerSetLastContact200Response:
+      allOf:
+        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
+        - type: object
+          properties:
+            data:
+              type: object
+              properties:
+                customerId:
+                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
+                lastContactDate:
+                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/DateTime
+                lastContactType:
+                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerLastContactType
     ExternalAccountArchive200Response:
       allOf:
         - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
