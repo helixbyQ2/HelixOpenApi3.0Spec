@@ -163,7 +163,7 @@ paths:
           required: false
           schema:
             $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
-        - name: status
+        - name: statusType
           in: query
           required: false
           schema:
