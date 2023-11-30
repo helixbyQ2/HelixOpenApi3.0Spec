@@ -156,6 +156,7 @@ paths:
         - name: customerId
           in: query
           required: false
+          description: Required if `accountId` is present
           schema:
             $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
         - name: accountid
