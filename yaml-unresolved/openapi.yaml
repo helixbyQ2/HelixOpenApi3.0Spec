@@ -5570,6 +5570,51 @@ paths:
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/405
         '429':
           $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/429
+  /customerDocument/updateStatus:
+    post:
+      tags:
+        - Customer Document
+      summary: Update customer document status
+      description: |
+        [block:callout]
+        {
+          "type": "danger",
+          "body": "This endpoint is still under development. The endpoint definition/specification may change before final release."
+        }
+        [/block]
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/customerdocumentupdatestatus
+      operationId: customerDocumentUpdateStatus
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                customerId:
+                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
+                documentId:
+                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
+                customerDocumentStatusType:
+                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerDocumentStatusType
+      responses:
+        '200':
+          description: The `customerId`, `documentId`, and `customerDocumentStatusType`
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerDocumentUpdateStatus200Response'
+        '400':
+          $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/400
+        '401':
+          $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/401
+        '404':
+          $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/404
+        '405':
+          $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/405
+        '429':
+          $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/responses/429
   /customerBeneficiary/list/{customerId}:
     get:
       tags:
@@ -6589,6 +6634,20 @@ components:
           properties:
             data:
               $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerDocument
+    CustomerDocumentUpdateStatus200Response:
+      allOf:
+        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
+        - type: object
+          properties:
+            data:
+              type: object
+              properties:
+                customerId:
+                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
+                documentId:
+                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
+                customerDocumentStatusType:
+                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerDocumentStatusType
     CustomerGenerateToken200Response:
       allOf:
         - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
