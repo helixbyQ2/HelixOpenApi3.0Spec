@@ -5595,6 +5595,10 @@ paths:
           application/json:
             schema:
               type: object
+              required:
+              - customerId
+              - documentId
+              - customerDocumentStatusType
               properties:
                 customerId:
                   $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
