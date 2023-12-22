@@ -5582,8 +5582,8 @@ paths:
       description: |
         [block:callout]
         {
-          "type": "danger",
-          "body": "This endpoint is still under development. The endpoint definition/specification may change before final release."
+          "type": "warning",
+          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
         }
         [/block]
       externalDocs:
