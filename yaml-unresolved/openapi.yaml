@@ -5131,7 +5131,7 @@ paths:
       tags:
         - Statement
       summary: Search for statements
-      description: Search for monthly or tax statements within the given parameters for a customer. See <a href="https://docs.helix.q2.com/docs/statement" target="_blank">statement object definition</a> for parameter details.
+      description: Search for monthly statements within the given parameters for a customer. See <a href="https://docs.helix.q2.com/docs/statement" target="_blank">statement object definition</a> for parameter details.
       externalDocs:
         url: https://docs.helix.q2.com/reference/statementsearch
       operationId: statementSearch
