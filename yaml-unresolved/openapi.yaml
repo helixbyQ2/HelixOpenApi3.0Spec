@@ -534,8 +534,12 @@ paths:
                 customField5:
                   type: string
                   maxLength: 100
-                accessTypeCode:
-                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerAccessTypeCode
+                preferredName:
+                  type: string
+                  maxLength: 21
+                usePreferredNameOnCard:
+                  type: boolean
+                  default: false
                 residencyStatusType:
                   $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ResidencyStatusType
                 addresses:
