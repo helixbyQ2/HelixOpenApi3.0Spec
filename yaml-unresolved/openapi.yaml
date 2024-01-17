@@ -924,6 +924,8 @@ paths:
                   type: boolean
                 isOptedInToBankCommunication:
                   type: boolean
+                isDocumentsAccepted:
+                  type: boolean
                 tag:
                   $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/Tag
                 customField1:
