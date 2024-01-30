@@ -1458,6 +1458,10 @@ paths:
         | `CST`                | `ADM` - Administrative     | Success |
         | `CST`                | `SUS` - Suspected fraud    | Success |
         | `CST`                | `CO` - Credits only        | Success |
+        | `CST`                | `RTN` - Return risk        | Success |
+        | `CST`                | `REC` - Recovery           | Success |
+        | `CST`                | `DED` - Deceased           | Success |
+        | `CST`                | `DOR` - Dormant            | Success |
         | `CST`                | `FRD` - Fraud investigation | Fail - Fraud investigation lock can not be unlocked by CST |
         | `SYS`                | `TMP`, `FRD`, `FRZ`, `ADM`, `SUS`, `CO` | Fail - SYS lock type cannot be unlocked by CST |
 
