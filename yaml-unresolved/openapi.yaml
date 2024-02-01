@@ -3858,12 +3858,15 @@ paths:
         | ---- | ------ | ----------------- | ------------------ |
         | Digital | Fraud, Lost, Stolen | New | `status=Verified` |
         | Digital | Renewal | Same, with new expiration date and CVV2 | `status=Verified` |
-        | Digital + physical | Physical damage | Same | `status=Verified` unless program requires verification for reissues then `status=DigitalActivePhysicalPending` |
-        | Digital + physical | Fraud, Lost, Stolen | New | `status=DigitalActivePhysicalPending` |
-        | Digital + physical | Renewal | Same, with new expiration | `status=ReissuePendingVerification` |
+        | Digital | Compromised, Name change | New | `status=Verified` |
+        | Digital w/ physical | Physical damage | Same | `status=Verified` unless program requires verification for reissues then `status=DigitalActivePhysicalPending` |
+        | Digital w/ physical | Fraud, Lost, Stolen | New | `status=DigitalActivePhysicalPending` |
+        | Digital w/ physical | Renewal | Same, with new expiration | `status=ReissuePendingVerification` |
+        | Digital w/ physical | Compromised, Name change | New | Old cardId `status=Verified` new cardId `status=DigitalActivePhysicalPending`. Once verified, new cardId `status=Verified` and old cardId `status=Archived` |
         | Physical | Physical Damage | Same | `status=Verified` unless program requires verification for reissues then `status=PendingVerification` |
         | Physical | Fraud, Lost, Stolen | New | `status=PendingVerification` |
         | Physical | Renewal | Same, with new expiration date and CVV2 | `status=ReissuePendingVerification` |
+        | Physical | Compromised, Name change | New | Old cardId `status=Verified` new cardId `status=PendingVerification`. Once verified, new cardId `status=Verified` and old cardId `status=Archived`
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardreissue
       operationId: cardReissue
@@ -3890,12 +3893,16 @@ paths:
                     - FRD
                     - LST
                     - STL
+                    - NCN
+                    - CMP
                   description: |
                     - `DMG`: Physical Damage
                     - `REN`: Renewal
                     - `FRD`: Fraud
                     - `LST`: Lost
                     - `STL`: Stolen
+                    - `NCN`: Name Change with New PAN
+                    - `CMP`: Compromised
                 newPin:
                   type: string
                   format: byte
