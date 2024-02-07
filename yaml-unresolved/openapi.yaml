@@ -513,6 +513,16 @@ paths:
                   $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/DateTimeMidnight
                 emailAddress:
                   $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerEmailAddress
+                foreignDocumentCountryCode:
+                  type: string
+                  maxLength: 3
+                foreignDocumentExpirationDate:
+                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/DateTimeMidnight
+                foreignDocumentNumber:
+                  type: string
+                  maxLength: 30
+                foreignDocumentType:
+                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerForeignDocumentType
                 isSubjectToBackupWithholding:
                   type: boolean
                 isOptedInToBankCommunication:
