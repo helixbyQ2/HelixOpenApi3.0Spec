@@ -5422,7 +5422,7 @@ paths:
               required:
                 - requestingCustomerId
                 - primaryCustomerId
-                - primaryCustomerContactId
+                - primaryContactCustomerId
               properties:
                 requestingCustomerId:
                   allOf:
@@ -5432,7 +5432,7 @@ paths:
                   allOf:
                     - description: The helix-assigned unique ID for the customer whose primary contact is being updated
                     - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
-                primaryCustomerContactId:
+                primaryContactCustomerId:
                   allOf:
                     - description: The helix-assigned unique ID for the customer who is to be the new primary contact for `primaryCustomerId`
                     - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
