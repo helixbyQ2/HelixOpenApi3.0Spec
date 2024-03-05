@@ -953,6 +953,16 @@ paths:
                 customField5:
                   type: string
                   maxLength: 100
+                foreignDocumentCountryCode:
+                  type: string
+                  maxLength: 3
+                foreignDocumentExpirationDate:
+                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x/components/schemas/DateTimeMidnight
+                foreignDocumentNumber:
+                  type: string
+                  maxLength: 30
+                foreignDocumentType:
+                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x/components/schemas/CustomerForeignDocumentType
                 businessLegalName:
                   type: string
                 businessDescription:
