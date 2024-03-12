@@ -4837,7 +4837,7 @@ paths:
         - Transaction
       summary: List transactions
       description: |
-        Retrieve a list of transactions restricted by the given parameters. The list is ordered by `settledDate`, descending.
+        Retrieve a list of transactions restricted by the given parameters. The list is ordered by `transaction.createdDate`, descending.
       externalDocs:
         url: https://docs.helix.q2.com/reference/transactionlist
       operationId: transactionList
