@@ -6782,14 +6782,20 @@ components:
         - type: object
           properties:
             data:
-              type: object
-              properties:
-                customerId:
-                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
-                lastContactDate:
-                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/DateTime
-                lastContactType:
-                  $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerLastContactType
+              type: array
+              items:
+                type: object
+                properties:
+                  customerId:
+                    $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
+                  dormancyStatus:
+                    type: string
+                    enum:
+                      - Active
+                  lastContactDate:
+                    $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/DateTime
+                  lastContactType:
+                    $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerLastContactType
     ExternalAccountArchive200Response:
       allOf:
         - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/ApiSuccessEnvelope
