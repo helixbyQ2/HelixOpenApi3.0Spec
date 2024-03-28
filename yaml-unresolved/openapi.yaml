@@ -636,7 +636,7 @@ paths:
                   type: boolean
                 businessNameOnCard:
                   type: string
-                  maxLength: 30
+                  maxLength: 26
                 businessWebsite:
                   type: string
                 tag:
@@ -991,6 +991,9 @@ paths:
                   type: string
                 attesterName:
                   type: string
+                businessNameOnCard:
+                  type: string
+                  maxLength: 26
                 addresses:
                   type: array
                   items:
