@@ -1043,7 +1043,7 @@ paths:
                   $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId32
                 lastContactDate:
                   $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/DateTime
-                lastContctType:
+                lastContactType:
                   $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/CustomerLastContactType
       responses:
         '200':
@@ -6795,6 +6795,8 @@ components:
                     type: string
                     enum:
                       - Active
+                      - Inactive
+                      - Dormant
                   lastContactDate:
                     $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/DateTime
                   lastContactType:
