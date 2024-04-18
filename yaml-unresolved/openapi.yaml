@@ -4971,7 +4971,7 @@ paths:
         Create an outbound wire.
         [block:callout]
         {
-          "type": "danger",
+          "type": "error",
           "body": "This endpoint is still under development. The endpoint definition/specification may change before final release."
         }
         [/block]
