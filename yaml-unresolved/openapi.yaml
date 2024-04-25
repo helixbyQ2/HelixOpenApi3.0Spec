@@ -1865,7 +1865,7 @@ paths:
                   description: Free-form description for why the hold is being placed
                 expirationDate:
                   allOf:
-                  - description: The hold will expire shortly afer midnight (in the Bank of Record's timezone) on the date provided
+                  - description: The hold will expire shortly afer midnight (in the Bank of Record's timezone) on the date provided. **Note:** The time provided must be midnight (00:00:00.000) 
                   - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/DateTimeMidnight
       responses:
         '200':
