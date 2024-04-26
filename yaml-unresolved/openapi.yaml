@@ -4849,6 +4849,7 @@ paths:
         - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/accountId
         - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/pageNumber
         - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/pageSize
+        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/retrieveCardMerchantDetails
         - name: beginDate
           in: path
           required: true
@@ -4904,11 +4905,8 @@ paths:
       operationId: transactionGet
       parameters:
         - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/customerId
-        - name: transactionId
-          in: path
-          required: true
-          schema:
-            $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/schemas/HelixId64
+        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/transactionId
+        - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/retrieveCardMerchantDetails
       responses:
         '200':
           description: An array of <a href="https://docs.helix.q2.com/docs/transaction" target="_blank">transaction</a> objects
