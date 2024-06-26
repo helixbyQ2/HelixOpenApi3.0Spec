@@ -4134,6 +4134,8 @@ paths:
           "body": "Use of this endpoint requires approval from Q2 and your bank partner."
         }
         [/block]
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/cardlimitget
       operationId: cardLimitGet
       parameters:
         - $ref: https://api.swaggerhub.com/domains/Q2BaaS/HelixComponents/3.x#/components/parameters/customerId
@@ -4167,6 +4169,8 @@ paths:
           "body": "Use of this endpoint requires approval from Q2 and your bank partner."
         }
         [/block]
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/cardlimitoverride
       operationId: cardLimitOverride
       requestBody:
         required: true
@@ -4227,6 +4231,8 @@ paths:
           "body": "Use of this endpoint requires approval from Q2 and your bank partner."
         }
         [/block]
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/cardlimittemporaryoverride
       operationId: cardLimitTemporaryOverride
       requestBody:
         required: true
@@ -4286,6 +4292,8 @@ paths:
           "body": "Use of this endpoint requires approval from Q2 and your bank partner."
         }
         [/block]
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/cardlimitreset
       operationId: cardLimitReset
       requestBody:
         required: true
@@ -5070,6 +5078,8 @@ paths:
         | `Pending`       | N/A | Transactions in a `Pending` status can't be updated. |
         | `Settled`       | N/A | Transactions in a `Settled` status can't updated. |
         | `Voided`        | N/A | Transactions in a `Voided` status can't be updated. |
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/transactionsetstatus
       operationId: transactionSetStatus
       requestBody:
         required: true
