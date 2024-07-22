@@ -1,0 +1,2905 @@
+openapi: 3.0.0
+info:
+  title: Helix Components
+  description: Components for Helix API
+  version: 3.x
+components:
+  responses:
+    '400':
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              errors:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Error'
+              requestId:
+                type: string
+                example: b75a96f8-2fbc-4b14-9ba4-7b06aa431c9d
+              status:
+                type: integer
+                enum:
+                  - 400
+    '401':
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              errors:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    code:
+                      type: integer
+                      enum:
+                        - 50401
+                    message:
+                      type: string
+                      example: User is not authorized
+              requestId:
+                type: string
+                enum:
+                  - 00000000-0000-0000-0000-000000000000
+              status:
+                type: integer
+                enum:
+                  - 401
+    '404':
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              errors:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    code:
+                      type: integer
+                      enum:
+                        - 50404
+                    message:
+                      type: string
+                      example: The requested resource 'https://sandbox-api.helix.q2.com/customer/updat/805592' was not found
+              requestId:
+                type: string
+                example: b75a96f8-2fbc-4b14-9ba4-7b06aa431c9d
+              status:
+                type: integer
+                enum:
+                  - 404
+    '405':
+      description: HTTP Method Not Allowed
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              errors:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    code:
+                      type: integer
+                      enum:
+                        - 50405
+                    message:
+                      type: string
+                      example: The HTTP method 'POST' for requested resource 'https://sandbox-api.helix.q2.com/customer/get/805594' is not allowed.
+              requestId:
+                type: string
+                enum:
+                  - 00000000-0000-0000-0000-000000000000
+              status:
+                type: integer
+                enum:
+                  - 405
+    '429':
+      description: Rate Limit Exceeded
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              errors:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    code:
+                      type: integer
+                      enum:
+                        - 50429
+                    message:
+                      type: string
+                      example: Rate limit exceeded
+              requestId:
+                type: string
+                enum:
+                  - 00000000-0000-0000-0000-000000000000
+              status:
+                type: integer
+                enum:
+                  - 429
+  parameters:
+    accountId:
+      name: accountId
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/HelixId32'
+    cardControlId:
+      name: cardControlId
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/HelixId64'
+    cardId:
+      name: cardId
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/HelixId32'
+    customerId:
+      name: customerId
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/HelixId32'
+    culture:
+      name: culture
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/Culture'
+    documentId:
+      name: documentId
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/HelixId32'
+    pageNumber:
+      name: pageNumber
+      in: query
+      required: false
+      description: Which page of the results to return. Use 0 to get the first page.
+      schema:
+        type: integer
+        default: 0
+        minimum: 0
+        maximum: 200
+    pageSize:
+      name: pageSize
+      in: query
+      required: false
+      description: How many results to return on each page. Maximum is 200.
+      schema:
+        type: integer
+        default: 200
+        minimum: 0
+        maximum: 200
+    retrieveCardMerchantDetails:
+      name: retrieveCardMerchantDetails
+      in: query
+      required: false
+      description: Obtain additional card merchant details for card transactions.  **Note:** Use of this parameter may impact endpoint response time and is not subject to standard helix API SLAs and data may be subject to a six (6) month data retention policy.
+      schema:
+        type: boolean
+        default: false
+    tag:
+      name: tag
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/Tag'
+    statementId:
+      name: statementId
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/HelixId64'
+    transactionId:
+      name: transactionId
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/HelixId64'
+  schemas:
+    Account:
+      type: object
+      properties:
+        accessTypeCode:
+          $ref: '#/components/schemas/AccountAccessTypeCode'
+        accountBalance:
+          type: number
+          format: decimal
+        accountId:
+          $ref: '#/components/schemas/HelixId32'
+        accountMinimumBalance:
+          type: number
+          format: decimal
+        accountNumber:
+          type: string
+        accountNumberMasked:
+          type: string
+        availableBalance:
+          type: number
+          format: decimal
+        balanceLastModifiedDate:
+          $ref: '#/components/schemas/DateTime'
+        category:
+          type: string
+          maxLength: 50
+        closedAmount:
+          type: number
+          format: decimal
+        closedDate:
+          $ref: '#/components/schemas/DateTime'
+        closedReason:
+          $ref: '#/components/schemas/AccountCloseReason'
+        closedReasonNotes:
+          $ref: '#/components/schemas/AccountCloseReasonNotes'
+        createdDate:
+          $ref: '#/components/schemas/DateTime'
+        customField1:
+          type: string
+          maxLength: 50
+        customField2:
+          type: string
+          maxLength: 50
+        customField3:
+          type: string
+          maxLength: 50
+        customField4:
+          type: string
+          maxLength: 50
+        customField5:
+          type: string
+          maxLength: 50
+        customerId:
+          $ref: '#/components/schemas/HelixId32'
+        customerPriority:
+          $ref: '#/components/schemas/HelixId32'
+        externalProgramTag:
+          type: string
+        firstDepositDate:
+          $ref: '#/components/schemas/DateTime'
+        globalAccountAccessEnabled:
+          type: boolean
+        interestTransferFkId:
+          $ref: '#/components/schemas/HelixId32'
+        isCloseable:
+          type: boolean
+        isJointAccount:
+          type: boolean
+        isLocked:
+          type: boolean
+        isPrimary:
+          type: boolean
+        isPrimaryCustomer:
+          type: boolean
+        lastModifiedDate:
+          $ref: '#/components/schemas/DateTime'
+        legalName1:
+          $ref: '#/components/schemas/AccountLegalName'
+        legalName2:
+          $ref: '#/components/schemas/AccountLegalName'
+        lockReasonTypeCode:
+          $ref: '#/components/schemas/AccountLockReasonTypeCode'
+        lockTypeCode:
+          $ref: '#/components/schemas/LockTypeCode'
+        maturityTypeCode:
+          type: string
+        name:
+          type: string
+        pendingBalance:
+          type: number
+          format: decimal
+        primaryCustomerId:
+          $ref: '#/components/schemas/HelixId32'
+        productId:
+          $ref: '#/components/schemas/HelixId32'
+        recurringContributionAmount:
+          type: number
+          format: decimal
+        recurringContributionEndDate:
+          $ref: '#/components/schemas/DateTime'
+        recurringContributionFromExternalAccountId:
+          $ref: '#/components/schemas/HelixId32'
+        recurringContributionNextDate:
+          $ref: '#/components/schemas/DateTime'
+        recurringContributionStartDate:
+          $ref: '#/components/schemas/DateTimeMidnight'
+        recurringContributionType:
+          $ref: '#/components/schemas/RecurringContributionType'
+        regDWithdrawalCount:
+          type: integer
+          format: int32
+          minimum: 0
+        routingNumber:
+          type: string
+        routingNumberMasked:
+          type: string
+        sourceLinks:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountLink'
+          deprecated: true
+        status:
+          $ref: '#/components/schemas/AccountStatus'
+        subCategory:
+          type: string
+        tag:
+          $ref: '#/components/schemas/Tag'
+        targetAmount:
+          type: number
+          format: decimal
+        targetDate:
+          $ref: '#/components/schemas/DateTimeMidnight'
+        targetLinks:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountLink'
+          deprecated: true
+        targetMetDate:
+          $ref: '#/components/schemas/DateTime'
+        targetMetPercent:
+          type: number
+          format: decimal
+        totalCustomers:
+          $ref: '#/components/schemas/HelixId32'
+        type:
+          $ref: '#/components/schemas/ProductType'
+    AccountAccessTypeCode:
+      type: string
+      enum:
+        - FULL
+        - AUTHSIGNER
+        - RDONLY
+        - NONE
+    AccountBeneficiary:
+      type: object
+      properties:
+        accountId:
+          $ref: '#/components/schemas/HelixId32'
+        accountLegalName1:
+          type: string
+        accountLegalName2:
+          type: string
+        accountName:
+          type: string
+        accountNumber:
+          type: string
+        accountNumberMasked:
+          type: string
+        addressLine1:
+          type: string
+        addressLine2:
+          type: string
+        addressLine3:
+          type: string
+        addressLine4:
+          type: string
+        birthDate:
+          $ref: '#/components/schemas/DateTimeMidnight'
+        city:
+          type: string
+        country:
+          type: string
+        customerBeneficiaryId:
+          $ref: '#/components/schemas/HelixId32'
+        customerId:
+          $ref: '#/components/schemas/HelixId32'
+        distributionDescription:
+          type: string
+        firstName:
+          type: string
+        isActive:
+          type: boolean
+        lastName:
+          type: string
+        middleName:
+          type: string
+        postalCode:
+          type: string
+        state:
+          type: string
+        taxIdMasked:
+          type: string
+    AccountCloseReason:
+      type: string
+      enum:
+        - Fraud
+        - Never funded
+        - BSA reasons
+        - Relationship ended
+        - Deceased
+        - Other
+    AccountCloseReasonNotes:
+      type: string
+      maxLength: 255
+      description: Required if `closeReason` is `Other`
+    AccountEntitlement:
+      type: object
+      properties:
+        businessCustomerId:
+          $ref: '#/components/schemas/HelixId32'
+        accountId:
+          $ref: '#/components/schemas/HelixId32'
+        customerId:
+          $ref: '#/components/schemas/HelixId32'
+        entitlement:
+          $ref: '#/components/schemas/Entitlement'
+        effectiveDate:
+          $ref: '#/components/schemas/DateTime'
+        firstName:
+          type: string
+        lastName:
+          type: string
+        businessLegalName:
+          type: string
+        doingBusinessAs:
+          type: string
+        legalName1:
+          type: string
+        legalName2:
+          type: string
+        isControlPerson:
+          type: boolean
+        isPrimaryContact:
+          type: boolean
+    AccountHold:
+      type: object
+      properties:
+        accountHoldId:
+          $ref: '#/components/schemas/HelixId32'
+        accountHoldStatusType:
+          $ref: '#/components/schemas/AccountHoldStatusType'
+        accountId:
+          $ref: '#/components/schemas/HelixId32'
+        appliedByUserEmail:
+          type: string
+        appliedByUserId:
+          $ref: '#/components/schemas/HelixId32'
+        appliedDate:
+          $ref: '#/components/schemas/DateTime'
+        comment:
+          type: string
+        customerId:
+          $ref: '#/components/schemas/HelixId32'
+        expirationDate:
+          $ref: '#/components/schemas/DateTime'
+        holdAmount:
+          type: number
+          format: decimal
+        releasedByUserEmail:
+          type: string
+        releasedByUserId:
+          $ref: '#/components/schemas/HelixId32'
+        releasedDate:
+          $ref: '#/components/schemas/DateTime'
+        totalRecordCount:
+          $ref: '#/components/schemas/HelixId32'
+        transactionId:
+          $ref: '#/components/schemas/HelixId64'
+    AccountHoldStatusType:
+      type: string
+      enum:
+        - Active
+        - Expired
+        - Cancelled
+        - ExpiredCancelled
+    AccountLegalName:
+      type: string
+      maxLength: 100
+    AccountLimit:
+      type: object
+      properties:
+        accountId:
+          $ref: '#/components/schemas/HelixId32'
+        isCredit:
+          type: boolean
+        isTemporaryOverride:
+          type: boolean
+        limitEffectiveDate:
+          $ref: '#/components/schemas/DateTime'
+        limitExpireDate:
+          $ref: '#/components/schemas/DateTime'
+        limitId:
+          $ref: '#/components/schemas/HelixId32'
+        maximumAmount:
+          type: number
+          format: decimal
+        paymentType:
+          type: string
+          enum: 
+            - AchOdfi
+        periodType:
+          type: string
+          enum: 
+            - Transaction
+            - Day
+            - Month
+        velocityLimitType:
+          type: string
+          enum: 
+            - Monetary
+    AccountLink:
+      type: object
+      deprecated: true
+      properties:
+        creditSetting:
+          type: number
+          format: decimal
+        customerId:
+          $ref: '#/components/schemas/HelixId32'
+        debitSetting:
+          type: number
+          format: decimal
+        isCreditAutoTransferEnabled:
+          type: boolean
+        isDebitAutoTransferEnabled:
+          type: boolean
+        linkOptionTypeCode:
+          type: string
+          enum:
+            - OVRPRTAMT
+            - OVRPRTMLT
+            - OVRSECPCT
+            - OVRSECFIX
+          description: |
+            - `OVRPRTAMT`: Auto-transfer exact amount of withdrawal
+            - `OVRPRTMLT`: Auto-transfer to the nearest multiple of `debitSetting` to cover withdrawal amount
+            - `OVRSECPCT`: Allow lending up to `debitSetting` percentage of security account funds
+            - `OVRSECFIX`: Allow lending up to fixed amount of `debitSetting`
+        linkTypeCode:
+          type: string
+          enum:
+            - OVRPRT
+            - OVRSEC
+          description: |
+            - `OVRPRT`: Overdraft protention
+            - `OVRSEC`: Overdraft security
+        sourceAccountId:
+          $ref: '#/components/schemas/HelixId32'
+        targetAccountId:
+          $ref: '#/components/schemas/HelixId32'
+    AccountLockReasonTypeCode:
+      type: string
+      enum:
+        - UNK
+        - FRD
+        - ADM
+        - TMP
+        - FRZ
+        - SUS
+        - CO
+        - RTN
+        - REC
+        - DED
+        - DOR
+      description: |
+        - `UNK`: Unknown
+        - `FRD`: Fraud investigation
+        - `ADM`: Administrative
+        - `TMP`: Temporary
+        - `FRZ`: Freeze
+        - `SUS`: Suspected fraud
+        - `CO`: Credits only
+        - `RTN`: Return risk
+        - `REC`: Recovery
+        - `DED`: Deceased
+        - `DOR`: Dormant
+    AccountStatus:
+      type: string
+      enum:
+        - Open
+        - Closed
+        - PendingOpen
+        - PendingClosed
+    Address:
+      type: object
+      required:
+        - addressLine1
+        - addressType
+        - city
+        - country
+        - postalCode
+        - state
+      properties:
+        addressLine1:
+          $ref: '#/components/schemas/AddressLine'
+        addressLine2:
+          $ref: '#/components/schemas/AddressLine'
+        addressLine3:
+          $ref: '#/components/schemas/AddressLine'
+        addressLine4:
+          $ref: '#/components/schemas/AddressLine'
+        addressType:
+          type: string
+          enum:
+            - Individual
+            - Mailing
+            - PrimaryBusiness
+            - Business
+            - Registered
+            - TaxFormMailing
+        city:
+          $ref: '#/components/schemas/City'
+        country:
+          $ref: '#/components/schemas/Country'
+        isActive:
+          type: boolean
+          readOnly: true
+        postalCode:
+          $ref: '#/components/schemas/PostalCode'
+        state:
+          $ref: '#/components/schemas/State'
+    AddressBusinessOnly:
+      type: object
+      required:
+        - addressLine1
+        - addressType
+        - city
+        - country
+        - postalCode
+        - state
+      properties:
+        addressLine1:
+          $ref: '#/components/schemas/AddressLine'
+        addressLine2:
+          $ref: '#/components/schemas/AddressLine'
+        addressLine3:
+          $ref: '#/components/schemas/AddressLine'
+        addressLine4:
+          $ref: '#/components/schemas/AddressLine'
+        addressType:
+          type: string
+          enum:
+            - PrimaryBusiness
+            - Business
+            - Registered
+            - TaxFormMailing
+            - Mailing
+        city:
+          $ref: '#/components/schemas/City'
+        country:
+          $ref: '#/components/schemas/Country'
+        isActive:
+          type: boolean
+          readOnly: true
+        postalCode:
+          $ref: '#/components/schemas/PostalCode'
+        state:
+          $ref: '#/components/schemas/State'
+    AddressIndividualOnly:
+      type: object
+      required:
+        - addressLine1
+        - addressType
+        - city
+        - country
+        - postalCode
+        - state
+      properties:
+        addressLine1:
+          $ref: '#/components/schemas/AddressLine'
+        addressLine2:
+          $ref: '#/components/schemas/AddressLine'
+        addressLine3:
+          $ref: '#/components/schemas/AddressLine'
+        addressLine4:
+          $ref: '#/components/schemas/AddressLine'
+        addressType:
+          type: string
+          enum:
+            - Residence
+            - Mailing
+        city:
+          $ref: '#/components/schemas/City'
+        country:
+          $ref: '#/components/schemas/Country'
+        isActive:
+          type: boolean
+          readOnly: true
+        postalCode:
+          $ref: '#/components/schemas/PostalCode'
+        state:
+          $ref: '#/components/schemas/State'
+    AddressLine:
+      type: string
+      maxLength: 100
+    ApiSuccessEnvelope:
+      type: object
+      properties:
+        errors:
+          type: array
+          items: {}
+          example: []
+        requestId:
+          type: string
+          example: 1249a3bf-aca1-40dd-9fba-2a3193550c39
+        status:
+          type: integer
+          enum:
+            - 200
+        throttle:
+          $ref: '#/components/schemas/ApiThrottle'
+    ApiThrottle:
+      type: object
+      properties:
+        periodEndsAt:
+          $ref: '#/components/schemas/DateTime'
+        periodLengthInSeconds:
+          $ref: '#/components/schemas/HelixId32'
+        periodRequestLimit:
+          $ref: '#/components/schemas/HelixId32'
+        requestsRemainingInPeriod:
+          $ref: '#/components/schemas/HelixId32'
+        warningThreshold:
+          type: number
+          format: decimal
+          example: 0.2
+    AvailabilityAmount:
+      type: object
+      properties:
+        availableDate:
+          $ref: '#/components/schemas/DateTime'
+        effectiveAvailableDate:
+          $ref: '#/components/schemas/DateTime'
+        isReleased:
+          type: boolean
+        overrideAvailableDate:
+          $ref: '#/components/schemas/DateTime'
+        releaseAmount:
+          type: number
+          format: decimal
+        releasedDate:
+          $ref: '#/components/schemas/DateTime'
+        remainingAmount:
+          type: number
+          format: decimal
+    Bank:
+      type: object
+      properties:
+        maintenanceEndDate:
+          $ref: '#/components/schemas/DateTime'
+        maintenanceStartDate:
+          $ref: '#/components/schemas/DateTime'
+        name:
+          type: string
+        phone:
+          type: string
+        timeZone:
+          type: string
+        webUrl:
+          type: string
+    BankDocument:
+      type: object
+      properties:
+        bankId:
+          $ref: '#/components/schemas/HelixId32'
+        culture:
+          $ref: '#/components/schemas/Culture'
+        customerId:
+          allOf:
+            - deprecated: true
+            - $ref: '#/components/schemas/HelixId32'
+        documentId:
+          $ref: '#/components/schemas/HelixId32'
+        documentType:
+          type: string
+          enum:
+            - TermsAndConditions
+            - PrivacyPolicy
+            - TruthInSavings
+            - eStatement
+            - ConsumerDepositAgreement
+            - FeeSchedule
+            - ReferAFriend
+            - EftInfo
+            - ProductInfo
+            - CardInfo
+            - FeeDisclosure
+        downloadUrl:
+          type: string
+        effectiveDate:
+          $ref: '#/components/schemas/DateTime'
+        expireDate:
+          $ref: '#/components/schemas/DateTime'
+        html:
+          type: string
+        programId:
+          $ref: '#/components/schemas/HelixId32'
+        title:
+          type: string
+    Bin:
+      type: object
+      properties:
+        bankIdentificationNumber:
+          type: string
+        binId:
+          $ref: '#/components/schemas/HelixId32'
+        description:
+          type: string
+    Card:
+      type: object
+      properties:
+        accounts:
+          type: array
+          items:
+            type: object
+            properties:
+              accountBalance:
+                type: number
+                format: decimal
+              accountId:
+                $ref: '#/components/schemas/HelixId32'
+              accountNumberMasked:
+                type: string
+              availableBalance:
+                type: number
+                format: decimal
+              balanceLastModifiedDate:
+                $ref: '#/components/schemas/DateTime'
+              cardPriority:
+                $ref: '#/components/schemas/CardPriority'
+              customerId:
+                $ref: '#/components/schemas/HelixId32'
+              lastModifiedDate:
+                $ref: '#/components/schemas/DateTime'
+              name:
+                type: string
+              pendingBalance:
+                type: number
+                format: decimal
+              status:
+                $ref: '#/components/schemas/AccountStatus'
+              tag:
+                $ref: '#/components/schemas/Tag'
+              type:
+                $ref: '#/components/schemas/ProductType'
+        archivedDate:
+          $ref: '#/components/schemas/DateTime'
+        binId:
+          $ref: '#/components/schemas/HelixId32'
+        cardHolderCustomerId:
+          $ref: '#/components/schemas/HelixId32'
+        cardId:
+          $ref: '#/components/schemas/HelixId32'
+        cardNumberMasked:
+          type: string
+        createdDate:
+          $ref: '#/components/schemas/DateTime'
+        customerId:
+          $ref: '#/components/schemas/HelixId32'
+        deniedDate:
+          $ref: '#/components/schemas/DateTime'
+        digitalWalletTokens:
+          type: array
+          items:
+            $ref: '#/components/schemas/DigitalWalletToken'
+        expireMonth:
+          $ref: '#/components/schemas/Month'
+        expireYear:
+          $ref: '#/components/schemas/YearFourDigits'
+        expiredDate:
+          $ref: '#/components/schemas/DateTime'
+        firstName:
+          type: string
+        isDigitalOnly:
+          type: boolean
+        isDualIssuanceSinglePAN:
+          type: boolean
+        lastModifiedDate:
+          $ref: '#/components/schemas/DateTime'
+        lastName:
+          type: string
+        lockReasonTypeCode:
+          type: string
+          enum:
+            - UNK
+            - STL
+            - LST
+            - FRD
+            - DMG
+            - ADM
+            - TMP
+            - PIN
+        lockTypeCode:
+          $ref: '#/components/schemas/LockTypeCode'
+        middleName:
+          type: string
+        nameOnCard:
+          type: string
+        nickName:
+          type: string
+        preferredName:
+          type: string
+        primaryAccountId:
+          $ref: '#/components/schemas/HelixId32'
+        qualifierCode:
+          $ref: '#/components/schemas/QualifierCode'
+        reissuedDate:
+          $ref: '#/components/schemas/DateTime'
+        renewalOverride:
+          $ref: '#/components/schemas/CardRenewalOverride'
+        renewalOverrideReason:
+          type: string
+        requestedDate:
+          $ref: '#/components/schemas/DateTime'
+        status:
+          type: string
+          enum:
+            - Initiated
+            - Pending
+            - PendingVerification
+            - Verified
+            - Denied
+            - Expired
+            - Archived
+            - Reissued
+            - Hotlisted
+            - ReissuedPendingVerification
+            - AutoReissuedPendingVerification
+        tag:
+          $ref: '#/components/schemas/Tag'
+        typeCode:
+          type: string
+          enum:
+            - DBT
+        vendorTypeCode:
+          $ref: '#/components/schemas/CardVendorTypeCode'
+        verifiedDate:
+          $ref: '#/components/schemas/DateTime'
+    CardControl:
+      type: object
+      properties:
+        cardControlId:
+          $ref: '#/components/schemas/HelixId64'
+        cardId:
+          $ref: '#/components/schemas/HelixId32'
+        rules:
+          type: array
+          items:
+            $ref: '#/components/schemas/CardControlRule'
+        tag:
+          $ref: '#/components/schemas/Tag'
+    CardControlRule:
+      type: object
+      required:
+        - source
+      properties:
+        domestic:
+          type: boolean
+        entryMethod:
+          type: array
+          items:
+            type: string
+            enum:
+              - CP
+              - DP
+              - CNP
+              - IAP
+          example:
+            - CP
+            - IAP
+        international:
+          type: boolean
+        limit:
+          type: number
+          format: decimal
+          nullable: true
+        mccs:
+          type: array
+          items:
+            type: string
+            minLength: 4
+            maxLength: 4
+            example: '2741'
+          example:
+            - '2741'
+            - '5912'
+            - '7512'
+        merchantGroups:
+          type: array
+          items:
+            type: string
+            example: CASH
+          example:
+            - CASH
+            - TRAVEL
+        source:
+          type: string
+          enum:
+            - Customer
+            - Program
+        tag:
+          $ref: '#/components/schemas/Tag'
+        usStates:
+          type: array
+          items:
+            $ref: '#/components/schemas/State'
+          example:
+            - CA
+            - TX
+            - NE
+            - IA
+    CardFraudTextAlertEnrollmentStatus:
+      type: string
+      enum:
+        - OptIn
+        - OptOut
+    CardLimitOverrideClassification:
+      type: string
+      enum:
+        - highrisk
+        - lowrisk
+        - businesscard
+    CardLimits:
+      type: object
+      properties:
+        bankCeiling:
+          $ref: '#/components/schemas/CardPurchaseAndWithdrawalLimits'
+        cardId:
+          $ref: '#/components/schemas/HelixId32'
+        customerId:
+          $ref: '#/components/schemas/HelixId32'
+        effectiveDailyLimits:
+          $ref: '#/components/schemas/CardPurchaseAndWithdrawalLimits'
+        limitGroupOverride:
+          nullable: true
+          allOf:
+            - $ref: '#/components/schemas/CardPurchaseAndWithdrawalLimits'
+            - type: object
+              properties:
+                classification:
+                  $ref: '#/components/schemas/CardLimitOverrideClassification'
+        programDefault:
+          allOf:
+            - $ref: '#/components/schemas/CardPurchaseAndWithdrawalLimits'
+            - type: object
+              properties:
+                limitGroupId:
+                  $ref: '#/components/schemas/HelixId32'
+        temporaryOverride:
+          nullable: true
+          allOf:
+            - $ref: '#/components/schemas/CardPurchaseAndWithdrawalLimits'
+            - type: object
+              properties:
+                expirationDate:
+                  type: string
+                  format: date-time
+                comment:
+                  type: string
+    CardPriority:
+      type: integer
+      format: int32
+      minimum: 1
+      maximum: 4
+    CardPurchaseAndWithdrawalLimits:
+      type: object
+      properties:
+        purchaseLimit:
+          type: number
+          format: decimal
+          minimum: 0
+        withdrawalLimit:
+          type: number
+          format: decimal
+          minimum: 0
+    CardRenewalOverride:
+      type: string
+      enum:
+        - Renew
+        - DoNotRenew
+    CardRiskFactors:
+      type: object
+      properties:
+        baseRiskFactor:
+          type: string
+          enum:
+            - TST
+          description: |
+            The risk strategy applied to card on an ongoing basis. Possible value are a combination between Risk Service Management (RSM) preconfigured strategies such as `C0M`, `C1M`, `C2M`, `C3M`, `C4M`, `C9M` and/or Client configured strategies where values are defined by client.
+        cardId:
+          $ref: '#/components/schemas/HelixId32'
+        customerId:
+          $ref: '#/components/schemas/HelixId32'
+        endDate:
+          allOf:
+            - description: The completion date of an `overrideRiskFactor`
+            - $ref: '#/components/schemas/DateTimeMidnight'
+        overrideRiskFactor:
+          type: string
+          enum:
+            - ORR
+          description: |
+            The risk strategy applied to card on an ongoing basis. Possible value are a combination between Risk Service Management (RSM) preconfigured strategies such as `C0M`, `C1M`, `C2M`, `C3M`, `C4M`, `C9M` and/or Client configured strategies where values are defined by client.
+        startDate: 
+          allOf:
+            - description: The beginning date of an `overrideRiskFactor`
+            - $ref: '#/components/schemas/DateTimeMidnight'
+    CardTypeCode:
+      type: string
+      enum:
+        - DBT
+        - GPR
+      description: |
+        - `DBT`: Debit
+        - `GPR`: General Purpose Prepaid
+    CardVendorTypeCode:
+      type: string
+      enum:
+        - VS
+        - MC
+      description: |
+        - `VS`: Visa
+        - `MC`: Mastercard
+    Check:
+      type: object
+      properties:
+        checkAmount:
+          type: number
+          format: decimal
+        checkImages:
+          type: array
+          items:
+            $ref: '#/components/schemas/CheckImage'
+        checkNumber:
+          $ref: '#/components/schemas/HelixId64'
+        holdCode:
+          type: string
+        holdCodeDescription:
+          type: string
+        payerAccountNumberMasked:
+          type: string
+        payerInstitutionDescription:
+          type: string
+        payerRoutingNumber:
+          type: string
+        returnReason:
+          type: string
+        returnReasonCode:
+          type: string
+    CheckImage:
+      type: object
+      properties:
+        downloadUrl:
+          type: string
+        imageType:
+          type: string
+          enum:
+            - CheckFront
+            - CheckBack
+            - ReturnCheckFront
+            - ReturnCheckBack
+    City:
+      type: string
+      maxLength: 50
+    Country:
+      type: string
+      maxLength: 50
+    Culture:
+      type: string
+      # default: en-US
+      enum:
+        - en-US
+        - es-US
+      description: |
+        Accepted values vary by program:
+          - `en-US`: English
+          - `es-US`: Spanish
+    Customer:
+      type: object
+      properties:
+        accessTypeCode:
+          allOf:
+            - deprecated: true
+            - $ref: '#/components/schemas/CustomerAccessTypeCode'
+        accounts:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/Account'
+          description: An array of <a href="https://docs.helix.q2.com/docs/account">account</a> objects owned by the customer
+        addresses:
+          nullable: true
+          type: array
+          items:
+            $ref: '#/components/schemas/Address'
+        attestationDate:
+          $ref: '#/components/schemas/DateTime'
+        attesterName:
+          type: string
+          maxLength: 50
+        attesterTitle:
+          type: string
+          maxLength: 50
+          description: Title of the person attesting to the business' information
+        birthDate:
+          allOf:
+          - description: |
+              Format: yyyy-MM-ddT00:00:00.000+00:00
+              Example: `1976-07-04T00:00:00.000+00:00`
+          - $ref: '#/components/schemas/DateTimeMidnight'
+        businessDescription:
+          type: string
+          maxLength: 200
+        businessLegalName:
+          type: string
+          maxLength: 300
+        businessNameOnCard:
+          type: string
+          maxLength: 26
+        businessWebsite:
+          type: string
+          maxLength: 100
+        cards:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/Card'
+        customerCount:
+          $ref: '#/components/schemas/HelixId32'
+        createdDate:
+          allOf:
+            - description: | 
+                Date the customer was created. **Note: a customer may have been created but is not available for use, depending on the `isLocked` or `status` properties.**
+            - $ref: '#/components/schemas/DateTime'
+        culture:
+          $ref: '#/components/schemas/Culture'
+        customField1:
+          type: string
+          maxLength: 100
+        customField2:
+          type: string
+          maxLength: 100
+        customField3:
+          type: string
+          maxLength: 100
+        customField4:
+          type: string
+          maxLength: 100
+        customField5:
+          type: string
+          maxLength: 100
+        customerId:
+          $ref: '#/components/schemas/HelixId32'
+        doingBusinessAs:
+          type: string
+          maxLength: 200
+        deceasedDate:
+          $ref: '#/components/schemas/DateTime'
+        documentsAcceptedDate:
+          $ref: '#/components/schemas/DateTime'
+        driversLicenseExpireDate:
+          $ref: '#/components/schemas/DateTimeMidnight'
+        driversLicenseIssueDate:
+          $ref: '#/components/schemas/DateTimeMidnight'
+        driversLicenseNumber:
+          type: string
+        driversLicenseNumberMasked:
+          type: string
+        driversLicenseState:
+          $ref: '#/components/schemas/State'
+        emailAddress:
+          type: string
+        exemptFromBeneficialOwnershipReasonType:
+          $ref: '#/components/schemas/ExemptFromBeneficialOwnershipReasonType'
+        externalAccounts:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/ExternalAccount'
+        firstName:
+          type: string
+        foreignDocumentCountryCode:
+          type: string
+          maxLength: 3
+        foreignDocumentExpirationDate:
+          $ref: '#/components/schemas/DateTimeMidnight'
+        foreignDocumentNumber:
+          type: string
+          maxLength: 30
+        foreignDocumentNumberMasked:
+          type: string
+        foreignDocumentType:
+          $ref: '#/components/schemas/CustomerForeignDocumentType'
+        formationDate:
+          $ref: '#/components/schemas/DateTime'
+        formationState:
+          $ref: '#/components/schemas/State'
+        fraudStatus:
+          type: string
+          description: |
+            Customer's status in regards to the 'fraud' customer verification module.
+          enum:
+            - ""
+            - Verified
+            - Denied
+            - Automated Review
+            - Manual Review
+            - Resubmit
+        gender:
+          $ref: '#/components/schemas/Gender'
+        idStatus:
+          $ref: '#/components/schemas/CustomerStatus'
+        industryClassificationCodeId:
+          $ref: '#/components/schemas/HelixId32'
+        iqStatus:
+          type: string
+          enum:
+            - ""
+            - Verified
+            - Denied
+            - Automated Review
+            - Manual Review
+            - Resubmit
+        isActive:
+          type: boolean
+          description: Use `status` instead.
+          deprecated: true
+        isBusiness:
+          type: boolean
+        isDocumentsAccepted:
+          type: boolean
+        isExemptFromBeneficialOwnership:
+          type: boolean
+        isLocked:
+          type: boolean
+        isMinor:
+          type: boolean
+        isOptedInToBankCommunication:
+          type: boolean
+        isRelianceAgreement:
+          type: boolean
+        isSubjectToBackupWithholding:
+          type: boolean
+        isTaxExempt:
+          type: boolean
+        kybStatus:
+          type: string
+          enum:
+            - Initiated
+            - Manual Review
+            - Verified
+            - Denied
+            - Expired
+            - Deceased
+            - Archived
+            - Automated Review
+        kybStatusDate:
+          $ref: '#/components/schemas/DateTime'
+        kycStatus:
+          type: string
+          enum:
+            - ""
+            - Verified
+            - Denied
+            - Automated Review
+            - Manual Review
+            - Resubmit
+        lastContactDate:
+          $ref: '#/components/schemas/DateTime'
+        lastContactType:
+          $ref: '#/components/schemas/CustomerLastContactType'
+        lastModifiedDate:
+          $ref: '#/components/schemas/DateTime'
+        lastName:
+          type: string
+        legalEntityType:
+          $ref: '#/components/schemas/CustomerLegalEntityTypeAll'
+        lockedDate:
+          $ref: '#/components/schemas/DateTime'
+        lockedReason:
+          type: string
+        middleName:
+          type: string
+        ofacStatus:
+          type: string
+          enum:
+            - ""
+            - Verified
+            - Denied
+            - Automated Review
+            - Manual Review
+            - Resubmit
+        passportCountry:
+          type: string
+        passportExpireDate:
+          $ref: '#/components/schemas/DateTime'
+        passportIssueDate:
+          $ref: '#/components/schemas/DateTime'
+        passportNumber:
+          type: string
+        passportNumberMasked:
+          type: string
+        phones:
+          nullable: true
+          type: array
+          items:
+            $ref: '#/components/schemas/Phone'
+        preferredName:
+          type: string
+          maxLength: 21
+        qualiFileStatus:
+          type: string
+          deprecated: true
+        residencyStatusType:
+          $ref: '#/components/schemas/ResidencyStatusType'
+        status:
+          $ref: '#/components/schemas/CustomerStatus'
+        suffix:
+          type: string
+        tag:
+          type: string
+        taxId:
+          $ref: '#/components/schemas/TaxId'
+        taxIdMasked:
+          type: string
+        taxIdType:
+          $ref: '#/components/schemas/TaxIdType'
+        usePreferredNameOnCard:
+          type: boolean
+          default: false
+    CustomerAccessTypeCode:
+      type: string
+      enum:
+        - FULL
+        - ACCT
+        - CARD
+        - FDRY
+    CustomerBeneficiary:
+      type: object
+      properties:
+        addressLine1:
+          type: string
+        addressLine2:
+          type: string
+        addressLine3:
+          type: string
+        addressLine4:
+          type: string
+        birthDate:
+          $ref: '#/components/schemas/DateTime'
+        city:
+          type: string
+        country:
+          type: string
+        customerBeneficiaryId:
+          $ref: '#/components/schemas/HelixId32'
+        customerId:
+          $ref: '#/components/schemas/HelixId32'
+        distributionDescription:
+          type: string
+        emailAddress:
+          type: string
+        firstName:
+          type: string
+        isActive:
+          type: boolean
+        lastModifiedDate:
+          $ref: '#/components/schemas/DateTime'
+        lastName:
+          type: string
+        legalName1:
+          type: string
+          maxLength: 100
+        legalName2:
+          type: string
+          maxLength: 100
+        middleName:
+          type: string
+        phoneNumber:
+          type: string
+        postalCode:
+          type: string
+        state:
+          $ref: '#/components/schemas/State'
+        taxId:
+          $ref: '#/components/schemas/TaxId'
+        taxIdMasked:
+          type: string
+    CustomerBeneficiaryLegalName:
+      type: string
+      maxLength: 100
+    CustomerBeneficiaryName:
+      type: string
+      maxLength: 50
+    CustomerDocument:
+      allOf:
+        - $ref: '#/components/schemas/CustomerDocumentReadOnly'
+        - $ref: '#/components/schemas/CustomerDocumentWritable'
+    CustomerDocumentReadOnly:
+      type: object
+      properties:
+        documentId:
+          $ref: '#/components/schemas/HelixId32'
+        downloadUrl:
+          type: string
+    CustomerDocumentStatusType:
+      type: string
+      enum:
+        - InReview
+        - Accepted
+        - Rejected
+    CustomerDocumentWritable:
+      type: object
+      required:
+        - customerId
+        - documentType
+        - reasonType
+        - documentName
+        - documentContent
+      properties:
+        customerId:
+          $ref: '#/components/schemas/HelixId32'
+        customField1:
+          type: string
+          maxLength: 50
+        customField2:
+          type: string
+          maxLength: 50
+        customField3:
+          type: string
+          maxLength: 50
+        customField4:
+          type: string
+          maxLength: 50
+        customField5:
+          type: string
+          maxLength: 50
+        documentContent:
+          type: string
+          format: byte
+          writeOnly: true
+        documentName:
+          type: string
+          maxLength: 50
+        documentType:
+          type: string
+          enum:
+            - DriversLicense
+            - UtilityBill
+            - BankStatement
+            - NameChangeAffidavit
+            - WrittenStatementOfUnauthorizedDebit
+            - Unspecified
+            - VerificationSummary
+            - DisputeDocumentation
+            - HoldNotice
+            - DriversLicenseBack
+            - PassportFront
+            - PassportBack
+            - UnspecifiedIdCardFront
+            - UnspecifiedIdCardBack
+            - SelfPortrait
+            - DBAStatementOfFiling
+            - FictitiousBusinessName
+            - BusinessLicenseShowingCurrent
+            - AttestationDocument
+            - CertificateOfPartnership
+            - PartnershipAgreement
+            - ProofOfAddress
+            - ArticlesOfOrganization
+            - CertificateOfFormation
+            - CertificateOfOrganization
+            - SecretaryOfStateRegistration
+            - ProofOfGoodStanding
+            - CorporateAuthorization
+            - EINLetter
+            - ArticlesOfIncorporation
+            - Charter
+            - TrustDocuments
+            - CurrentSecretaryOfStateRegistration
+            - CourtDocuments
+            - TrustCertificate
+            - BirthCertificate
+            - SocialSecurityCardFront
+            - SocialSecurityCardBack
+            - SchoolIDFront
+            - SchoolIDBack
+        reasonType:
+          type: string
+          enum:
+            - NameChange
+            - AddressChange
+            - RequestForNewExternalAccount
+            - Unspecified
+            - ManualReview
+            - ReturnOnTransaction
+            - VerificationSummary
+            - DisputeDocumentation
+            - HoldPlaced
+            - AutomatedReview
+            - Remediation Document
+        tag:
+          $ref: '#/components/schemas/Tag'
+    CustomerDriversLicenseNumber:
+      type: string
+      maxLength: 30
+    CustomerEmailAddress:
+      type: string
+      maxLength: 255
+    CustomerFirstName:
+      type: string
+      maxLength: 64
+    CustomerForeignDocumentType:
+      type: string
+      enum:
+        - DriversLicense
+        - ConsularIdCard
+        - Passport
+        - PermanentResidentCard
+        - EmploymentAuthorizationCard
+        - VoterRegistrationCard
+        - IdentificationCard
+    CustomerLastContactType:
+      type: string
+      enum:
+        - Log In
+        - Phone
+        - Email
+        - Chat
+    CustomerLastName:
+      type: string
+      maxLength: 128
+    CustomerLegalEntityTypeAll:
+      type: string
+      enum:
+        - Individual
+        - SingleMemberLLC
+        - SCorporation
+        - CCorporation
+        - SoleProprietorship
+        - NonProfit
+        - Association
+        - Partnership
+        - LimitedLiabilityCompany
+        - LimitedLiabilityPartnership
+        - RevocableTrust
+        - IrrevocableTrust
+        - FinancialInstitutionOther
+        - Estate
+        - Trust
+        - Church
+        - Conservator
+        - Guardianship
+        - Government
+        - Cooperative
+        - BCorporation
+        - TottenTrustPOD
+        - LimitedPartnership
+        - GeneralPartnership
+        - GovernmentDepartment
+        - GovernmentAgency
+        - GovernmentAuthority
+        - GovernmentNonCommercialNonUSDepartmentOrAgency
+        - GovernmentOther
+        - RegulatedFinancialInstitution
+        - RegulatedBankLoanHoldingsCompany
+        - RegulatedSavingsAndLoanHoldingCompany
+        - ForeignFinancialInstitutionRegulatorKeepsUBOInfo
+    CustomerLegalEntityTypeBusinessOnly:
+      type: string
+      enum:
+        - SoleProprietorship
+        - SingleMemberLLC
+        - SCorporation
+        - CCorporation
+        - SoleProprietorship
+        - NonProfit
+        - Association
+        - Partnership
+        - LimitedLiabilityCompany
+        - LimitedLiabilityPartnership
+        - RevocableTrust
+        - IrrevocableTrust
+        - FinancialInstitutionOther
+        - Estate
+        - Trust
+        - Church
+        - Conservator
+        - Guardianship
+        - Government
+        - Cooperative
+        - BCorporation
+        - TottenTrustPOD
+        - LimitedPartnership
+        - GeneralPartnership
+        - GovernmentDepartment
+        - GovernmentAgency
+        - GovernmentAuthority
+        - GovernmentNonCommercialNonUSDepartmentOrAgency
+        - GovernmentOther
+        - RegulatedFinancialInstitution
+        - RegulatedBankLoanHoldingsCompany
+        - RegulatedSavingsAndLoanHoldingCompany
+        - ForeignFinancialInstitutionRegulatorKeepsUBOInfo
+    CustomerNoBusinessFields:  # Still used by /customer/search. Will eventually deprecate
+      type: object
+      properties:
+        accessTypeCode:
+          $ref: '#/components/schemas/CustomerAccessTypeCode'
+        accounts:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/Account'
+        addresses:
+          nullable: true
+          type: array
+          items:
+            $ref: '#/components/schemas/Address'
+        birthDate:
+          $ref: '#/components/schemas/DateTimeMidnight'
+        cards:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/Card'
+        customerCount:
+          $ref: '#/components/schemas/HelixId32'
+        createdDate:
+          $ref: '#/components/schemas/DateTime'
+        culture:
+          $ref: '#/components/schemas/Culture'
+        customField1:
+          type: string
+          maxLength: 100
+        customField2:
+          type: string
+          maxLength: 100
+        customField3:
+          type: string
+          maxLength: 100
+        customField4:
+          type: string
+          maxLength: 100
+        customField5:
+          type: string
+          maxLength: 100
+        customerId:
+          $ref: '#/components/schemas/HelixId32'
+        deceasedDate:
+          $ref: '#/components/schemas/DateTime'
+        documentsAcceptedDate:
+          $ref: '#/components/schemas/DateTime'
+        driversLicenseExpireDate:
+          $ref: '#/components/schemas/DateTimeMidnight'
+        driversLicenseIssueDate:
+          $ref: '#/components/schemas/DateTimeMidnight'
+        driversLicenseNumber:
+          $ref: '#/components/schemas/CustomerDriversLicenseNumber'
+        driversLicenseNumberMasked:
+          type: string
+        driversLicenseState:
+          $ref: '#/components/schemas/State'
+        emailAddress:
+          $ref: '#/components/schemas/CustomerEmailAddress'
+        externalAccounts:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/ExternalAccount'
+        firstName:
+          $ref: '#/components/schemas/CustomerFirstName'
+        fraudStatus:
+          $ref: '#/components/schemas/CustomerStatus'
+        gender:
+          $ref: '#/components/schemas/Gender'
+        idStatus:
+          $ref: '#/components/schemas/CustomerStatus'
+        iqStatus:
+          $ref: '#/components/schemas/CustomerStatus'
+        isActive:
+          type: boolean
+          deprecated: true
+        isDocumentsAccepted:
+          type: boolean
+        isLocked:
+          type: boolean
+        isOptedInToBankCommunication:
+          type: boolean
+        isRelianceAgreement:
+          type: boolean
+        isSubjectToBackupWithholding:
+          type: boolean
+        kycStatus:
+          $ref: '#/components/schemas/CustomerStatus'
+        lastActivityDate:
+          $ref: '#/components/schemas/DateTime'
+        lastModifiedDate:
+          $ref: '#/components/schemas/DateTime'
+        lastName:
+          $ref: '#/components/schemas/CustomerLastName'
+        lockedDate:
+          $ref: '#/components/schemas/DateTime'
+        lockedReason:
+          type: string
+        middleName:
+          $ref: '#/components/schemas/CustomerFirstName'
+        ofacStatus:
+          $ref: '#/components/schemas/CustomerStatus'
+        passportCountry:
+          type: string
+        passportExpireDate:
+          $ref: '#/components/schemas/DateTime'
+        passportIssueDate:
+          $ref: '#/components/schemas/DateTime'
+        passportNumber:
+          $ref: '#/components/schemas/CustomerPassportNumber'
+        passportNumberMasked:
+          type: string
+        phones:
+          nullable: true
+          type: array
+          items:
+            $ref: '#/components/schemas/Phone'
+        qualiFileStatus:
+          type: string
+          deprecated: true
+        residencyStatusType:
+          $ref: '#/components/schemas/ResidencyStatusType'
+        status:
+          $ref: '#/components/schemas/CustomerStatus'
+        suffix:
+          type: string
+        tag:
+          type: string
+        taxId:
+          $ref: '#/components/schemas/TaxId'
+        taxIdMasked:
+          type: string
+        taxIdType:
+          $ref: '#/components/schemas/TaxIdType'
+    CustomerNote:
+      type: object
+      properties:
+        customerId:
+          $ref: '#/components/schemas/HelixId32'
+        customerNoteId:
+          $ref: '#/components/schemas/HelixId64'
+        effective:
+          $ref: '#/components/schemas/DateTime'
+        modifiedBy:
+          $ref: '#/components/schemas/HelixId32'
+        noteText:
+          type: string
+    CustomerPassportCountry:
+      type: string
+      maxLength: 5
+    CustomerPassportNumber:
+      type: string
+      maxLength: 30
+    CustomerRelationship:
+      type: object
+      properties:
+        primaryCustomerId:
+          $ref: '#/components/schemas/HelixId32'
+        relatedCustomerId:
+          $ref: '#/components/schemas/HelixId32'
+        relationshipType:
+          $ref: '#/components/schemas/CustomerRelationshipType'
+        canOpenAccounts:
+          type: boolean
+        isPrimaryContact:
+          type: boolean
+        isControlPerson:
+          type: boolean
+        isBeneficialOwner:
+          type: boolean
+        beneficialOwnerPercentage:
+          type: number
+          format: decimal
+        title:
+          type: string
+          maxLength: 100
+        externalAccountAccessType:
+          $ref: '#/components/schemas/ExternalAccountAccessType'
+    CustomerRelationshipType:
+      type: string
+      enum:
+        - Signer
+        - Owner
+        # - MinorAccount
+        - NonTransactional
+        - BeneficialOwner
+        - Trustee
+        - SuccessorTrustee
+        - Guardian
+        - Conservator
+        - Executor
+        - Agent
+        - PowerOfAttorney
+        - Custodian
+        - Administrator
+        - Fiduciary
+    CustomerStatus:
+      type: string
+      enum:
+        - Active
+        - Initiated
+        - Manual Review
+        - Verified
+        - Denied
+        - Expired
+        - Archived
+        - Deceased
+        - Automated Review
+        - Resubmit
+    CustomerSuffix:
+      type: string
+      maxLength: 20
+    DateTime:
+      type: string
+      format: date-time
+      example: '2021-01-07T19:00:59.761-06:00'
+    DateTimeMidnight:
+      type: string
+      format: date-time
+      example: '2000-07-04T00:00:00.000+00:00'
+    DepositAvailability:
+      type: object
+      properties:
+        availabilityAmounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/AvailabilityAmount'
+        availabilityCode:
+          type: string
+        totalReleasedAmount:
+          type: number
+          format: decimal
+        totalRemainingAmount:
+          type: number
+          format: decimal
+    DigitalWalletDevice:
+      type: object
+      properties:
+        deviceId:
+          type: string
+        deviceIpAddress:
+          type: string
+        deviceLanguageCode:
+          type: string
+        deviceLocation:
+          type: string
+        deviceName:
+          type: string
+        deviceNumber:
+          type: string
+        deviceType:
+          type: string
+          enum:
+            - Card
+            - MobilePhone
+            - Tablet
+            - Watch
+            - MobileDevice
+            - FashionAccessory
+            - HomeAppliance
+            - KeyFob
+            - MediaOrGamingDevice
+            - MobileDeviceAccessory
+            - PCOrLaptop
+            - Vehicle
+            - UnknownOther
+    DigitalWalletInformation:
+      type: object
+      properties:
+        panSource:
+          type: string
+          enum:
+            - KeyEntered
+            - OnFile
+            - MobileBankingApp
+        walletAccountId:
+          type: string
+        walletEmailAddressHashed:
+          type: string
+        walletProviderDeviceScore:
+          type: string
+        walletProviderReasonCodes:
+          type: string
+        walletProviderRiskAssessmentType:
+          type: string
+          enum:
+            - Approved
+            - ApprovedConditionally
+            - NotApproved
+        walletProviderRiskAssessmentVersion:
+          type: string
+    DigitalWalletToken:
+      type: object
+      properties:
+        device:
+          $ref: '#/components/schemas/DigitalWalletDevice'
+        isDeviceProvisioned:
+          type: boolean
+        panReferenceId:
+          type: string
+        token:
+          type: string
+        tokenReferenceId:
+          type: string
+        tokenRequestorId:
+          type: string
+          enum:
+            - '40010030273'
+            - '40010075001'
+            - '40010043095'
+            - '40010075338'
+        tokenRequestorName:
+          type: string
+          enum:
+            - ApplePay
+            - GooglePay
+            - SamsungPay
+            - VisaCheckout
+        tokenStatus:
+          type: string
+          enum:
+            - ActiveForPayment
+            - Initiated
+            - SuspendedTemporarily
+            - DeactivatedPermanently
+        tokenType:
+          type: string
+          enum:
+            - Card on file
+            - Secure element
+            - Cloud based payment/HCE
+            - E-Commerce Enabler
+        walletInformation:
+          $ref: '#/components/schemas/DigitalWalletInformation'
+    DistributionDescription:
+      type: string
+      maxLength: 50
+    DueDiligenceAnswer:
+      type: object
+      required:
+        - questionId
+      properties:
+        answeredDate:
+          $ref: '#/components/schemas/DateTime'
+        questionId:
+          $ref: '#/components/schemas/HelixId64'
+        questionAnswer:
+          format: string
+          maxLength: 255
+        selectedChoices:
+          type: array
+          items:
+            $ref: '#/components/schemas/DueDiligenceSelectedChoice'
+    DueDiligenceCategory:
+      type: object
+      properties:
+        categoryId:
+          $ref: '#/components/schemas/HelixId64'
+        categoryName:
+          type: string
+          maxLength: 100
+        categoryDescription:
+          type: string
+          maxLength: 255
+        followUpQuestions:
+          type: array
+          items:
+            $ref: '#/components/schemas/DueDiligenceQuestion'
+        questions:
+          type: array
+          items:
+            $ref: '#/components/schemas/DueDiligenceQuestion'
+    DueDiligenceChoice:
+      type: object
+      properties:
+        answeredDate:
+          $ref: '#/components/schemas/DateTime'
+        choiceId:
+          $ref: '#/components/schemas/HelixId64'
+        choiceName:
+          type: string
+          maxLength: 100
+        choiceDescription:
+          type: string
+          maxLength: 255
+        followUpQuestionIds:
+          type: array
+          items:
+            $ref: '#/components/schemas/HelixId32'
+    DueDiligenceQuestion:
+      type: object
+      properties:
+        questionId:
+          $ref: '#/components/schemas/HelixId64'
+        questionName:
+          type: string
+          maxLength: 100
+        questionDescription:
+          type: string
+          maxLength: 255
+        answerType:
+          type: string
+          maxLength: 50
+          enum:
+            - Single-Select
+            - Multi-Select
+            - Text
+        answerMaxLength:
+          $ref: '#/components/schemas/HelixId32'
+        choices:
+          type: array
+          items:
+            $ref: '#/components/schemas/DueDiligenceChoice'
+    DueDiligenceSelectedChoice:
+      type: object
+      properties:
+        choiceId:
+          allOf:
+            - description: Required if `choiceName` not present
+            - $ref: '#/components/schemas/HelixId64'
+        choiceName:
+          type: string
+          description: Required if `choiceId` not present
+    Entitlement:
+      type: string
+      enum:
+        - FULL
+        - RDONLY
+        - RDDB
+        - RDCR
+        # - DBONLY
+        # - CRONLY
+      description: |
+        `FULL`: Full
+        `RDONLY`: Read-only
+        `RDDB`: Debit and read
+        `RDCR`: Credit and read
+        `DBONLY`: Debit only
+        `CRONLY`: Credit only
+    Error:
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/HelixId32'
+        message:
+          type: string
+    ExemptFromBeneficialOwnershipReasonType:
+      type: string
+      description: |
+        The reason the business is exempt from Beneficial Ownership. See <a href="https://docs.helix.q2.com/docs/customerexemptfrombeneficialownershipreasontype">customer.exemptFromBeneficialOwnershipType</a> for more details. 
+      enum:
+        - UsStockExchangeTradedEntity
+        - CharityOrNonProfitEntity
+        - PublicAccountingFirmRegisteredUnderSection102
+        - UsStateRegulatedBank
+        - UsRegulatedInsuranceCompany
+        - UsRegulatedFinancialInstitution
+        - UsFederalGovernmentAgency
+        - UsStateGovernmentAgency
+        - UsLocalGovernmentAgency
+        - NonUsGovernmentAgency
+        - BankHoldingCompany
+        - SavingsAndLoanHoldingCompany
+        - FinancialMarketUtility
+        - NonUsEntityOpeningAPrivateBankingAccount
+        - ForeignFinancialInstitution
+        - ClassOfSecuritiesIssuer
+        - SecCurrentRegisteredFirm
+        - CommodityFuturesTradingCommissionRegisteredEntity
+        - ExcludedPooledInvestmentVehicle
+        - NonExcludedPooledInvestmentVehicle
+        - UsStockExchangeMajorityEquityEntity
+    ExternalAccount:
+      type: object
+      properties:
+        accountNumber:
+          type: string
+        accountNumberMasked:
+          type: string
+        businessName:
+          type: string
+          maxLength: 100
+        customField1:
+          type: string
+          maxLength: 50
+        customField2:
+          type: string
+          maxLength: 50
+        customField3:
+          type: string
+          maxLength: 50
+        customField4:
+          type: string
+          maxLength: 50
+        customField5:
+          type: string
+          maxLength: 50
+        customerId:
+          $ref: '#/components/schemas/HelixId32'
+        externalAccountId:
+          $ref: '#/components/schemas/HelixId32'
+        firstName:
+          type: string
+          maxLength: 50
+        isActive:
+          type: boolean
+          deprecated: true
+        isLocked:
+          type: boolean
+        lastModifiedDate:
+          $ref: '#/components/schemas/DateTime'
+        lastName:
+          type: string
+          maxLength: 50
+        lockedDate:
+          $ref: '#/components/schemas/DateTime'
+        lockedReason:
+          type: string
+        name:
+          type: string
+        nickName:
+          type: string
+        nocCode:
+          type: string
+        routingNumber:
+          type: string
+        routingNumberMasked:
+          type: string
+        status:
+          type: string
+          enum:
+            - Unverified
+            - VerifyLocked
+            - Verified
+            - Denied
+            - Expired
+            - Archived
+        statusDate:
+          $ref: '#/components/schemas/DateTime'
+        tag:
+          $ref: '#/components/schemas/Tag'
+        type:
+          $ref: '#/components/schemas/ExternalAccountType'
+    ExternalAccountAccessType:
+      type: string
+      enum:
+        - FULL
+        - RDLY
+        - ACH
+        - NONE
+    ExternalAccountCreateOrInitiate:
+      type: object
+      required:
+        - customerId
+        - routingNumber
+        - accountNumber
+        - firstName
+        - lastName
+        - type
+      properties:
+        customerId:
+          $ref: '#/components/schemas/HelixId32'
+        routingNumber:
+          type: string
+          maxLength: 50
+        accountNumber:
+          type: string
+          maxLength: 17
+        firstName:
+          type: string
+          maxLength: 50
+        lastName:
+          type: string
+          maxLength: 50
+        businessName:
+          type: string
+          maxLength: 100
+        type:
+          $ref: '#/components/schemas/ExternalAccountType'
+        name:
+          type: string
+          maxLength: 50
+        nickName:
+          type: string
+          maxLength: 50
+        tag:
+          $ref: '#/components/schemas/Tag'
+        customField1:
+          type: string
+          maxLength: 50
+        customField2:
+          type: string
+          maxLength: 50
+        customField3:
+          type: string
+          maxLength: 50
+        customField4:
+          type: string
+          maxLength: 50
+        customField5:
+          type: string
+          maxLength: 50
+        requestingCustomerId:
+          allOf:
+            - description: The Helix-assigned unique ID for the individual customer requesting to create the external account. Only used when an individual is creating an external account on behalf of a business.
+            - $ref: '#/components/schemas/HelixId32'
+    ExternalAccountDocument:
+      type: object
+      required:
+        - customerId
+        - externalAccountId
+        - documentType
+        - reasonType
+        - documentName
+        - documentContent
+      properties:
+        customerId:
+          $ref: '#/components/schemas/HelixId32'
+        externalAccountId:
+          $ref: '#/components/schemas/HelixId32'
+        documentType:
+          type: string
+          enum:
+            - DriversLicense
+            - BankStatement
+        reasonType:
+          type: string
+          enum:
+            - NameChange
+            - AddressChange
+            - Unspecified
+        documentName:
+          type: string
+          maxLength: 50
+        documentContent:
+          type: string
+          format: byte
+          writeOnly: true
+    ExternalAccountType:
+      type: string
+      enum:
+        - Checking
+        - Savings
+        - Business Checking
+        - Business Savings
+        - Prepaid
+    FileContent:
+      type: object
+      properties:
+        content:
+          type: string
+          format: byte
+        contentLength:
+          $ref: '#/components/schemas/HelixId64'
+        contentType:
+          type: string
+    Gender:
+      type: string
+      enum:
+        - M
+        - F
+        - U
+    HelixId32:
+      type: integer
+      format: int32
+      minimum: 1
+    HelixId64:
+      type: integer
+      format: int64
+      minimum: 1
+    IndustryClassificationCode:
+      type: object
+      properties:
+        description:
+          type: string
+        industryClassificationCodeId:
+          $ref: '#/components/schemas/HelixId32'
+        industryCode:
+          type: string
+          example: '11'
+        isActive:
+          type: boolean
+        name:
+          type: string
+          example: Agriculture, Forestry, Fishing and Hunting
+    InterestRate:
+      type: object
+      properties:
+        apr:
+          type: number
+          format: decimal
+        apy:
+          type: number
+          format: decimal
+        description:
+          type: string
+        effectiveDate:
+          $ref: '#/components/schemas/DateTime'
+        expireDate:
+          $ref: '#/components/schemas/DateTime'
+        maximumAmount:
+          type: number
+          format: decimal
+        minimumAmount:
+          type: number
+          format: decimal
+        productId:
+          $ref: '#/components/schemas/HelixId32'
+        rateEffectiveDate:
+          $ref: '#/components/schemas/DateTime'
+        rateExpireDate:
+          $ref: '#/components/schemas/DateTime'
+        tier:
+          $ref: '#/components/schemas/HelixId32'
+    Limit:
+      type: object
+      properties:
+        maximumAmount:
+          type: number
+          format: decimal
+        minimumAmount:
+          type: number
+          format: decimal
+    LockTypeCode:
+      type: string
+      enum:
+        - UNL
+        - CST
+        - SYS
+    Month:
+      type: integer
+      minimum: 1
+      maximum: 12
+    Phone:
+      type: object
+      required:
+        - number
+        - phoneType
+      properties:
+        isActive:
+          type: boolean
+          readOnly: true
+        number:
+          type: string
+        phoneType:
+          type: string
+          enum:
+            - Home
+            - Mobile
+            - Office
+    PostalCode:
+      type: string
+      maxLength: 9
+    Product:
+      type: object
+      properties:
+        balanceLimit:
+          $ref: '#/components/schemas/Limit'
+        category:
+          type: string
+          enum:
+            - Prepaid
+            - Savings
+            - Checking
+            - Time Deposit
+            - Ecode
+        description:
+          type: string
+        interestRates:
+          type: array
+          items:
+            $ref: '#/components/schemas/InterestRate'
+        isExternalWithdrawEnabled:
+          type: boolean
+        isInterestEnabled:
+          type: boolean
+        isRecurringContributionEnabled:
+          type: boolean
+        name:
+          type: string
+        perMonthRegDTransactionCountMaximum:
+          $ref: '#/components/schemas/HelixId32'
+        perMonthRegDTransactionCountWithoutFee:
+          $ref: '#/components/schemas/HelixId32'
+        perTransactionDepositLimit:
+          $ref: '#/components/schemas/Limit'
+        perTransactionWithdrawLimit:
+          $ref: '#/components/schemas/Limit'
+        productId:
+          $ref: '#/components/schemas/HelixId32'
+        type:
+          $ref: '#/components/schemas/ProductType'
+    ProductType:
+      type: string
+      enum:
+        - Checking
+        - Savings
+        - ForBenefitOf
+        - Prepaid
+        - Time Deposit
+        - Business Checking
+        - Business Savings
+    Program:
+      type: object
+      properties:
+        accounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProgramAccount'
+        bank:
+          $ref: '#/components/schemas/Bank'
+        bins:
+          type: array
+          items:
+            $ref: '#/components/schemas/Bin'
+        checkingProducts:
+          type: object
+          deprecated: true
+        decimalCount:
+          $ref: '#/components/schemas/HelixId32'
+        externalAccounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProgramExternalAccount'
+        filledDate:
+          $ref: '#/components/schemas/DateTime'
+        isDebitRewardsEnabled:
+          type: boolean
+        isInterestEnabled:
+          type: boolean
+        isInternalToInternalTransferEnabled:
+          type: boolean
+        isRecurringContributionEnabled:
+          type: boolean
+        name:
+          type: string
+        perProgramDailyDepositLimit:
+          $ref: '#/components/schemas/Limit'
+        perProgramDailyWithdrawLimit:
+          $ref: '#/components/schemas/Limit'
+        perTransactionDepositLimit:
+          $ref: '#/components/schemas/Limit'
+        perTransactionWithdrawLimit:
+          $ref: '#/components/schemas/Limit'
+        perUserAccountCountMax:
+          $ref: '#/components/schemas/HelixId32'
+        perUserDailyDepositLimit:
+          $ref: '#/components/schemas/Limit'
+        perUserDailyWithdrawLimit:
+          $ref: '#/components/schemas/Limit'
+        perUserExternalAccountCountMax:
+          $ref: '#/components/schemas/HelixId32'
+        perUserMonthlyDepositLimit:
+          $ref: '#/components/schemas/Limit'
+        perUserMonthlyWithdrawLimit:
+          $ref: '#/components/schemas/Limit'
+        perUserTotalAccountBalanceMax:
+          type: number
+          format: decimal
+        prepaidProducts:
+          type: object
+          deprecated: true
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/Product'
+        publicKeyAlgorithms:
+          type: string
+        regDFeeAmount:
+          type: number
+          format: decimal
+        regDMonthlyTransactionWithdrawCountMax:
+          $ref: '#/components/schemas/HelixId32'
+        savingsProducts:
+          type: object
+          deprecated: true
+        timeZone:
+          type: string
+        validAccountTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductType'
+        validProductTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductType'
+        verificationType:
+          type: string
+        website:
+          type: string
+    ProgramAccount:
+      type: object
+      properties:
+        accountBalance:
+          type: number
+          format: decimal
+        accountId:
+          $ref: '#/components/schemas/HelixId32'
+        accountNumber:
+          type: string
+        accountNumberMasked:
+          type: string
+        description:
+          type: string
+        isActive:
+          type: boolean
+        programAccountId:
+          $ref: '#/components/schemas/HelixId32'
+        type:
+          type: string
+    ProgramExternalAccount:
+      type: object
+      properties:
+        accountNumber:
+          type: string
+        accountNumberMasked:
+          type: string
+        description:
+          type: string
+        externalAccountId:
+          $ref: '#/components/schemas/HelixId32'
+        isActive:
+          type: boolean
+        nachaName:
+          type: string
+        programExternalAccountId:
+          $ref: '#/components/schemas/HelixId32'
+        routingNumber:
+          type: string
+        type:
+          type: string
+    QualifierCode:
+      type: string
+      maxLength: 3
+    RecurringContributionType:
+      type: string
+      enum:
+        - None
+        - BiWeekly
+        - Monthly
+    ResidencyStatusType:
+      type: string
+      enum:
+        - UsCitizen
+        - ResidentAlien
+        - NonResidentAlien
+    State:
+      type: string
+      maxLength: 2
+    Statement:
+      type: object
+      properties:
+        createdDate:
+          $ref: '#/components/schemas/DateTime'
+        customerId:
+          $ref: '#/components/schemas/HelixId32'
+        month:
+          $ref: '#/components/schemas/Month'
+        statementId:
+          $ref: '#/components/schemas/HelixId64'
+        type:
+          $ref: '#/components/schemas/StatementType'
+        year:
+          $ref: '#/components/schemas/YearFourDigits'
+    StatementType:
+      type: string
+      enum:
+        - Monthly
+        - Tax1099INT
+        - Quarterly
+        - Tax1099MISC
+    StopPay:
+      type: object
+      properties:
+        accountId:
+          $ref: '#/components/schemas/HelixId32'
+        amountMaximum:
+          type: number
+          format: decimal
+          minimum: 0.01
+        amountMinimum:
+          type: number
+          format: decimal
+          minimum: 0.01
+        checkNumberMaximum:
+          $ref: '#/components/schemas/HelixId32'
+        checkNumberMinimum:
+          $ref: '#/components/schemas/HelixId32'
+        comment:
+          type: string
+        companyId:
+          type: string
+        createdDate:
+          $ref: '#/components/schemas/DateTime'
+        customerId:
+          $ref: '#/components/schemas/HelixId32'
+        expireDate:
+          $ref: '#/components/schemas/DateTime'
+        payeeName:
+          type: string
+        paymentType:
+          type: string
+        stopPayId:
+          $ref: '#/components/schemas/HelixId32'
+        stopPayType:
+          type: string
+          enum:
+            - OneTime
+            - Permanent
+    Tag:
+      type: string
+      maxLength: 50
+    TaxId:
+      type: string
+      maxLength: 30
+      description: No formatting (no dashes, spaces, etc).
+    TaxIdType:
+      type: string
+      enum:
+        - SSN
+        - EIN
+        - ITIN
+    Transaction:
+      type: object
+      properties:
+        accountId:
+          $ref: '#/components/schemas/HelixId32'
+        amount:
+          type: number
+          format: decimal
+        availableDate:
+          $ref: '#/components/schemas/DateTime'
+        cardId:
+          $ref: '#/components/schemas/HelixId32'
+        cardMerchantInfo:
+          type: object
+          properties:
+            merchantCity:
+              type: string
+              maxLength: 13
+            merchantCountryCode:
+              type: string
+              maxLength: 2
+            merchantGroupcode:
+              type: string
+              maxLength: 6
+            merchantId:
+              type: string
+              maxLength: 15
+            merchantLocation:
+              type: string
+              maxLength: 23
+            merchantStateCode:
+              type: string
+              maxLength: 2
+            merchantZipCode:
+              type: string
+              maxLength: 9
+        check:
+          $ref: '#/components/schemas/Check'
+        createdDate:
+          $ref: '#/components/schemas/DateTime'
+        customerId:
+          $ref: '#/components/schemas/HelixId32'
+        customField1:
+          type: string
+        depositAvailability:
+          $ref: '#/components/schemas/DepositAvailability'
+        description:
+          type: string
+        feeCode:
+          type: string
+          enum:
+            - ACH
+            - DAF
+            - IAF
+            - ICF
+            - NSF
+            - RGD
+            - RTN
+        feeDescription:
+          type: string
+        friendlyDescription:
+          type: string
+        institutionName:
+          type: string
+        isCredit:
+          type: boolean
+        isEarlyDirectDeposit:
+          type: boolean
+        isSameDaySettle:
+          type: boolean
+        masterId:
+          $ref: '#/components/schemas/HelixId64'
+        nachaDescription:
+          type: string
+          deprecated: true
+        nachaInfo:
+          type: object
+          properties:
+            companyDiscretionaryData:
+              type: string
+            companyEntryDescription:
+              type: string
+            companyIdentification:
+              type: string
+            companyName:
+              type: string
+            isEarlyDeposit:
+              type: boolean
+            nachaSettledDate:
+              $ref: '#/components/schemas/DateTime'
+            standardEntryClassCode:
+              type: string
+        purposeCode:
+          $ref: '#/components/schemas/TransactionPurposeCode'
+        requestingCustomerId:
+          $ref: '#/components/schemas/HelixId32'
+        returnCode:
+          type: string
+        runningAccountBalance:
+          type: number
+          format: decimal
+        settledDate:
+          $ref: '#/components/schemas/DateTime'
+        statementDate:
+          $ref: '#/components/schemas/DateTime'
+        status:
+          $ref: '#/components/schemas/TransactionStatus'
+        subType:
+          type: string
+        subTypeCode:
+          type: string
+        tag:
+          $ref: '#/components/schemas/Tag'
+        transactionCount:
+          $ref: '#/components/schemas/HelixId32'
+        transactionId:
+          $ref: '#/components/schemas/HelixId64'
+        type:
+          type: string
+        typeCode:
+          type: string
+        voidedDate:
+          $ref: '#/components/schemas/DateTime'
+    TransactionPurposeCode:
+      type: string
+      maxLength: 10
+      pattern: '^[0-9][A-Z][a-z]$'
+    TransactionStatus:
+      type: string
+      enum:
+      - Initiated
+      - Pending
+      - Settled
+      - Voided
+    TransferResponse:
+      type: object
+      properties:
+        customerId:
+          $ref: '#/components/schemas/HelixId32'
+        masterId:
+          $ref: '#/components/schemas/HelixId64'
+        tag:
+          $ref: '#/components/schemas/Tag'
+        transactionId:
+          $ref: '#/components/schemas/HelixId64'
+    YearFourDigits:
+      type: integer
+      minimum: 1900
+      maximum: 9999
+  requestBodies: {}
+  headers: {}
