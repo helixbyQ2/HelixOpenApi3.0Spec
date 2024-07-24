@@ -2137,8 +2137,6 @@ components:
             - Single-Select
             - Multi-Select
             - Text
-        answerMaxLength:
-          $ref: '#/components/schemas/HelixId32'
         choices:
           type: array
           items:
