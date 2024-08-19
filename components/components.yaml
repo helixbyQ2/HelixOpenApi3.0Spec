@@ -2895,6 +2895,309 @@ components:
           $ref: '#/components/schemas/Tag'
         transactionId:
           $ref: '#/components/schemas/HelixId64'
+    Wire:
+      type: object
+      properties:
+        accountAmount:
+          type: number
+          format: decimal
+        accountId:
+          $ref: '#/components/schemas/HelixId32'
+        availableAmount:
+          type: number
+          format: decimal
+        isWireOFACWithVerafinEnabled:
+          type: boolean
+        nameMisMatchFound:
+          type: boolean
+        nameMisMatchOverriden:
+          type: boolean
+        ofacCheckStatus:
+          type: boolean
+        pendingAmount:
+          type: number
+          format: decimal
+        productThresholdExceptionFound:
+          type: boolean
+        productThresholdExceptionOverriden:
+          type: boolean
+        programId:
+          $ref: '#/components/schemas/HelixId32'
+        wire:
+          type: object
+          properties:
+            amount:
+              type: object
+              properties:
+                amt:
+                  type: number
+                  format: decimal
+                value:
+                  type: string
+            beneficiary:
+              type: object
+              properties:
+                addressLine1:
+                  type: string
+                addressLine2:
+                  type: string
+                addressLine3:
+                  type: string
+                idCode:
+                  $ref: '#/components/schemas/WireOriginatorOrBeneficiaryIdCode'
+                identifier:
+                  type: string
+                identifierMasked:
+                  type: string
+                name:
+                  type: string
+                value:
+                  type: string
+            beneficiarysFI:
+              type: object
+              properties:
+                addressLine1:
+                  type: string
+                addressLine2:
+                  type: string
+                addressLine3:
+                  type: string
+                idCode:
+                  $ref: '#/components/schemas/WireOriginatorOrBeneficiaryIdCode'
+                identifier:
+                  type: string
+                identifierMasked:
+                  type: string
+                name:
+                  type: string
+                value:
+                  type: string
+            businessFunction:
+              type: object
+              properties:
+                businessFunctionCode:
+                  type: string
+                delimiter:
+                  type: string
+                transactionTypeCode:
+                  type: string
+                value:
+                  type: string
+            imad:
+              type: object
+              properties:
+                inputCycle:
+                  type: string
+                inputCycleDate:
+                  type: string
+                inputSequenceNumber:
+                  type: string
+                inputSequenceNumberNumeric:
+                  type: integer
+                inputSource:
+                  type: string
+                value:
+                  type: string
+            messageDisposition:
+              type: object
+              properties:
+                formatVersion:
+                  type: string
+                messageDuplicationCode:
+                  type: string
+                messageStatusIndicator:
+                  type: string
+                testProdCode:
+                  type: string
+                value:
+                  type: string
+            omad:
+              type: object
+              properties:
+                frbApplicationID:
+                  type: string
+                outputCycleDate:
+                  type: string
+                outputDate:
+                  type: string
+                outputDateTime:
+                  type: string
+                outputDestinationID:
+                  type: string
+                outputSequenceNumber:
+                  type: string
+                outputTime:
+                  type: string
+                value:
+                  type: string
+            originator:
+              type: object
+              properties:
+                addressLine1:
+                  type: string
+                addressLine2:
+                  type: string
+                addressLine3:
+                  type: string
+                idCode:
+                  $ref: '#/components/schemas/WireOriginatorOrBeneficiaryIdCode'
+                identifier:
+                  type: string
+                identifierMasked:
+                  type: string
+                name:
+                  type: string
+                value:
+                  type: string
+            originatorToBeneficiaryInformation:
+              type: object
+              properties:
+                line1:
+                  type: string
+                line2:
+                  type: string
+                line3:
+                  type: string
+                line4:
+                  type: string
+                lineCount:
+                  type: integer
+                value:
+                  type: string
+            receiptTimeStamp:
+              type: object
+              properties:
+                receiptApplicationId:
+                  type: string
+                receiptDate:
+                  type: string
+                receiptDateDD:
+                  type: integer
+                  minimum: 1
+                receiptDateMM:
+                  type: integer
+                  minimum: 1
+                receiptDateTimeWithYear:
+                  type: string
+                receiptTime:
+                  type: string
+                value:
+                  type: string
+            receiverDI:
+              type: object
+              properties:
+                abaNumber:
+                  type: string
+                delimiter:
+                  type: string
+                shortName:
+                  type: string
+                value:
+                  type: string
+            senderDI:
+              type: object
+              properties:
+                abaNumber:
+                  type: string
+                delimiter:
+                  type: string
+                shortName:
+                  type: string
+                value:
+                  type: string
+            senderReference:
+              type: object
+              properties:
+                senderReferenceText:
+                  type: string
+                value:
+                  type: string
+            senderSuppliedInformation:
+              type: object
+              properties:
+                formatVersion:
+                  type: string
+                messageDuplicationCode:
+                  type: string
+                testProdCode:
+                  type: string
+                userRequestCorrelation:
+                  type: string
+                value:
+                  type: string
+            typeSubtype:
+              type: object
+              properties:
+                subtypeCode:
+                  type: string
+                  enum:
+                  - '00'
+                  - '01'
+                  - '02'
+                  - '07'
+                  - '08'
+                  - '31'
+                  - '32'
+                  - '33'
+                  - '90'
+                typeCode:
+                  type: string
+                  enum:
+                  - '10'
+                  - '15'
+                  - '16'
+                value:
+                  type: string
+        wireDecisionNote:
+          type: string
+        wireFileStatus:
+          type: string
+          enum:
+            - 'A'
+            - 'B'
+            - 'C'
+            - 'D'
+            - 'E'
+            - 'F'
+            - 'I'
+            - 'O'
+            - 'P'
+            - 'Q'
+            - 'R'
+            - 'S'
+            - 'T'
+            - 'U'
+            - 'V'
+            - 'X'
+        wireId:
+          $ref: '#/components/schemas/HelixId64'
+        wireOFACWithVerafinInstitutionId:
+          type: string
+        wireOFACWithVerafinVendorName:
+          type: string
+        wireTags:
+          type: object
+          minProperties: 0
+        wireType:
+          type: string
+          enum:
+          - Outbound
+          - Inbound
+    WireOriginatorOrBeneficiaryIdCode:
+      type: string
+      enum:
+      - B
+      - C
+      - D
+      - F
+      - T
+      - U
+      - '1'
+      - '2'
+      - '3'
+      - '4'
+      - '5'
+      - '9'
     YearFourDigits:
       type: integer
       minimum: 1900
