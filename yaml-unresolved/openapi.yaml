@@ -2991,7 +2991,7 @@ paths:
                   description: |
                     `true` to order a physical card, `false` to waive. 
                 requestingCustomerId:
-                  allof:
+                  allOf:
                   - description: The helix-assigned unique ID for the customer requesting to create a new card for a business cardholder
                   - $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
       responses:
@@ -3113,7 +3113,7 @@ paths:
                 binId:
                   $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
                 requestingCustomerId:
-                  allof:
+                  allOf:
                   - description: The helix-assigned unique ID for the customer requesting to create a new virtual card for a business cardholder
                   - $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
       responses:
@@ -3164,7 +3164,7 @@ paths:
                 cardId:
                   $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
                 requestingCustomerId:
-                  allof:
+                  allOf:
                   - description: The helix-assigned unique ID for the customer requesting to create a physical card for a virtual card held by a business cardholder
                   - $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
       responses:
@@ -3951,7 +3951,7 @@ paths:
                     - description: Tag to associate with the new cardId
                     - $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/Tag
                 requestingCustomerId:
-                  allof:
+                  allOf:
                   - description: The helix-assigned unique ID for the customer requesting to reissue an existing card for a business cardholder
                   - $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
       responses:
