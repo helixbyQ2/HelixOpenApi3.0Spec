@@ -2994,6 +2994,14 @@ paths:
                   allOf:
                   - description: The helix-assigned unique ID for the customer requesting to create a new card for a business cardholder
                   - $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
+                expediteCard:
+                  type: boolean
+                  default: false
+                  description: Card order indicator to have physical card expedited by the card print vendor
+                bypassExpediteCardFee:
+                  type: boolean
+                  default: false
+                  description: Identifier to allow program to waive any program fee for expedited card request
       responses:
         '200':
           description: A <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a> object
