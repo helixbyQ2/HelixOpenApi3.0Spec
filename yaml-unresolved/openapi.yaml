@@ -78,7 +78,7 @@ paths:
     get:
       tags:
         - Program
-      summary: Get customer due diligence questions
+      summary: Get customer due diligence questions for the program
       description: Retrieve active customer onboarding questions
       externalDocs:
         url: https://docs.helix.q2.com/reference/programquestionslist
