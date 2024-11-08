@@ -2810,6 +2810,111 @@ paths:
           $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/405
         '429':
           $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/429
+  /transfer/achOrigination/create:
+    post:
+      tags:
+        - Transfer
+      summary: Create an ACH-originated debit or credit transaction
+      description:  |
+        Create an ACH-originated transaction. See <a href="https://docs.helix.q2.com/docs/transfer" target="_blank">transfer object definition</a> for parameter details.
+        [block:callout]
+        {
+          "type": "warning",
+          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
+        }
+        [/block]
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/transferachoriginationcreate
+      operationId: transferAchOriginationCreate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - accountId
+                - amount
+                - companyEntryDescription
+                - customerId
+                - dFIAccountNumber
+                - direction
+                - effectiveEntryDate
+                - isPrenote
+                - isReversal
+                - paymentRelatedInformation
+                - receiverAccountType
+                - receiverName
+                - recieverFIRoutingNumber
+                - standardEntryClassCode
+                - tag
+              properties:
+                accountId:
+                  allOf:
+                    - description: The accountId to which funds are being deposited or from which funds are being withdrawn. **Note:** This is not accountNumber.
+                    - $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
+                amount:
+                  type: number
+                  format: decimal
+                  minimum: 0.01
+                companyEntryDescription:
+                  type: integer
+                  maxLength: 10
+                customerId:
+                  $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
+                dFIAccountNumber:
+                  type: string
+                  maxLength: 17
+                direction:
+                  enum:
+                    - Credit
+                    - Debit
+                effectiveEntryDate:
+                  type: string
+                  format: date
+                isPrenote:
+                  type: boolean
+                isReversal:
+                  type: boolean
+                paymentRelatedInformation:
+                  type: string
+                  maxLength: 80
+                receiverAccountType:
+                  type: string
+                  enum:
+                    - Checking
+                    - Savings
+                    - Loan
+                    - General Ledger
+                receiverName:
+                  type: string
+                  maxLength: 22
+                recieverFIRoutingNumber:
+                  type: string
+                  maxLength: 9
+                standardEntryClassCode:
+                  type: string
+                  maxLength: 3
+                tag:
+                  type: string
+                  maxLength: 50
+      responses:
+        '200':
+          description: An <a href="https://docs.helix.q2.com/docs/transaction" target="_blank">transaction</a> object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionObject200Response'
+        '400':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/400
+        '401':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/401
+        '404':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/404
+        '405':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/405
+        '429':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/429
   /card/list/{customerId}:
     get:
       tags:
