@@ -2839,15 +2839,12 @@ paths:
                 - customerId
                 - dFIAccountNumber
                 - direction
-                - effectiveEntryDate
                 - isPrenote
                 - isReversal
-                - paymentRelatedInformation
                 - receiverAccountType
                 - receiverName
                 - recieverFIRoutingNumber
                 - standardEntryClassCode
-                - tag
               properties:
                 accountId:
                   allOf:
