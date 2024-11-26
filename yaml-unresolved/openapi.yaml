@@ -2855,7 +2855,7 @@ paths:
                   format: decimal
                   minimum: 0.01
                 companyEntryDescription:
-                  type: string 10
+                  type: string
                   maxLength: 10
                 customerId:
                   $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
