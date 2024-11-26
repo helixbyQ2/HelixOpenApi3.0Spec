@@ -2855,7 +2855,7 @@ paths:
                   format: decimal
                   minimum: 0.01
                 companyEntryDescription:
-                  type: integer
+                  type: string 10
                   maxLength: 10
                 customerId:
                   $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
@@ -2877,7 +2877,6 @@ paths:
                   type: string
                   maxLength: 80
                 receiverAccountType:
-                  type: string
                   enum:
                     - Checking
                     - Savings
@@ -2886,7 +2885,7 @@ paths:
                 receiverName:
                   type: string
                   maxLength: 22
-                recieverFIRoutingNumber:
+                receiverFIRoutingNumber:
                   type: string
                   maxLength: 9
                 standardEntryClassCode:
