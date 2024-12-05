@@ -5236,6 +5236,52 @@ paths:
           $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/405
         '429':
           $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/429
+  /transaction/createFee:
+    post:
+      tags:
+        - Transaction
+      summary: Assess a fee to a specified customer account
+      description: Assess a fee to a specified customer account. Transfer funds from one account to another. Results in a new transaction which can be retrieved via the various [/transaction/*](https://docs.helix.q2.com/reference/transaction-reference) endpoints. 
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/transactioncreateFee
+      operationId: /transaction/createFee
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - accountId
+                - customerId
+                - feeAmount
+                - feeTypeId
+              properties:
+                accountId:
+                  $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
+                customerId:
+                  $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
+                feeAmount:
+                  $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId64
+                feeTypeId:
+                  $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId64
+      responses:
+        '200':
+          description: A <a href="https://docs.helix.q2.com/docs/transaction" target="_blank">transaction</a> object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionObject200Response'
+        '400':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/400
+        '401':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/401
+        '404':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/404
+        '405':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/405
+        '429':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/429
   /statement/list/{customerId}:
     get:
       tags:
