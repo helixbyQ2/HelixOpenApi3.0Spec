@@ -424,6 +424,15 @@ components:
         - Relationship ended
         - Deceased
         - Other
+        - Consolidating Bank Accounts
+        - re-CIP
+        - Risk-Related
+        - Member Requested
+        - Negative Balance (Reopen Eligible)
+        - Negative Balance (Reopen Ineligible)
+        - ID Theft
+        - Account Take Over
+        - Dormant
     AccountCloseReasonNotes:
       type: string
       maxLength: 255
