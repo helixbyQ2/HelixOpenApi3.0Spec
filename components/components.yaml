@@ -434,14 +434,14 @@ components:
         - Account Take Over
         - Dormant
       description: The following values are not enabled by default and require additional configuration.
-      - `re-CIP`
-      - `Risk-Related`
-      - `Member Requested`
-      - `Negative Balance (Reopen Eligible)`
-      - `Negative Balance (Reopen Ineligible)`
-      - `ID Theft`
-      - `Account Take Over`
-      - `Dormant`
+        - `re-CIP`
+        - `Risk-Related`
+        - `Member Requested`
+        - `Negative Balance (Reopen Eligible)`
+        - `Negative Balance (Reopen Ineligible)`
+        - `ID Theft`
+        - `Account Take Over`
+        - `Dormant`
       Contact the Helix Support team for more information.
     AccountCloseReasonNotes:
       type: string
