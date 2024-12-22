@@ -5267,11 +5267,11 @@ paths:
                   $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId64
       responses:
         '200':
-          description: A <a href="https://docs.helix.q2.com/docs/transaction" target="_blank">transaction</a> object
+          description: A <a href="https://docs.helix.q2.com/reference/transactioncreatefee" target="_blank">feeResult</a> object
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TransactionObject200Response'
+                $ref: '#/components/schemas/TransactionCreateFeeObject200Response'
         '400':
           $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/400
         '401':
@@ -7084,6 +7084,13 @@ components:
           properties:
             data:
               $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/Transaction
+    TransactionFeeResult200Response:
+      allOf:
+        - $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/ApiSuccessEnvelope
+        - type: object
+          properties:
+            data:
+              $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/TransactionFeeResult
     TransferCreate200Response:
       allOf:
         - $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/ApiSuccessEnvelope
