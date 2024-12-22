@@ -5271,7 +5271,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TransactionCreateFeeObject200Response'
+                $ref: '#/components/schemas/TransactionFeeResult200Response'
         '400':
           $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/400
         '401':
