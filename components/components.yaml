@@ -2896,6 +2896,16 @@ components:
           type: string
         voidedDate:
           $ref: '#/components/schemas/DateTime'
+    TransactionFeeResult:
+      type: object
+      properties:
+        feeAmount:
+          type: number
+          format: decimal
+        feeToApplyId:
+          $ref: '#/components/schemas/HelixId64'
+        feeType:
+          type: string
     TransactionPurposeCode:
       type: string
       maxLength: 10
