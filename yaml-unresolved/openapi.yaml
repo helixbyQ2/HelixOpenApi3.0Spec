@@ -7041,6 +7041,15 @@ components:
           properties:
             data:
               $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/ExternalAccount
+    FeeObject200Response:
+      allOf:
+        - $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/ApiSuccessEnvelope
+        - type: object
+          properties:
+            data:
+              type: array
+              items:
+                $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/Fee
     FileContentObject200Response:
       allOf:
         - $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/ApiSuccessEnvelope
