@@ -213,6 +213,12 @@ components:
       required: true
       schema:
         $ref: '#/components/schemas/HelixId64'
+    feeEngineExecutionTypeId:
+      name: feeEngineExecutionTypeId
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/HelixId64'
   schemas:
     Account:
       type: object
