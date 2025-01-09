@@ -45,6 +45,8 @@ tags:  # NEVER CHANGE THESE!!!!! IT WILL BREAK DOCUMENTATION
     description: External Account Document endpoints
   - name: Stop Pay
     description: Stop pay endpoints
+  - name: Fee
+    description: Fee endpoints
 security:
   - basicAuth: []
 paths:
@@ -4931,6 +4933,7 @@ paths:
         required: true
         content:
           application/json:
+
             schema:
               type: object
               required:
@@ -4959,6 +4962,40 @@ paths:
             application/json:
               schema:
                 $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/ApiSuccessEnvelope
+  /fee/config/list:
+    get:
+      tags:
+        - Fee
+      summary: Get fees
+      description: |
+        [block:callout]
+        {
+          "type": "warning",
+          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
+        }
+        [/block]
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/feeconfiglist
+      operationId: feeConfigList
+      parameters:
+        - $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/parameters/feeEngineExecutionTypeId
+      responses:
+        '200':
+          description: An array of <a href="https://docs.helix.q2.com/docs/fee-configuration" target="_blank">feeConfiguration</a> objects.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeeObject200Response'
+        '400':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/400
+        '401':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/401
+        '404':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/404
+        '405':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/405
+        '429':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/429
   /transaction/list/{customerId}/{accountId}/{beginDate}/{endDate}:
     get:
       tags:
