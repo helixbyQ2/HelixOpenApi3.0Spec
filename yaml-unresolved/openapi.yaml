@@ -4962,7 +4962,7 @@ paths:
             application/json:
               schema:
                 $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/ApiSuccessEnvelope
-  /fee/config/list:
+  /fee/config/list/{feeEngineExecutionTypeId}:
     get:
       tags:
         - Fee
