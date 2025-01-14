@@ -2403,6 +2403,18 @@ components:
         - Business Checking
         - Business Savings
         - Prepaid
+    FeeConfig:
+      type: object
+      properties:
+        amount:
+          type: number
+          format: decimal
+        description:
+          type: string
+        feeCode:
+          type: string
+        feeTypeId:
+          $ref: '#/components/schemas/HelixId64'
     FileContent:
       type: object
       properties:
