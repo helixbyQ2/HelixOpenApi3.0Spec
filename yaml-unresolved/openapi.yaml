@@ -4170,13 +4170,27 @@ paths:
                 lockReasonTypeCode:
                   type: string
                   enum:
-                    - STL
-                    - LST
+                    - ATL
+                    - DEC
+                    - DES
+                    - ESC
                     - FRD
+                    - LST
+                    - STA
+                    - STL
+                    - UPG
+                    - VOD
                   description: |
-                    - `STL`: Stolen
-                    - `LST`: Lost
+                    - `ACL`: AccountClosure
+                    - `DEC`: Deceased
+                    - `DES`: Destroyed
+                    - `ESC`: Escheatment
                     - `FRD`: Fraud
+                    - `LST`: Lost
+                    - `STA`: Stale
+                    - `STL`: Stolen
+                    - `UPG`: DueToUpgrade
+                    - `VOD`: Voided
       responses:
         '200':
           description: A <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a> object
