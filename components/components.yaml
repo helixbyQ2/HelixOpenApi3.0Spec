@@ -1176,9 +1176,11 @@ components:
       type: string
       enum:
         - DBT
+        - GFT
         - GPR
       description: |
         - `DBT`: Debit
+        - `GFT`: Gift
         - `GPR`: General Purpose Prepaid
     CardVendorTypeCode:
       type: string
