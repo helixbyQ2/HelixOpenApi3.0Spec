@@ -901,11 +901,11 @@ components:
         cardCarrierMessage:
           type: string
           description: |
-            Optional. Identifier used uniquely by various card production facilities for mapping card configurations.
+            Identifier used uniquely by various card production facilities for mapping card configurations.
         cardDesignIdentificationNumber:
           type: string
           description: |
-            Optional. Identifier used uniquely by various card production facilities for mapping card configurations.
+            Identifier used uniquely by various card production facilities for mapping card configurations.
         cardHolderCustomerId:
           $ref: '#/components/schemas/HelixId32'
         cardId:
@@ -915,7 +915,7 @@ components:
         cardVendorUniqueData:
           type: string
           description: |
-            Optional. Identifier used uniquely by various card production facilities for mapping card configurations.
+            Identifier used uniquely by various card production facilities for mapping card configurations.
         createdDate:
           $ref: '#/components/schemas/DateTime'
         customerId:
@@ -964,7 +964,7 @@ components:
         photoImageId: 
           type: string
           description: |
-            Optional. Identifier used uniquely by various card production facilities for mapping card configurations.
+            Identifier used uniquely by various card production facilities for mapping card configurations.
         preferredName:
           type: string
         primaryAccountId:
