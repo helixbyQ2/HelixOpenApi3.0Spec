@@ -3095,8 +3095,24 @@ paths:
                     `true` to order a physical card, `false` to waive. 
                 requestingCustomerId:
                   allOf:
-                  - description: The helix-assigned unique ID for the customer requesting to create a new card for a business cardholder
+                  - description: The Helix-assigned unique ID for the customer requesting to create a new card for a business cardholder
                   - $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
+                cardCarrierMessage:
+                  type: string
+                  maxLength: 6
+                  description: Identifier used uniquely by various card production facilities for mapping card configurations
+                cardDesignIdentificationNumber:
+                  type: string
+                  maxLength: 16
+                  description: Identifier used uniquely by various card production facilities for mapping card configurations
+                cardVendorUniqueData:
+                  type: string
+                  maxLength: 50
+                  description: Identifier used uniquely by various card production facilities for mapping card configurations
+                photoImageId:
+                  type: string
+                  maxLength: 18
+                  description: Identifier used uniquely by various card production facilities for mapping card configurations
       responses:
         '200':
           description: A <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a> object
