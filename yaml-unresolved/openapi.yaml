@@ -6092,8 +6092,8 @@ paths:
     post:
       tags:
       - Transaction
-      summary: Assess a fee to a specified customer account
-      description: Assess a fee to a specified customer account. Transfer funds from
+      summary: Create a fee for a specified customer account
+      description: Create a fee to a specified customer account. Transfer funds from
         one account to another. Results in a new transaction which can be retrieved
         via the various [/transaction/*](https://docs.helix.q2.com/reference/transaction-reference)
         endpoints.
