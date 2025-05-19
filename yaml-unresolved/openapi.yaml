@@ -268,8 +268,7 @@ paths:
                   $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/AccountLegalName
       responses:
         '200':
-          description: An <a href="https://docs.helix.q2.com/docs/account" target="_blank">account</a>
-            object
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/account" target="_blank">account</a> object
           content:
             application/json:
               schema:
@@ -383,8 +382,7 @@ paths:
       - $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/parameters/tag
       responses:
         '200':
-          description: An <a href="https://docs.helix.q2.com/docs/account" target="_blank">account</a>
-            object
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/account" target="_blank">account</a> object
           content:
             application/json:
               schema:
@@ -636,8 +634,7 @@ paths:
                   $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/AccountLockReasonTypeCode
       responses:
         '200':
-          description: An <a href="https://docs.helix.q2.com/docs/account" target="_blank">account</a>
-            object
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/account" target="_blank">account</a> object
           content:
             application/json:
               schema:
@@ -696,8 +693,7 @@ paths:
                   - $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/DateTimeMidnight
       responses:
         '200':
-          description: An <a href="https://docs.helix.q2.com/docs/account" target="_blank">account</a>
-            object
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/account" target="_blank">account</a> object
           content:
             application/json:
               schema:
@@ -745,8 +741,7 @@ paths:
                   - $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
       responses:
         '200':
-          description: An <a href="https://docs.helix.q2.com/docs/account" target="_blank">account</a>
-            object
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/account" target="_blank">account</a> object
           content:
             application/json:
               schema:
@@ -864,8 +859,7 @@ paths:
                   type: string
       responses:
         '200':
-          description: A <a href="https://docs.helix.q2.com/docs/stop-pay" target="_blank">stopPay</a>
-            object
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/stop-pay" target="_blank">stopPay</a> object
           content:
             application/json:
               schema:
@@ -911,8 +905,7 @@ paths:
                   $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
       responses:
         '200':
-          description: A <a href="https://docs.helix.q2.com/docs/stop-pay" target="_blank">stopPay</a>
-            object
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/stop-pay" target="_blank">stopPay</a> object
           content:
             application/json:
               schema:
@@ -1036,8 +1029,7 @@ paths:
                   $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
       responses:
         '200':
-          description: An <a href="https://docs.helix.q2.com/docs/account" target="_blank">account</a>
-            object
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/account" target="_blank">account</a> object
           content:
             application/json:
               schema:
@@ -1130,8 +1122,7 @@ paths:
                   format: decimal
       responses:
         '200':
-          description: An <a href="https://docs.helix.q2.com/docs/account" target="_blank">account</a>
-            object
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/account" target="_blank">account</a> object
           content:
             application/json:
               schema:
@@ -1261,8 +1252,7 @@ paths:
           $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
       responses:
         '200':
-          description: An <a href="https://docs.helix.q2.com/docs/account-beneficiary"
-            target="_blank">accountBeneficiary</a> object
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/account-beneficiary" target="_blank">accountBeneficiary</a> object
           content:
             application/json:
               schema:
@@ -1453,8 +1443,7 @@ paths:
                   - $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/CardPriority
       responses:
         '200':
-          description: A <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a>
-            object
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a> object
           content:
             application/json:
               schema:
@@ -1496,8 +1485,7 @@ paths:
                   $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
       responses:
         '200':
-          description: A <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a>
-            object
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a> object
           content:
             application/json:
               schema:
@@ -1576,8 +1564,7 @@ paths:
                   - $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
       responses:
         '200':
-          description: A <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a>
-            object
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a> object
           content:
             application/json:
               schema:
@@ -1709,8 +1696,7 @@ paths:
       - $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/parameters/tag
       responses:
         '200':
-          description: A <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a>
-            object
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a> object
           content:
             application/json:
               schema:
@@ -1787,8 +1773,7 @@ paths:
                     '
       responses:
         '200':
-          description: A <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a>
-            object
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a> object
           content:
             application/json:
               schema:
@@ -1918,8 +1903,7 @@ paths:
                     facilities for mapping card configurations
       responses:
         '200':
-          description: A <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a>
-            object
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a> object
           content:
             application/json:
               schema:
@@ -1950,8 +1934,7 @@ paths:
       - $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/parameters/cardId
       responses:
         '200':
-          description: A <a href="https://docs.helix.q2.com/docs/card-limits" target="_blank">cardLimits</a>
-            object
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/card-limits" target="_blank">cardLimits</a> object
           content:
             application/json:
               schema:
@@ -2014,8 +1997,7 @@ paths:
                   minimum: 0
       responses:
         '200':
-          description: A <a href="https://docs.helix.q2.com/docs/card-limits" target="_blank">cardLimits</a>
-            object
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/card-limits" target="_blank">cardLimits</a> object
           content:
             application/json:
               schema:
@@ -2059,8 +2041,7 @@ paths:
                   $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
       responses:
         '200':
-          description: A <a href="https://docs.helix.q2.com/docs/card-limits" target="_blank">cardLimits</a>
-            object
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/card-limits" target="_blank">cardLimits</a> object
           content:
             application/json:
               schema:
@@ -2119,8 +2100,7 @@ paths:
                     placed
       responses:
         '200':
-          description: A <a href="https://docs.helix.q2.com/docs/card-limits" target="_blank">cardLimits</a>
-            object
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/card-limits" target="_blank">cardLimits</a> object
           content:
             application/json:
               schema:
@@ -2234,8 +2214,7 @@ paths:
                     '
       responses:
         '200':
-          description: A <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a>
-            object
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a> object
           content:
             application/json:
               schema:
@@ -2619,8 +2598,7 @@ paths:
                   - $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
       responses:
         '200':
-          description: A <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a>
-            object
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a> object
           content:
             application/json:
               schema:
@@ -2875,8 +2853,7 @@ paths:
                   - $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
       responses:
         '200':
-          description: A <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a>
-            object
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a> object
           content:
             application/json:
               schema:
@@ -2926,8 +2903,7 @@ paths:
                   $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
       responses:
         '200':
-          description: A <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a>
-            object
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a> object
           content:
             application/json:
               schema:
@@ -2981,8 +2957,7 @@ paths:
                   maxLength: 20
       responses:
         '200':
-          description: A <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a>
-            object
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a> object
           content:
             application/json:
               schema:
@@ -3044,8 +3019,7 @@ paths:
                   - $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/CardPriority
       responses:
         '200':
-          description: A <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a>
-            object
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a> object
           content:
             application/json:
               schema:
@@ -3098,8 +3072,7 @@ paths:
                     target="_blank">card object definition</a> for details.
       responses:
         '200':
-          description: A <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a>
-            object
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a> object
           content:
             application/json:
               schema:
@@ -3277,8 +3250,7 @@ paths:
                   $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
       responses:
         '200':
-          description: A <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a>
-            object
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a> object
           content:
             application/json:
               schema:
@@ -3326,8 +3298,7 @@ paths:
                   $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
       responses:
         '200':
-          description: A <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a>
-            object
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a> object
           content:
             application/json:
               schema:
@@ -3379,8 +3350,7 @@ paths:
                     this value is always `1111`
       responses:
         '200':
-          description: A <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a>
-            object with `status=Verified`
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a> object with `status=Verified`
           content:
             application/json:
               schema:
@@ -3489,8 +3459,7 @@ paths:
                   $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/Tag
       responses:
         '200':
-          description: A <a href="https://docs.helix.q2.com/docs/card-controls#cardcontrol-object"
-            target="_blank">cardControl</a> object
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/card-controls#cardcontrol-object" target="_blank">cardControl</a> object
           content:
             application/json:
               schema:
@@ -3552,8 +3521,7 @@ paths:
       - $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/parameters/tag
       responses:
         '200':
-          description: A <a href="https://docs.helix.q2.com/docs/card-controls#cardcontrol-object"
-            target="_blank">cardControl</a> object
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/card-controls#cardcontrol-object" target="_blank">cardControl</a> object
           content:
             application/json:
               schema:
@@ -3928,8 +3896,7 @@ paths:
                     $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/Phone
       responses:
         '200':
-          description: A <a href="https://docs.helix.q2.com/docs/customer" target="_blank">customer</a>
-            object
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/customer" target="_blank">customer</a> object
           content:
             application/json:
               schema:
@@ -4099,8 +4066,7 @@ paths:
       - $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/parameters/customerId
       responses:
         '200':
-          description: A <a href="https://docs.helix.q2.com/docs/customer" target="_blank">customer</a>
-            object
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/customer" target="_blank">customer</a> object
           content:
             application/json:
               schema:
@@ -4134,8 +4100,7 @@ paths:
           maxLength: 100
       responses:
         '200':
-          description: A <a href="https://docs.helix.q2.com/docs/customer" target="_blank">customer</a>
-            object
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/customer" target="_blank">customer</a> object
           content:
             application/json:
               schema:
@@ -4168,8 +4133,7 @@ paths:
       - $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/parameters/tag
       responses:
         '200':
-          description: A <a href="https://docs.helix.q2.com/docs/customer" target="_blank">customer</a>
-            object
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/customer" target="_blank">customer</a> object
           content:
             application/json:
               schema:
@@ -4554,8 +4518,7 @@ paths:
                     $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/Phone
       responses:
         '200':
-          description: A <a href="https://docs.helix.q2.com/docs/customer" target="_blank">customer</a>
-            object
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/customer" target="_blank">customer</a> object
           content:
             application/json:
               schema:
@@ -4631,8 +4594,7 @@ paths:
                   maxLength: 15
       responses:
         '200':
-          description: A <a href="https://docs.helix.q2.com/docs/customer-beneficiary"
-            target="_blank">customerBeneficiary</a> object
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/customer-beneficiary" target="_blank">customerBeneficiary</a> object
           content:
             application/json:
               schema:
@@ -4705,8 +4667,7 @@ paths:
           $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
       responses:
         '200':
-          description: A <a href="https://docs.helix.q2.com/docs/customer-beneficiary"
-            target="_blank">customerBeneficiary</a> object
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/customer-beneficiary" target="_blank">customerBeneficiary</a> object
           content:
             application/json:
               schema:
@@ -4814,8 +4775,7 @@ paths:
                   maxLength: 15
       responses:
         '200':
-          description: A <a href="https://docs.helix.q2.com/docs/customer-beneficiary"
-            target="_blank">customerBeneficiary</a> object
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/customer-beneficiary" target="_blank">customerBeneficiary</a> object
           content:
             application/json:
               schema:
@@ -4846,8 +4806,7 @@ paths:
       - $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/parameters/documentId
       responses:
         '200':
-          description: A <a href="https://docs.helix.q2.com/docs/customer-document"
-            target="_blank">customerDocument</a> object
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/customer-document" target="_blank">customerDocument</a> object
           content:
             application/json:
               schema:
@@ -4956,8 +4915,7 @@ paths:
               $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/CustomerDocumentWritable
       responses:
         '200':
-          description: A <a href="https://docs.helix.q2.com/docs/customer-document"
-            target="_blank">customerDocument</a> object
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/customer-document" target="_blank">customerDocument</a> object
           content:
             application/json:
               schema:
@@ -5071,8 +5029,7 @@ paths:
                   $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
       responses:
         '200':
-          description: A <a href="https://docs.helix.q2.com/docs/customer-relationship"
-            target="_blank">customerRelationship</a> object
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/customer-relationship" target="_blank">customerRelationship</a> object
           content:
             application/json:
               schema:
@@ -5165,8 +5122,7 @@ paths:
                   $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
       responses:
         '200':
-          description: A <a href="https://docs.helix.q2.com/docs/customer-relationship"
-            target="_blank">customerRelationship</a> object
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/customer-relationship" target="_blank">customerRelationship</a> object
           content:
             application/json:
               schema:
@@ -5220,8 +5176,7 @@ paths:
                   - $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
       responses:
         '200':
-          description: A <a href="https://docs.helix.q2.com/docs/customer-relationship"
-            target="_blank">customerRelationship</a> object
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/customer-relationship" target="_blank">customerRelationship</a> object
           content:
             application/json:
               schema:
@@ -5310,8 +5265,7 @@ paths:
               $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/ExternalAccountCreateOrInitiate
       responses:
         '200':
-          description: An <a href="https://docs.helix.q2.com/docs/external-account"
-            target="_blank">externalAccount</a> object
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is an <a href="https://docs.helix.q2.com/docs/external-account" target="_blank">externalAccount</a> object
           content:
             application/json:
               schema:
@@ -5345,8 +5299,7 @@ paths:
           $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
       responses:
         '200':
-          description: An <a href="https://docs.helix.q2.com/docs/external-account"
-            target="_blank">externalAccount</a> object
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is an <a href="https://docs.helix.q2.com/docs/external-account" target="_blank">externalAccount</a> object
           content:
             application/json:
               schema:
@@ -5419,10 +5372,7 @@ paths:
               $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/ExternalAccountCreateOrInitiate
       responses:
         '200':
-          description: 'An <a href="https://docs.helix.q2.com/docs/external-account"
-            target="_blank">externalAccount</a> object
-
-            '
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is an <a href="https://docs.helix.q2.com/docs/external-account" target="_blank">externalAccount</a> object
           content:
             application/json:
               schema:
@@ -5502,8 +5452,7 @@ paths:
                   - $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
       responses:
         '200':
-          description: An <a href="https://docs.helix.q2.com/docs/external-account"
-            target="_blank">externalAccount</a> object
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is an <a href="https://docs.helix.q2.com/docs/external-account" target="_blank">externalAccount</a> object
           content:
             application/json:
               schema:
@@ -5553,8 +5502,7 @@ paths:
                   - $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
       responses:
         '200':
-          description: An <a href="https://docs.helix.q2.com/docs/external-account"
-            target="_blank">externalAccount</a> object
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is an <a href="https://docs.helix.q2.com/docs/external-account" target="_blank">externalAccount</a> object
           content:
             application/json:
               schema:
@@ -5602,8 +5550,7 @@ paths:
                   - $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
       responses:
         '200':
-          description: An <a href="https://docs.helix.q2.com/docs/external-account"
-            target="_blank">externalAccount</a> object
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is an <a href="https://docs.helix.q2.com/docs/external-account" target="_blank">externalAccount</a> object
           content:
             application/json:
               schema:
@@ -5670,8 +5617,7 @@ paths:
                   - $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
       responses:
         '200':
-          description: An <a href="https://docs.helix.q2.com/docs/external-account"
-            target="_blank">externalAccount</a> object
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is an <a href="https://docs.helix.q2.com/docs/external-account" target="_blank">externalAccount</a> object
           content:
             application/json:
               schema:
@@ -5728,8 +5674,7 @@ paths:
                   - $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
       responses:
         '200':
-          description: An <a href="https://docs.helix.q2.com/docs/external-account"
-            target="_blank">externalAccount</a> object
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is an <a href="https://docs.helix.q2.com/docs/external-account" target="_blank">externalAccount</a> object
           content:
             application/json:
               schema:
@@ -5821,8 +5766,7 @@ paths:
       operationId: programGet
       responses:
         '200':
-          description: A <a href="https://docs.helix.q2.com/docs/program" target="_blank">program</a>
-            object
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/external-account" target="_blank">program</a> object
           content:
             application/json:
               schema:
@@ -5997,8 +5941,7 @@ paths:
       - $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/parameters/statementId
       responses:
         '200':
-          description: A <a href="https://docs.helix.q2.com/docs/statement" target="_blank">statement</a>
-            object
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/statement" target="_blank">statement</a> object
           content:
             application/json:
               schema:
@@ -6122,8 +6065,7 @@ paths:
                   $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId64
       responses:
         '200':
-          description: A <a href="https://docs.helix.q2.com/reference/transactioncreatefee"
-            target="_blank">feeResult</a> object
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/fee-result" target="_blank">feeResult</a> object
           content:
             application/json:
               schema:
@@ -6307,8 +6249,7 @@ paths:
                   description: Format is YYYY-MM-DD
       responses:
         '200':
-          description: A <a href="https://docs.helix.q2.com/docs/transaction" target="_blank">transaction</a>
-            object
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/transaction" target="_blank">transaction</a> object
           content:
             application/json:
               schema:
@@ -6364,8 +6305,7 @@ paths:
                   - voided
       responses:
         '200':
-          description: A <a href="https://docs.helix.q2.com/docs/transaction" target="_blank">transaction</a>
-            object
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/transaction" target="_blank">transaction</a> object
           content:
             application/json:
               schema:
@@ -6495,8 +6435,7 @@ paths:
                   maxLength: 50
       responses:
         '200':
-          description: An <a href="https://docs.helix.q2.com/docs/transaction" target="_blank">transaction</a>
-            object
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/transaction" target="_blank">transaction</a> object
           content:
             application/json:
               schema:
@@ -6611,8 +6550,7 @@ paths:
                   - $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId64
       responses:
         '200':
-          description: A <a href="https://docs.helix.q2.com/docs/transfer-response"
-            target="_blank">transferResponse</a> object
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/transfer-response" target="_blank">transferResponse</a> object
           content:
             application/json:
               schema:
@@ -7385,4 +7323,3 @@ x-samples-languages:
 - java
 - kotlin
 - php
-
