@@ -1664,6 +1664,11 @@ paths:
       parameters:
       - $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/parameters/customerId
       - $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/parameters/cardId
+      - name: cardHolderCustomerId
+        in: query
+        required: false
+        schema: 
+            $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
       responses:
         '200':
           description: A <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a>
@@ -1694,6 +1699,11 @@ paths:
       parameters:
       - $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/parameters/customerId
       - $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/parameters/tag
+      - name: cardHolderCustomerId
+        in: query
+        required: false
+        schema: 
+            $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
       responses:
         '200':
           description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a> object
@@ -2150,6 +2160,11 @@ paths:
             can be passed. `Default` includes `Archived`, `Denied`, `Expired`, `Hotlisted`,
             `Initiated`, `Pending`, `PendingVerification`, `Reissued`, `ReissuedPendingVerification`,
             `AutoReissuedPendingVerification` and `Verified`
+      - name: cardHolderCustomerId
+        in: query
+        required: false
+        schema: 
+            $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
       responses:
         '200':
           description: An array of <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a>
