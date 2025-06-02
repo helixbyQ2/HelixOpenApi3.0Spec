@@ -3297,9 +3297,13 @@ paths:
                 primaryAccountId:
                   $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
                 expireMonth:
-                  $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/Month
+                  allOf: 
+                    - $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/Month
+                  description: Applies only to the Helix sandbox environment.
                 expireYear:
-                  $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/YearFourDigits
+                  allOf:
+                    - $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/YearFourDigits
+                  description: Applies only to the Helix sandbox environment.
       responses:
         '200':
           description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a> object
