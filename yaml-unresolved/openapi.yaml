@@ -138,8 +138,7 @@ paths:
                   - description: 'The Helix-assigned ID for the account to receive remaining funds. This can be the `accountId` of an <a href="https://docs.helix.q2.com/docs/account" target="_blank">account</a> or the `externalAccountId` of an <a href="https://docs.helix.q2.com/docs/external-account"
                       target="_blank">externalAccount</a>.
                     
-                    **Note: `closeToAccountId` is required if the account has a balance or earns interest.
-                    **Note: To close to a petty cash account, use the Helix Admin Console or the <a href="https://docs.helix.q2.com/docs/bulk-account-close-process"
+                    **Note: `closeToAccountId` is required if the account has a balance or earns interest. To close to a petty cash account, use the Helix Admin Console or the <a href="https://docs.helix.q2.com/docs/bulk-account-close-process"
                       target="_blank">Bulk Account Close Process</a>.'
                   - $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
                 transactionTag:
