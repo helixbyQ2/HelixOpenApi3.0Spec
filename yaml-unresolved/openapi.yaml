@@ -2681,6 +2681,7 @@ paths:
         required: true
         schema:
           type: string
+          description: "This value must be passed in plain base64-encoded format and must not be encrypted."
       responses:
         '200':
           description: An encrypted string
