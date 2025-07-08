@@ -6406,6 +6406,7 @@ paths:
                 effectiveEntryDate:
                   type: string
                   format: date
+                  description: If `effectiveEntryDate` is not provided, the transaction will be processed in the next available ACH transfer window.
                 isPrenote:
                   type: boolean
                 isReversal:
