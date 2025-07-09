@@ -6637,7 +6637,7 @@ paths:
                   type: string
       responses:
         '200':
-          description: A wire ID
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/transaction" target="_blank">transaction</a> object
           content:
             application/json:
               schema:
