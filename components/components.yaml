@@ -938,6 +938,8 @@ components:
           type: boolean
         isDualIssuanceSinglePAN:
           type: boolean
+        isPinSet:
+          type: boolean
         lastModifiedDate:
           $ref: '#/components/schemas/DateTime'
         lastName:
