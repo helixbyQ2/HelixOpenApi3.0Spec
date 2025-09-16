@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: Helix Components
   description: Components for Helix API
-  version: 3.x
+  version: 1.0
 components:
   responses:
     '400':
