@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: Helix API
-  version: 3.x
+  version: 3.0.0
   description: Helix Public API (no customer KYC/IDV). **This spec covers all of Helix
     3.x and is subject to change at any time.**
 servers:
