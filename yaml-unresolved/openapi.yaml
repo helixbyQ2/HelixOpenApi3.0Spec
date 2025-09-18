@@ -4536,6 +4536,46 @@ paths:
           $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/405
         '429':
           $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/429
+  /customer/securityanswerslist:
+    post:
+      tags:
+      - Customer
+      summary: Retrieves the list of security answers for a customer in a specified language
+      description: See <a href=\"https://https://docs.helix.q2.com/docs/customer-security-answer#/customersecurityanswerinfo-object"target="_blank">customerSecurityAnswerInfo object definition</a> for parameter details.
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/customer/securityanswerslist/{customerId}
+      operationId: customer/securityanswerslist
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - customerId
+              properties:
+                customerId:
+                  $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
+                culture:
+                  $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/Culture
+      responses:
+        '200':
+          description: An array of <a href="https://https://docs.helix.q2.com/docs/customer-security-answer"
+            target="_blank">customerSecurityAnswerInfo</a> objects.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerObject200Response'
+        '400':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/400
+        '401':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/401
+        '404':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/404
+        '405':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/405
+        '429':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/429
   /customerBeneficiary/create:
     post:
       tags:
