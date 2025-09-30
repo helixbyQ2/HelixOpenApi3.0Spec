@@ -282,6 +282,10 @@ components:
           $ref: '#/components/schemas/DateTime'
         globalAccountAccessEnabled:
           type: boolean
+        interestApy:
+          type: number
+          format: decimal
+          description: Annual Percentage Yield (APY) for the account as a decimal value
         interestTransferFkId:
           $ref: '#/components/schemas/HelixId32'
         isCloseable:
