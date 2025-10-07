@@ -10,44 +10,60 @@ servers:
 - url: https://api.helix.q2.com
   description: Production server
 tags:
-- name: Program
-  description: Program endpoints
-- name: Bank Document
-  description: Bank Document endpoints
-- name: Customer
-  description: Customer endpoints
 - name: Account
-  description: Account endpoints
-- name: Account Limits
-  description: Account limit endpoints
-- name: External Account
-  description: External Account endpoints
-- name: Transfer
-  description: Transfer endpoints
-- name: Card
-  description: Card endpoints
-- name: Card Limits and Controls
-  description: Card limits and controls endpoints
-- name: Card Mock
-  description: Card mock endpoints
-- name: Transaction
-  description: Transaction endpoints
-- name: Statement
-  description: Statement endpoints
-- name: Customer Relationship
-  description: Customer Relationship endpoints
-- name: Customer Document
-  description: Customer Document endpoints
-- name: Customer Beneficiary
-  description: Customer Beneficiary endpoints
+  description: Endpoints for the account object
+- name: Account - Entitlement
+  description: Endpoints related to account entitlements
+- name: Account - Hold
+  description: Endpoints related to account holds
+- name: Account - Limit
+  description: Endpoints related to account limits
+- name: Account - Stop Pay
+  description: Endpoints related to account stop payments
 - name: Account Beneficiary
-  description: Account Beneficiary endpoints
+  description: Endpoints for the accountBeneficiary object 
+- name: Bank Document
+  description: Endpoints for the bankDocument object  
+- name: Card
+  description: Endpoints for the card object
+- name: Card - Fraud Text Alert
+  description: Endpoints related to fraud text alerts
+- name: Card - Limit
+  description: Endpoints related to card limits
+- name: Card - Mock
+  description: Endpoints related to simulating card workflows
+- name: Card - Provision
+  description: Endpoints related to card provisioning 
+- name: Card - Risk Factor
+  description: Endpoints related to card risk factors   
+- name: Card Control
+  description: Endpoints for the cardControl object  
+- name: Customer
+  description: Endpoints for the customer object 
+- name: Customer - Due Diligence
+  description: Endpoints related to customer due diligence
+- name: Customer Beneficiary
+  description: Endpoints for the customerBeneficiary object  
+- name: Customer Document
+  description: Endpoints for the customerDocument object  
+- name: Customer Relationship
+  description: Endpoints for the customerRelationship object   
+- name: External Account
+  description: Endpoints for the externalAccount object   
 - name: External Account Document
-  description: External Account Document endpoints
-- name: Stop Pay
-  description: Stop pay endpoints
+  description: Endpoints for the externalAccountDocument object  
 - name: Fee
-  description: Fee endpoints
+  description: Endpoints for the fee object   
+- name: Program
+  description: Endpoints for the program object   
+- name: Statement
+  description: Endpoints for the statement object   
+- name: Transaction
+  description: Endpoints for the transaction object  
+- name: Transfer
+  description: Endpoints for the transfer object  
+- name: Transfer - Wire
+  description: Endpoints related to wire transfers
 security:
 - basicAuth: []
 paths:
