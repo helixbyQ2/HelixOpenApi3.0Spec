@@ -3561,8 +3561,8 @@ paths:
       - Customer
       summary: List a customer's due diligence responses
       externalDocs:
-        url: https://docs.helix.q2.com/reference/customeranswerlist
-      operationId: customerAnswerList
+        url: https://docs.helix.q2.com/reference/customer/answerlist
+      operationId: customer/answerList
       parameters:
       - $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/parameters/customerId
       responses:
