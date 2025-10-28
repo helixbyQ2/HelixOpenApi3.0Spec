@@ -4557,10 +4557,10 @@ paths:
       tags:
       - Customer
       summary: Retrieves the list of security answers for a customer in a specified language
-      description: See <a href="https://https://docs.helix.q2.com/docs/customer-security-answer#/customersecurityanswerinfo-object"target="_blank">customerSecurityAnswerInfo object definition</a> for parameter details.
+      description: See <a href="https://docs.helix.q2.com/docs/customer-security-answer#/customersecurityanswerinfo-object "target="_blank">customerSecurityAnswerInfo object definition</a> for parameter details.
       externalDocs:
         url: https://docs.helix.q2.com/reference/customer/securityanswerslist
-      operationId: customer/securityanswerslist
+      operationId: customersecurityanswerslist
       requestBody:
         required: true
         content:
