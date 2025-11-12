@@ -12,6 +12,6 @@ jobs:
 
       - name: GitHub Action
         # Docs: https://docs.github.com/actions/using-workflows/workflow-syntax-for-github-actions#example-using-versioned-actions
-        uses: readmeio/rdme@7.0.1
+        uses: readmeio/@v10
         with:
-          rdme: openapi yaml-unresolved/openapi.yaml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.HELIX_API_README_DEFINITION_ID }}
+          rdme: openapi upload yaml-unresolved/openapi.yaml --key=${{ secrets.README_API_KEY }} }}
