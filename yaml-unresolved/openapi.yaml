@@ -6941,6 +6941,7 @@ components:
       - type: object
         properties:
           data:
+            type: object
             properties:
               address:
                 allOf:
@@ -6970,6 +6971,8 @@ components:
                 format: byte
                 description: Base64 encoded opaque card data that is needed for tokenization.
                   This value should be passed through to Google as is.
+          required:
+            - expirationDate
     CardRiskFactorGet200Response:
       allOf:
       - $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/ApiSuccessEnvelope
