@@ -6942,6 +6942,8 @@ components:
         properties:
           data:
             type: object
+            description: > 
+              `expirationDate` is always returned. Other fields may be omitted.
             properties:
               address:
                 allOf:
