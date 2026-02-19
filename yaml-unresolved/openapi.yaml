@@ -6698,6 +6698,14 @@ paths:
                   type: string
                 beneficiaryFIPostalCode:
                   type: string
+                originatorToBeneficiaryInformationLine1:
+                  type: string
+                originatorToBeneficiaryInformationLine2:
+                  type: string
+                originatorToBeneficiaryInformationLine3:
+                  type: string
+                originatorToBeneficiaryInformationLine4:
+                  type: string
       responses:
         '200':
           description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/transaction" target="_blank">transaction</a> object
