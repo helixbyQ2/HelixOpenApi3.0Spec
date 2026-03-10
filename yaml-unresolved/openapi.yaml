@@ -1656,8 +1656,188 @@ paths:
           $ref: '#/paths/~1card~1lock/post/responses/405'
         '429':
           $ref: '#/paths/~1card~1lock/post/responses/429'
-  /card/initiate: {}
-  /card/verify: {}
+  /card/initiate:
+    post:
+      tags:
+      - Card
+      summary: Initiate a card
+      description: "Initiate a request to create a new card and mail it to a customer.\
+        \ See <a href=\"https://docs.helix.q2.com/docs/card\" target=\"_blank\">card\
+        \ object definition</a> for parameter details.\n[block:callout]\n{\n  \"type\"\
+        : \"info\",\n  \"body\": \"In the Sandbox environment cards will always be\
+        \ created with a `cardNumberMasked` value of `1111` and can be verified via\
+        \ [/card/verify](https://docs.helix.q2.com/reference/cardverify) immediately.\"\
+        \n}\n[/block]\n"
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/cardinitiate
+      operationId: cardInitiate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - customerId
+              - cardHolderCustomerId
+              - vendorTypeCode
+              - primaryAccountId
+              - firstName
+              - lastName
+              - nickName
+              properties:
+                customerId:
+                  $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
+                cardHolderCustomerId:
+                  $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
+                vendorTypeCode:
+                  $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/CardVendorTypeCode
+                typeCode:
+                  $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/CardTypeCode
+                primaryAccountId:
+                  $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
+                firstName:
+                  type: string
+                  maxLength: 64
+                middleName:
+                  type: string
+                  maxLength: 64
+                lastName:
+                  type: string
+                  maxLength: 128
+                nickName:
+                  type: string
+                  maxLength: 50
+                tag:
+                  $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/Tag
+                qualifierCode:
+                  $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/QualifierCode
+                binId:
+                  $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
+                newPin:
+                  type: string
+                  format: byte
+                  description: For Shazam programs only. Visa DPS programs must call
+                    the [/card/resetPin](https://docs.helix.q2.com/reference/cardresetpin)
+                    endpoint separately. For physical-only cards, /card/resetPin can
+                    be called once the card moves from `status=Initiated` to `status=Verified`.
+                    For dual-issuance cards (physical and digital), /card/resetPin
+                    can be called once the card moves from `status=Initiated` to `status=DigitalActivePhysicalPending`.
+                isCreateDualIssuanceSinglePAN:
+                  type: boolean
+                  default: false
+                  description: '`true` if this card will be an instant-issued debit
+                    card ready for eCommerce activity that can also be provisioned
+                    to a digital wallet. If `true` the card will be created with a
+                    `status` of `DitalActivePhysicalInitiated` which will shortly
+                    change to `DigitalActivePhysicalPending`. When card is in `DigitalActivePhysicalInitiated`
+                    or `DigitalActivePhysicalPending` it can be provisioned into a
+                    digital wallet via [/card/provision/applePay](https://docs.helix.q2.com/reference/cardprovisionapplepay)
+                    or [/card/provision/googlePay](https://docs.helix.q2.com/reference/cardprovisiongooglepay).
+                    When card is in `DigitalActivePhysicalPending` it will need to
+                    be verified via [/card/verify](https://docs.helix.q2.com/reference/cardverify)
+                    before a customer can use the physical card.
+
+                    '
+                isPhysicalCardOrdered:
+                  type: boolean
+                  default: true
+                  description: "`true` to order a physical card, `false` to waive.\
+                    \ \n"
+                requestingCustomerId:
+                  allOf:
+                  - description: The Helix-assigned unique ID for the customer requesting
+                      to create a new card for a business cardholder
+                  - $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
+                cardCarrierMessage:
+                  type: string
+                  maxLength: 6
+                  description: Identifier used uniquely by various card production
+                    facilities for mapping card configurations
+                cardDesignIdentificationNumber:
+                  type: string
+                  maxLength: 16
+                  description: Identifier used uniquely by various card production
+                    facilities for mapping card configurations
+                cardVendorUniqueData:
+                  type: string
+                  maxLength: 50
+                  description: Identifier used uniquely by various card production
+                    facilities for mapping card configurations
+                photoImageId:
+                  type: string
+                  maxLength: 18
+                  description: Identifier used uniquely by various card production
+                    facilities for mapping card configurations
+      responses:
+        '200':
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a> object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardObject200Response'
+        '400':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/400
+        '401':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/401
+        '404':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/404
+        '405':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/405
+        '429':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/429
+  /card/verify:
+    post:
+      tags:
+      - Card
+      summary: Verify a card
+      description: Verify a customer has received a physical card and activate it
+        for use.
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/cardverify
+      operationId: cardVerify
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - customerId
+              - cardId
+              - birthDate
+              - cardNumberMasked
+              properties:
+                customerId:
+                  $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
+                cardId:
+                  $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
+                birthDate:
+                  type: string
+                  format: date
+                  description: The birthday of the `customerId` who created the card.
+                    Format is YYYY-MM-DD.
+                cardNumberMasked:
+                  type: string
+                  description: The last four digits of the card number. In sandbox
+                    this value is always `1111`
+      responses:
+        '200':
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a> object with `status=Verified`
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardObject200Response'
+        '400':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/400
+        '401':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/401
+        '404':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/404
+        '405':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/405
+        '429':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/429
   /card/get/{customerId}/{cardId}:
     get:
       tags:
@@ -1693,8 +1873,88 @@ paths:
           $ref: '#/paths/~1card~1lock/post/responses/405'
         '429':
           $ref: '#/paths/~1card~1lock/post/responses/429'
-  /card/getByTag/{customerId}/{tag}: {}
-  /card/list/{customerId}: {}
+  /card/getByTag/{customerId}/{tag}:
+    get:
+      tags:
+      - Card
+      summary: Get a card via tag
+      description: Retrieve card information by `customerId` and `tag`
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/cardgetbytag
+      operationId: cardGetByTag
+      parameters:
+      - $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/parameters/customerId
+      - $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/parameters/tag
+      responses:
+        '200':
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a> object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardObject200Response'
+        '400':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/400
+        '401':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/401
+        '404':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/404
+        '405':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/405
+        '429':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/429
+  /card/list/{customerId}:
+    get:
+      tags:
+      - Card
+      summary: List cards
+      description: Retrieve all card information for the given `customerId`
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/cardlist
+      operationId: cardList
+      parameters:
+      - $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/parameters/customerId
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - Default
+          - All
+          - Archived
+          - Denied
+          - Expired
+          - Hotlisted
+          - Initiated
+          - Pending
+          - PendingVerification
+          - Reissued
+          - ReissuedPendingVerification
+          - AutoReissuedPendingVerification
+          - Verified
+          default: Default
+          description: Specify a single card status to be returned. Only one value
+            can be passed. `Default` includes `Archived`, `Denied`, `Expired`, `Hotlisted`,
+            `Initiated`, `Pending`, `PendingVerification`, `Reissued`, `ReissuedPendingVerification`,
+            `AutoReissuedPendingVerification` and `Verified`
+      responses:
+        '200':
+          description: An array of <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a>
+            objects
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardArray200Response'
+        '400':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/400
+        '401':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/401
+        '404':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/404
+        '405':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/405
+        '429':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/429
   /card/update:
     post:
       tags:
@@ -2287,12 +2547,425 @@ paths:
                     type: integer
                     enum:
                       - 429
-  /card/unlock: {}
-  /card/hotlist: {}
-  /card/resetPin: {}
-  /card/renewalOverride: {}
-  /card/reissue: {}
-  /card/archive: {}
+  /card/unlock:
+    post:
+      tags:
+      - Card
+      summary: Unlock a card
+      description: 'Unlock a card. Can be reversed by calling [/card/lock](https://docs.helix.q2.com/reference/cardlock).
+        The following matrix details when this call will succeed or fail.
+
+
+        | Current lockTypeCode | Current lockReasonTypeCode | Result |
+
+        | -------------------- | -------------------------- | ------ |
+
+        | `CST` | `UNK` - Uknown | Success |
+
+        | `CST` | `DMG` - Physical Damage | Success |
+
+        | `CST` | `TMP` - Temporary | Success |
+
+        | `CST` | `ADM` - Administrative | Success |
+
+        | `CST` | `LST` - Lost | Fail - Lost cards can never be used again |
+
+        | `CST` | `STL` - Stolen | Fail - Stolen cards can never be used again |
+
+        | `CST` | `FRD` - Suspected Fraud | Fail - Suspected Fraud cards can never
+        be used again |
+
+        | `SYS` | `LST` - Lost | Fail - Lost cards can never be used again |
+
+        | `SYS` | `STL` - Stolen | Fail - Stolen cards can never be used again |
+
+        | `SYS` | `FRD` - Suspected Fraud | Fail - Suspected Fraud cards can never
+        be used again |
+
+        | `SYS` | `ADM` - Administrative | Fail - Only Admin Console or an automated
+        process can unlock |
+
+        | `SYS` | `PIN` - PIN Retry Limit Exceeded | Fail - Only Admin Console or
+        an automated process can unlock |
+
+        | `SYS` | `TMP` - Temporary | Fail - Only Admin Console or an automated process
+        can unlock
+
+
+        The card will have a `lockTypeCode` of `UNL` upon successful completion of
+        this call. The card will be unlocked and ready for transactions to take place.
+
+        '
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/cardunlock
+      operationId: cardUnlock
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - customerId
+              - cardId
+              properties:
+                customerId:
+                  $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
+                cardId:
+                  $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
+      responses:
+        '200':
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a> object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardObject200Response'
+        '400':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/400
+        '401':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/401
+        '404':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/404
+        '405':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/405
+        '429':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/429
+  /card/hotlist:
+    post:
+      tags:
+      - Card
+      summary: Hotlist (permanently lock) a card
+      description: "Permanently locks a card and sets `lockTypeCode=CST`.\n[block:callout]\n\
+        {\n  \"type\": \"warning\",\n  \"body\": \"This is a one-way function and\
+        \ cannot be undone.\"\n}\n[/block]\n"
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/cardhotlist
+      operationId: cardHotlist
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - customerId
+              - cardId
+              - lockReasonTypeCode
+              properties:
+                customerId:
+                  $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
+                cardId:
+                  $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
+                lockReasonTypeCode:
+                  type: string
+                  enum:
+                  - ATL
+                  - DEC
+                  - DES
+                  - ESC
+                  - FRD
+                  - LST
+                  - STA
+                  - STL
+                  - UPG
+                  - VOD
+                  description: '- `ACL`: AccountClosure
+
+                    - `DEC`: Deceased
+
+                    - `DES`: Destroyed
+
+                    - `ESC`: Escheatment
+
+                    - `FRD`: Fraud
+
+                    - `LST`: Lost
+
+                    - `STA`: Stale
+
+                    - `STL`: Stolen
+
+                    - `UPG`: DueToUpgrade
+
+                    - `VOD`: Voided
+
+                    '
+      responses:
+        '200':
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a> object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardObject200Response'
+        '400':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/400
+        '401':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/401
+        '404':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/404
+        '405':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/405
+        '429':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/429
+  /card/resetPin:
+    post:
+      tags:
+      - Card
+      summary: Reset a card pin
+      description: 'Create a request to reset the PIN for a card. **Note:** For Visa
+        DPS programs, PIN resets are initiated in real-time and are confirmed by DPS
+        which raises a <a href="https://docs.helix.q2.com/docs/event-types#common-events"
+        target="_blank">real-time event</a> with `userEventTypeId=10020`. The PIN
+        reset is in a pending state until this event is raised. For Shazam programs,
+        PIN resets are file based processing and can take up to 24 hours to complete.
+
+        '
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/cardresetpin
+      operationId: cardResetPin
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - customerId
+              - cardId
+              - newPin
+              properties:
+                customerId:
+                  $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
+                cardId:
+                  $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
+                newPin:
+                  type: string
+                  format: byte
+                  description: See the `newPin` attribute on the <a href="https://docs.helix.q2.com/docs/card"
+                    target="_blank">card object definition</a> for details.
+      responses:
+        '200':
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a> object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardObject200Response'
+        '400':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/400
+        '401':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/401
+        '404':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/404
+        '405':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/405
+        '429':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/429
+  /card/renewalOverride:
+    post:
+      tags:
+      - Card
+      summary: Renewal override
+      description: "Override the base Helix card renewal eligibility criteria during\
+        \ a card's renewal period. A card's renewal period begins on the first day\
+        \ of the prior month of the card's expiration and ends the day before the\
+        \ client's scheduled monthly renewal job.\n\nCard must be in an eligible `status`\
+        \ listed below to perform a card renewal override:\n- `Verified`\n- `Reissued`\n\
+        - `PendingVerification`\n- `ReissuedPendingVerification`\n- `DigitalActivePhysicalIntiated`\n\
+        - `DigitalActivePhysicalPending`\n\n[block:callout]\n{\n  \"type\": \"warning\"\
+        ,\n  \"body\": \"Use of this endpoint requires approval from Q2 and your bank\
+        \ partner.\"\n}\n[/block]\n"
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/cardrenewaloverride
+      operationId: cardRenewalOverride
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - customerId
+              - cardId
+              - renewalOverride
+              properties:
+                customerId:
+                  $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
+                cardId:
+                  $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
+                renewalOverride:
+                  $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/CardRenewalOverride
+                renewalOverrideReason:
+                  type: string
+                  maxLength: 20
+      responses:
+        '200':
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a> object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardObject200Response'
+        '400':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/400
+        '401':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/401
+        '404':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/404
+        '405':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/405
+        '429':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/429
+  /card/reissue:
+    post:
+      tags:
+      - Card
+      summary: Reissue a card
+      description: "Reissue a card and send a new physical card to a customer (when\
+        \ applicable). \n\nCard must be in an eligible `status` listed below to perform\
+        \ a card renewal:\n- `Verified`\n- `Reissued`\n- `DigitalActivePhysicalIntiated`\n\
+        - `DigitalActivePhysicalPending`\n\nIf `reissueReasonTypeCode=DMG`, a new\
+        \ card number is not generated and, if applicable, a new physical card is\
+        \ sent to the customer. If `reissueReasonTypeCode=REN`, a new card number\
+        \ is not generated, the expiration date is updated, and, if applicable, a\
+        \ new physical card is sent to the customer. All other `reissueReasonTypeCode`\
+        \ values will generate a new card number.\n\n\nDepending on the previous card\
+        \ and reason for reissue, this endpoint will return a card object with the\
+        \ following:  \n\n| Type | Reason | Card Number (PAN) | Card Object Status\
+        \ |\n| ---- | ------ | ----------------- | ------------------ |\n| Digital\
+        \ | Fraud, Lost, Stolen | New | `status=Verified` |\n| Digital | Renewal |\
+        \ Same, with new expiration date and CVV2 | `status=Verified` |\n| Digital\
+        \ | Compromised, Name change | New | `status=Verified` |\n| Digital w/ physical\
+        \ | Physical damage | Same | `status=Verified` unless program requires verification\
+        \ for reissues then `status=DigitalActivePhysicalPending` |\n| Digital w/\
+        \ physical | Fraud, Lost, Stolen | New | `status=DigitalActivePhysicalPending`\
+        \ |\n| Digital w/ physical | Renewal | Same, with new expiration | `status=ReissuePendingVerification`\
+        \ |\n| Digital w/ physical | Compromised, Name change | New | Old cardId `status=Verified`\
+        \ new cardId `status=DigitalActivePhysicalPending`. Once verified, new cardId\
+        \ `status=Verified` and old cardId `status=Archived` |\n| Physical | Physical\
+        \ Damage | Same | `status=Verified` unless program requires verification for\
+        \ reissues then `status=PendingVerification` |\n| Physical | Fraud, Lost,\
+        \ Stolen | New | `status=PendingVerification` |\n| Physical | Renewal | Same,\
+        \ with new expiration date and CVV2 | `status=ReissuePendingVerification`\
+        \ |\n| Physical | Compromised, Name change | New | Old cardId `status=Verified`\
+        \ new cardId `status=PendingVerification`. Once verified, new cardId `status=Verified`\
+        \ and old cardId `status=Archived`\n"
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/cardreissue
+      operationId: cardReissue
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - customerId
+              - cardId
+              - reissueReasonTypeCode
+              properties:
+                customerId:
+                  $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
+                cardId:
+                  $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
+                reissueReasonTypeCode:
+                  type: string
+                  enum:
+                  - DMG
+                  - REN
+                  - FRD
+                  - LST
+                  - STL
+                  - NCN
+                  - CMP
+                  description: '- `DMG`: Physical Damage
+
+                    - `REN`: Renewal
+
+                    - `FRD`: Fraud
+
+                    - `LST`: Lost
+
+                    - `STL`: Stolen
+
+                    - `NCN`: Name Change with New PAN
+
+                    - `CMP`: Compromised
+
+                    '
+                newPin:
+                  type: string
+                  format: byte
+                  description: See the `newPin` attribute on the <a href="https://docs.helix.q2.com/docs/card"
+                    target="_blank">card</a> object definition for details.
+                qualifierCode:
+                  $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/QualifierCode
+                tag:
+                  allOf:
+                  - description: Tag to associate with the new cardId
+                  - $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/Tag
+                requestingCustomerId:
+                  allOf:
+                  - description: The helix-assigned unique ID for the customer requesting
+                      to reissue an existing card for a business cardholder
+                  - $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
+      responses:
+        '200':
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a> object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardObject200Response'
+        '400':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/400
+        '401':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/401
+        '404':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/404
+        '405':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/405
+        '429':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/429
+  /card/archive:
+    post:
+      tags:
+      - Card
+      summary: Archive a card
+      description: "Archives a card. \n[block:callout]\n{\n  \"type\": \"warning\"\
+        ,\n  \"body\": \"This is a one-way function; once a card is archived, it cannot\
+        \ be \\\"unarchived.\\\"\"\n}\n[/block]\n"
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/cardarchive
+      operationId: cardArchive
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - customerId
+              - cardId
+              properties:
+                customerId:
+                  $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
+                cardId:
+                  $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
+      responses:
+        '200':
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a> object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardArchive200Response'
+        '400':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/400
+        '401':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/401
+        '404':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/404
+        '405':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/405
+        '429':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/429
   /card/fraudTextAlert/get/{customerId}/{cardId}:
     get:
       tags:
