@@ -4595,6 +4595,7 @@ paths:
                   maxLength: 100
                 addresses:
                   type: array
+                  description: Required for business customers. You must include both a `Registered` address and a `PrimaryBusiness` address in this array.
                   items:
                     type: object
                     required:
@@ -11524,3 +11525,4 @@ x-samples-languages:
   - java
   - kotlin
   - php
+
