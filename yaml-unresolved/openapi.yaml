@@ -9151,9 +9151,11 @@ components:
                       feeDescription:
                         type: string
                       feeToApplyId:
-                        $ref: '#/components/schemas/HelixId64'
+                        type: integer
+                        format: int64
+                        minimum: 1
                       feeTypeId:
-                        $ref: '#/components/schemas/HelixId64'
+                        $ref: '#/components/schemas/HelixId32'
                       productType:
                         $ref: '#/components/schemas/ProductType'
                 firstName:
