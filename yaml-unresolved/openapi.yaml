@@ -9140,6 +9140,22 @@ components:
                   $ref: '#/components/schemas/YearProperty'
                 expiredDate:
                   $ref: '#/components/schemas/CustomerSetLastContact200Response/allOf/1/properties/data/items/properties/lastContactDate'
+                fees:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      feeAmount:
+                        type: number
+                        format: decimal
+                      feeDescription:
+                        type: string
+                      feeToApplyId:
+                        $ref: '#/components/schemas/HelixId64'
+                      feeTypeId:
+                        $ref: '#/components/schemas/HelixId64'
+                      productType:
+                        $ref: '#/components/schemas/ProductType'
                 firstName:
                   type: string
                 isDigitalOnly:
@@ -11525,4 +11541,3 @@ x-samples-languages:
   - java
   - kotlin
   - php
-
