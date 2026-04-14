@@ -8262,7 +8262,7 @@ paths:
                   type: string
                 tag:
                   $ref: '#/components/schemas/TagProperty'
-                beneficiaryRoutingNumber:
+                beneficiaryFIRoutingNumber:
                   type: string
                 beneficiaryFIName:
                   type: string
@@ -8274,13 +8274,11 @@ paths:
                   type: string
                 beneficiaryFIPostalCode:
                   type: string
-                originatorToBeneficiaryInformationLine1:
+                originatorToBeneficiaryInformation:
                   type: string
-                originatorToBeneficiaryInformationLine2:
+                purposeCode:
                   type: string
-                originatorToBeneficiaryInformationLine3:
-                  type: string
-                originatorToBeneficiaryInformationLine4:
+                purposeProprietary:
                   type: string
       responses:
         '200':
