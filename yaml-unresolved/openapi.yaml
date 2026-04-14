@@ -9157,7 +9157,7 @@ components:
                       feeTypeId:
                         $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
                       productType:
-                        $ref: '#/components/schemas/ProductType'
+                        $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/ProductType'
                 firstName:
                   type: string
                 isDigitalOnly:
