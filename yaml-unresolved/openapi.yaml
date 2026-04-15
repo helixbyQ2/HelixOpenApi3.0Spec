@@ -8260,8 +8260,6 @@ paths:
                   type: string
                 senderReference:
                   type: string
-                tag:
-                  $ref: '#/components/schemas/TagProperty'
                 beneficiaryFIRoutingNumber:
                   type: string
                 beneficiaryFIName:
@@ -8274,12 +8272,26 @@ paths:
                   type: string
                 beneficiaryFIPostalCode:
                   type: string
+                intermediaryFIName:
+                  type: string
+                intermediaryFIRoutingNumber:
+                  type: string
+                intermediaryFIAddress:
+                  type: string
+                intermediaryFICity:
+                  type: string
+                intermediaryFIState:
+                  type: string
+                intermediaryFIPostalCode:
+                  type: string
                 originatorToBeneficiaryInformation:
                   type: string
                 purposeCode:
                   type: string
                 purposeProprietary:
                   type: string
+                tag:
+                  $ref: '#/components/schemas/TagProperty'
       responses:
         '200':
           description: >-
