@@ -5042,18 +5042,6 @@ paths:
       tags:
         - Customer
       summary: Update a customer
-      description: >
-        See <a href="https://docs.helix.q2.com/docs/customer"
-        target="_blank">customer object definition</a> for parameter details.
-
-        [block:callout]
-
-        {
-          "type": "warning",
-          "body": "As a fraud prevention mechanism very few properties can be updated via API if your program uses Helix KYC/IDV. The list of properties will vary based on your specific program settings. Please reach out to your relationship manager if you have any questions about enabling certain property updates."
-        }
-
-        [/block]
       externalDocs:
         url: https://docs.helix.q2.com/reference/customerupdate
       operationId: customerUpdate
@@ -5238,6 +5226,85 @@ paths:
                   type: array
                   items:
                     $ref: '#/components/schemas/PhoneItem'
+      responses:
+        '200':
+          description: >-
+            An <a href="https://docs.helix.q2.com/reference/response-format"
+            target="_blank">envelope</a> whose data node is a <a
+            href="https://docs.helix.q2.com/docs/customer"
+            target="_blank">customer</a> object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerObject200Response'
+        '400':
+          $ref: '#/paths/~1card~1lock/post/responses/400'
+        '401':
+          $ref: '#/paths/~1card~1lock/post/responses/401'
+        '404':
+          $ref: '#/paths/~1card~1lock/post/responses/404'
+        '405':
+          $ref: '#/paths/~1card~1lock/post/responses/405'
+        '429':
+          $ref: '#/paths/~1card~1lock/post/responses/429'
+  /customer/updateAddress:
+    post:
+      tags:
+        - Customer
+      summary: Update a customer address
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/customerUpdateAddress
+      operationId: customerupdateaddress
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - customerId
+                - addresses
+              properties:
+                customerId:
+                  $ref: '#/components/schemas/HelixId'
+                addresses:
+                  type: array
+                  description: At least one address must be provided.
+                  items:
+                    type: object
+                    required:
+                      - addressLine1
+                      - addressType
+                      - city
+                      - country
+                      - postalCode
+                      - state
+                    properties:
+                      addressLine1:
+                        $ref: '#/components/schemas/AddressLine'
+                      addressLine2:
+                        $ref: '#/components/schemas/AddressLine'
+                      addressLine3:
+                        $ref: '#/components/schemas/AddressLine'
+                      addressLine4:
+                        $ref: '#/components/schemas/AddressLine'
+                      addressType:
+                        type: string
+                        enum:
+                          - Individual
+                          - Mailing
+                          - PrimaryBusiness
+                          - Business
+                          - Registered
+                          - TaxFormMailing
+                      city:
+                        $ref: '#/components/schemas/CityProperty'
+                      country:
+                        $ref: '#/components/schemas/CountryProperty'
+                      postalCode:
+                        $ref: '#/components/schemas/PostalCode'
+                      state:
+                        $ref: '#/components/schemas/FormationState'
       responses:
         '200':
           description: >-
