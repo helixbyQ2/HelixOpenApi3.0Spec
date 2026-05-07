@@ -687,14 +687,6 @@ paths:
       tags:
         - Account - Entitlement
       summary: Add an entitlement
-      description: |
-        Grant business account access to a customer related to the business.
-        [block:callout]
-        {
-          "type": "warning",
-          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
-        }
-        [/block]
       externalDocs:
         url: https://docs.helix.q2.com/reference/accountaddentitlement
       operationId: accountAddEntitlement
@@ -748,14 +740,6 @@ paths:
       tags:
         - Account - Entitlement
       summary: List Entitlements
-      description: |
-        Retrieve all entitlements for a business account.
-        [block:callout]
-        {
-          "type": "warning",
-          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
-        }
-        [/block]
       externalDocs:
         url: https://docs.helix.q2.com/reference/accountlistentitlements
       operationId: accountListEntitlements
@@ -793,18 +777,6 @@ paths:
       tags:
         - Account - Entitlement
       summary: Edit an entitlement
-      description: >
-        Edit existing business account access for a customer related to the
-        business.
-
-        [block:callout]
-
-        {
-          "type": "warning",
-          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
-        }
-
-        [/block]
       externalDocs:
         url: https://docs.helix.q2.com/reference/accounteditentitlement
       operationId: accountEditEntitlement
@@ -858,14 +830,6 @@ paths:
       tags:
         - Account - Entitlement
       summary: Remove an entitlement
-      description: |
-        Remove a customer's access to a business account
-        [block:callout]
-        {
-          "type": "warning",
-          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
-        }
-        [/block]
       externalDocs:
         url: https://docs.helix.q2.com/reference/accountremoveentitlement
       operationId: accountRemoveEntitlement
@@ -916,18 +880,6 @@ paths:
       tags:
         - Account - Hold
       summary: Place a hold
-      description: >
-        Place an indefinite hold on funds in a customer's account. Can be
-        reversed by calling [/account/releaseHold](ref:accountreleasehold).
-
-        [block:callout]
-
-        {
-          "type": "warning",
-          "body": "Use of this route requires approval from Q2 and your bank partner."
-        }
-
-        [/block]
       externalDocs:
         url: https://docs.helix.q2.com/reference/accountplacehold
       operationId: accountPlaceHold
@@ -988,18 +940,6 @@ paths:
       tags:
         - Account - Hold
       summary: Release a hold
-      description: >
-        Release a hold on funds (created via
-        [/account/placeHold](ref:accountplacehold) in a customer's account. 
-
-        [block:callout]
-
-        {
-          "type": "warning",
-          "body": "Use of this route requires approval from Q2 and your bank partner."
-        }
-
-        [/block]
       externalDocs:
         url: https://docs.helix.q2.com/reference/accountreleasehold
       operationId: accountReleaseHold
@@ -1049,14 +989,6 @@ paths:
       tags:
         - Account - Limit
       summary: Set account limit(s)
-      description: |
-        Set or update one or more account limits
-        [block:callout]
-        {
-          "type": "warning",
-          "body": "Use of this route requires approval from Q2 and your bank partner."
-        }
-        [/block]
       externalDocs:
         url: https://docs.helix.q2.com/reference/accountlimitset
       operationId: accountLimitSet
@@ -1099,14 +1031,6 @@ paths:
       tags:
         - Account - Limit
       summary: List account limits
-      description: |
-        Retrieve all account limits for the given `customerId` and `accountId`. 
-        [block:callout]
-        {
-          "type": "warning",
-          "body": "Use of this route requires approval from Q2 and your bank partner."
-        }
-        [/block]
       externalDocs:
         url: https://docs.helix.q2.com/reference/accountlimitList
       operationId: accountLimitList
@@ -1190,18 +1114,6 @@ paths:
       tags:
         - Account - Stop Pay
       summary: Create check stop pay
-      description: >
-        See <a href="https://docs.helix.q2.com/docs/stop-pay"
-        target="_blank">stopPay object definition</a> for parameter details.
-
-        [block:callout]
-
-        {
-          "type": "warning",
-          "body": "Use of this route requires approval from Q2 and your bank partner."
-        }
-
-        [/block]
       externalDocs:
         url: https://docs.helix.q2.com/reference/accountstoppaycreatecheckstoppay
       operationId: accountStopPayCreateCheckStopPay
@@ -1316,18 +1228,6 @@ paths:
       tags:
         - Account - Stop Pay
       summary: Expire a stop pay
-      description: >
-        See <a href="https://docs.helix.q2.com/docs/stop-pay"
-        target="_blank">stopPay object definition</a> for parameter details.
-
-        [block:callout]
-
-        {
-          "type": "warning",
-          "body": "Use of this route requires approval from Q2 and your bank partner."
-        }
-
-        [/block]
       externalDocs:
         url: https://docs.helix.q2.com/reference/accountstoppayexpire
       operationId: accountStopPayExpire
@@ -1661,13 +1561,6 @@ paths:
       tags:
       - Card
       summary: Initiate a card
-      description: "Initiate a request to create a new card and mail it to a customer.\
-        \ See <a href=\"https://docs.helix.q2.com/docs/card\" target=\"_blank\">card\
-        \ object definition</a> for parameter details.\n[block:callout]\n{\n  \"type\"\
-        : \"info\",\n  \"body\": \"In the Sandbox environment cards will always be\
-        \ created with a `cardNumberMasked` value of `1111` and can be verified via\
-        \ [/card/verify](https://docs.helix.q2.com/reference/cardverify) immediately.\"\
-        \n}\n[/block]\n"
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardinitiate
       operationId: cardInitiate
@@ -2299,18 +2192,6 @@ paths:
       tags:
         - Card
       summary: Order a physical card
-      description: >
-        Order a  physical card for an existing digital card with single PAN dual
-        issuance
-
-        [block:callout]
-
-        {
-          "type": "warning",
-          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
-        }
-
-        [/block]
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardorderphysical
       operationId: cardOrderPhysical
@@ -2635,9 +2516,6 @@ paths:
       tags:
       - Card
       summary: Hotlist (permanently lock) a card
-      description: "Permanently locks a card and sets `lockTypeCode=CST`.\n[block:callout]\n\
-        {\n  \"type\": \"warning\",\n  \"body\": \"This is a one-way function and\
-        \ cannot be undone.\"\n}\n[/block]\n"
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardhotlist
       operationId: cardHotlist
@@ -2765,15 +2643,6 @@ paths:
       tags:
       - Card
       summary: Renewal override
-      description: "Override the base Helix card renewal eligibility criteria during\
-        \ a card's renewal period. A card's renewal period begins on the first day\
-        \ of the prior month of the card's expiration and ends the day before the\
-        \ client's scheduled monthly renewal job.\n\nCard must be in an eligible `status`\
-        \ listed below to perform a card renewal override:\n- `Verified`\n- `Reissued`\n\
-        - `PendingVerification`\n- `ReissuedPendingVerification`\n- `DigitalActivePhysicalIntiated`\n\
-        - `DigitalActivePhysicalPending`\n\n[block:callout]\n{\n  \"type\": \"warning\"\
-        ,\n  \"body\": \"Use of this endpoint requires approval from Q2 and your bank\
-        \ partner.\"\n}\n[/block]\n"
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardrenewaloverride
       operationId: cardRenewalOverride
@@ -2929,11 +2798,6 @@ paths:
       tags:
       - Card
       summary: Archive a card
-      description: "Archives a card. \n[block:callout]\n{\n  \"type\": \"warning\"\
-        ,\n  \"body\": \"This is a one-way function; once a card is archived, it cannot\
-        \ be \\\"unarchived.\\\"\"\n}\n[/block]\n"
-      externalDocs:
-        url: https://docs.helix.q2.com/reference/cardarchive
       operationId: cardArchive
       requestBody:
         required: true
@@ -2971,13 +2835,6 @@ paths:
       tags:
         - Card - Fraud Text Alert
       summary: Get fraud text enrollment status
-      description: |
-        [block:callout]
-        {
-          "type": "warning",
-          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
-        }
-        [/block]
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardfraudtextalertget
       operationId: cardFraudTextAlertGet
@@ -3006,14 +2863,6 @@ paths:
       tags:
         - Card - Fraud Text Alert
       summary: Opt out of fraud texts
-      description: |
-        Initiate a cardholder opt out from fraud text alerts on a given card.
-        [block:callout]
-        {
-          "type": "warning",
-          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
-        }
-        [/block]
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardfraudtextalertoptout
       operationId: cardFraudTextAlertOptOut
@@ -3053,13 +2902,6 @@ paths:
       tags:
         - Card - Limit
       summary: Get card limits
-      description: |
-        [block:callout]
-        {
-          "type": "warning",
-          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
-        }
-        [/block]
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardlimitget
       operationId: cardLimitGet
@@ -3092,19 +2934,6 @@ paths:
       tags:
         - Card - Limit
       summary: Create a temporary card limit
-      description: >
-        Allow temporary dollar limit increase requests (e.g., one-time large
-        purchases, large ATM withdrawal) that are higher than standard program
-        limits, but below program-defined limit group settings.
-
-        [block:callout]
-
-        {
-          "type": "warning",
-          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
-        }
-
-        [/block]
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardlimittemporaryoverride
       operationId: cardLimitTemporaryOverride
@@ -3164,13 +2993,6 @@ paths:
       tags:
         - Card - Limit
       summary: Override default card limits
-      description: |
-        [block:callout]
-        {
-          "type": "warning",
-          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
-        }
-        [/block]
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardlimitoverride
       operationId: cardLimitOverride
@@ -3243,19 +3065,6 @@ paths:
       tags:
         - Card - Limit
       summary: Reset card limits
-      description: >
-        Allow a semi-permanent card limit override (i.e., high risk, low risk
-        customer) to be reset to default program limit values. This endpoint
-        does not remove a temporary override.
-
-        [block:callout]
-
-        {
-          "type": "warning",
-          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
-        }
-
-        [/block]
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardlimitreset
       operationId: cardLimitReset
@@ -3297,21 +3106,6 @@ paths:
   /card/mock/admin/falconFraud:
     post:
       summary: Simulate Falcon Fraud Message in sandbox environment
-      description: >
-        Generate a mock Falcon messsage in sandbox. This endpoint will generate
-        a <a
-        href="https://docs.helix.q2.com/docs/event-types#falcon-message-events"
-        target="_blank">Falcon Message real-time event</a> with a
-        `userEventTypeId` between `10024` and `10026` (inclusive).
-
-        [block:callout]
-
-        {
-          "type": "danger",
-          "body": "This endpoint can only be used by Visa DPS programs and only within the sandbox environment."
-        }
-
-        [/block]
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardmockadminfalconfraud
       tags:
@@ -3364,23 +3158,6 @@ paths:
   /card/mock/withdrawal/cardCash:
     post:
       summary: Simulate ATM withdrawal in sandbox environment
-      description: >
-        Generate a mock debit card ATM withdrawal transaction in sandbox. This
-        endpoint will generate a <a
-        href="https://docs.helix.q2.com/docs/transaction"
-        target="_blank">transaction</a> with `typeCode=CRDCSH` and a <a
-        href="https://docs.helix.q2.com/docs/event-types#debit-card-withdrawal-events"
-        target="_blank">Debit Card Withdrawal real-time event</a> with
-        `userEventTypeId=3060343`.
-
-        [block:callout]
-
-        {
-          "type": "danger",
-          "body": "This endpoint can only be used by Visa DPS programs and only within the sandbox environment."
-        }
-
-        [/block]
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardmockwithdrawalcardcash
       tags:
@@ -3424,23 +3201,6 @@ paths:
   /card/mock/withdrawal/purchase/authorize:
     post:
       summary: Simulate withdrawal authorization in sandbox environment
-      description: >
-        Generate a mock debit card withdrawal authorization transaction in
-        sandbox. This endpoint will generate a <a
-        href="https://docs.helix.q2.com/docs/transaction"
-        target="_blank">transaction</a> with `typeCode=ATHPCH` and a <a
-        href="https://docs.helix.q2.com/docs/event-types#debit-card-withdrawal-authorization-events"
-        target="_blank">Debit Card Withdrawal Authorization real-time event</a>
-        with `userEventTypeId=3060240`. 
-
-        [block:callout]
-
-        {
-          "type": "danger",
-          "body": "This endpoint can only be used by Visa DPS programs and only within the sandbox environment."
-        }
-
-        [/block]
       externalDocs:
         url: >-
           https://docs.helix.q2.com/reference/cardmockwithdrawalpurchaseauthorize
@@ -3488,23 +3248,6 @@ paths:
   /card/mock/withdrawal/purchase/complete:
     post:
       summary: Simulate withdrawal settlement in sandbox environment
-      description: >
-        Generate a mock debit card withdrawal settlement transaction in sandbox.
-        This endpoint will generate a <a
-        href="https://docs.helix.q2.com/docs/transaction"
-        target="_blank">transaction</a> with `typeCode=CRDPCH` and a <a
-        href="https://docs.helix.q2.com/docs/event-types#debit-card-withdrawal-events"
-        target="_blank">Debit Card Withdrawal real-time event</a> with
-        `userEventTypeId=3060341`.
-
-        [block:callout]
-
-        {
-          "type": "danger",
-          "body": "This endpoint can only be used by Visa DPS programs and only within the sandbox environment."
-        }
-
-        [/block]
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardmockwithdrawalpurchasecomplete
       tags:
@@ -3555,21 +3298,6 @@ paths:
   /card/mock/decline/purchase/authorize:
     post:
       summary: Simulate declined purchase authorization in sandbox environment
-      description: >
-        Generate a mock declined purchase authorization in sandbox. This
-        endpoint will generate a <a
-        href="https://docs.helix.q2.com/docs/event-types#debit-card-declined-events"
-        target="_blank">Debit Card Declined real-time event</a> with
-        `userEventTypeId=3060640`.
-
-        [block:callout]
-
-        {
-          "type": "danger",
-          "body": "This endpoint can only be used by Visa DPS programs and only within the sandbox environment."
-        }
-
-        [/block]
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardmockdeclinepurchaseauthorize
       tags:
@@ -3603,23 +3331,6 @@ paths:
   /card/mock/deposit/purchase/return:
     post:
       summary: Simulate purchase return in sandbox environment
-      description: >
-        Generate a mock debit card purchase return transaction in sandbox. This
-        endpoint will generate a <a
-        href="https://docs.helix.q2.com/docs/transaction"
-        target="_blank">transaction</a> with `typeCode=CRDRTN` and a <a
-        href="https://docs.helix.q2.com/docs/event-types#debit-card-deposit-events"
-        target="_blank">Debit Card Deposit real-time event</a> with
-        `userEventTypeId=3060351`.
-
-        [block:callout]
-
-        {
-          "type": "danger",
-          "body": "This endpoint can only be used by Visa DPS programs and only within the sandbox environment."
-        }
-
-        [/block]
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardmockdepositpurchasereturn
       tags:
@@ -3659,23 +3370,6 @@ paths:
   /card/mock/deposit/purchase/return/reversal:
     post:
       summary: Simulate purchase return reversal in sandbox environment
-      description: >
-        Generate a mock debit card merchandise return reversal transaction in
-        sandbox. This endpoint will generate a <a
-        href="https://docs.helix.q2.com/docs/transaction"
-        target="_blank">transaction</a> with `typeCode=REVRTN` and a <a
-        href="https://docs.helix.q2.com/docs/event-types#debit-card-deposit-reversal-events"
-        target="_blank">Debit Card Deposit Reversal real-time event</a> with
-        `userEventTypeId=3060481`.
-
-        [block:callout]
-
-        {
-          "type": "danger",
-          "body": "This endpoint can only be used by Visa DPS programs and only within the sandbox environment."
-        }
-
-        [/block]
       externalDocs:
         url: >-
           https://docs.helix.q2.com/reference/cardmockdepositpurchasereturnreversal
@@ -3716,18 +3410,6 @@ paths:
       tags:
         - Card - Provision
       summary: Get VDE provisioning details
-      description: >
-        Get encrypted card/account details for for use with Digital Enablement
-        provisioning SDK
-
-        [block:callout]
-
-        {
-          "type": "warning",
-          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
-        }
-
-        [/block]
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardprovisioncarddetail
       operationId: cardProvisionCardDetail
@@ -3873,15 +3555,6 @@ paths:
       tags:
         - Card - Risk Factor
       summary: Get card risk factors
-      description: |
-        Get current risk factor data for a given `cardId`
-
-        [block:callout]
-        {
-          "type": "warning",
-          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
-        }
-        [/block]
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardriskfactorget
       operationId: cardRiskFactorGet
@@ -3910,20 +3583,6 @@ paths:
       tags:
         - Card - Risk Factor
       summary: Set card risk factors
-      description: >
-        Initiate a cardholder base or override risk factor on a card for Stand
-        Alone Fraud Management clients.  The base and override risk factors must
-        be defined in Risk Services Manager (RSM). An override risk factor
-        requires the base risk factor, a start and end date.
-
-        [block:callout]
-
-        {
-          "type": "warning",
-          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
-        }
-
-        [/block]
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardriskfactorset
       operationId: cardRiskFactorSet
@@ -3980,20 +3639,6 @@ paths:
       tags:
         - Card Control
       summary: Create a card control
-      description: >
-        Create a card control and apply it to a customer's card. See <a
-        href="https://docs.helix.q2.com/docs/card-controls#cardcontrol-object"
-        target="_blank">card control object definition</a> for parameter
-        details.
-
-        [block:callout]
-
-        {
-          "type": "warning",
-          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
-        }
-
-        [/block]
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardcontrolcreate
       operationId: cardControlCreate
@@ -4099,14 +3744,6 @@ paths:
       tags:
         - Card Control
       summary: Get a card control
-      description: |
-        Retrieve card control information by the Helix-assigned `cardControlId`
-        [block:callout]
-        {
-          "type": "warning",
-          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
-        }
-        [/block]
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardcontrolget
       operationId: cardControlGet
@@ -4141,18 +3778,6 @@ paths:
       tags:
         - Card Control
       summary: Get a card control by tag
-      description: >
-        Retrieve card control information by the `tag` (unique identifier)
-        specified when the card control was created.
-
-        [block:callout]
-
-        {
-          "type": "warning",
-          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
-        }
-
-        [/block]
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardcontrolgetbytag
       operationId: cardControlGetByTag
@@ -4184,14 +3809,6 @@ paths:
       tags:
         - Card Control
       summary: Archive a card control
-      description: |
-        Archive a card control by the Helix-assigned `cardControlId`
-        [block:callout]
-        {
-          "type": "warning",
-          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
-        }
-        [/block]
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardcontrolarchive
       operationId: cardControlArchive
@@ -4219,18 +3836,6 @@ paths:
       tags:
         - Card Control
       summary: Archive a card control by tag
-      description: >
-        Archive a card control by the `tag` (unique identifier) specified when
-        the card control was created.
-
-        [block:callout]
-
-        {
-          "type": "warning",
-          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
-        }
-
-        [/block]
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardcontrolarchivebytag
       operationId: cardControlArchiveByTag
@@ -4258,20 +3863,6 @@ paths:
       tags:
         - Customer
       summary: Create a customer
-      description: >
-        Create a customer record. See <a
-        href="https://docs.helix.q2.com/docs/customer" target="_blank">customer
-        object definition</a> for parameter details. The parameters you are
-        required to pass to Helix can vary depending on your program settings. 
-
-        [block:callout]
-
-        {
-          "type": "warning",
-          "body": "This endpoint does not run KYC, fraud, OFAC, etc checks. Helix has an additional endpoint, `/customer/onboard`, for performing customer KYC/IDV. The behavior of `/customer/onboard` varies depending on your program settings and thus is not documented publicly. Please [contact us](https://www.q2.com/contact-us) for more information."
-        }
-
-        [/block]
       externalDocs:
         url: https://docs.helix.q2.com/reference/customercreate
       operationId: customerCreate
@@ -4478,20 +4069,6 @@ paths:
       tags:
         - Customer
       summary: Create a business customer
-      description: >
-        Create a business customer record. See <a
-        href="https://docs.helix.q2.com/docs/customer" target="_blank">customer
-        object definition</a> for parameter details. The parameters you are
-        required to pass to Helix can vary depending on your program settings. 
-
-        [block:callout]
-
-        {
-          "type": "warning",
-          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
-        }
-
-        [/block]
       externalDocs:
         url: https://docs.helix.q2.com/reference/customercreatebusiness
       operationId: customercreatebusiness
@@ -4595,7 +4172,6 @@ paths:
                   maxLength: 100
                 addresses:
                   type: array
-                  description: Required for business customers. You must include both a `Registered` address and a `PrimaryBusiness` address in this array.
                   items:
                     type: object
                     required:
@@ -4663,13 +4239,6 @@ paths:
       tags:
         - Customer
       summary: Create business application
-      description: |
-        [block:callout]
-        {
-          "type": "warning",
-          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
-        }
-        [/block]
       externalDocs:
         url: https://docs.helix.q2.com/reference/customercreatebusinessapplication
       operationId: customerCreateBusinessApplication
@@ -4851,18 +4420,6 @@ paths:
       tags:
         - Customer
       summary: Get a customer via tag
-      description: >
-        Retrieve customer information by the `tag` (unique identifier) specified
-        during customer creation.
-
-        [block:callout]
-
-        {
-          "type": "info",
-          "body": "This route will only retrieve customers whose `customer.status` is any of the following: `Active`, `Initiated`, `Manual Review`, `Verified`. Please use the [/customer/get](https://docs.helix.q2.com/reference/customerget) route to retrieve customers with any other `customer.status`."
-        }
-
-        [/block]
       externalDocs:
         url: https://docs.helix.q2.com/reference/customergetbytag
       operationId: customerGetByTag
@@ -4963,22 +4520,6 @@ paths:
       tags:
         - Customer
       summary: Search for customers
-      description: >
-        Retrieve customer information by the given parameter(s). See <a
-        href="https://docs.helix.q2.com/docs/customer" target="_blank">customer
-        object definition</a> for parameter details. The results are ordered by
-        `lastName` then `firstName`. Each customer object will contain an
-        additional property, `customerCount`, which can be used in combination
-        with the `pageNumber` and `pageSize` query params to paginate results. 
-
-        [block:callout]
-
-        {
-          "type": "info",
-          "body": "This endpoint requires a POST request despite the fact that it does not modify or create any data. This is to prevent sensitive data (such as taxId) from possibly being stored in any HTTP logs. "
-        }
-
-        [/block]
       externalDocs:
         url: https://docs.helix.q2.com/reference/customersearch
       operationId: customerSearch
@@ -5247,85 +4788,6 @@ paths:
           $ref: '#/paths/~1card~1lock/post/responses/405'
         '429':
           $ref: '#/paths/~1card~1lock/post/responses/429'
-  /customer/updateAddress:
-    post:
-      tags:
-        - Customer
-      summary: Update a customer address
-      externalDocs:
-        url: https://docs.helix.q2.com/reference/customerUpdateAddress
-      operationId: customerupdateaddress
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              required:
-                - customerId
-                - addresses
-              properties:
-                customerId:
-                  $ref: '#/components/schemas/HelixId'
-                addresses:
-                  type: array
-                  description: At least one address must be provided.
-                  items:
-                    type: object
-                    required:
-                      - addressLine1
-                      - addressType
-                      - city
-                      - country
-                      - postalCode
-                      - state
-                    properties:
-                      addressLine1:
-                        $ref: '#/components/schemas/AddressLine'
-                      addressLine2:
-                        $ref: '#/components/schemas/AddressLine'
-                      addressLine3:
-                        $ref: '#/components/schemas/AddressLine'
-                      addressLine4:
-                        $ref: '#/components/schemas/AddressLine'
-                      addressType:
-                        type: string
-                        enum:
-                          - Individual
-                          - Mailing
-                          - PrimaryBusiness
-                          - Business
-                          - Registered
-                          - TaxFormMailing
-                      city:
-                        $ref: '#/components/schemas/CityProperty'
-                      country:
-                        $ref: '#/components/schemas/CountryProperty'
-                      postalCode:
-                        $ref: '#/components/schemas/PostalCode'
-                      state:
-                        $ref: '#/components/schemas/FormationState'
-      responses:
-        '200':
-          description: >-
-            An <a href="https://docs.helix.q2.com/reference/response-format"
-            target="_blank">envelope</a> whose data node is a <a
-            href="https://docs.helix.q2.com/docs/customer"
-            target="_blank">customer</a> object
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CustomerObject200Response'
-        '400':
-          $ref: '#/paths/~1card~1lock/post/responses/400'
-        '401':
-          $ref: '#/paths/~1card~1lock/post/responses/401'
-        '404':
-          $ref: '#/paths/~1card~1lock/post/responses/404'
-        '405':
-          $ref: '#/paths/~1card~1lock/post/responses/405'
-        '429':
-          $ref: '#/paths/~1card~1lock/post/responses/429'
   /customer/setLastContact:
     post:
       tags:
@@ -5482,13 +4944,6 @@ paths:
       tags:
         - Customer
       summary: Archive a customer
-      description: |
-        [block:callout]
-        {
-          "type": "warning",
-          "body": "This is a one-way function; once a customer is archived, it cannot be \"unarchived.\""
-        }
-        [/block]
       externalDocs:
         url: https://docs.helix.q2.com/reference/customerarchive
       operationId: customerArchive
@@ -5994,13 +5449,6 @@ paths:
       tags:
         - Customer Document
       summary: Get a customer document
-      description: |
-        [block:callout]
-        {
-          "type": "warning",
-          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
-        }
-        [/block]
       externalDocs:
         url: https://docs.helix.q2.com/reference/customerdocumentget
       operationId: customerDocumentGet
@@ -6033,13 +5481,6 @@ paths:
       tags:
         - Customer Document
       summary: List customer documents
-      description: |
-        [block:callout]
-        {
-          "type": "warning",
-          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
-        }
-        [/block]
       externalDocs:
         url: https://docs.helix.q2.com/reference/customerdocumentlist
       operationId: customerDocumentList
@@ -6070,13 +5511,6 @@ paths:
       tags:
         - Customer Document
       summary: Update customer document status
-      description: |
-        [block:callout]
-        {
-          "type": "warning",
-          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
-        }
-        [/block]
       externalDocs:
         url: https://docs.helix.q2.com/reference/customerdocumentupdatestatus
       operationId: customerDocumentUpdateStatus
@@ -6252,19 +5686,6 @@ paths:
       tags:
         - Customer Relationship
       summary: Create customer relationship
-      description: >
-        See <a href="https://docs.helix.q2.com/docs/customer-relationship"
-        target="_blank">customerRelationship object definition</a> for parameter
-        details.
-
-        [block:callout]
-
-        {
-          "type": "warning",
-          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
-        }
-
-        [/block]
       externalDocs:
         url: https://docs.helix.q2.com/reference/customerrelationshipcreate
       operationId: customerRelationshipCreate
@@ -6354,13 +5775,6 @@ paths:
       tags:
         - Customer Relationship
       summary: List customer relationships
-      description: |
-        [block:callout]
-        {
-          "type": "warning",
-          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
-        }
-        [/block]
       externalDocs:
         url: >-
           https://docs.helix.q2.com/reference/customerrelationship/list/{customerId}
@@ -6392,13 +5806,6 @@ paths:
       tags:
         - Customer Relationship
       summary: Update customer relationship
-      description: |
-        [block:callout]
-        {
-          "type": "warning",
-          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
-        }
-        [/block]
       externalDocs:
         url: https://docs.helix.q2.com/reference/customerrelationshipupdate
       operationId: customerRelationshipUpdate
@@ -6462,13 +5869,6 @@ paths:
       tags:
         - Customer Relationship
       summary: Update primary contact
-      description: |
-        [block:callout]
-        {
-          "type": "warning",
-          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
-        }
-        [/block]
       externalDocs:
         url: >-
           https://docs.helix.q2.com/reference/customerrelationshipupdateprimarycontact
@@ -6528,19 +5928,6 @@ paths:
       tags:
         - Customer Relationship
       summary: Archive customer relationship
-      description: >
-        Archive a customer relationship. **Note:** if `primaryCustomerId` is a
-        business customer then `relatedCustomerId` will lose all
-        access/entitlements to `primaryCustomerId`'s accounts
-
-        [block:callout]
-
-        {
-          "type": "warning",
-          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
-        }
-
-        [/block]
       externalDocs:
         url: https://docs.helix.q2.com/reference/customerrelationshiparchive
       operationId: customerRelationshipArchive
@@ -6580,20 +5967,6 @@ paths:
       tags:
         - External Account
       summary: Create an external account
-      description: >
-        Create a new external account with `status=Verified`. See <a
-        href="https://docs.helix.q2.com/docs/external-account"
-        target="_blank">externalAccount object definition</a> for parameter
-        details.
-
-        [block:callout]
-
-        {
-          "type": "warning",
-          "body": "This endpoint is intended to be used in combination with an external IAV service such as Plaid and must be enabled for your program before use."
-        }
-
-        [/block]
       externalDocs:
         url: https://docs.helix.q2.com/reference/externalaccountcreate
       operationId: externalAccountCreate
@@ -6788,21 +6161,6 @@ paths:
       tags:
         - External Account
       summary: Initiate an external account
-      description: >
-        Initiates a new external account with `status=Unverified` and starts the
-        micro-deposit process. See <a
-        href="https://docs.helix.q2.com/docs/external-account"
-        target="_blank">externalAccount object definition</a> for parameter
-        details.
-
-        [block:callout]
-
-        {
-          "type": "info",
-          "body": "In the sandbox environment, if you have NACHA enabled, a \"magic value\" of `123456789` for the `routingNumber` property may be used for testing purposes. This will set the `name` to `COREPRO SANDBOX BANK`. Additionally, all trial deposit amounts in the Sandbox environment will be 0.18 and 0.28, and [/externalAccount/verify](https://docs.helix.q2.com/reference/externalaccountverify) can be called immediately. However, in production, a request to `/externalAccount/verify` must be sent at a later date to allow time for the ACH process to happen at the external bank."
-        }
-
-        [/block]
       externalDocs:
         url: https://docs.helix.q2.com/reference/externalaccountinitiate
       operationId: externalAccountInitiate
@@ -7034,14 +6392,6 @@ paths:
       tags:
         - External Account
       summary: Lock an external account
-      description: |
-        [block:callout]
-        {
-          "type": "warning",
-          "title": "",
-          "body": "Use of this endpoint requires approval from Q2 and your bank partner"
-        }
-        [/block]
       externalDocs:
         url: https://docs.helix.q2.com/reference/externalaccountlock
       operationId: externalAccountLock
@@ -7096,14 +6446,6 @@ paths:
       tags:
         - External Account
       summary: Unlock an external account
-      description: |
-        [block:callout]
-        {
-          "type": "warning",
-          "title": "",
-          "body": "Use of this endpoint requires approval from Q2 and your bank partner"
-        }
-        [/block]
       externalDocs:
         url: https://docs.helix.q2.com/reference/externalaccountunlock
       operationId: externalAccountUnlock
@@ -7155,19 +6497,6 @@ paths:
       tags:
         - External Account
       summary: Archive an external account
-      description: >
-        Archives an external account, meaning it can not be used in future
-        transfers. An external account cannot be archived while it has pending
-        transactions.
-
-        [block:callout]
-
-        {
-          "type": "warning",
-          "body": "This is a one-way function; once an external account is archived, it cannot be \"unarchived.\" Additionally, there is a limit of 3 external accounts that can be archived per customer, per day. This limit resets to 0 daily between midnight and 5:00 AM in the corresponding Time Zone of your Bank of Record."
-        }
-
-        [/block]
       externalDocs:
         url: https://docs.helix.q2.com/reference/externalaccountarchive
       operationId: externalAccountArchive
@@ -7281,13 +6610,6 @@ paths:
       tags:
         - Fee
       summary: Get fees
-      description: |
-        [block:callout]
-        {
-          "type": "warning",
-          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
-        }
-        [/block]
       externalDocs:
         url: https://docs.helix.q2.com/reference/feeconfiglist
       operationId: feeConfigList
@@ -7307,92 +6629,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FeeObject200Response'
-        '400':
-          $ref: '#/paths/~1card~1lock/post/responses/400'
-        '401':
-          $ref: '#/paths/~1card~1lock/post/responses/401'
-        '404':
-          $ref: '#/paths/~1card~1lock/post/responses/404'
-        '405':
-          $ref: '#/paths/~1card~1lock/post/responses/405'
-        '429':
-          $ref: '#/paths/~1card~1lock/post/responses/429'
-  /fee/get/{feeToApplyId}:
-    get:
-      tags:
-        - Fee
-      summary: Get a fee record by FeeToApplyId
-      description: >-
-        Retrieve a single fee lookup record by `feeToApplyId`. The lookup is
-        scoped to the current program and returns the fee details, related
-        transaction identifiers, reversal identifiers, refund transaction
-        identifier, and waiver information when available.
-      externalDocs:
-        url: https://docs.helix.q2.com/reference/feeget
-      operationId: feeGet
-      parameters:
-        - name: feeToApplyId
-          in: path
-          required: true
-          description: The primary identifier of the fee work item. Must be greater than `0`.
-          schema:
-            type: integer
-            format: int64
-            minimum: 1
-      responses:
-        '200':
-          description: >-
-            An <a href="https://docs.helix.q2.com/reference/response-format"
-            target="_blank">envelope</a> whose data node is a fee lookup object.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/FeeLookupObject200Response'
-        '400':
-          $ref: '#/paths/~1card~1lock/post/responses/400'
-        '401':
-          $ref: '#/paths/~1card~1lock/post/responses/401'
-        '404':
-          $ref: '#/paths/~1card~1lock/post/responses/404'
-        '405':
-          $ref: '#/paths/~1card~1lock/post/responses/405'
-        '429':
-          $ref: '#/paths/~1card~1lock/post/responses/429'
-  /fee/getByCustomerTag/{customerFeeTag}:
-    get:
-      tags:
-        - Fee
-      summary: Get a fee record by customer fee tag
-      description: >-
-        Retrieve the most recent fee lookup record for the specified
-        `customerFeeTag`. The lookup is scoped to the current program and
-        returns the fee details, related transaction identifiers, reversal
-        identifiers, refund transaction identifier, and waiver information when
-        available.
-      externalDocs:
-        url: https://docs.helix.q2.com/reference/feegetbycustomertag
-      operationId: feeGetByCustomerTag
-      parameters:
-        - name: customerFeeTag
-          in: path
-          required: true
-          description: >-
-            Customer-facing tag used for fee lookup and correlation. The value
-            cannot be null, empty, or whitespace and has a maximum length of 128
-            characters.
-          schema:
-            type: string
-            minLength: 1
-            maxLength: 128
-      responses:
-        '200':
-          description: >-
-            An <a href="https://docs.helix.q2.com/reference/response-format"
-            target="_blank">envelope</a> whose data node is a fee lookup object.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/FeeLookupObject200Response'
         '400':
           $ref: '#/paths/~1card~1lock/post/responses/400'
         '401':
@@ -7723,18 +6959,6 @@ paths:
       tags:
         - Transaction
       summary: Get a transaction(s)
-      description: >
-        Retrieve a list of transactions related to the given `customerId` and
-        `transactionId`. The list is ordered by `settledDate`, descending.
-
-        [block:callout]
-
-        {
-          "type": "info",
-          "body": "The output is a list because multiple <a href=\"https://docs.helix.q2.com/docs/transaction\" target=\"_blank\">transaction</a> objects may be tied to a given `transactionId`. This is because a single call to [transfer/create](https://docs.helix.q2.com/reference/transfercreate) can result in multiple transactions, e.g., a fee is applied (such as an NSF during NACHA file processing). A fee is considered a separate, but instrinsically related, transaction."
-        }
-
-        [/block]
       externalDocs:
         url: https://docs.helix.q2.com/reference/transactionget
       operationId: transactionGet
@@ -7780,18 +7004,6 @@ paths:
       tags:
         - Transaction
       summary: Get a transaction(s) via tag
-      description: >
-        Retrieve a list of transactions related to the given `customerId` and
-        `tag`. The list is ordered by `settledDate`, descending.
-
-        [block:callout]
-
-        {
-          "type": "info",
-          "body": "The output is a list because multiple <a href=\"https://docs.helix.q2.com/docs/transaction\" target=\"_blank\">transaction</a> objects may be tied to a given `transactionId`. This is because a single call to [transfer/create](https://docs.helix.q2.com/reference/transfercreate) can result in multiple transactions, e.g., a fee is applied (such as an NSF during NACHA file processing). A fee is considered a separate, but instrinsically related, transaction."
-        }
-
-        [/block]
       externalDocs:
         url: https://docs.helix.q2.com/reference/transactiongetbytag
       operationId: transactionGetByTag
@@ -7881,19 +7093,6 @@ paths:
       tags:
         - Transaction
       summary: Set transaction available date
-      description: >
-        Modify the `availableDate` for an ACH transaction forward or backward
-        within the configurable maximum allowed hold days from transaction
-        creation. New `availableDate` will be set to midnight on the date
-        provided in the bank's timezone. Maximum allowed hold days represents
-        business days. 
-
-        [block:callout]
-         {
-           "type": "warning",
-           "body": "Use of this endpoint requires approval from Q2 and your bank partner."
-         }
-         [/block]
       externalDocs:
         url: https://docs.helix.q2.com/reference/transactionsetavailabledate
       operationId: transactionSetAvailableDate
@@ -7942,38 +7141,6 @@ paths:
       tags:
         - Transaction
       summary: Set transaction status
-      description: >
-        Modify the `status` for an outbound ACH transaction made via
-        [/transfer/create](https://docs.helix.q2.com/reference/transfercreate)
-
-        [block:callout]
-
-        {
-          "type": "warning",
-          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
-        }
-
-        [/block]
-
-        The following matrix details which statuses can be updated.
-
-
-        | Starting status | Possible status updates | Notes |
-
-        | --------------- | ----------------------- | ----- |
-
-        | `Initiated`     | `Delayed`, `Voided`     |       |
-
-        | `Delayed`       | `Initiated`, `Voided`   |       |
-
-        | `Pending`       | N/A | Transactions in a `Pending` status can't be
-        updated. |
-
-        | `Settled`       | N/A | Transactions in a `Settled` status can't
-        updated. |
-
-        | `Voided`        | N/A | Transactions in a `Voided` status can't be
-        updated. |
       externalDocs:
         url: https://docs.helix.q2.com/reference/transactionsetstatus
       operationId: transactionSetStatus
@@ -8074,6 +7241,34 @@ paths:
           $ref: '#/paths/~1card~1lock/post/responses/405'
         '429':
           $ref: '#/paths/~1card~1lock/post/responses/429'
+  /transaction/wire/get/{customerId}/{transactionId}:
+    get:
+      tags:
+        - Transaction - Wire
+      summary: Get wire transaction details
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/transactionwireget
+      operationId: transactionWireGet
+      parameters:
+        - $ref: '#/components/parameters/CustomerIdPath'
+        - $ref: '#/components/parameters/TransactionIdPath'
+      responses:
+        '200':
+          description: A wire object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WireObject200Response'
+        '400':
+          $ref: '#/paths/~1card~1lock/post/responses/400'
+        '401':
+          $ref: '#/paths/~1card~1lock/post/responses/401'
+        '404':
+          $ref: '#/paths/~1card~1lock/post/responses/404'
+        '405':
+          $ref: '#/paths/~1card~1lock/post/responses/405'
+        '429':
+          $ref: '#/paths/~1card~1lock/post/responses/429'
   /transfer/create:
     post:
       tags:
@@ -8151,19 +7346,6 @@ paths:
       tags:
         - Transfer
       summary: Create an ACH-originated debit or credit transaction
-      description: >
-        Create an ACH-originated transaction. See <a
-        href="https://docs.helix.q2.com/docs/transfer" target="_blank">transfer
-        object definition</a> for parameter details.
-
-        [block:callout]
-
-        {
-          "type": "warning",
-          "body": "Use of this endpoint requires approval from Q2 and your bank partner."
-        }
-
-        [/block]
       externalDocs:
         url: https://docs.helix.q2.com/reference/transferachoriginationcreate
       operationId: transferAchOriginationCreate
@@ -8320,14 +7502,6 @@ paths:
       tags:
         - Transfer - Wire
       summary: Create a wire
-      description: |
-        Create an outbound wire.
-        [block:callout]
-        {
-          "type": "danger",
-          "body": "This endpoint is still under development. The endpoint definition/specification may change before final release."
-        }
-        [/block]
       externalDocs:
         url: https://docs.helix.q2.com/reference/transferwirecreate
       operationId: transferWireCreate
@@ -8377,7 +7551,9 @@ paths:
                   type: string
                 senderReference:
                   type: string
-                beneficiaryFIRoutingNumber:
+                tag:
+                  $ref: '#/components/schemas/TagProperty'
+                beneficiaryRoutingNumber:
                   type: string
                 beneficiaryFIName:
                   type: string
@@ -8389,26 +7565,14 @@ paths:
                   type: string
                 beneficiaryFIPostalCode:
                   type: string
-                intermediaryFIName:
+                originatorToBeneficiaryInformationLine1:
                   type: string
-                intermediaryFIRoutingNumber:
+                originatorToBeneficiaryInformationLine2:
                   type: string
-                intermediaryFIAddress:
+                originatorToBeneficiaryInformationLine3:
                   type: string
-                intermediaryFICity:
+                originatorToBeneficiaryInformationLine4:
                   type: string
-                intermediaryFIState:
-                  type: string
-                intermediaryFIPostalCode:
-                  type: string
-                originatorToBeneficiaryInformation:
-                  type: string
-                purposeCode:
-                  type: string
-                purposeProprietary:
-                  type: string
-                tag:
-                  $ref: '#/components/schemas/TagProperty'
       responses:
         '200':
           description: >-
@@ -9267,24 +8431,6 @@ components:
                   $ref: '#/components/schemas/YearProperty'
                 expiredDate:
                   $ref: '#/components/schemas/CustomerSetLastContact200Response/allOf/1/properties/data/items/properties/lastContactDate'
-                fees:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      feeAmount:
-                        type: number
-                        format: decimal
-                      feeDescription:
-                        type: string
-                      feeToApplyId:
-                        type: integer
-                        format: int64
-                        minimum: 1
-                      feeTypeId:
-                        $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
-                      productType:
-                        $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/ProductType
                 firstName:
                   type: string
                 isDigitalOnly:
@@ -10428,68 +9574,6 @@ components:
                     type: string
                   feeTypeId:
                     $ref: '#/components/schemas/AccountClose200Response/allOf/1/properties/data/properties/transactionId'
-    FeeLookupObject200Response:
-      allOf:
-        - $ref: '#/components/schemas/CardArray200Response/allOf/0'
-        - type: object
-          properties:
-            data:
-              type: object
-              properties:
-                feeToApplyId:
-                  type: integer
-                  format: int64
-                  description: Primary identifier of the fee work item.
-                customerId:
-                  $ref: '#/components/schemas/HelixId'
-                accountId:
-                  $ref: '#/components/schemas/HelixId'
-                customerFeeTag:
-                  type: string
-                  description: Customer-facing tag used for lookup and correlation.
-                masterId:
-                  type: integer
-                  format: int64
-                  description: Transaction master identifier associated to the fee when available.
-                transactionId:
-                  type: integer
-                  format: int64
-                  description: Identifier of the fee transaction after the fee has posted.
-                refundTransactionId:
-                  type: integer
-                  format: int64
-                  description: Identifier of the refund transaction when a refund has posted.
-                reversalTransactionIds:
-                  type: array
-                  description: Reversal transaction identifiers associated to this fee.
-                  items:
-                    type: integer
-                    format: int64
-                reversalToApplyIds:
-                  type: array
-                  description: Reversal fee work-item identifiers associated to this fee.
-                  items:
-                    type: integer
-                    format: int64
-                feeAmount:
-                  type: number
-                  format: decimal
-                  description: Fee amount recorded for the fee work item.
-                transactionAmount:
-                  type: number
-                  format: decimal
-                  description: Posted transaction amount when available.
-                feeToApplyState:
-                  type: integer
-                  format: int32
-                  description: Current internal fee state enum value.
-                feeWaiverCode:
-                  type: string
-                  description: Waiver reason or waiver code when the fee was waived or partially waived.
-                feeWaiverAmount:
-                  type: number
-                  format: decimal
-                  description: Waived amount for the fee.
     FileContentObject200Response:
       allOf:
         - $ref: '#/components/schemas/CardArray200Response/allOf/0'
