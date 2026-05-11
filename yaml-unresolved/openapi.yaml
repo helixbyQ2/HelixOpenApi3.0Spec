@@ -4264,6 +4264,7 @@ paths:
                   enum:
                     - Signer
                     - Owner
+                    - BeneficialOwner
                     - Trustee
                     - SuccessorTrustee
                     - Guardian
@@ -4271,6 +4272,9 @@ paths:
                     - Executor
                     - Agent
                     - PowerOfAttorney
+                    - Custodian
+                    - Administrator
+                    - Fiduciary
                 controlPersonIsBeneficialOwner:
                   type: boolean
                 isExemptFromBeneficialOwnership:
