@@ -9639,6 +9639,63 @@ components:
                     type: string
                   feeTypeId:
                     $ref: '#/components/schemas/AccountClose200Response/allOf/1/properties/data/properties/transactionId'
+    FeeDetailObject200Response:
+      allOf:
+        - $ref: '#/components/schemas/CardArray200Response/allOf/0'
+        - type: object
+          properties:
+            data:
+              type: object
+              properties:
+                accountId:
+                  type: integer
+                customerId:
+                    type: integer
+                feeAmount:
+                  type: number
+                  format: decimal
+                feeStatus:
+                  type: string
+                feeToApplyId:
+                  type: integer
+                  format: int64
+                feeWaiverAmount:
+                  type: number
+                  format: decimal
+                feeWaiverCode:
+                  type: string
+                masterId:
+                  type: integer
+                  format: int64
+                refundTransactionDetail:
+                  type: object
+                refundTransactionId:
+                  type: integer
+                  format: int64
+                reversalToApplyIds:
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+                reversalTransactionDetails:
+                  type: array
+                  items:
+                    type: object
+                reversalTransactionIds:
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+                tag:
+                  type: string
+                transactionAmount:
+                  type: number
+                  format: decimal
+                transactionDetail:
+                  type: object
+                transactionId:
+                  type: integer
+                  format: int64
     FileContentObject200Response:
       allOf:
         - $ref: '#/components/schemas/CardArray200Response/allOf/0'
