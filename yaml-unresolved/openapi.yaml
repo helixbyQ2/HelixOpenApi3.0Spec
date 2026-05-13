@@ -9341,7 +9341,9 @@ components:
                 tag:
                   type: string
                 taxId:
-                  $ref: '#/components/schemas/TaxId'
+                  allOf:
+                   - description: Returns `taxID`, or `customerID` if `taxID` is unavailable and the program supports customers without `taxID`.
+                   - $ref: '#/components/schemas/TaxId'                 
                 taxIdMasked:
                   type: string
                 taxIdType:
