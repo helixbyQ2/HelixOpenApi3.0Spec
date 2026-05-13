@@ -6588,7 +6588,7 @@ paths:
           $ref: '#/paths/~1card~1lock/post/responses/405'
         '429':
           $ref: '#/paths/~1card~1lock/post/responses/429'
-  /fee/config/list/{feeEngineExecutionTypeId}:
+  /fee/config/list/{feeEngineExecutionType}:
     get:
       tags:
         - Fee
@@ -6597,21 +6597,104 @@ paths:
         url: https://docs.helix.q2.com/reference/feeconfiglist
       operationId: feeConfigList
       parameters:
-        - name: feeEngineExecutionTypeId
+        - name: feeEngineExecutionType
           in: path
-          required: true
+          required: false
           schema:
             $ref: '#/components/schemas/AccountClose200Response/allOf/1/properties/data/properties/transactionId'
+          description: >-
+            Optional filter for the type of fees to return.
+            When omitted, all active fee configurations for the authenticated program are returned.
+            Supported values:
+            0 = All,
+            2 = Card transaction fees,
+            3 = Monthly batch fees,
+            4 = Card maintenance fees,
+            5 = Manual fees,
+            6 = Card scheduled fees
       responses:
         '200':
           description: >-
             An array of <a
-            href="https://docs.helix.q2.com/docs/fee-configuration"
+            href="https://docs.helix.q2.com/docs/fee#feeconfiguration-object"
             target="_blank">feeConfiguration</a> objects.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/FeeObject200Response'
+        '400':
+          $ref: '#/paths/~1card~1lock/post/responses/400'
+        '401':
+          $ref: '#/paths/~1card~1lock/post/responses/401'
+        '404':
+          $ref: '#/paths/~1card~1lock/post/responses/404'
+        '405':
+          $ref: '#/paths/~1card~1lock/post/responses/405'
+        '429':
+          $ref: '#/paths/~1card~1lock/post/responses/429'
+  /fee/get/{feeToApplyId}:
+    get:
+      tags:
+        - Fee
+      summary: Get fee by ID
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/feegetbyid
+      operationId: feeGetById
+      parameters:
+        - name: feeToApplyId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+          description: Helix-assigned unique ID of the fee record to retrieve.
+      responses:
+        '200':
+          description: >-
+            An <a href="https://docs.helix.q2.com/reference/response-format"
+            target="_blank">envelope</a> whose data node is a <a
+            href="https://docs.helix.q2.com/docs/fee-detail#feedetail-object"
+            target="_blank">feeDetail</a> object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeeDetailObject200Response'
+        '400':
+          $ref: '#/paths/~1card~1lock/post/responses/400'
+        '401':
+          $ref: '#/paths/~1card~1lock/post/responses/401'
+        '404':
+          $ref: '#/paths/~1card~1lock/post/responses/404'
+        '405':
+          $ref: '#/paths/~1card~1lock/post/responses/405'
+        '429':
+          $ref: '#/paths/~1card~1lock/post/responses/429'
+  /fee/getByTag/{tag}:
+    get:
+      tags:
+        - Fee
+      summary: Get fee by tag
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/feegetbytag
+      operationId: feeGetByTag
+      parameters:
+        - name: tag
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Client-defined unique identifier used to look up the fee record.
+      responses:
+        '200':
+          description: >-
+            An <a href="https://docs.helix.q2.com/reference/response-format"
+            target="_blank">envelope</a> whose data node is a <a
+            href="https://docs.helix.q2.com/docs/fee-detail#feedetail-object"
+            target="_blank">feeDetail</a> object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeeDetailObject200Response'
         '400':
           $ref: '#/paths/~1card~1lock/post/responses/400'
         '401':
