@@ -6456,11 +6456,11 @@ paths:
                     - $ref: '#/components/schemas/HelixId'
       responses:
         '200':
-           description: >-
-             An <a href="https://docs.helix.q2.com/reference/response-format"
-             target="_blank">envelope</a> whose data node is an <a
-             href="https://docs.helix.q2.com/docs/external-account"
-             target="_blank">externalAccount</a> object
+          description: >-
+            An <a href="https://docs.helix.q2.com/reference/response-format"
+            target="_blank">envelope</a> whose data node is an <a 
+            href="https://docs.helix.q2.com/docs/external-account"
+            target="_blank">externalAccount</a> object
           content:
             application/json:
               schema:
