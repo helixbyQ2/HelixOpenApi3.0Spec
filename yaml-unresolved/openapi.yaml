@@ -6588,7 +6588,7 @@ paths:
           $ref: '#/paths/~1card~1lock/post/responses/405'
         '429':
           $ref: '#/paths/~1card~1lock/post/responses/429'
-  /fee/config/list/{feeEngineExecutionType}:
+  /fee/config/list:
     get:
       tags:
         - Fee
@@ -6598,10 +6598,10 @@ paths:
       operationId: feeConfigList
       parameters:
         - name: feeEngineExecutionType
-          in: path
+          in: query
           required: false
           schema:
-            $ref: '#/components/schemas/AccountClose200Response/allOf/1/properties/data/properties/transactionId'
+            type: string
           description: >-
             Optional filter for the type of fees to return.
             When omitted, all active fee configurations for the authenticated program are returned.
