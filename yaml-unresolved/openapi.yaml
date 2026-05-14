@@ -8719,6 +8719,10 @@ components:
                       properties:
                         questionId:
                           $ref: '#/components/schemas/AccountClose200Response/allOf/1/properties/data/properties/transactionId'
+                        questionOrder:
+                          type: integer
+                          nullable: true
+                          description: The display order of the question within its category
                         questionName:
                           type: string
                           maxLength: 100
