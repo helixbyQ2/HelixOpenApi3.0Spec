@@ -12,7 +12,7 @@ servers:
     description: Production server
 tags:
   - name: Account
-    description: Endpoints for the account object
+    description: Endpoints related to the account object
   - name: Account - Entitlement
     description: Endpoints related to account entitlements
   - name: Account - Hold
