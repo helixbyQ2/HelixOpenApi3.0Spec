@@ -1730,6 +1730,58 @@ paths:
           $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/405
         '429':
           $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/429
+  /card/verifybyCVV:
+    post:
+      tags:
+      - Card
+      summary: Verify a card by CVV
+       # description: Verify that a customer has received a physical card by validating the card CVV, then activate the card for use.
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/cardverifybyCVV
+      operationId: cardVerifyByCVV
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - customerId
+              - cardId
+              - birthDate
+              - cvv
+              properties:
+                customerId:
+                  $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
+                cardId:
+                  $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/schemas/HelixId32
+                birthDate:
+                  type: string
+                  format: date
+                  description: The birthday of the `customerId` who created the card.
+                    Format is YYYY-MM-DD.
+                CVV:
+                  type: string
+                  minLength: 3
+                  maxLength: 4
+                  description: Sensitive CVV/CVV2 value printed on the physical card. Do not store or log this value.
+      responses:
+        '200':
+          description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a> object with `status=Verified`
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardObject200Response'
+        '400':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/400
+        '401':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/401
+        '404':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/404
+        '405':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/405
+        '429':
+          $ref: https://raw.githubusercontent.com/helixbyQ2/HelixOpenApi3.0Spec/prod/components/components.yaml#/components/responses/429
   /card/get/{customerId}/{cardId}:
     get:
       tags:
