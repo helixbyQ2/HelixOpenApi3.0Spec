@@ -1737,8 +1737,8 @@ paths:
       summary: Verify a card by CVV
        # description: Verify that a customer has received a physical card by validating the card CVV, then activate the card for use.
       externalDocs:
-        url: https://docs.helix.q2.com/reference/cardverifybyCVV
-      operationId: cardVerifyByCVV
+        url: https://docs.helix.q2.com/reference/cardverifybycvv
+      operationId: cardVerifyByCvv
       requestBody:
         required: true
         content:
@@ -1760,7 +1760,7 @@ paths:
                   format: date
                   description: The birthday of the `customerId` who created the card.
                     Format is YYYY-MM-DD.
-                CVV:
+                cvv:
                   type: string
                   minLength: 3
                   maxLength: 4
