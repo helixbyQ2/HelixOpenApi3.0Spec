@@ -1746,6 +1746,8 @@ paths:
             schema:
               type: object
               required:
+              - customerId
+              - cardId
               - cardVerificationValue
               - expireMonth
               - expireYear
