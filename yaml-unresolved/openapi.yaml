@@ -5394,6 +5394,50 @@ paths:
           $ref: '#/paths/~1card~1lock/post/responses/405'
         '429':
           $ref: '#/paths/~1card~1lock/post/responses/429'
+  /customerBeneficiary/accountAssignment/list/{customerId}/{customerBeneficiaryId}:
+    get:
+      tags:
+        - Customer Beneficiary
+      summary: List account assignments for a customer beneficiary
+      description: List all accounts to which the given customer beneficiary has been assigned.
+      operationId: customerBeneficiaryAccountAssignmentList
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+        - name: customerBeneficiaryId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+      responses:
+        '200':
+          description: 'An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/customer-beneficiary-account-assignment-list" target="_blank">CustomerBeneficiaryAccountAssignmentList</a> object.'
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/CardArray200Response/allOf/0'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/CustomerBeneficiaryAccountAssignmentList'
+        '400':
+          $ref: '#/paths/~1card~1lock/post/responses/400'
+        '401':
+          $ref: '#/paths/~1card~1lock/post/responses/401'
+        '404':
+          $ref: '#/paths/~1card~1lock/post/responses/404'
+        '405':
+          $ref: '#/paths/~1card~1lock/post/responses/405'
+        '429':
+          $ref: '#/paths/~1card~1lock/post/responses/429'
   /customerBeneficiary/update:
     post:
       tags:
@@ -10785,6 +10829,65 @@ components:
             - TX
             - NE
             - IA
+    CustomerBeneficiaryAccountAssignment:
+      type: object
+      properties:
+        accountId:
+          type: integer
+          format: int32
+          nullable: true
+        accountLegalName1:
+          type: string
+          nullable: true
+        accountLegalName2:
+          type: string
+          nullable: true
+        accountName:
+          type: string
+          nullable: true
+        accountNumberMasked:
+          type: string
+          nullable: true
+        accountType:
+          type: string
+          nullable: true
+        beneficiaryPosition:
+          type: integer
+          format: int32
+          nullable: true
+        distributionDescription:
+          type: string
+          nullable: true
+        distributionPercentage:
+          type: integer
+          format: int32
+          nullable: true
+        distributionType:
+          type: string
+          nullable: true
+        effectiveDate:
+          type: string
+          format: date-time
+          nullable: true
+        isActive:
+          type: boolean
+          nullable: true
+    CustomerBeneficiaryAccountAssignmentList:
+      type: object
+      properties:
+        customerId:
+          type: integer
+          format: int32
+          nullable: true
+        customerBeneficiaryId:
+          type: integer
+          format: int32
+          nullable: true
+        accountAssignments:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/CustomerBeneficiaryAccountAssignment'
   parameters:
     CustomerIdPath:
       name: customerId
