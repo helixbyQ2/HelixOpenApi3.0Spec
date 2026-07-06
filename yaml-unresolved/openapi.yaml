@@ -1781,6 +1781,14 @@ paths:
                   maxLength: 18
                   description: Identifier used uniquely by various card production
                     facilities for mapping card configurations
+                expediteCard:
+                  type: boolean
+                  description: Card order indicator to have physical card expedited
+                    by the card print vendor.
+                bypassExpediteCardFee:
+                  type: boolean
+                  description: Identifier to allow program to waive any program fee
+                    for expedited card request.
       responses:
         '200':
           description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a> object
