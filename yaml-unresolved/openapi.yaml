@@ -460,6 +460,14 @@ paths:
                     - `REC`: Recovery
                     - `DED`: Deceased
                     - `DOR`: Dormant
+                accountLockClassificationCode:
+                  type: string
+                  nullable: true
+                  maxLength: 10
+                  description: >-
+                    An optional program-configured classification code for the
+                    lock. Must be a value from the configured list for the
+                    program.
       responses:
         '200':
           description: >-
@@ -8310,6 +8318,15 @@ components:
                   $ref: '#/components/schemas/AccountLockReasonTypeCode'
                 lockTypeCode:
                   $ref: '#/components/schemas/CardObject200Response/allOf/1/properties/data/properties/lockTypeCode'
+                accountLockClassificationCode:
+                  type: string
+                  nullable: true
+                  maxLength: 10
+                  description: Program-configured classification code associated with the account lock.
+                accountLockClassificationCodeDescription:
+                  type: string
+                  nullable: true
+                  description: Human-readable description of the accountLockClassificationCode.
                 maturityTypeCode:
                   type: string
                 name:
@@ -10543,6 +10560,10 @@ components:
               enum:
                 - TBD
     HelixId:
+      type: integer
+      format: int32
+      minimum: 1
+    HelixId32:
       type: integer
       format: int32
       minimum: 1
