@@ -1558,6 +1558,25 @@ components:
           $ref: '#/components/schemas/TaxId'
         taxIdMasked:
           type: string
+        beneficiaryType:
+          type: string
+          nullable: true
+          description: 'The type of beneficiary. Accepted values: Individual, Trust, Estate, Charity, NonProfit, Other'
+          enum:
+            - Individual
+            - Trust
+            - Estate
+            - Charity
+            - NonProfit
+            - Other
+        taxIdType:
+          type: string
+          nullable: true
+          description: 'The type of tax ID provided. Accepted values: EIN, SSN, ITIN'
+          enum:
+            - EIN
+            - SSN
+            - ITIN
     CustomerBeneficiaryLegalName:
       type: string
       maxLength: 100
