@@ -1302,6 +1302,18 @@ paths:
                   $ref: '#/components/schemas/HelixId'
                 distributionDescription:
                   type: string
+                beneficiaryPosition:
+                  type: integer
+                  nullable: true
+                  description: Position or order of this beneficiary on the account.
+                distributionPercentage:
+                  type: integer
+                  nullable: true
+                  minimum: 0
+                  maximum: 100
+                  description: Whole-number percentage of the account balance to distribute to this beneficiary. Must be between 0 and 100.
+                distributionType:
+                  $ref: '#/components/schemas/DistributionType'
       responses:
         '200':
           description: A confirmation the beneficiary has been added to the account
@@ -1355,6 +1367,18 @@ paths:
                   type: string
                 isActive:
                   type: boolean
+                beneficiaryPosition:
+                  type: integer
+                  nullable: true
+                  description: Position or order of this beneficiary on the account.
+                distributionPercentage:
+                  type: integer
+                  nullable: true
+                  minimum: 0
+                  maximum: 100
+                  description: Whole-number percentage of the account balance to distribute to this beneficiary. Must be between 0 and 100.
+                distributionType:
+                  $ref: '#/components/schemas/DistributionType'
       responses:
         '200':
           description: A confirmation the beneficiary has been added to the account
@@ -1475,6 +1499,93 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountBeneficiaryAddEditRemove200Response'
+        '400':
+          $ref: '#/paths/~1card~1lock/post/responses/400'
+        '401':
+          $ref: '#/paths/~1card~1lock/post/responses/401'
+        '404':
+          $ref: '#/paths/~1card~1lock/post/responses/404'
+        '405':
+          $ref: '#/paths/~1card~1lock/post/responses/405'
+        '429':
+          $ref: '#/paths/~1card~1lock/post/responses/429'
+  /accountBeneficiary/replace:
+    post:
+      tags:
+        - Account Beneficiary
+      summary: Replace account beneficiary collection
+      description: >-
+        Replaces the entire set of beneficiaries for the given customer and
+        account with the collection provided. Saving an empty collection
+        deactivates all existing active beneficiaries. See <a
+        href="https://docs.helix.q2.com/docs/account-beneficiary"
+        target="_blank">accountBeneficiary object definition</a> for parameter
+        details. Use of this endpoint requires enhanced account beneficiaries to
+        be enabled.
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/accountbeneficiarysavecollection
+      operationId: accountBeneficiaryReplace
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - customerId
+                - accountId
+                - accountBeneficiaries
+              properties:
+                customerId:
+                  $ref: '#/components/schemas/HelixId'
+                accountId:
+                  $ref: '#/components/schemas/HelixId'
+                accountBeneficiaries:
+                  type: array
+                  description: >-
+                    The complete set of beneficiaries to save for the account.
+                    Replaces all existing beneficiaries. Pass an empty array to
+                    deactivate all existing beneficiaries.
+                  items:
+                    type: object
+                    required:
+                      - customerBeneficiaryId
+                    properties:
+                      customerBeneficiaryId:
+                        $ref: '#/components/schemas/HelixId'
+                      beneficiaryPosition:
+                        type: integer
+                        nullable: true
+                        description: Position or order of this beneficiary on the account.
+                      distributionPercentage:
+                        type: integer
+                        nullable: true
+                        minimum: 0
+                        maximum: 100
+                        description: >-
+                          Whole-number percentage of the account balance to
+                          distribute to this beneficiary. Must be between 0 and
+                          100. The sum of all percentages within a given
+                          beneficiaryPosition may not exceed 100.
+                      distributionDescription:
+                        type: string
+                        nullable: true
+                        description: >-
+                          Free-form description of the distribution. At least
+                          one of distributionPercentage or
+                          distributionDescription must be provided.
+                      distributionType:
+                        $ref: '#/components/schemas/DistributionType'
+      responses:
+        '200':
+          description: >-
+            An <a href="https://docs.helix.q2.com/reference/response-format"
+            target="_blank">envelope</a> whose data node contains the saved
+            account beneficiary collection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountBeneficiaryReplace200Response'
         '400':
           $ref: '#/paths/~1card~1lock/post/responses/400'
         '401':
@@ -7834,6 +7945,18 @@ components:
                   type: string
                 isActive:
                   type: boolean
+                beneficiaryPosition:
+                  type: integer
+                  nullable: true
+                  description: Position or order of this beneficiary on the account.
+                distributionPercentage:
+                  type: integer
+                  nullable: true
+                  minimum: 0
+                  maximum: 100
+                  description: Whole-number percentage of the account balance to distribute to this beneficiary. Must be between 0 and 100.
+                distributionType:
+                  $ref: '#/components/schemas/DistributionType'
     AccountBeneficiaryArray200Response:
       allOf:
         - $ref: '#/components/schemas/CardArray200Response/allOf/0'
@@ -7897,6 +8020,55 @@ components:
                   type: string
                 taxIdMasked:
                   type: string
+                beneficiaryPosition:
+                  type: integer
+                  nullable: true
+                  description: Position or order of this beneficiary on the account.
+                distributionPercentage:
+                  type: integer
+                  nullable: true
+                  minimum: 0
+                  maximum: 100
+                  description: Whole-number percentage of the account balance to distribute to this beneficiary. Must be between 0 and 100.
+                distributionType:
+                  $ref: '#/components/schemas/DistributionType'
+    AccountBeneficiaryReplace200Response:
+      allOf:
+        - $ref: '#/components/schemas/CardArray200Response/allOf/0'
+        - type: object
+          properties:
+            data:
+              type: object
+              properties:
+                customerId:
+                  $ref: '#/components/schemas/HelixId'
+                accountId:
+                  $ref: '#/components/schemas/HelixId'
+                accountBeneficiaries:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      customerBeneficiaryId:
+                        $ref: '#/components/schemas/HelixId'
+                      beneficiaryPosition:
+                        type: integer
+                        nullable: true
+                        description: Position or order of this beneficiary on the account.
+                      distributionPercentage:
+                        type: integer
+                        nullable: true
+                        minimum: 0
+                        maximum: 100
+                        description: Whole-number percentage of the account balance to distribute to this beneficiary.
+                      distributionDescription:
+                        type: string
+                        nullable: true
+                        description: Free-form description of the distribution.
+                      distributionType:
+                        $ref: '#/components/schemas/DistributionType'
+                      isActive:
+                        type: boolean
     AccountEntitlementArray200Response:
       allOf:
         - $ref: '#/components/schemas/CardArray200Response/allOf/0'
@@ -10491,6 +10663,13 @@ components:
         - Charity
         - NonProfit
         - Other
+    DistributionType:
+      type: string
+      nullable: true
+      description: 'The method used to distribute the account balance to this beneficiary. Accepted values: Percentage, DescriptionOnly'
+      enum:
+        - Percentage
+        - DescriptionOnly
     PostalCode:
       type: string
       maxLength: 9
