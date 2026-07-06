@@ -5358,6 +5358,10 @@ paths:
                 phoneNumber:
                   type: string
                   maxLength: 15
+                beneficiaryType:
+                  $ref: '#/components/schemas/BeneficiaryType'
+                taxIdType:
+                  $ref: '#/components/schemas/TaxIdType'
       responses:
         '200':
           description: >-
@@ -5557,6 +5561,10 @@ paths:
                 phoneNumber:
                   type: string
                   maxLength: 15
+                beneficiaryType:
+                  $ref: '#/components/schemas/BeneficiaryType'
+                taxIdType:
+                  $ref: '#/components/schemas/TaxIdType'
       responses:
         '200':
           description: >-
@@ -8976,6 +8984,10 @@ components:
                   $ref: '#/components/schemas/TaxId'
                 taxIdMasked:
                   type: string
+                beneficiaryType:
+                  $ref: '#/components/schemas/BeneficiaryType'
+                taxIdType:
+                  $ref: '#/components/schemas/TaxIdType'
     CustomerCreate200Response:
       allOf:
         - $ref: '#/components/schemas/CardArray200Response/allOf/0'
@@ -10468,6 +10480,17 @@ components:
     BeneficiaryLegalName:
       type: string
       maxLength: 100
+    BeneficiaryType:
+      type: string
+      nullable: true
+      description: 'The type of beneficiary. Accepted values: Individual, Trust, Estate, Charity, NonProfit, Other'
+      enum:
+        - Individual
+        - Trust
+        - Estate
+        - Charity
+        - NonProfit
+        - Other
     PostalCode:
       type: string
       maxLength: 9
