@@ -5036,6 +5036,85 @@ paths:
           $ref: '#/paths/~1card~1lock/post/responses/405'
         '429':
           $ref: '#/paths/~1card~1lock/post/responses/429'
+  /customer/updateAddress:
+    post:
+      tags:
+        - Customer
+      summary: Update a customer address
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/customerUpdateAddress
+      operationId: customerupdateaddress
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - customerId
+                - addresses
+              properties:
+                customerId:
+                  $ref: '#/components/schemas/HelixId'
+                addresses:
+                  type: array
+                  description: At least one address must be provided.
+                  items:
+                    type: object
+                    required:
+                      - addressLine1
+                      - addressType
+                      - city
+                      - country
+                      - postalCode
+                      - state
+                    properties:
+                      addressLine1:
+                        $ref: '#/components/schemas/AddressLine'
+                      addressLine2:
+                        $ref: '#/components/schemas/AddressLine'
+                      addressLine3:
+                        $ref: '#/components/schemas/AddressLine'
+                      addressLine4:
+                        $ref: '#/components/schemas/AddressLine'
+                      addressType:
+                        type: string
+                        enum:
+                          - Individual
+                          - Mailing
+                          - PrimaryBusiness
+                          - Business
+                          - Registered
+                          - TaxFormMailing
+                      city:
+                        $ref: '#/components/schemas/CityProperty'
+                      country:
+                        $ref: '#/components/schemas/CountryProperty'
+                      postalCode:
+                        $ref: '#/components/schemas/PostalCode'
+                      state:
+                        $ref: '#/components/schemas/FormationState'
+      responses:
+        '200':
+          description: >-
+            An <a href="https://docs.helix.q2.com/reference/response-format"
+            target="_blank">envelope</a> whose data node is a <a
+            href="https://docs.helix.q2.com/docs/customer"
+            target="_blank">customer</a> object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerObject200Response'
+        '400':
+          $ref: '#/paths/~1card~1lock/post/responses/400'
+        '401':
+          $ref: '#/paths/~1card~1lock/post/responses/401'
+        '404':
+          $ref: '#/paths/~1card~1lock/post/responses/404'
+        '405':
+          $ref: '#/paths/~1card~1lock/post/responses/405'
+        '429':
+          $ref: '#/paths/~1card~1lock/post/responses/429'
   /customer/setLastContact:
     post:
       tags:
@@ -6929,6 +7008,92 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FeeObject200Response'
+        '400':
+          $ref: '#/paths/~1card~1lock/post/responses/400'
+        '401':
+          $ref: '#/paths/~1card~1lock/post/responses/401'
+        '404':
+          $ref: '#/paths/~1card~1lock/post/responses/404'
+        '405':
+          $ref: '#/paths/~1card~1lock/post/responses/405'
+        '429':
+          $ref: '#/paths/~1card~1lock/post/responses/429'
+  /fee/get/{feeToApplyId}:
+    get:
+      tags:
+        - Fee
+      summary: Get a fee record by FeeToApplyId
+      description: >-
+        Retrieve a single fee lookup record by `feeToApplyId`. The lookup is
+        scoped to the current program and returns the fee details, related
+        transaction identifiers, reversal identifiers, refund transaction
+        identifier, and waiver information when available.
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/feeget
+      operationId: feeGet
+      parameters:
+        - name: feeToApplyId
+          in: path
+          required: true
+          description: The primary identifier of the fee work item. Must be greater than `0`.
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      responses:
+        '200':
+          description: >-
+            An <a href="https://docs.helix.q2.com/reference/response-format"
+            target="_blank">envelope</a> whose data node is a fee lookup object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeeLookupObject200Response'
+        '400':
+          $ref: '#/paths/~1card~1lock/post/responses/400'
+        '401':
+          $ref: '#/paths/~1card~1lock/post/responses/401'
+        '404':
+          $ref: '#/paths/~1card~1lock/post/responses/404'
+        '405':
+          $ref: '#/paths/~1card~1lock/post/responses/405'
+        '429':
+          $ref: '#/paths/~1card~1lock/post/responses/429'
+  /fee/getByCustomerTag/{customerFeeTag}:
+    get:
+      tags:
+        - Fee
+      summary: Get a fee record by customer fee tag
+      description: >-
+        Retrieve the most recent fee lookup record for the specified
+        `customerFeeTag`. The lookup is scoped to the current program and
+        returns the fee details, related transaction identifiers, reversal
+        identifiers, refund transaction identifier, and waiver information when
+        available.
+      externalDocs:
+        url: https://docs.helix.q2.com/reference/feegetbycustomertag
+      operationId: feeGetByCustomerTag
+      parameters:
+        - name: customerFeeTag
+          in: path
+          required: true
+          description: >-
+            Customer-facing tag used for fee lookup and correlation. The value
+            cannot be null, empty, or whitespace and has a maximum length of 128
+            characters.
+          schema:
+            type: string
+            minLength: 1
+            maxLength: 128
+      responses:
+        '200':
+          description: >-
+            An <a href="https://docs.helix.q2.com/reference/response-format"
+            target="_blank">envelope</a> whose data node is a fee lookup object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeeLookupObject200Response'
         '400':
           $ref: '#/paths/~1card~1lock/post/responses/400'
         '401':
@@ -9929,6 +10094,68 @@ components:
                     - Business Checking
                     - Business Savings
                     - Prepaid
+    FeeLookupObject200Response:
+      allOf:
+        - $ref: '#/components/schemas/CardArray200Response/allOf/0'
+        - type: object
+          properties:
+            data:
+              type: object
+              properties:
+                feeToApplyId:
+                  type: integer
+                  format: int64
+                  description: Primary identifier of the fee work item.
+                customerId:
+                  $ref: '#/components/schemas/HelixId'
+                accountId:
+                  $ref: '#/components/schemas/HelixId'
+                customerFeeTag:
+                  type: string
+                  description: Customer-facing tag used for lookup and correlation.
+                masterId:
+                  type: integer
+                  format: int64
+                  description: Transaction master identifier associated to the fee when available.
+                transactionId:
+                  type: integer
+                  format: int64
+                  description: Identifier of the fee transaction after the fee has posted.
+                refundTransactionId:
+                  type: integer
+                  format: int64
+                  description: Identifier of the refund transaction when a refund has posted.
+                reversalTransactionIds:
+                  type: array
+                  description: Reversal transaction identifiers associated to this fee.
+                  items:
+                    type: integer
+                    format: int64
+                reversalToApplyIds:
+                  type: array
+                  description: Reversal fee work-item identifiers associated to this fee.
+                  items:
+                    type: integer
+                    format: int64
+                feeAmount:
+                  type: number
+                  format: decimal
+                  description: Fee amount recorded for the fee work item.
+                transactionAmount:
+                  type: number
+                  format: decimal
+                  description: Posted transaction amount when available.
+                feeToApplyState:
+                  type: integer
+                  format: int32
+                  description: Current internal fee state enum value.
+                feeWaiverCode:
+                  type: string
+                  description: Waiver reason or waiver code when the fee was waived or partially waived.
+                feeWaiverAmount:
+                  type: number
+                  format: decimal
+                  description: Waived amount for the fee.
     FeeObject200Response:
       allOf:
         - $ref: '#/components/schemas/CardArray200Response/allOf/0'
@@ -10560,10 +10787,6 @@ components:
               enum:
                 - TBD
     HelixId:
-      type: integer
-      format: int32
-      minimum: 1
-    HelixId32:
       type: integer
       format: int32
       minimum: 1
