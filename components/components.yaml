@@ -422,6 +422,23 @@ components:
           type: string
         taxIdMasked:
           type: string
+        beneficiaryPosition:
+          type: integer
+          nullable: true
+          description: Position or order of this beneficiary on the account.
+        distributionPercentage:
+          type: integer
+          nullable: true
+          minimum: 0
+          maximum: 100
+          description: Whole-number percentage of the account balance to distribute to this beneficiary. Must be between 0 and 100.
+        distributionType:
+          type: string
+          nullable: true
+          description: 'The method used to distribute the account balance to this beneficiary. Accepted values: Percentage, DescriptionOnly'
+          enum:
+            - Percentage
+            - DescriptionOnly
     AccountCloseReason:
       type: string
       enum:
