@@ -695,6 +695,7 @@ paths:
       tags:
         - Account - Entitlement
       summary: Add an entitlement
+      description: Grant business account access to a customer related to the business.  
       externalDocs:
         url: https://docs.helix.q2.com/reference/accountaddentitlement
       operationId: accountAddEntitlement
@@ -748,6 +749,7 @@ paths:
       tags:
         - Account - Entitlement
       summary: List Entitlements
+      description: Retrieve all entitlements for a business account.
       externalDocs:
         url: https://docs.helix.q2.com/reference/accountlistentitlements
       operationId: accountListEntitlements
@@ -785,6 +787,7 @@ paths:
       tags:
         - Account - Entitlement
       summary: Edit an entitlement
+      description: Edit existing business account access for a customer related to the business.
       externalDocs:
         url: https://docs.helix.q2.com/reference/accounteditentitlement
       operationId: accountEditEntitlement
@@ -838,6 +841,7 @@ paths:
       tags:
         - Account - Entitlement
       summary: Remove an entitlement
+      description: "Remove a customer's access to a business account."
       externalDocs:
         url: https://docs.helix.q2.com/reference/accountremoveentitlement
       operationId: accountRemoveEntitlement
@@ -888,6 +892,7 @@ paths:
       tags:
         - Account - Hold
       summary: Place a hold
+      description: "Place an indefinite hold on funds in a customer's account. Can be reversed by calling [/account/releaseHold](https://docs.helix.q2.com/reference/accountreleasehold)."
       externalDocs:
         url: https://docs.helix.q2.com/reference/accountplacehold
       operationId: accountPlaceHold
