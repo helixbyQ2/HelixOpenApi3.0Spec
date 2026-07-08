@@ -3072,7 +3072,7 @@ paths:
       tags:
         - Card - Fraud Text Alert
       summary: Get fraud text enrollment status
-      description: 
+      description: Retrieve fraud text enrollment status.
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardfraudtextalertget
       operationId: cardFraudTextAlertGet
@@ -3101,7 +3101,7 @@ paths:
       tags:
         - Card - Fraud Text Alert
       summary: Opt out of fraud texts
-      description: 
+      description: Opt out of fraud text alerts for the given `cardId`.
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardfraudtextalertoptout
       operationId: cardFraudTextAlertOptOut
@@ -3141,7 +3141,7 @@ paths:
       tags:
         - Card - Limit
       summary: Get card limits
-      description:
+      description: Retrieve all card limits for the given `customerId` and `cardId`.
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardlimitget
       operationId: cardLimitGet
@@ -3234,7 +3234,7 @@ paths:
       tags:
         - Card - Limit
       summary: Override default card limits
-      description:
+      description: Override default card limits for the given `customerId` and `cardId`.
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardlimitoverride
       operationId: cardLimitOverride
@@ -3660,7 +3660,7 @@ paths:
       tags:
         - Card - Provision
       summary: Get VDE provisioning details
-      description:
+      description: Retrieve VDE provisioning details for the given `cardId`.
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardprovisioncarddetail
       operationId: cardProvisionCardDetail
