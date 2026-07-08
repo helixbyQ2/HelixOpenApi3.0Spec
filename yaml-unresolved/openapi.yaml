@@ -75,10 +75,7 @@ paths:
       tags:
         - Account
       summary: Create an account
-      description: >-
-        Create a new account for a customer. See <a
-        href="https://docs.helix.q2.com/docs/account" target="_blank">account
-        object definition</a> for parameter details.
+      description: "Create a new account for a customer. See <a href=\"https://docs.helix.q2.com/docs/account\" target=\"_blank\">account object definition</a> for parameter details."
       externalDocs:
         url: https://docs.helix.q2.com/reference/accountcreate
       operationId: accountCreate
@@ -199,7 +196,7 @@ paths:
       tags:
         - Account
       summary: Get an account
-      description: Retrieve a single account for the given `customerId` and `accountId`
+      description: Retrieve a single account for the given `customerId` and `accountId`.
       externalDocs:
         url: https://docs.helix.q2.com/reference/accountget
       operationId: accountGet
@@ -234,7 +231,7 @@ paths:
       tags:
         - Account
       summary: Get an account via tag
-      description: Retrieve a single account for the given `customerId` and `tag`
+      description: Retrieve a single account for the given `customerId` and `tag`.
       externalDocs:
         url: https://docs.helix.q2.com/reference/accountgetbytag
       operationId: accountGetByTag
@@ -267,10 +264,7 @@ paths:
       tags:
         - Account
       summary: List accounts
-      description: >-
-        Retrieve all accounts for the given `customerId`. Accounts with
-        `status=Closed` may disappear from this list after a period of time no
-        shorter than 32 days.
+      description: Retrieve all accounts for the given `customerId`. Accounts with `status=Closed` may disappear from this list after a period of time no shorter than 32 days.
       externalDocs:
         url: https://docs.helix.q2.com/reference/accountlist
       operationId: accountList
@@ -300,9 +294,7 @@ paths:
       tags:
         - Account
       summary: Update an account
-      description: >-
-        See <a href="https://docs.helix.q2.com/docs/account"
-        target="_blank">account object definition</a> for parameter details.
+      description: "See <a href=\"https://docs.helix.q2.com/docs/account\" target=\"_blank\">account object definition</a> for parameter details."
       externalDocs:
         url: https://docs.helix.q2.com/reference/accountupdate
       operationId: accountUpdate
@@ -399,14 +391,7 @@ paths:
       tags:
         - Account
       summary: Lock an account
-      description: >
-        Lock an account. Most locks can be reversed by calling
-        [/account/unlock](https://docs.helix.q2.com/reference/accountunlock).
-        Please check the
-        [/account/unlock](https://docs.helix.q2.com/reference/accountunlock)
-        documentation to see which lock scenarios can be subsequently unlocked.
-
-         Will apply a lockTypeCode of `CST` or `SYS` on success and the account will be locked, meaning no funds transfers can take place.
+      description: "Lock an account. Most locks can be reversed by calling [/account/unlock](https://docs.helix.q2.com/reference/accountunlock). Please check the [/account/unlock](https://docs.helix.q2.com/reference/accountunlock) documentation to see which lock scenarios can be subsequently unlocked. Will apply a lockTypeCode of `CST` or `SYS` on success and the account will be locked, meaning no funds transfers can take place."
       externalDocs:
         url: https://docs.helix.q2.com/reference/accountlock
       operationId: accountLock
@@ -575,14 +560,7 @@ paths:
       tags:
         - Account
       summary: Close an account
-      description: >-
-        Close an account. If the account balance is greater than $0 or any
-        interest is owed on the account those amounts are calculated and a <a
-        href="https://docs.helix.q2.com/docs/transaction"
-        target="_blank">transaction</a> is implicitly created with the sum of
-        those amounts being credited into the given `closeToAccountId`. That
-        transaction's `tag` property is also assigned the value in the
-        `transactionTag` property (if specified).
+      description: "Close an account. If the account balance is greater than $0 or any interest is owed on the account those amounts are calculated and a <a href=\"https://docs.helix.q2.com/docs/transaction\" target=\"_blank\">transaction</a> is implicitly created with the sum of those amounts being credited into the given `closeToAccountId`. That transaction's `tag` property is also assigned the value in the `transactionTag` property (if specified)."
       externalDocs:
         url: https://docs.helix.q2.com/reference/accountclose
       operationId: accountClose
@@ -953,6 +931,7 @@ paths:
       tags:
         - Account - Hold
       summary: Release a hold
+      description: "Release a hold on funds (created via [/account/placeHold](https://docs.helix.q2.com/reference/accountplacehold)) in a customer's account." 
       externalDocs:
         url: https://docs.helix.q2.com/reference/accountreleasehold
       operationId: accountReleaseHold
@@ -1002,6 +981,7 @@ paths:
       tags:
         - Account - Limit
       summary: Set account limit(s)
+      description: Set or update one or more account limits.
       externalDocs:
         url: https://docs.helix.q2.com/reference/accountlimitset
       operationId: accountLimitSet
@@ -1044,6 +1024,7 @@ paths:
       tags:
         - Account - Limit
       summary: List account limits
+      description: Retrieve all account limits for the given `customerId` and `accountId`.
       externalDocs:
         url: https://docs.helix.q2.com/reference/accountlimitList
       operationId: accountLimitList
@@ -1074,10 +1055,7 @@ paths:
       tags:
         - Account - Limit
       summary: Delete account limit(s)
-      description: >
-        Delete one or more account limits set via <a
-        href="https://docs.helix.q2.com/reference/accountlimitset"
-        target="_blank">/account/limit/set</a>
+      description: "Delete one or more account limits set via <a href=\"https://docs.helix.q2.com/reference/accountlimitset\" target=\"_blank\">/account/limit/set</a>."
       externalDocs:
         url: https://docs.helix.q2.com/reference/accountlimitdelete
       operationId: accountLimitDelete
@@ -1127,6 +1105,7 @@ paths:
       tags:
         - Account - Stop Pay
       summary: Create check stop pay
+      description: "See <a href=\"https://docs.helix.q2.com/docs/stop-pay\" target=\"_blank\">stopPay object definition</a> for parameter details."
       externalDocs:
         url: https://docs.helix.q2.com/reference/accountstoppaycreatecheckstoppay
       operationId: accountStopPayCreateCheckStopPay
@@ -1194,9 +1173,7 @@ paths:
       tags:
         - Account - Stop Pay
       summary: List stop pays
-      description: >
-        Retrieve a list of stop pays for a given customer and account. Maximum
-        date range is 30 days.
+      description: Retrieve a list of stop pays for a given customer and account. Maximum date range is 30 days.
       externalDocs:
         url: https://docs.helix.q2.com/reference/accountstoppaylist
       operationId: accountStopPayList
@@ -1241,6 +1218,7 @@ paths:
       tags:
         - Account - Stop Pay
       summary: Expire a stop pay
+      description: "See <a href=\"https://docs.helix.q2.com/docs/stop-pay\" target=\"_blank\">stopPay object definition</a> for parameter details."
       externalDocs:
         url: https://docs.helix.q2.com/reference/accountstoppayexpire
       operationId: accountStopPayExpire
@@ -1614,7 +1592,7 @@ paths:
       tags:
         - Bank Document
       summary: List bank documents
-      description: Retrieve a list of all bank documents for the given `culture`
+      description: Retrieve a list of all bank documents for the given `culture`.
       externalDocs:
         url: https://docs.helix.q2.com/reference/bankdocumentlist
       operationId: bankDocumentList
@@ -1648,9 +1626,7 @@ paths:
       tags:
         - Bank Document
       summary: Download a bank document
-      description: >-
-        Retrieve <a href="https://docs.helix.q2.com/docs/file-content"
-        target="_blank">fileContent</a> for the given `culture` and `documentId`
+      description: "Retrieve <a href=\"https://docs.helix.q2.com/docs/file-content\" target=\"_blank\">fileContent</a> for the given `culture` and `documentId`."
       externalDocs:
         url: https://docs.helix.q2.com/reference/bankdocumentdownload
       operationId: bankDocumentDownload
@@ -3096,6 +3072,7 @@ paths:
       tags:
         - Card - Fraud Text Alert
       summary: Get fraud text enrollment status
+      description: 
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardfraudtextalertget
       operationId: cardFraudTextAlertGet
@@ -3124,6 +3101,7 @@ paths:
       tags:
         - Card - Fraud Text Alert
       summary: Opt out of fraud texts
+      description: 
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardfraudtextalertoptout
       operationId: cardFraudTextAlertOptOut
@@ -3163,6 +3141,7 @@ paths:
       tags:
         - Card - Limit
       summary: Get card limits
+      description:
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardlimitget
       operationId: cardLimitGet
@@ -3195,6 +3174,7 @@ paths:
       tags:
         - Card - Limit
       summary: Create a temporary card limit
+      description: Allow temporary dollar limit increase requests (e.g., one-time large purchases, large ATM withdrawal) that are higher than standard program limits, but below program-defined limit group settings.
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardlimittemporaryoverride
       operationId: cardLimitTemporaryOverride
@@ -3254,6 +3234,7 @@ paths:
       tags:
         - Card - Limit
       summary: Override default card limits
+      description:
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardlimitoverride
       operationId: cardLimitOverride
@@ -3326,6 +3307,7 @@ paths:
       tags:
         - Card - Limit
       summary: Reset card limits
+      description: Allow a semi-permanent card limit override (i.e., high risk, low risk customer) to be reset to default program limit values. This endpoint does not remove a temporary override.
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardlimitreset
       operationId: cardLimitReset
@@ -3367,6 +3349,7 @@ paths:
   /card/mock/admin/falconFraud:
     post:
       summary: Simulate Falcon Fraud Message in sandbox environment
+      description: "Generate a mock Falcon messsage in sandbox. This endpoint will generate a <a href=\"https://docs.helix.q2.com/docs/event-types#falcon-message-events\" target=\"_blank\">Falcon Message real-time event</a> with a `userEventTypeId` between `10024` and `10026` (inclusive)."
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardmockadminfalconfraud
       tags:
@@ -3419,6 +3402,7 @@ paths:
   /card/mock/withdrawal/cardCash:
     post:
       summary: Simulate ATM withdrawal in sandbox environment
+      description: "Generate a mock debit card ATM withdrawal transaction in sandbox. This endpoint will generate a <a href=\"https://docs.helix.q2.com/docs/transaction\" target=\"_blank\">transaction</a> with `typeCode=CRDCSH` and a <a href=\"https://docs.helix.q2.com/docs/event-types#debit-card-withdrawal-events\" target=\"_blank\">Debit Card Withdrawal real-time event</a> with `userEventTypeId=3060343`."
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardmockwithdrawalcardcash
       tags:
@@ -3462,6 +3446,7 @@ paths:
   /card/mock/withdrawal/purchase/authorize:
     post:
       summary: Simulate withdrawal authorization in sandbox environment
+      description: "Generate a mock debit card withdrawal authorization transaction in sandbox. This endpoint will generate a <a href=\"https://docs.helix.q2.com/docs/transaction\" target=\"_blank\">transaction</a> with `typeCode=ATHPCH` and a <a href=\"https://docs.helix.q2.com/docs/event-types#debit-card-withdrawal-authorization-events\" target=\"_blank\">Debit Card Withdrawal Authorization real-time event</a> with `userEventTypeId=3060240`."
       externalDocs:
         url: >-
           https://docs.helix.q2.com/reference/cardmockwithdrawalpurchaseauthorize
@@ -3509,6 +3494,7 @@ paths:
   /card/mock/withdrawal/purchase/complete:
     post:
       summary: Simulate withdrawal settlement in sandbox environment
+      description: "Generate a mock debit card withdrawal settlement transaction in sandbox. This endpoint will generate a <a href=\"https://docs.helix.q2.com/docs/transaction\" target=\"_blank\">transaction</a> with `typeCode=CRDPCH` and a <a href=\"https://docs.helix.q2.com/docs/event-types#debit-card-withdrawal-events\" target=\"_blank\">Debit Card Withdrawal real-time event</a> with `userEventTypeId=3060341`."
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardmockwithdrawalpurchasecomplete
       tags:
@@ -3559,6 +3545,7 @@ paths:
   /card/mock/decline/purchase/authorize:
     post:
       summary: Simulate declined purchase authorization in sandbox environment
+      description: "Generate a mock declined purchase authorization in sandbox. This endpoint will generate a <a href=\"https://docs.helix.q2.com/docs/event-types#debit-card-declined-events\" target=\"_blank\">Debit Card Declined real-time event</a> with `userEventTypeId=3060640`."
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardmockdeclinepurchaseauthorize
       tags:
@@ -3592,6 +3579,7 @@ paths:
   /card/mock/deposit/purchase/return:
     post:
       summary: Simulate purchase return in sandbox environment
+      description: "Generate a mock debit card purchase return transaction in sandbox. This endpoint will generate a <a href=\"https://docs.helix.q2.com/docs/transaction\" target=\"_blank\">transaction</a> with `typeCode=CRDRTN` and a <a href=\"https://docs.helix.q2.com/docs/event-types#debit-card-deposit-events\" target=\"_blank\">Debit Card Deposit real-time event</a> with `userEventTypeId=3060351`."
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardmockdepositpurchasereturn
       tags:
@@ -3631,6 +3619,7 @@ paths:
   /card/mock/deposit/purchase/return/reversal:
     post:
       summary: Simulate purchase return reversal in sandbox environment
+      description: "Generate a mock debit card merchandise return reversal transaction in sandbox. This endpoint will generate a <a href=\"https://docs.helix.q2.com/docs/transaction\" target=\"_blank\">transaction</a> with `typeCode=REVRTN` and a <a href=\"https://docs.helix.q2.com/docs/event-types#debit-card-deposit-reversal-events\" target=\"_blank\">Debit Card Deposit Reversal real-time event</a> with `userEventTypeId=3060481`."
       externalDocs:
         url: >-
           https://docs.helix.q2.com/reference/cardmockdepositpurchasereturnreversal
@@ -3671,6 +3660,7 @@ paths:
       tags:
         - Card - Provision
       summary: Get VDE provisioning details
+      description:
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardprovisioncarddetail
       operationId: cardProvisionCardDetail
@@ -3816,6 +3806,7 @@ paths:
       tags:
         - Card - Risk Factor
       summary: Get card risk factors
+      description: Get current risk factor data for a given `cardId`.
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardriskfactorget
       operationId: cardRiskFactorGet
@@ -3844,6 +3835,7 @@ paths:
       tags:
         - Card - Risk Factor
       summary: Set card risk factors
+      description: Initiate a cardholder base or override risk factor on a card for Stand Alone Fraud Management clients. The base and override risk factors must be defined in Risk Services Manager (RSM). An override risk factor requires the base risk factor, a start and end date.
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardriskfactorset
       operationId: cardRiskFactorSet
@@ -4005,6 +3997,7 @@ paths:
       tags:
         - Card Control
       summary: Get a card control
+      description: Retrieve card control information by the Helix-assigned `cardControlId`.
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardcontrolget
       operationId: cardControlGet
@@ -4039,6 +4032,7 @@ paths:
       tags:
         - Card Control
       summary: Get a card control by tag
+      description: Retrieve card control information by the `tag` (unique identifier) specified when the card control was created.
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardcontrolgetbytag
       operationId: cardControlGetByTag
@@ -4070,6 +4064,7 @@ paths:
       tags:
         - Card Control
       summary: Archive a card control
+      description: Archive a card control by the Helix-assigned `cardControlId`.
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardcontrolarchive
       operationId: cardControlArchive
@@ -4097,6 +4092,7 @@ paths:
       tags:
         - Card Control
       summary: Archive a card control by tag
+      description: Archive a card control by the `tag` (unique identifier) specified when the card control was created.
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardcontrolarchivebytag
       operationId: cardControlArchiveByTag
@@ -4124,6 +4120,7 @@ paths:
       tags:
         - Customer
       summary: Create a customer
+      description: "Create a card control and apply it to a customer's card. See <a href=\"https://docs.helix.q2.com/docs/card-controls#cardcontrol-object\" target=\"_blank\">card control object definition</a> for parameter details."
       externalDocs:
         url: https://docs.helix.q2.com/reference/customercreate
       operationId: customerCreate
