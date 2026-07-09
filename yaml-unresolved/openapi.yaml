@@ -1661,6 +1661,7 @@ paths:
       tags:
       - Card
       summary: Initiate a card
+      description: "Initiate a request to create a new card and mail it to a customer. See <a href=\"https://docs.helix.q2.com/docs/card\" target=\"_blank\">card object definition</a> for parameter details."
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardinitiate
       operationId: cardInitiate
@@ -1792,8 +1793,7 @@ paths:
       tags:
       - Card
       summary: Verify a card
-      description: Verify a customer has received a physical card and activate it
-        for use.
+      description: Verify a customer has received a physical card and activate it for use.
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardverify
       operationId: cardVerify
@@ -1899,7 +1899,7 @@ paths:
       tags:
         - Card
       summary: Get a card
-      description: Retrieve card information by the given `customerId` and `cardId`
+      description: Retrieve card information by the given `customerId` and `cardId`.
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardget
       operationId: cardGet
@@ -1934,7 +1934,7 @@ paths:
       tags:
       - Card
       summary: Get a card via tag
-      description: Retrieve card information by `customerId` and `tag`
+      description: Retrieve card information by the given `customerId` and `tag`.
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardgetbytag
       operationId: cardGetByTag
@@ -1963,7 +1963,7 @@ paths:
       tags:
       - Card
       summary: List cards
-      description: Retrieve all card information for the given `customerId`
+      description: Retrieve all card information for the given `customerId`.
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardlist
       operationId: cardList
@@ -2016,9 +2016,7 @@ paths:
       tags:
         - Card
       summary: Update a card
-      description: >-
-        See <a href="https://docs.helix.q2.com/docs/card" target="_blank">card
-        object definition</a> for parameter details.
+      description: "See <a href=\"https://docs.helix.q2.com/docs/card\" target=\"_blank\">card object definition</a> for parameter details."
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardupdate
       operationId: cardUpdate
@@ -2078,14 +2076,7 @@ paths:
       tags:
         - Card
       summary: Add an account to a card
-      description: >
-        Add an account to a card. Can be reversed by calling
-        [/card/removeAccount](https://docs.helix.q2.com/reference/cardremoveaccount)
-
-
-        The `customerId` attempting to add the account must have an
-        `accessTypeCode` of `FULL` to that account and the customer itself must
-        have a `accessTypeCode` of `FULL` or `ACCT`.
+      description: "Add an account to a card. Can be reversed by calling [/card/removeAccount](https://docs.helix.q2.com/reference/cardremoveaccount). The `customerId` attempting to add the account must have an `accessTypeCode` of `FULL` to that account and the customer itself must have an `accessTypeCode` of `FULL` or `ACCT`."
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardaddaccount
       operationId: cardAddAccount
@@ -2145,15 +2136,7 @@ paths:
       tags:
         - Card
       summary: Reprioritize an account on a card
-      description: >
-        Make changes to the order in which accounts are displayed when a <a
-        href="https://docs.helix.q2.com/docs/card" target="_blank">card</a> is
-        used at an ATM. For more details see <a
-        href="https://docs.helix.q2.com/docs/cardreprioritizeaccount-scenarios"
-        target="_blank">example scenarios guide</a>.
-
-        The `customerId` attempting to reprioritize the account must have an
-        `accessTypeCode` of `FULL` or `ACCT`.
+      description: "Update the order in which accounts are displayed when a <a href=\"https://docs.helix.q2.com/docs/card\" target=\"_blank\">card</a> is used at an ATM. For more details see <a href=\"https://docs.helix.q2.com/docs/account-reprioritization-scenarios\" target=\"_blank\">Account Reprioritization Scenarios</a>. The `customerId` attempting to reprioritize the account must have an `accessTypeCode` of `FULL` or `ACCT`."
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardreprioritizeaccount
       operationId: cardReprioritizeAccount
@@ -2355,6 +2338,7 @@ paths:
       tags:
         - Card
       summary: Order a physical card
+      description: Order a physical card for an existing digital card with single PAN dual issuance.
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardorderphysical
       operationId: cardOrderPhysical
@@ -2405,15 +2389,7 @@ paths:
       tags:
         - Card
       summary: Lock a card
-      description: >
-        Lock a card. Most locks can be reversed by calling
-        [/card/unlock](https://docs.helix.q2.com/reference/cardunlock). Please
-        check the [/card/unlock](https://docs.helix.q2.com/reference/cardunlock)
-        documentation to see which lock scenarios can be subsequently unlocked. 
-
-
-        Will apply a `lockTypeCode` of `CST` on success and all card-based
-        transactions will fail.
+      description: "Lock a card. Most locks can be reversed by calling [/card/unlock](https://docs.helix.q2.com/reference/cardunlock). Please check the [/card/unlock](https://docs.helix.q2.com/reference/cardunlock) documentation to see which lock scenarios can be subsequently unlocked. Will apply a `lockTypeCode` of `CST` on success and all card-based transactions will fail."
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardlock
       operationId: cardLock
@@ -2596,50 +2572,7 @@ paths:
       tags:
       - Card
       summary: Unlock a card
-      description: 'Unlock a card. Can be reversed by calling [/card/lock](https://docs.helix.q2.com/reference/cardlock).
-        The following matrix details when this call will succeed or fail.
-
-
-        | Current lockTypeCode | Current lockReasonTypeCode | Result |
-
-        | -------------------- | -------------------------- | ------ |
-
-        | `CST` | `UNK` - Uknown | Success |
-
-        | `CST` | `DMG` - Physical Damage | Success |
-
-        | `CST` | `TMP` - Temporary | Success |
-
-        | `CST` | `ADM` - Administrative | Success |
-
-        | `CST` | `LST` - Lost | Fail - Lost cards can never be used again |
-
-        | `CST` | `STL` - Stolen | Fail - Stolen cards can never be used again |
-
-        | `CST` | `FRD` - Suspected Fraud | Fail - Suspected Fraud cards can never
-        be used again |
-
-        | `SYS` | `LST` - Lost | Fail - Lost cards can never be used again |
-
-        | `SYS` | `STL` - Stolen | Fail - Stolen cards can never be used again |
-
-        | `SYS` | `FRD` - Suspected Fraud | Fail - Suspected Fraud cards can never
-        be used again |
-
-        | `SYS` | `ADM` - Administrative | Fail - Only Admin Console or an automated
-        process can unlock |
-
-        | `SYS` | `PIN` - PIN Retry Limit Exceeded | Fail - Only Admin Console or
-        an automated process can unlock |
-
-        | `SYS` | `TMP` - Temporary | Fail - Only Admin Console or an automated process
-        can unlock
-
-
-        The card will have a `lockTypeCode` of `UNL` upon successful completion of
-        this call. The card will be unlocked and ready for transactions to take place.
-
-        '
+      description: Unlock a card by the Helix-assigned `cardId`.
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardunlock
       operationId: cardUnlock
@@ -2679,6 +2612,7 @@ paths:
       tags:
       - Card
       summary: Hotlist (permanently lock) a card
+      description: Permanently locks a card and sets `lockTypeCode=CST`.
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardhotlist
       operationId: cardHotlist
@@ -2753,14 +2687,7 @@ paths:
       tags:
       - Card
       summary: Reset a card pin
-      description: 'Create a request to reset the PIN for a card. **Note:** For Visa
-        DPS programs, PIN resets are initiated in real-time and are confirmed by DPS
-        which raises a <a href="https://docs.helix.q2.com/docs/event-types#common-events"
-        target="_blank">real-time event</a> with `userEventTypeId=10020`. The PIN
-        reset is in a pending state until this event is raised. For Shazam programs,
-        PIN resets are file based processing and can take up to 24 hours to complete.
-
-        '
+      description: Create a request to reset the PIN for a card.
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardresetpin
       operationId: cardResetPin
@@ -2806,6 +2733,7 @@ paths:
       tags:
       - Card
       summary: Renewal override
+      description: "Override the base Helix card renewal eligibility criteria during a card's renewal period. A card's renewal period begins on the first day of the prior month of the card's expiration and ends the day before the client's scheduled monthly renewal job. Card must be in an eligible `status` listed below to perform a card renewal override: `Verified`, `Reissued`, `PendingVerification`, `ReissuedPendingVerification`, `DigitalActivePhysicalInitiated`, `DigitalActivePhysicalPending`."
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardrenewaloverride
       operationId: cardRenewalOverride
@@ -2851,16 +2779,7 @@ paths:
       tags:
       - Card
       summary: Reissue a card
-      description: >-
-        Reissue a card and, when applicable, send a new physical card to the
-        customer. Use this endpoint when a card needs to be replaced because it
-        was damaged, lost, stolen, compromised, affected by fraud, or when an
-        immediate renewal is needed. Some reissue reasons keep the same card
-        number. Other reasons create a new card number.
-
-
-        If card-maintenance fees apply, the response includes the applied fees
-        on the returned card object. If no fees apply, no fee items are returned.
+      description: Reissue a card due to damage, loss, theft, fraud, compromise, name change, or renewal.
       externalDocs:
         url: https://docs.helix.q2.com/reference/cardreissue
       operationId: cardReissue
@@ -3035,6 +2954,7 @@ paths:
       tags:
       - Card
       summary: Archive a card
+      description: Archive a card by the Helix-assigned `cardId`.
       operationId: cardArchive
       requestBody:
         required: true
@@ -4120,7 +4040,7 @@ paths:
       tags:
         - Customer
       summary: Create a customer
-      description: "Create a card control and apply it to a customer's card. See <a href=\"https://docs.helix.q2.com/docs/card-controls#cardcontrol-object\" target=\"_blank\">card control object definition</a> for parameter details."
+      description: "Create a customer record. See <a href=\"https://docs.helix.q2.com/docs/customer\" target=\"_blank\">customer object definition</a> for parameter details. The parameters you are required to pass to Helix can vary depending on your program settings."
       externalDocs:
         url: https://docs.helix.q2.com/reference/customercreate
       operationId: customerCreate
@@ -4327,6 +4247,7 @@ paths:
       tags:
         - Customer
       summary: Create a business customer
+      description: "Create a business customer record. See <a href=\"https://docs.helix.q2.com/docs/customer\" target=\"_blank\">customer object definition</a> for parameter details. The parameters you are required to pass to Helix can vary depending on your program settings."
       externalDocs:
         url: https://docs.helix.q2.com/reference/customercreatebusiness
       operationId: customercreatebusiness
@@ -4497,6 +4418,7 @@ paths:
       tags:
         - Customer
       summary: Create business application
+      description: Create a business credit application for the given `businessCustomerId`.
       externalDocs:
         url: https://docs.helix.q2.com/reference/customercreatebusinessapplication
       operationId: customerCreateBusinessApplication
@@ -4607,7 +4529,7 @@ paths:
       tags:
         - Customer
       summary: Get a customer
-      description: Retrieve customer information by the `customerId` assigned by Helix.
+      description: Retrieve customer information by the Helix-assigned `customerId`.
       externalDocs:
         url: https://docs.helix.q2.com/reference/customerget
       operationId: customerGet
@@ -4639,9 +4561,7 @@ paths:
       tags:
         - Customer
       summary: Get a customer via emailAddress
-      description: >-
-        Retrieve customer information by the `emailAddress` specified during
-        customer creation.
+      description: Retrieve customer information by the `emailAddress` specified during customer creation.
       externalDocs:
         url: https://docs.helix.q2.com/reference/customergetbyemail
       operationId: customerGetByEmail
@@ -4678,6 +4598,7 @@ paths:
       tags:
         - Customer
       summary: Get a customer via tag
+      description: Retrieve customer information by the `tag` specified during customer creation.
       externalDocs:
         url: https://docs.helix.q2.com/reference/customergetbytag
       operationId: customerGetByTag
@@ -4713,12 +4634,7 @@ paths:
       tags:
         - Customer
       summary: List customers
-      description: >
-        List all customers for your program. The results are ordered by
-        `lastName` then `firstName`. Each customer object will contain an
-        additional property, `customerCount`, which can be used in combination
-        with the `pageNumber` and `pageSize` query params to paginate results.
-        All customers, regardless of any flags or status, will be returned.
+      description: Retrieve all customers for your program. Results are ordered by `lastName` then `firstName`. Each customer object includes a `customerCount` property, which can be used with the `pageNumber` and `pageSize` query parameters to paginate results. All customers, regardless of status, are returned.
       externalDocs:
         url: https://docs.helix.q2.com/reference/customerlist
       operationId: customerList
@@ -4778,6 +4694,7 @@ paths:
       tags:
         - Customer
       summary: Search for customers
+      description: "Retrieve customer information by the given parameter(s). See <a href=\"https://docs.helix.q2.com/docs/customer\" target=\"_blank\">customer object definition</a> for parameter details. Results are ordered by `lastName` then `firstName`. Each customer object includes a `customerCount` property, which can be used with the `pageNumber` and `pageSize` query parameters to paginate results."
       externalDocs:
         url: https://docs.helix.q2.com/reference/customersearch
       operationId: customerSearch
@@ -4841,6 +4758,7 @@ paths:
       tags:
         - Customer
       summary: Update a customer
+      description: "See <a href=\"https://docs.helix.q2.com/docs/customer\" target=\"_blank\">customer object definition</a> for parameter details."
       externalDocs:
         url: https://docs.helix.q2.com/reference/customerupdate
       operationId: customerUpdate
@@ -5051,6 +4969,7 @@ paths:
       tags:
         - Customer
       summary: Update a customer address
+      description: Update an address for the given `customerId` for address verification or manual review.
       externalDocs:
         url: https://docs.helix.q2.com/reference/customerUpdateAddress
       operationId: customerupdateaddress
@@ -5130,7 +5049,7 @@ paths:
       tags:
         - Customer
       summary: Set last contact
-      description: Set the last contact date and type for a customer
+      description: Set the last contact date and type for the given `customerId`.
       externalDocs:
         url: https://docs.helix.q2.com/reference/customersetlastcontact
       operationId: customerSetLastContact
@@ -5178,9 +5097,7 @@ paths:
       tags:
         - Customer
       summary: Generate a customer token
-      description: >-
-        Retrieve customer token for the specified `customerId`. Only applicable
-        if your program has customer-level authentication enabled.
+      description: Retrieve the customer token for the given `customerId`. Only applicable if your program has customer-level authentication enabled.
       externalDocs:
         url: https://docs.helix.q2.com/reference/customergeneratetoken
       operationId: customerGenerateToken
@@ -5208,7 +5125,7 @@ paths:
       tags:
         - Customer
       summary: Make a customer note
-      description: Add notes to a customer record
+      description: Add notes to a customer record by the Helix-assigned `customerId`.
       externalDocs:
         url: https://docs.helix.q2.com/reference/customernote
       operationId: customerNote
@@ -5249,7 +5166,7 @@ paths:
       tags:
         - Customer
       summary: List customer notes
-      description: Retrieve customer notes that were added via the admin console or API
+      description: Retrieve all notes for the given `customerId`, including those added via Helix Admin Console or API.
       externalDocs:
         url: https://docs.helix.q2.com/reference/customernoteslist
       operationId: customerNotesList
@@ -5281,6 +5198,7 @@ paths:
       tags:
         - Customer
       summary: Archive a customer
+      description: Archive a customer by the Helix-assigned `customerId`.
       externalDocs:
         url: https://docs.helix.q2.com/reference/customerarchive
       operationId: customerArchive
@@ -5359,6 +5277,7 @@ paths:
       tags:
         - Customer - Due Diligence
       summary: List a customer's due diligence responses
+      description: Retrieve all due diligence answers for the given `customerId`.
       externalDocs:
         url: https://docs.helix.q2.com/reference/customer/answerlist
       operationId: customer/answerList
@@ -5389,6 +5308,7 @@ paths:
       tags:
         - Customer - Due Diligence
       summary: Submit a customer's due diligence answers
+      description: Create or update due diligence answers for the given `customerId`.
       externalDocs:
         url: https://docs.helix.q2.com/reference/customeranswerpost
       operationId: customerAnswerPost
@@ -5458,10 +5378,7 @@ paths:
       summary: >-
         Retrieves the list of security answers for a customer in a specified
         language
-      description: >-
-        See <a
-        href="https://https://docs.helix.q2.com/docs/customer-security-answer#/customersecurityanswerinfo-object"target="_blank">customerSecurityAnswerInfo
-        object definition</a> for parameter details.
+      description: "See <a href=\"https://docs.helix.q2.com/docs/customer-security-answer#/customersecurityanswerinfo-object\" target=\"_blank\">customerSecurityAnswerInfo object definition</a> for parameter details."
       externalDocs:
         url: https://docs.helix.q2.com/reference/customersecurityanswerslist
       operationId: customersecurityanswerslist
@@ -5503,10 +5420,7 @@ paths:
       tags:
         - Customer Beneficiary
       summary: Create a customer beneficiary
-      description: >-
-        See <a href="https://docs.helix.q2.com/docs/customer-beneficiary"
-        target="_blank">customerBeneficiary object definition</a> for parameter
-        details.
+      description: "See <a href=\"https://docs.helix.q2.com/docs/customer-beneficiary\" target=\"_blank\">customerBeneficiary object definition</a> for parameter details."
       externalDocs:
         url: https://docs.helix.q2.com/reference/customerbeneficiarycreate
       operationId: customerBeneficiaryCreate
@@ -5596,9 +5510,7 @@ paths:
       tags:
         - Customer Beneficiary
       summary: Get a customer beneficiary
-      description: >-
-        Retrieve customer beneficiary information by the given `customerId` and
-        `customerBeneficiaryId`
+      description: Retrieve customer beneficiary information by the given `customerId` and `customerBeneficiaryId`.
       externalDocs:
         url: https://docs.helix.q2.com/reference/customerbeneficiaryget
       operationId: customerBeneficiaryGet
@@ -5666,7 +5578,7 @@ paths:
       tags:
         - Customer Beneficiary
       summary: List account assignments for a customer beneficiary
-      description: List all accounts to which the given customer beneficiary has been assigned.
+      description: Retrieve all beneficiaries for the given `customerId`.
       operationId: customerBeneficiaryAccountAssignmentList
       parameters:
         - name: customerId
@@ -5710,10 +5622,7 @@ paths:
       tags:
         - Customer Beneficiary
       summary: Update a customer beneficiary
-      description: >-
-        See <a href="https://docs.helix.q2.com/docs/customer-beneficiary"
-        target="_blank">customerBeneficiary object definition</a> for parameter
-        details.
+      description: "See <a href=\"https://docs.helix.q2.com/docs/customer-beneficiary\" target=\"_blank\">customerBeneficiary object definition</a> for parameter details."
       externalDocs:
         url: https://docs.helix.q2.com/reference/customerbeneficiaryupdate
       operationId: customerBeneficiaryUpdate
@@ -5799,6 +5708,7 @@ paths:
       tags:
         - Customer Beneficiary
       summary: Deactivate a customer beneficiary
+      description: Deactivate a customer beneficiary by the given `customerId` and `customerBeneficiaryId`.
       externalDocs:
         url: https://docs.helix.q2.com/reference/customerbeneficiarydeactivate
       operationId: customerBeneficiaryDeactivate
@@ -5838,6 +5748,7 @@ paths:
       tags:
         - Customer Document
       summary: Get a customer document
+      description: Retrieve a customer document by the given `customerId` and `documentId`.
       externalDocs:
         url: https://docs.helix.q2.com/reference/customerdocumentget
       operationId: customerDocumentGet
@@ -5870,6 +5781,7 @@ paths:
       tags:
         - Customer Document
       summary: List customer documents
+      description: Retrieve all documents for the given `customerId`.
       externalDocs:
         url: https://docs.helix.q2.com/reference/customerdocumentlist
       operationId: customerDocumentList
@@ -5900,6 +5812,7 @@ paths:
       tags:
         - Customer Document
       summary: Update customer document status
+      description: Update the status of a customer document by the given `customerId` and `documentId`.
       externalDocs:
         url: https://docs.helix.q2.com/reference/customerdocumentupdatestatus
       operationId: customerDocumentUpdateStatus
@@ -5942,11 +5855,7 @@ paths:
       tags:
         - Customer Document
       summary: Upload a customer document
-      description: >-
-        Upload a document on behalf of a customer. See <a
-        href="https://docs.helix.q2.com/docs/customer-document"
-        target="_blank">customerDocument object definition</a> for parameter
-        details.
+      description: "Upload a document on behalf of a customer. See <a href=\"https://docs.helix.q2.com/docs/customer-document\" target=\"_blank\">customerDocument object definition</a> for parameter details."
       externalDocs:
         url: https://docs.helix.q2.com/reference/customerdocumentupload
       operationId: customerDocumentUpload
@@ -6075,6 +5984,7 @@ paths:
       tags:
         - Customer Relationship
       summary: Create customer relationship
+      description: "See <a href=\"https://docs.helix.q2.com/docs/customer-relationship\" target=\"_blank\">customerRelationship object definition</a> for parameter details."
       externalDocs:
         url: https://docs.helix.q2.com/reference/customerrelationshipcreate
       operationId: customerRelationshipCreate
@@ -6164,6 +6074,7 @@ paths:
       tags:
         - Customer Relationship
       summary: List customer relationships
+      description: Retrieve all relationships for the given `customerId`.
       externalDocs:
         url: >-
           https://docs.helix.q2.com/reference/customerrelationship/list/{customerId}
@@ -6195,6 +6106,7 @@ paths:
       tags:
         - Customer Relationship
       summary: Update customer relationship
+      description: Update a customer relationship by the Helix-assigned `customerRelationshipId`.
       externalDocs:
         url: https://docs.helix.q2.com/reference/customerrelationshipupdate
       operationId: customerRelationshipUpdate
@@ -6258,6 +6170,7 @@ paths:
       tags:
         - Customer Relationship
       summary: Update primary contact
+      description: Update the primary contact for the given `customerId`.
       externalDocs:
         url: >-
           https://docs.helix.q2.com/reference/customerrelationshipupdateprimarycontact
@@ -6317,6 +6230,7 @@ paths:
       tags:
         - Customer Relationship
       summary: Archive customer relationship
+      description: Archive a customer relationship by the Helix-assigned `customerRelationshipId`.
       externalDocs:
         url: https://docs.helix.q2.com/reference/customerrelationshiparchive
       operationId: customerRelationshipArchive
@@ -6356,6 +6270,7 @@ paths:
       tags:
         - External Account
       summary: Create an external account
+      description: "Create a new external account with `status=Verified`. See <a href=\"https://docs.helix.q2.com/docs/external-account\" target=\"_blank\">externalAccount object definition</a> for parameter details."
       externalDocs:
         url: https://docs.helix.q2.com/reference/externalaccountcreate
       operationId: externalAccountCreate
@@ -6449,9 +6364,7 @@ paths:
       tags:
         - External Account
       summary: Get an external account
-      description: >-
-        Retrieve externalAccount information by the given `customerId` and
-        `externalAccountId`
+      description: Retrieve external account information by the given `customerId` and `externalAccountId`.
       externalDocs:
         url: https://docs.helix.q2.com/reference/externalaccountget
       operationId: externalAccountGet
@@ -6488,7 +6401,7 @@ paths:
       tags:
         - External Account
       summary: Get an external account via tag
-      description: Retrieve externalAccount information by the given `customerId` and `tag`
+      description: Retrieve external account information by the given `customerId` and `tag`.
       externalDocs:
         url: https://docs.helix.q2.com/reference/externalaccountgetbytag
       operationId: externalAccountGetByTag
@@ -6519,7 +6432,7 @@ paths:
       tags:
         - External Account
       summary: List external accounts
-      description: List all external accounts for a given `customerId`
+      description: Retrieve all external accounts for the given `customerId`.
       externalDocs:
         url: https://docs.helix.q2.com/reference/externalaccountlist
       operationId: externalAccountList
@@ -6550,6 +6463,7 @@ paths:
       tags:
         - External Account
       summary: Initiate an external account
+      description: "Initiate a new external account with `status=Unverified` and start the micro-deposit process. See <a href=\"https://docs.helix.q2.com/docs/external-account\" target=\"_blank\">externalAccount object definition</a> for parameter details."
       externalDocs:
         url: https://docs.helix.q2.com/reference/externalaccountinitiate
       operationId: externalAccountInitiate
@@ -6585,9 +6499,7 @@ paths:
       tags:
         - External Account
       summary: Resend verification deposits
-      description: >
-        Resend verification deposits for an externalAccount in any of the
-        following statuses: `Unverified`, `VerifyLocked`, `Expired`
+      description: Resend verification deposits for an external account with a `status` of `Unverified`, `VerifyLocked`, or `Expired`.
       externalDocs:
         url: https://docs.helix.q2.com/reference/externalaccountresendverification
       operationId: externalAccountResendVerification
@@ -6639,14 +6551,7 @@ paths:
       tags:
         - External Account
       summary: Verify an external account
-      description: >
-        Verify trial deposit amounts that were sent via
-        [/externalAccount/initiate](https://docs.helix.q2.com/reference/externalaccountinitiate). 
-
-
-        **Note:** In the sandbox environment these values are harcoded to `0.18`
-        and `0.28` to allow for easy testing since no ACH files are actually
-        generated. 
+      description: Verify trial deposit amounts sent via [/externalAccount/initiate](https://docs.helix.q2.com/reference/externalaccountinitiate).
       externalDocs:
         url: https://docs.helix.q2.com/reference/externalaccountverify
       operationId: externalAccountVerify
@@ -6706,10 +6611,7 @@ paths:
       tags:
         - External Account
       summary: Update an external account
-      description: >-
-        See <a href="https://docs.helix.q2.com/docs/external-account"
-        target="_blank">externalAccount object definition</a> for parameter
-        details.
+      description: "See <a href=\"https://docs.helix.q2.com/docs/external-account\" target=\"_blank\">externalAccount object definition</a> for parameter details."
       externalDocs:
         url: https://docs.helix.q2.com/reference/externalaccountupdate
       operationId: externalAccountUpdate
@@ -6781,6 +6683,7 @@ paths:
       tags:
         - External Account
       summary: Lock an external account
+      description: Lock an external account by the Helix-assigned `externalAccountId`.
       externalDocs:
         url: https://docs.helix.q2.com/reference/externalaccountlock
       operationId: externalAccountLock
@@ -6835,6 +6738,7 @@ paths:
       tags:
         - External Account
       summary: Unlock an external account
+      description: Unlock an external account by the Helix-assigned `externalAccountId`.
       externalDocs:
         url: https://docs.helix.q2.com/reference/externalaccountunlock
       operationId: externalAccountUnlock
@@ -6886,6 +6790,7 @@ paths:
       tags:
         - External Account
       summary: Archive an external account
+      description: Archive an external account by the Helix-assigned `externalAccountId`.
       externalDocs:
         url: https://docs.helix.q2.com/reference/externalaccountarchive
       operationId: externalAccountArchive
@@ -6933,11 +6838,7 @@ paths:
       tags:
         - External Account Document
       summary: Upload an external account document
-      description: >-
-        Upload a document associated with a specific external account. See <a
-        href="https://docs.helix.q2.com/docs/external-account-document"
-        target="_blank">externalAccountDocument object definition</a> for
-        parameter details.
+      description: "Upload a document associated with a specific external account. See <a href=\"https://docs.helix.q2.com/docs/external-account-document\" target=\"_blank\">externalAccountDocument object definition</a> for parameter details."
       externalDocs:
         url: https://docs.helix.q2.com/reference/externalaccountdocumentupload
       operationId: externalAccountDocumentUpload
@@ -6999,6 +6900,7 @@ paths:
       tags:
         - Fee
       summary: Get fees
+      description: Retrieve all active fee configurations for the program. Use the optional `feeEngineExecutionTypeId` parameter to filter by fee type.
       externalDocs:
         url: https://docs.helix.q2.com/reference/feeconfiglist
       operationId: feeConfigList
@@ -7006,6 +6908,15 @@ paths:
         - name: feeEngineExecutionTypeId
           in: path
           required: true
+          description: |
+            Filter fees by type. Supported values:
+            - `0` = All
+            - `2` = Card transaction fees
+            - `3` = Monthly batch fees
+            - `4` = Card maintenance fees
+            - `5` = Manual fees
+            - `6` = Card scheduled fees
+            - `7` = Money movement fees
           schema:
             $ref: '#/components/schemas/AccountClose200Response/allOf/1/properties/data/properties/transactionId'
       responses:
@@ -7033,11 +6944,7 @@ paths:
       tags:
         - Fee
       summary: Get a fee record by FeeToApplyId
-      description: >-
-        Retrieve a single fee lookup record by `feeToApplyId`. The lookup is
-        scoped to the current program and returns the fee details, related
-        transaction identifiers, reversal identifiers, refund transaction
-        identifier, and waiver information when available.
+      description: Retrieve a fee lookup record by the Helix-assigned `feeToApplyId`.
       externalDocs:
         url: https://docs.helix.q2.com/reference/feeget
       operationId: feeGet
@@ -7074,12 +6981,7 @@ paths:
       tags:
         - Fee
       summary: Get a fee record by customer fee tag
-      description: >-
-        Retrieve the most recent fee lookup record for the specified
-        `customerFeeTag`. The lookup is scoped to the current program and
-        returns the fee details, related transaction identifiers, reversal
-        identifiers, refund transaction identifier, and waiver information when
-        available.
+      description: Retrieve the most recent fee lookup record for the given `customerFeeTag`.
       externalDocs:
         url: https://docs.helix.q2.com/reference/feegetbycustomertag
       operationId: feeGetByCustomerTag
@@ -7119,10 +7021,7 @@ paths:
       tags:
         - Program
       summary: Get program details
-      description: >-
-        Get your program settings and information. All values are read-only.
-        Please contact your Q2 relationship manager if you wish to make any
-        changes.
+      description: Retrieve your program settings and information.
       externalDocs:
         url: https://docs.helix.q2.com/reference/programget
       operationId: programGet
@@ -7152,6 +7051,7 @@ paths:
       tags:
         - Program
       summary: List account holds
+      description: Retrieve all account holds for the given program.
       externalDocs:
         url: https://docs.helix.q2.com/reference/programlistaccountholds
       operationId: programListAccountHolds
@@ -7203,9 +7103,7 @@ paths:
       tags:
         - Program
       summary: List industry classification codes
-      description: >
-        List all industry classification codes for your program. These codes are
-        only used when creating or updating business customers.
+      description: Retrieve all industry classification codes for your program. These codes are only used when creating or updating business customers.
       externalDocs:
         url: >-
           https://docs.helix.q2.com/reference/programlistindustryclassificationcodes
@@ -7238,7 +7136,7 @@ paths:
       tags:
         - Program
       summary: Get customer due diligence questions
-      description: Retrieve active customer onboarding questions
+      description: Retrieve all due diligence questions for the given program.
       externalDocs:
         url: https://docs.helix.q2.com/reference/programquestionslist
       operationId: programQuestionsList
@@ -7279,7 +7177,7 @@ paths:
       tags:
         - Statement
       summary: Get a statement
-      description: Get a statement for a customer
+      description: Retrieve a statement for the given `customerId` and `statementId`.
       externalDocs:
         url: https://docs.helix.q2.com/reference/statementget
       operationId: statementGet
@@ -7316,7 +7214,7 @@ paths:
       tags:
         - Statement
       summary: List statements
-      description: Get a list of all statements for a customer
+      description: Retrieve all statements for the given `customerId`.
       externalDocs:
         url: https://docs.helix.q2.com/reference/statementlist
       operationId: statementList
@@ -7346,10 +7244,7 @@ paths:
       tags:
         - Statement
       summary: Search for statements
-      description: >-
-        Search for monthly statements within the given parameters for a
-        customer. See <a href="https://docs.helix.q2.com/docs/statement"
-        target="_blank">statement object definition</a> for parameter details.
+      description: "Search for monthly statements within the given parameters for the given `customerId`. See <a href=\"https://docs.helix.q2.com/docs/statement\" target=\"_blank\">statement object definition</a> for parameter details."
       externalDocs:
         url: https://docs.helix.q2.com/reference/statementsearch
       operationId: statementSearch
@@ -7403,7 +7298,7 @@ paths:
       tags:
         - Statement
       summary: Download a statement
-      description: Download the PDF content of a monthly or tax statement for a customer
+      description: Download the PDF content of a monthly or tax statement for the given `customerId`.
       externalDocs:
         url: https://docs.helix.q2.com/reference/statementdownload
       operationId: statementDownload
@@ -7433,7 +7328,8 @@ paths:
     get:
       tags:
         - Transaction
-      summary: Get a transaction(s)
+      summary: Get transactions
+      description: Retrieve all transactions related to the given `customerId` and `transactionId`. Results are ordered by `settledDate` descending.
       externalDocs:
         url: https://docs.helix.q2.com/reference/transactionget
       operationId: transactionGet
@@ -7479,6 +7375,7 @@ paths:
       tags:
         - Transaction
       summary: Get a transaction(s) via tag
+      description: Retrieve all transactions related to the given `customerId` and `tag`. Results are ordered by `settledDate` descending.
       externalDocs:
         url: https://docs.helix.q2.com/reference/transactiongetbytag
       operationId: transactionGetByTag
@@ -7509,9 +7406,7 @@ paths:
       tags:
         - Transaction
       summary: List transactions
-      description: >
-        Retrieve a list of transactions restricted by the given parameters. The
-        list is ordered by `transaction.createdDate`, descending.
+      description: Retrieve all transactions restricted by the given parameters. Results are ordered by `createdDate` descending.
       externalDocs:
         url: https://docs.helix.q2.com/reference/transactionlist
       operationId: transactionList
@@ -7568,6 +7463,7 @@ paths:
       tags:
         - Transaction
       summary: Set transaction available date
+      description: Modify the `availableDate` for an ACH transaction forward or backward within the configurable maximum allowed hold days from transaction creation. The new `availableDate` is set to midnight on the provided date in the bank's timezone. Maximum allowed hold days represents business days.
       externalDocs:
         url: https://docs.helix.q2.com/reference/transactionsetavailabledate
       operationId: transactionSetAvailableDate
@@ -7616,6 +7512,7 @@ paths:
       tags:
         - Transaction
       summary: Set transaction status
+      description: Modify the `status` for an outbound ACH transaction made via [/transfer/create](https://docs.helix.q2.com/reference/transfercreate).
       externalDocs:
         url: https://docs.helix.q2.com/reference/transactionsetstatus
       operationId: transactionSetStatus
@@ -7666,12 +7563,7 @@ paths:
       tags:
         - Transaction
       summary: Create a fee for a specified customer account
-      description: >-
-        Create a fee to a specified customer account. Transfer funds from one
-        account to another. Results in a new transaction which can be retrieved
-        via the various
-        [/transaction/*](https://docs.helix.q2.com/reference/transaction-reference)
-        endpoints.
+      description: Create a fee for the given `customerId` and `accountId`. Results in a new transaction retrievable via the [/transaction/*](https://docs.helix.q2.com/reference/transaction-reference) endpoints.
       externalDocs:
         url: https://docs.helix.q2.com/reference/transactioncreateFee
       operationId: /transaction/createFee
@@ -7721,6 +7613,7 @@ paths:
       tags:
         - Transaction - Wire
       summary: Get wire transaction details
+      description: Retrieve wire transaction details by the Helix-assigned `transactionId`.
       externalDocs:
         url: https://docs.helix.q2.com/reference/transactionwireget
       operationId: transactionWireGet
@@ -7749,12 +7642,7 @@ paths:
       tags:
         - Transfer
       summary: Create a transfer
-      description: >-
-        Transfer funds from one account to another. Results in a new transaction
-        which can be retrieved via the various
-        [/transaction/*](https://docs.helix.q2.com/reference/transaction-reference)
-        endpoints. See <a href="https://docs.helix.q2.com/docs/transfer"
-        target="_blank">transfer object definition</a> for parameter details.
+      description: "Transfer funds from one account to another. Results in a new transaction retrievable via the [/transaction/*](https://docs.helix.q2.com/reference/transaction) endpoints. See <a href=\"https://docs.helix.q2.com/docs/transfer\" target=\"_blank\">transfer object definition</a> for parameter details."
       externalDocs:
         url: https://docs.helix.q2.com/reference/transfercreate
       operationId: transferCreate
@@ -7821,6 +7709,7 @@ paths:
       tags:
         - Transfer
       summary: Create an ACH-originated debit or credit transaction
+      description: "Create an ACH-originated transaction. See <a href=\"https://docs.helix.q2.com/docs/transfer\" target=\"_blank\">transfer object definition</a> for parameter details."
       externalDocs:
         url: https://docs.helix.q2.com/reference/transferachoriginationcreate
       operationId: transferAchOriginationCreate
@@ -7924,12 +7813,7 @@ paths:
       tags:
         - Transfer
       summary: Void a transfer
-      description: >
-        Void a transfer previously created via
-        [/transfer/create](https://docs.helix.q2.com/reference/transfercreate).
-
-
-        **Note:** Only transactions with `status=Initiated` may be voided.
+      description: "Void a transfer previously created via [/transfer/create](https://docs.helix.q2.com/reference/transfercreate). Only transactions with `status=Initiated` may be voided."
       externalDocs:
         url: https://docs.helix.q2.com/reference/transfervoid
       operationId: transferVoid
