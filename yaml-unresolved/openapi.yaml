@@ -3841,13 +3841,13 @@ paths:
                         items:
                           type: string
                           enum:
-                            - CP
-                            - DP
-                            - CNP
-                            - IAP
+                            - CP = Card Present
+                            - DP = Device Present
+                            - EC = ECommerce
+                            - IA = In-App
                         example:
                           - CP
-                          - IAP
+                          - IA
                       international:
                         type: boolean
                       limit:
