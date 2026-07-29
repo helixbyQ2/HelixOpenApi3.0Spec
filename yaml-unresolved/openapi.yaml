@@ -1771,6 +1771,11 @@ paths:
                   type: boolean
                   description: Identifier to allow program to waive any program fee
                     for expedited card request.
+                waiveFee:
+                  type: boolean
+                  description: When true, the applicable card creation fee is waived
+                    rather than charged to the customer. When omitted or false, existing
+                    fee behavior is unchanged.
       responses:
         '200':
           description: An <a href="https://docs.helix.q2.com/reference/response-format" target="_blank">envelope</a> whose data node is a <a href="https://docs.helix.q2.com/docs/card" target="_blank">card</a> object
@@ -2363,6 +2368,11 @@ paths:
                         to create a physical card for a virtual card held by a
                         business cardholder
                     - $ref: '#/components/schemas/HelixId'
+                waiveFee:
+                  type: boolean
+                  description: When true, the applicable card creation fee is waived
+                    rather than charged to the customer. When omitted or false, existing
+                    fee behavior is unchanged.
       responses:
         '200':
           description: >-
