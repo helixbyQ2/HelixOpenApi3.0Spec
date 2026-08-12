@@ -7040,7 +7040,7 @@ paths:
           description: >-
             An <a href="https://docs.helix.q2.com/reference/response-format"
             target="_blank">envelope</a> whose data node is a <a
-            href="https://docs.helix.q2.com/docs/external-account"
+            href="https://docs.helix.q2.com/docs/program"
             target="_blank">program</a> object
           content:
             application/json:
