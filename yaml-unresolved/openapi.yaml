@@ -2811,26 +2811,32 @@ paths:
                 reissueReasonTypeCode:
                   type: string
                   enum:
+                  - CMP
                   - DMG
-                  - REN
                   - FRD
                   - LST
-                  - STL
+                  - NAM
                   - NCN
-                  - CMP
-                  description: '- `DMG`: Physical Damage
-
-                    - `REN`: Renewal
+                  - REN
+                  - RPL
+                  - STL
+                  description: `CMP`: Compromised
+                  
+                    - `DMG`: Physical Damage
 
                     - `FRD`: Fraud
 
                     - `LST`: Lost
-
-                    - `STL`: Stolen
+                    
+                    - `NAM`: Name Change
 
                     - `NCN`: Name Change with New PAN
 
-                    - `CMP`: Compromised
+                    - `REN`: Renewal
+
+                    - `RPL`: Replacement
+
+                    - `STL`: Stolen
 
                     '
                 newPin:
