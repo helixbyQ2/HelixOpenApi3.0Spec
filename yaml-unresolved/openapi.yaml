@@ -2822,23 +2822,14 @@ paths:
                   - STL
                   description: |
                     - `CMP`: Compromised
-                  
                     - `DMG`: Physical Damage
-
                     - `FRD`: Fraud
-
                     - `LST`: Lost
-                    
                     - `NAM`: Name Change
-
                     - `NCN`: Name Change with New PAN
-
                     - `REN`: Renewal
-
                     - `RPL`: Replacement
-
                     - `STL`: Stolen
-
                     '
                 newPin:
                   type: string
