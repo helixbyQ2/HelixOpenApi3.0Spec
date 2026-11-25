@@ -1587,21 +1587,40 @@ paths:
           $ref: '#/paths/~1card~1lock/post/responses/405'
         '429':
           $ref: '#/paths/~1card~1lock/post/responses/429'
-  /bankDocument/list/{culture}:
+  /bankDocument/list/{culture}/{documentType}:
     get:
       tags:
         - Bank Document
       summary: List bank documents
-      description: Retrieve a list of all bank documents for the given `culture`.
+      description: >-
+        Retrieve a list of all bank documents for the given `culture` and
+        `documentType`. **Note:** `downloadUrl` is omitted when a document has
+        no PDF, and `downloadUrlHtml` is omitted when it has no HTML file. A V2
+        disclosure can be HTML-only, so do not assume a PDF exists. Legacy V1
+        disclosures still return their content inline in `html`.
       externalDocs:
         url: https://docs.helix.q2.com/reference/bankdocumentlist
       operationId: bankDocumentList
       parameters:
-        - name: culture
+        - $ref: '#/components/parameters/CulturePath'
+        - name: documentType
           in: path
           required: true
+          description: The type of bank document to list.
           schema:
-            $ref: '#/components/schemas/CultureProperty'
+            type: string
+            enum:
+              - TermsAndConditions
+              - PrivacyPolicy
+              - TruthInSavings
+              - eStatement
+              - ConsumerDepositAgreement
+              - FeeSchedule
+              - ReferAFriend
+              - EftInfo
+              - ProductInfo
+              - CardInfo
+              - FeeDisclosure
       responses:
         '200':
           description: >-
@@ -8550,16 +8569,68 @@ components:
                       - FeeDisclosure
                   downloadUrl:
                     type: string
+                    description: >-
+                      URL to download the PDF version of the document. Omitted
+                      when the document has no PDF.
                   effectiveDate:
                     $ref: '#/components/schemas/CustomerSetLastContact200Response/allOf/1/properties/data/items/properties/lastContactDate'
                   expireDate:
-                    $ref: '#/components/schemas/CustomerSetLastContact200Response/allOf/1/properties/data/items/properties/lastContactDate'
+                    type: string
+                    format: date-time
+                    nullable: true
                   html:
                     type: string
+                    description: >-
+                      Inline HTML content. Returned only for legacy V1
+                      disclosures.
                   programId:
                     $ref: '#/components/schemas/HelixId'
                   title:
                     type: string
+                  downloadUrlHtml:
+                    type: string
+                    nullable: true
+                    description: >-
+                      URL to download the HTML version of the document. Omitted
+                      when no HTML file exists.
+                  description:
+                    type: string
+                    nullable: true
+                  documentCategoryId:
+                    type: integer
+                    format: int32
+                    nullable: true
+                  documentCategory:
+                    type: string
+                    nullable: true
+                    enum:
+                      - Account
+                      - Customer
+                  associatedProducts:
+                    type: array
+                    nullable: true
+                    description: Populated when `documentCategory` is `Account`.
+                    items:
+                      type: object
+                      properties:
+                        productId:
+                          $ref: '#/components/schemas/HelixId'
+                        name:
+                          type: string
+                  versionNumber:
+                    type: string
+                    nullable: true
+                    example: v2
+                  states:
+                    type: string
+                    nullable: true
+                    description: Comma-separated state codes.
+                    example: CA,NY
+                  documentThreadId:
+                    type: string
+                    format: uuid
+                    nullable: true
+                    description: Shared across all versions of the same disclosure.
     CardArchive200Response:
       allOf:
         - $ref: '#/components/schemas/CardArray200Response/allOf/0'
